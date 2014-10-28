@@ -2,8 +2,9 @@ package model;
 
 import java.util.List;
 
-public class Queen implements Figure{
-	
+//Pferd
+public class Knight implements Figure{
+
 	int x;
 	int y;
 	
@@ -27,6 +28,7 @@ public class Queen implements Figure{
 	public void setField(int xKord, int yKord) {
 		x = xKord;
 		y = yKord;
+		
 	}
 
 }

@@ -2,8 +2,9 @@ package model;
 
 import java.util.List;
 
-public class Queen implements Figure{
-	
+//Läufer
+public class Bishop implements Figure{
+
 	int x;
 	int y;
 	

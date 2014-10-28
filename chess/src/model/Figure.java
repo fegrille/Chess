@@ -1,11 +1,13 @@
 package model;
 
+import java.util.List;
+
 public interface Figure {
 	
-	public void possibleFields();
+	public List<Integer[]> possibleFields();
 	
-	public int getField();
+	public int[] getField();
 	
-	public int setField(int xKord, int yKord);
+	public void setField(int xKord, int yKord);
 
 }
