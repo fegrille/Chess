@@ -1,7 +1,11 @@
-package control;
+package model;
 
-public class Horse implements Figure{
-
+public class Farmer implements Figure{
+	
+	int x;
+	int y;
+	
+	
 	//TODO Find out the possible Field where the Figure can go to
 	@Override
 	public void possibleFields() {

@@ -1,10 +1,7 @@
-package control;
+package model;
 
-public class Queen implements Figure{
-	
-	int x;
-	int y;
-	
+public class Tower implements Figure{
+
 	//TODO Find out the possible Field where the Figure can go to
 	@Override
 	public void possibleFields() {
