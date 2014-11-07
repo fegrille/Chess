@@ -2,12 +2,25 @@ package model;
 
 import java.util.List;
 
-public interface Figure {
+public class Figure {
 	
-	public List<Integer[]> possibleFields();
+	int x;
+	int y;
 	
-	public int[] getField();
+	public List<Integer[]> possibleFields() {
+		return null;
+	}
 	
-	public void setField(int xKord, int yKord);
+	public int[] getField() {
+		int[] field = new int[2];
+		field[0] = this.y;
+		field[1] = this.x;
+		return field;
+	}
+
+	public void setField(int xKord, int yKord) {
+		x = xKord;
+		y = yKord;
+	}
 
 }

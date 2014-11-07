@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class King implements Figure{
+public class King extends Figure{
 
 	int x;
 	int y;
@@ -29,20 +29,6 @@ public class King implements Figure{
 		fields.add(addField(x+1,y+1));
 		
 		return fields;
-	}
-
-	@Override
-	public int[] getField() {
-		int[] field = new int[2];
-		field[1] = y;
-		field[2] = x;
-		return field;
-	}
-
-	@Override
-	public void setField(int xKord, int yKord) {
-		x = xKord;
-		y = yKord;
 	}
 	
 	private Integer[] addField(int x, int y) {

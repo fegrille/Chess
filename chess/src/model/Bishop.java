@@ -3,7 +3,7 @@ package model;
 import java.util.List;
 
 //Läufer
-public class Bishop implements Figure{
+public class Bishop extends Figure{
 
 	int x;
 	int y;
@@ -14,20 +14,6 @@ public class Bishop implements Figure{
 		return null;
 		
 		
-	}
-
-	@Override
-	public int[] getField() {
-		int[] field = new int[2];
-		field[1] = y;
-		field[2] = x;
-		return field;
-	}
-
-	@Override
-	public void setField(int xKord, int yKord) {
-		x = xKord;
-		y = yKord;
 	}
 
 }

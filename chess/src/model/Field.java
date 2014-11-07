@@ -8,7 +8,7 @@ public class Field {
 	public Map<String, Map<Integer,String>> fields = new HashMap<>();
 	
 	// TODO list with "A","B","C","D","E","F","G","H"
-	String[] letters = new String[8];
+	String[] letters = {"A","B","C","D","E","F","G","H"};
 	// TODO list with 1,2,3,4,5,6,7,8
 	Integer[] numbers = new Integer[8];
 	String black = "b";

@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Bauer
-public class Pawn implements Figure{
-	
-	int x;
-	int y;
+public class Pawn extends Figure{
+
+	int FIELDSPACE = 2;
+	int XCORD = 1;
+	int YCORD = 0;
 	boolean firstMove = true;
-	
-	
+
+
 	public boolean getFirstMove() {
 		return firstMove;
 	}
@@ -20,36 +21,19 @@ public class Pawn implements Figure{
 		this.firstMove = firstMove;
 	}
 
-
-	//TODO Find out the possible Field where the Figure can go to
 	@Override
 	public List<Integer[]> possibleFields() {
 		List<Integer[]> fields = new ArrayList<Integer[]>();
-		Integer[] field = new Integer[2];
-		field[1] = y;
-		field[2] = x + 1;
-		fields.add(field);
+		Integer[] f = new Integer[FIELDSPACE];
+		Integer[] f2 = new Integer[FIELDSPACE];
+		f[YCORD] = y + 1;
+		f[XCORD] = x;
+		fields.add(f);
 		if(getFirstMove()) {
-			field[2] = x + 2;
-			fields.add(field);
+			f2[XCORD] = x;
+			f2[YCORD] = y + 2;
+			fields.add(f2);
 		} 
 		return fields;
 	}
-	
-	
-	@Override
-	public int[] getField() {
-		int[] field = new int[2];
-		field[1] = y;
-		field[2] = x;
-		return field;
-	}
-
-	@Override
-	public void setField(int xKord, int yKord) {
-		this.x = xKord;
-		this.y = yKord;
-		
-	}
-
 }

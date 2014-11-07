@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-public class Queen implements Figure{
+public class Queen extends Figure{
 	
 	int x;
 	int y;
@@ -13,20 +13,6 @@ public class Queen implements Figure{
 		return null;
 		
 		
-	}
-
-	@Override
-	public int[] getField() {
-		int[] field = new int[2];
-		field[1] = y;
-		field[2] = x;
-		return field;
-	}
-
-	@Override
-	public void setField(int xKord, int yKord) {
-		x = xKord;
-		y = yKord;
 	}
 
 }
