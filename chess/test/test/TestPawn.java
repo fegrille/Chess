@@ -16,7 +16,7 @@ public class TestPawn {
 	
 	@Before
 	public void setup() {
-		test = new Pawn();
+		test = new Pawn(1,1,'b');
 	}
 	@Test
 	public void testGetField() {

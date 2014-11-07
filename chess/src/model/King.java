@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class King extends Figure{
-
-	int x;
-	int y;
+	
+	public King(int x, int y, char color) {
+		setField(x,y);
+		setColor(color);
+	}
 	
 	//TODO Find out the possible Field where the Figure can go to
 	@Override

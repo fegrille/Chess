@@ -6,8 +6,10 @@ import java.util.List;
 //Turm
 public class Rook extends Figure{
 
-	int x;
-	int y;
+	public Rook(int x, int y, char color) {
+		setField(x,y);
+		setColor(color);
+	}
 	
 	//TODO Find out the possible Field where the Figure can go to
 	@Override

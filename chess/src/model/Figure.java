@@ -6,6 +6,7 @@ public class Figure {
 	
 	int x;
 	int y;
+	char color;
 	
 	public List<Integer[]> possibleFields() {
 		return null;
@@ -21,6 +22,14 @@ public class Figure {
 	public void setField(int xKord, int yKord) {
 		x = xKord;
 		y = yKord;
+	}
+	
+	public void setColor(char c) {
+		this.color = c;
+	}
+	
+	public char getColor() {
+		return this.color;
 	}
 
 }

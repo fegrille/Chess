@@ -10,7 +10,12 @@ public class Pawn extends Figure{
 	int XCORD = 1;
 	int YCORD = 0;
 	boolean firstMove = true;
-
+	
+	public Pawn(int x, int y, char color) {
+		setField(x,y);
+		setColor(color);
+		
+	}
 
 	public boolean getFirstMove() {
 		return firstMove;
