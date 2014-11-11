@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Field {
 	
-	public Map<String, Map<Integer,Figure>> fields = new HashMap<>();
+	public Map<String, Map<Integer,Figure>> fields = new HashMap<String, Map<Integer,Figure>>();
 	
 	String[] letters = {"A","B","C","D","E","F","G","H"};
 	Integer[] numbers = {1,2,3,4,5,6,7,8};
@@ -13,7 +13,7 @@ public class Field {
 	
 	public void buildField() {
 		for(int i = 0; i < letters.length; i++) {
-			Map<Integer,Figure> field = new HashMap<>();
+			Map<Integer,Figure> field = new HashMap<Integer,Figure>();
 			for(int a = 0; a < numbers.length; a++) {
 				field.put(numbers[a], empty);
 			}
