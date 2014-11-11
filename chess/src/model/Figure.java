@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Figure {
 	
-	int x;
-	int y;
-	char color;
+	protected int x;
+	protected int y;
+	protected char color;
 	
 	public List<Integer[]> possibleFields() {
 		return null;

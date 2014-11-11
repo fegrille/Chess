@@ -2,6 +2,10 @@ package model;
 
 public class ChessConstants {
 	
+	private ChessConstants() {
+		return;
+	}
+	
 	public static final int XKORD = 1;
 	public static final int YKORD = 0;
 	public static final int FIGUREFIELDSIZE = 2;

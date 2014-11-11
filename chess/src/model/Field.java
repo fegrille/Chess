@@ -5,11 +5,11 @@ import java.util.Map;
 
 public class Field {
 	
-	public Map<String, Map<Integer,Figure>> fields = new HashMap<String, Map<Integer,Figure>>();
+	private Map<String, Map<Integer,Figure>> fields = new HashMap<String, Map<Integer,Figure>>();
 	
-	String[] letters = {"A","B","C","D","E","F","G","H"};
-	Integer[] numbers = {1,2,3,4,5,6,7,8};
-	Figure empty = null;
+	private String[] letters = {"A","B","C","D","E","F","G","H"};
+	private Integer[] numbers = {1,2,3,4,5,6,7,8};
+	private Figure empty = null;
 	
 	public void buildField() {
 		for(int i = 0; i < letters.length; i++) {

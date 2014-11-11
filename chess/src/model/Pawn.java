@@ -6,10 +6,7 @@ import java.util.List;
 //Bauer
 public class Pawn extends Figure{
 
-	int FIELDSPACE = 2;
-	int XCORD = 1;
-	int YCORD = 0;
-	boolean firstMove = true;
+	private boolean firstMove = true;
 	
 	public Pawn(int x, int y, char color) {
 		setField(x,y);
@@ -29,14 +26,14 @@ public class Pawn extends Figure{
 	@Override
 	public List<Integer[]> possibleFields() {
 		List<Integer[]> fields = new ArrayList<Integer[]>();
-		Integer[] f = new Integer[FIELDSPACE];
-		Integer[] f2 = new Integer[FIELDSPACE];
-		f[YCORD] = y + 1;
-		f[XCORD] = x;
+		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
+		Integer[] f2 = new Integer[ChessConstants.FIGUREFIELDSIZE];
+		f[ChessConstants.YKORD] = y + 1;
+		f[ChessConstants.XKORD] = x;
 		fields.add(f);
 		if(getFirstMove()) {
-			f2[XCORD] = x;
-			f2[YCORD] = y + 2;
+			f2[ChessConstants.XKORD] = x;
+			f2[ChessConstants.YKORD] = y + 2;
 			fields.add(f2);
 		} 
 		return fields;
