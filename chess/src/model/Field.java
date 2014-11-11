@@ -24,6 +24,7 @@ public class Field {
 	public void initializeField(Figure figure) {
 		Integer yKord = figure.getField()[0];
 		Integer xKord = figure.getField()[1];
-		fields.get(yKord).replace(xKord, empty, figure);
+		Map<Integer,Figure> xField = fields.get(yKord);
+		xField.replace(xKord, empty, figure);
 	}
 }
