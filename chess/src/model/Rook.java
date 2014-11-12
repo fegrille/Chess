@@ -16,13 +16,13 @@ public class Rook extends Figure{
 	public List<Integer[]> possibleFields() {
 		List<Integer[]> fields = new ArrayList<Integer[]>();
 		Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
-		for(int i = getX(); i <= 8; i++) {
+		for(int i = getX(); i <= ChessConstants.MAXAXIS; i++) {
 			field[ChessConstants.YKORD] = getY();
 			field[ChessConstants.XKORD] = i + 1;
 			fields.add(field);
 		}
 		
-		for(int i = getY(); i <= 8; i++) {
+		for(int i = getY(); i <= ChessConstants.MAXAXIS; i++) {
 			field[ChessConstants.YKORD] = i + 1;
 			field[ChessConstants.XKORD] = getX();
 			fields.add(field);

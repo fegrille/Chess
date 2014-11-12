@@ -9,6 +9,7 @@ public final class ChessConstants {
 	public static final int XKORD = 1;
 	public static final int YKORD = 0;
 	public static final int FIGUREFIELDSIZE = 2;
+	public static final int MAXAXIS = 8;
 	
 	public static final String YKORDA = "A";
 	public static final String YKORDB = "B";
