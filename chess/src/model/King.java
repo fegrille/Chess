@@ -34,7 +34,7 @@ public class King extends Figure{
 	}
 	
 	private Integer[] addField(int x, int y) {
-		Integer[] field = new Integer[2];
+		Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if(x <= ChessConstants.MAXAXIS || x >= 1 || y <= ChessConstants.MAXAXIS || y >= 1) {
 			return null;
 		}
