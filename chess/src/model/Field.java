@@ -14,9 +14,7 @@ public class Field {
 	public void buildField() {
 		for(int i = 0; i < letters.length; i++) {
 			Map<Integer,Figure> field = new HashMap<Integer,Figure>();
-			for(int a = 0; a < numbers.length; a++) {
-				field.put(numbers[a], empty);
-			}
+			field = initializeXAxis(field);
 			fields.put(letters[i], field);
 		}
 	}
@@ -25,5 +23,12 @@ public class Field {
 		Integer yKord = figure.getField()[0];
 		Integer xKord = figure.getField()[1];
 		fields.get(yKord).put(xKord, figure);
+	}
+	
+	public Map<Integer,Figure> initializeXAxis(Map<Integer,Figure> field) {
+		for(int a = 0; a < numbers.length; a++) {
+			field.put(numbers[a], empty);
+		}
+		return field;
 	}
 }
