@@ -14,6 +14,7 @@ public class FigureTest {
 	@Before
 	public void setUp() {
 		test = new Figure();
+		test.setColor('w');
 	}
 	@Test
 	public void testPossibleField() {

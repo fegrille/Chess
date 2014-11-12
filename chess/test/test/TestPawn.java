@@ -13,22 +13,24 @@ import org.junit.Test;
 public class TestPawn {
 	
 	Pawn test;
+	boolean testright;
 	
 	@Before
 	public void setup() {
 		test = new Pawn(1,1,'b');
+		testright = false;
+		
 	}
 	@Test
 	public void testGetField() {
 		int[] testfield = new int[2];
 		int[] position = {1,1};
-		boolean same = false;
 		test.setField(1, 1);
 		testfield = test.getField();
 		if(position[0] == testfield[0] && position[1] == position[1]) {
-			same = true;
+			testright = true;
 		}
-		assertTrue(same);
+		assertTrue(testright);
 	}
 	
 	@Test
@@ -48,34 +50,59 @@ public class TestPawn {
 	public void testPossibleFieldsFirstMove() {
 		test.setFirstMove(true);
 		test.setField(1, 1);
-		boolean testRight = false;
 		List<Integer[]> testList = test.possibleFields();
 		Integer[] firstField = testList.get(0);
 		Integer[] secondField = testList.get(1);
 		int yKord = test.getField()[0];
 		if(firstField[0] == yKord + 1 && secondField[0] == yKord + 2) {
-			testRight = true;
+			testright = true;
 		}
-		assertTrue(testRight);
+		assertTrue(testright);
 	}
 	
 	@Test
 	public void testPossibleFieldNoFirstMove(){
 		test.setFirstMove(false);
 		test.setField(1, 1);
-		boolean testRight = false;
 		List<Integer[]> testList = test.possibleFields();
 		Integer[] firstField = testList.get(0);
 		int yKord = test.getField()[0];
 		if(firstField[0] == yKord + 1) {
-			testRight = true;
+			testright = true;
 		}
-		assertTrue(testRight);
+		assertTrue(testright);
+	}
+	
+	@Test
+	public void testGetColor() {
+		if(test.getColor() == 'b') {
+			testright = true;
+		}
+		assertTrue(testright);
+	}
+	
+	@Test
+	public void testSetX() {
+		test.setX(2);
+		if(test.getX() == 2) {
+			testright = true;
+		}
+		assertTrue(testright);
+	}
+	
+	@Test
+	public void testSetY() {
+		test.setY(2);
+		if(test.getY() == 2) {
+			testright = true;
+		}
+		assertTrue(testright);
 	}
 	
 	@After
 	public void tearDown() {
 		test = null;
+		testright = false;
 	}
 	
 
