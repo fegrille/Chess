@@ -30,17 +30,31 @@ public class King extends Figure{
 		
 		fields.add(addField(getX()+1,getY()+1));
 		
+		fields = removeNullFields(fields);
+		
 		return fields;
 	}
 	
 	private Integer[] addField(int x, int y) {
 		Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
-		if(x <= ChessConstants.MAXAXIS || x >= 1 || y <= ChessConstants.MAXAXIS || y >= 1) {
+		if(x > ChessConstants.MAXAXIS || x < 1 || y > ChessConstants.MAXAXIS || y < 1) {
 			return null;
 		}
-		field[1] = getY();
-		field[2] = getX();
+		field[0] = y;
+		field[1] = x;
 		return field;
+	}
+	
+	private List<Integer[]> removeNullFields(List<Integer[]> fields) {
+		int size = fields.size();
+		for(int i = 0; i < size; i++) {
+			if(fields.get(i) == null) {
+				fields.remove(i);
+				i--;
+				size = fields.size();
+			}
+		}
+		return fields;
 	}
 
 }
