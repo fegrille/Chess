@@ -41,7 +41,6 @@ public class TestKing {
 	@After
 	public void tearDown() {
 		test = null;
-		testright = false;
 	}
 
 }

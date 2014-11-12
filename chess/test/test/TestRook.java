@@ -37,7 +37,6 @@ public class TestRook {
 	@After
 	public void tearDown() {
 		test = null;
-		testright = false;
 	}
 
 }

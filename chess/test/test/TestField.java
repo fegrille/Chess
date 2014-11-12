@@ -1,14 +1,24 @@
 package test;
 
-import static org.junit.Assert.*;
+import model.Field;
 
-import org.junit.Test;
+import org.junit.After;
+import org.junit.Before;
 
 public class TestField {
+	
+	Field test;
+	boolean testright;
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
+	@Before
+	public void setUp() {
+		test = new Field();
+		testright = false;
+	}
+	
+	@After
+	public void tearDown() {
+		test = null;
 	}
 
 }

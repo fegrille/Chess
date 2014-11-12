@@ -1,15 +1,9 @@
 package test;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import model.Rook;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 
 public class TestKnight {
 
@@ -37,7 +31,6 @@ public class TestKnight {
 	@After
 	public void tearDown() {
 		test = null;
-		testright = false;
 	}
 
 }

@@ -102,7 +102,6 @@ public class TestPawn {
 	@After
 	public void tearDown() {
 		test = null;
-		testright = false;
 	}
 	
 
