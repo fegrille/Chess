@@ -14,14 +14,14 @@ public class Figure {
 	
 	public int[] getField() {
 		int[] field = new int[2];
-		field[0] = this.y;
-		field[1] = this.x;
+		field[0] = getY();
+		field[1] = getX();
 		return field;
 	}
 	
 	public void setField(int xKord, int yKord) {
-		this.x = xKord;
-		this.y = yKord;
+		setX(xKord);
+		setY(yKord);
 	}
 	
 	public void setColor(char c) {

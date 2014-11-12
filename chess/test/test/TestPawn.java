@@ -49,7 +49,6 @@ public class TestPawn {
 	@Test
 	public void testPossibleFieldsFirstMove() {
 		test.setFirstMove(true);
-		test.setField(1, 1);
 		List<Integer[]> testList = test.possibleFields();
 		Integer[] firstField = testList.get(0);
 		Integer[] secondField = testList.get(1);
@@ -63,7 +62,6 @@ public class TestPawn {
 	@Test
 	public void testPossibleFieldNoFirstMove(){
 		test.setFirstMove(false);
-		test.setField(1, 1);
 		List<Integer[]> testList = test.possibleFields();
 		Integer[] firstField = testList.get(0);
 		int yKord = test.getField()[0];
@@ -72,6 +70,19 @@ public class TestPawn {
 		}
 		assertTrue(testright);
 	}
+	
+	@Test
+	public void testNoPossibleFields() {
+		test.setFirstMove(false);
+		test.setField(8, 8);
+		List<Integer[]> testList = test.possibleFields();
+		if(testList.isEmpty()) {
+			testright = true;
+		}
+		assertTrue(testright);
+	}
+	
+	
 	
 	@Test
 	public void testGetColor() {

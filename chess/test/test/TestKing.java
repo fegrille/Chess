@@ -15,12 +15,14 @@ public class TestKing {
 
 	King test;
 	King test2;
+	King test3;
 	boolean testright;
 	
 	@Before
 	public void setup() {
 		test = new King(1,1,'b');
 		test2 = new King(2,2,'b');
+		test3 = new King(8,8,'b');
 		testright = false;
 		
 	}
@@ -29,9 +31,11 @@ public class TestKing {
 	public void testPossibleMoves() {
 		List<Integer[]> testfield = new ArrayList<Integer[]>();
 		List<Integer[]> testfield2 = new ArrayList<Integer[]>();
+		List<Integer[]> testfield3 = new ArrayList<Integer[]>();
 		testfield = test.possibleFields();
 		testfield2 = test2.possibleFields();
-		if(testfield.size() == 3 && testfield2.size() == 8) {
+		testfield3 = test3.possibleFields();
+		if(testfield.size() == 3 && testfield2.size() == 8 && testfield3.size() == 3) {
 			testright = true;
 		}
 		assertTrue(testright);
