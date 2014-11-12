@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Figure {
 	
-	protected int x;
-	protected int y;
-	protected char color;
+	private int x;
+	private int y;
+	private char color;
 	
 	public List<Integer[]> possibleFields() {
 		return null;
@@ -18,10 +18,10 @@ public class Figure {
 		field[1] = this.x;
 		return field;
 	}
-
+	
 	public void setField(int xKord, int yKord) {
-		x = xKord;
-		y = yKord;
+		this.x = xKord;
+		this.y = yKord;
 	}
 	
 	public void setColor(char c) {
@@ -31,5 +31,21 @@ public class Figure {
 	public char getColor() {
 		return this.color;
 	}
+	
+	public int getX() {
+		return x;
+	}
 
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+	
+
+	public void setY(int y) {
+		this.y = y;
+	}
 }

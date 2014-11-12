@@ -7,8 +7,8 @@ public class Field {
 	
 	private Map<String, Map<Integer,Figure>> fields = new HashMap<String, Map<Integer,Figure>>();
 	
-	private String[] letters = {"A","B","C","D","E","F","G","H"};
-	private Integer[] numbers = {1,2,3,4,5,6,7,8};
+	private String[] letters = {ChessConstants.YKORDA,ChessConstants.YKORDB,ChessConstants.YKORDC,ChessConstants.YKORDD,ChessConstants.YKORDE,ChessConstants.YKORDF,ChessConstants.YKORDG,ChessConstants.YKORDH};
+	private Integer[] numbers = {ChessConstants.XKORDONE,ChessConstants.XKORDTWO,ChessConstants.XKORDTHREE,ChessConstants.XKORDFOUR,ChessConstants.XKORDFIVE,ChessConstants.XKORDSIX,ChessConstants.XKORDSEVEN,ChessConstants.XKORDEIGHT};
 	private Figure empty = null;
 	
 	public void buildField() {

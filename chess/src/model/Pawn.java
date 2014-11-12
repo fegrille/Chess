@@ -28,12 +28,12 @@ public class Pawn extends Figure{
 		List<Integer[]> fields = new ArrayList<Integer[]>();
 		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		Integer[] f2 = new Integer[ChessConstants.FIGUREFIELDSIZE];
-		f[ChessConstants.YKORD] = y + 1;
-		f[ChessConstants.XKORD] = x;
+		f[ChessConstants.YKORD] = getY() + 1;
+		f[ChessConstants.XKORD] = getX();
 		fields.add(f);
 		if(getFirstMove()) {
-			f2[ChessConstants.XKORD] = x;
-			f2[ChessConstants.YKORD] = y + 2;
+			f2[ChessConstants.XKORD] = getX();
+			f2[ChessConstants.YKORD] = getY() + 2;
 			fields.add(f2);
 		} 
 		return fields;

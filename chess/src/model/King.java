@@ -14,21 +14,21 @@ public class King extends Figure{
 	@Override
 	public List<Integer[]> possibleFields() {
 		List<Integer[]> fields = new ArrayList<Integer[]>();
-		fields.add(addField(x+1, y));
+		fields.add(addField(getX()+1, getY()));
 		
-		fields.add(addField(x+1,y-1));
+		fields.add(addField(getX()+1,getY()-1));
 		
-		fields.add(addField(x,y-1));
+		fields.add(addField(getX(),getY()-1));
 		
-		fields.add(addField(x-1,y-1));
+		fields.add(addField(getX()-1,getY()-1));
 		
-		fields.add(addField(x-1,y));
+		fields.add(addField(getX()-1,getY()));
 		
-		fields.add(addField(x-1,y+1));
+		fields.add(addField(getX()-1,getY()+1));
 		
-		fields.add(addField(x,y+1));
+		fields.add(addField(getX(),getY()+1));
 		
-		fields.add(addField(x+1,y+1));
+		fields.add(addField(getX()+1,getY()+1));
 		
 		return fields;
 	}
@@ -38,8 +38,8 @@ public class King extends Figure{
 		if(x > 8 || x < 1 || y > 8 || y < 1) {
 			return null;
 		}
-		field[1] = this.y;
-		field[2] = this.x;
+		field[1] = getY();
+		field[2] = getX();
 		return field;
 	}
 
