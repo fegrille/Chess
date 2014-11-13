@@ -27,7 +27,7 @@ public class TestPlayer {
 	}
 
 	@Test
-	public void testInitializeFigures() {
+	public void testInitializeFiguresBlack() {
 		f.buildField();
 		test.initializeFigures(f);
 		if(test.getFigureList().size() == 16) {
@@ -37,9 +37,30 @@ public class TestPlayer {
 	}
 	
 	@Test
+	public void testInitializeFiguresWhite() {
+		test.setCol('w');
+		f.buildField();
+		test.initializeFigures(f);
+		if(test.getFigureList().size() == 16) {
+			testright = true;
+		}
+		assertTrue(testright);
+		
+	}
+	
+	@Test
 	public void testGetColor() {
 		test.setCol('w');
 		if(test.getCol() == 'w'){
+			testright = true;
+		}
+		assertTrue(testright);
+	}
+	
+	@Test
+	public void testSetFigureList() {
+		test.setFigureList(null);
+		if(test.getFigureList() == null) {
 			testright = true;
 		}
 		assertTrue(testright);

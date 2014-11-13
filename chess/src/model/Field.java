@@ -26,8 +26,6 @@ public class Field {
 	public void initializeField(Figure figure) {
 		int yKord = figure.getY();
 		int xKord = figure.getX();
-		System.out.println(this.fields.keySet().toString());
-		System.out.println(this.fields.get(yKord).keySet().toString());
 		getFields().get(yKord).put(xKord, figure);
 	}
 	
