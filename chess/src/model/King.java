@@ -5,8 +5,8 @@ import java.util.List;
 
 public class King extends Figure{
 	
-	public King(int x, int y, char color) {
-		setField(x,y);
+	public King(int y, int x, char color) {
+		setField(y,x);
 		setColor(color);
 	}
 	

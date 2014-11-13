@@ -8,8 +8,8 @@ public class Rook extends Figure{
 
 	private Moves move = new Moves();
 	
-	public Rook(int x, int y, char color) {
-		setField(x,y);
+	public Rook(int y, int x, char color) {
+		setField(y,x);
 		setColor(color);
 	}
 	

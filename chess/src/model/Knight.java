@@ -7,7 +7,7 @@ import java.util.List;
 public class Knight extends Figure{
 	
 	public Knight(int x, int y, char color) {
-		setField(x,y);
+		setField(y,x);
 		setColor(color);
 	}
 	

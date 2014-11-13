@@ -7,8 +7,8 @@ public class Queen extends Figure{
 	
 	private Moves move = new Moves();
 	
-	public Queen(int x, int y, char color) {
-		setField(x,y);
+	public Queen(int y, int x, char color) {
+		setField(y,x);
 		setColor(color);
 	}
 	

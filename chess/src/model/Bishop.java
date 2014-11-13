@@ -8,8 +8,8 @@ public class Bishop extends Figure{
 	
 	private Moves move = new Moves();
 	
-	public Bishop(int x, int y, char color) {
-		setField(x,y);
+	public Bishop(int y, int x, char color) {
+		setField(y,x);
 		setColor(color);
 	}
 	

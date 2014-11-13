@@ -9,7 +9,7 @@ public class Pawn extends Figure{
 	private boolean firstMove = true;
 	
 	public Pawn(int y, int x, char color) {
-		setField(x,y);
+		setField(y,x);
 		setColor(color);
 		
 	}
