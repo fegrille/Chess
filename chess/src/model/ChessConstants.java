@@ -36,6 +36,7 @@ public final class ChessConstants {
 	public static final int[] KNIGHTXKORDS = {2, 7};
 	public static final int[] ROOKXKORDS = {2, 7};
 	public static final int[] BISHOPXKORDS = {2, 7};
+	public static final int[] PAWNYKORDS = {2, 7};
 	
 	
 }

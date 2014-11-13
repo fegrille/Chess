@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Player {
 	
-	private List<Figure> figureList;
+	public List<Figure> figureList;
 	private char col;
 	
 	public Player(char color) {
@@ -19,10 +19,10 @@ public class Player {
 		this.col = color;
 	}
 	
-	public List<Figure> addPawns(List<Figure> figures) {
-		int yKord = 2;
+	private List<Figure> addPawns(List<Figure> figures) {
+		int yKord = ChessConstants.PAWNYKORDS[0];
 		if(this.col == 'b') {
-			yKord = 7;
+			yKord = ChessConstants.PAWNYKORDS[1];
 		}
 		for(int i = 1; i <= ChessConstants.MAXPAWNS; i++) {
 			figures.add(new Pawn(yKord, i, this.col));
@@ -30,21 +30,21 @@ public class Player {
 		return figures;
 	}
 	
-	public List<Figure> addQueen(List<Figure> figures) {
-		int xKord = ChessConstants.QUEENXKORDS;;
+	private List<Figure> addQueen(List<Figure> figures) {
+		int xKord = ChessConstants.QUEENXKORDS;
 		int yKord = blackOrWhite();
 		figures.add(new Queen(xKord,yKord,this.col));
 		return figures;
 	}
 	
-	public List<Figure> addKing(List<Figure> figures) {
+	private List<Figure> addKing(List<Figure> figures) {
 		int xKord = ChessConstants.KINGXKORDS;
 		int yKord = blackOrWhite();
 		figures.add(new King(xKord,yKord,this.col));
 		return figures;
 	}
 	
-	public List<Figure> addKnights(List<Figure> figures) {
+	private List<Figure> addKnights(List<Figure> figures) {
 		int xKord = ChessConstants.KNIGHTXKORDS[0];
 		int yKord = blackOrWhite();
 		figures.add(new King(xKord,yKord,this.col));
@@ -53,7 +53,7 @@ public class Player {
 		return figures;
 	}
 	
-	public List<Figure> addBishops(List<Figure> figures) {
+	private List<Figure> addBishops(List<Figure> figures) {
 		int xKord = ChessConstants.BISHOPXKORDS[0];
 		int yKord = blackOrWhite();
 		figures.add(new King(xKord,yKord,this.col));
@@ -62,7 +62,7 @@ public class Player {
 		return figures;
 	}
 	
-	public List<Figure> addRooks(List<Figure> figures) {
+	private List<Figure> addRooks(List<Figure> figures) {
 		int xKord = ChessConstants.ROOKXKORDS[0];
 		int yKord = blackOrWhite();
 		figures.add(new King(xKord,yKord,this.col));
@@ -71,10 +71,10 @@ public class Player {
 		return figures;
 	}
 	
-	public int blackOrWhite() {
-		int yKord = 1;
+	private int blackOrWhite() {
+		int yKord = ChessConstants.MINAXIS;
 		if(this.col == 'b') {
-			yKord = 8;
+			yKord = ChessConstants.MAXAXIS;
 		}
 		return yKord;
 	}
