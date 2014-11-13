@@ -10,65 +10,59 @@ public class Player {
 	
 	public Player(char color) {
 		this.figureList = new ArrayList<Figure>();
-		this.figureList = addPawns(figureList);
-		this.figureList = addRooks(figureList);
-		this.figureList = addKnights(figureList);
-		this.figureList = addBishops(figureList);
-		this.figureList = addQueen(figureList);
-		this.figureList = addKing(figureList);
+		addPawns();
+		addRooks();
+		addKnights();
+		addBishops();
+		addQueen();
+		addKing();
 		this.col = color;
 	}
 	
-	private List<Figure> addPawns(List<Figure> figures) {
+	private void addPawns() {
 		int yKord = ChessConstants.PAWNYKORDS[0];
 		if(this.col == 'b') {
 			yKord = ChessConstants.PAWNYKORDS[1];
 		}
 		for(int i = 1; i <= ChessConstants.MAXPAWNS; i++) {
-			figures.add(new Pawn(yKord, i, this.col));
+			this.figureList.add(new Pawn(yKord, i, this.col));
 		}
-		return figures;
 	}
 	
-	private List<Figure> addQueen(List<Figure> figures) {
+	private void addQueen() {
 		int xKord = ChessConstants.QUEENXKORDS;
 		int yKord = blackOrWhite();
-		figures.add(new Queen(xKord,yKord,this.col));
-		return figures;
+		this.figureList.add(new Queen(xKord,yKord,this.col));
 	}
 	
-	private List<Figure> addKing(List<Figure> figures) {
+	private void addKing() {
 		int xKord = ChessConstants.KINGXKORDS;
 		int yKord = blackOrWhite();
-		figures.add(new King(xKord,yKord,this.col));
-		return figures;
+		this.figureList.add(new King(xKord,yKord,this.col));
 	}
 	
-	private List<Figure> addKnights(List<Figure> figures) {
+	private void addKnights() {
 		int xKord = ChessConstants.KNIGHTXKORDS[0];
 		int yKord = blackOrWhite();
-		figures.add(new King(xKord,yKord,this.col));
+		this.figureList.add(new King(xKord,yKord,this.col));
 		xKord = ChessConstants.KNIGHTXKORDS[1];
-		figures.add(new King(xKord,yKord,this.col));
-		return figures;
+		this.figureList.add(new King(xKord,yKord,this.col));
 	}
 	
-	private List<Figure> addBishops(List<Figure> figures) {
+	private void addBishops() {
 		int xKord = ChessConstants.BISHOPXKORDS[0];
 		int yKord = blackOrWhite();
-		figures.add(new King(xKord,yKord,this.col));
+		this.figureList.add(new King(xKord,yKord,this.col));
 		xKord = ChessConstants.BISHOPXKORDS[1];
-		figures.add(new King(xKord,yKord,this.col));
-		return figures;
+		this.figureList.add(new King(xKord,yKord,this.col));
 	}
 	
-	private List<Figure> addRooks(List<Figure> figures) {
+	private void addRooks() {
 		int xKord = ChessConstants.ROOKXKORDS[0];
 		int yKord = blackOrWhite();
-		figures.add(new King(xKord,yKord,this.col));
+		this.figureList.add(new King(xKord,yKord,this.col));
 		xKord = ChessConstants.ROOKXKORDS[1];
-		figures.add(new King(xKord,yKord,this.col));
-		return figures;
+		this.figureList.add(new King(xKord,yKord,this.col));
 	}
 	
 	private int blackOrWhite() {
