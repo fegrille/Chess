@@ -1,31 +1,50 @@
 package test;
 
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Knight;
 import model.Rook;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 public class TestKnight {
 
-	Rook test;
+	Knight test;
+	Knight test1;
+	Knight test2;
+	Knight test3;
 	boolean testright;
 	
 	@Before
 	public void setup() {
-		test = new Rook(1,1,'b');
+		test = new Knight(1,1,'b');
+		test1 = new Knight(1,8,'b');
+		test2 = new Knight(8,1,'b');
+		test3 = new Knight(8,8,'b');
 		testright = false;
 		
 	}
 	
-	/*@Test
+	@Test
 	public void testPossibleMoves() {
 		List<Integer[]> testfield = new ArrayList<Integer[]>();
+		List<Integer[]> testfield1 = new ArrayList<Integer[]>();
+		List<Integer[]> testfield2 = new ArrayList<Integer[]>();
+		List<Integer[]> testfield3 = new ArrayList<Integer[]>();
 		testfield = test.possibleFields();
-		if(testfield.size() == 14) {
+		testfield1 = test1.possibleFields();
+		testfield2 = test2.possibleFields();
+		testfield3 = test3.possibleFields();
+		if(testfield.size() == 2 && testfield1.size() == 2 && testfield2.size() == 2 && testfield3.size() == 2) {
 			testright = true;
 		}
 		assertTrue(testright);
-	}*/
+	}
 	
 	
 	@After

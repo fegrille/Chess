@@ -11,7 +11,6 @@ public class Knight extends Figure{
 		setColor(color);
 	}
 	
-	//TODO Find out the possible Field where the Figure can go to
 	@Override
 	public List<Integer[]> possibleFields() {
 		List<Integer[]> fields = new ArrayList<Integer[]>();
@@ -45,7 +44,7 @@ public class Knight extends Figure{
 		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		int y = getY();
 		int x = getX();
-		if((x - 2) <= ChessConstants.MAXAXIS) {
+		if((x - 2) >= ChessConstants.MINAXIS) {
 			if((y + 1) <= ChessConstants.MAXAXIS) {
 				f[ChessConstants.YKORD] = y + 1;
 				f[ChessConstants.XKORD] = x - 2;

@@ -90,7 +90,7 @@ public class Moves {
 		Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		int y = yKord - 1;
 		int x = xKord - 1;
-		while(y <= ChessConstants.MINAXIS && x <= ChessConstants.MINAXIS) {
+		while(y >= ChessConstants.MINAXIS && x >= ChessConstants.MINAXIS) {
 			field[ChessConstants.YKORD] = y;
 			field[ChessConstants.XKORD] = x;
 			fields.add(field);
