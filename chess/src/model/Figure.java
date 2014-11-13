@@ -19,7 +19,7 @@ public class Figure {
 		return field;
 	}
 	
-	public void setField(int xKord, int yKord) {
+	public void setField(int yKord, int xKord) {
 		setX(xKord);
 		setY(yKord);
 	}

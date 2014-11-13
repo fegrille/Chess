@@ -2,6 +2,10 @@ package model;
 
 public final class ChessConstants {
 	
+	private ChessConstants() {
+		
+	}
+	
 	public static final int XKORD = 1;
 	public static final int YKORD = 0;
 	public static final int FIGUREFIELDSIZE = 2;
@@ -25,6 +29,13 @@ public final class ChessConstants {
 	public static final int XKORDSIX = 6;
 	public static final int XKORDSEVEN = 7;
 	public static final int XKORDEIGHT = 8;
+	
+	public static final int MAXPAWNS = 8;
+	public static final int KINGXKORDS = 5;
+	public static final int QUEENXKORDS = 4;
+	public static final int[] KNIGHTXKORDS = {2, 7};
+	public static final int[] ROOKXKORDS = {2, 7};
+	public static final int[] BISHOPXKORDS = {2, 7};
 	
 	
 }
