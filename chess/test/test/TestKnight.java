@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Knight;
-import model.Rook;
 
 import org.junit.After;
 import org.junit.Before;

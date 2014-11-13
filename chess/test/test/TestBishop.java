@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Bishop;
-import model.Queen;
 
 import org.junit.After;
 import org.junit.Before;

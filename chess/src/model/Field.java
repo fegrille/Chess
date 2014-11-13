@@ -5,24 +5,30 @@ import java.util.Map;
 
 public class Field {
 	
-	private Map<String, Map<Integer,Figure>> fields = new HashMap<String, Map<Integer,Figure>>();
+	private Map<Integer, Map<Integer,Figure>> fields = new HashMap<Integer, Map<Integer,Figure>>();
 	
-	private String[] letters = {ChessConstants.YKORDA,ChessConstants.YKORDB,ChessConstants.YKORDC,ChessConstants.YKORDD,ChessConstants.YKORDE,ChessConstants.YKORDF,ChessConstants.YKORDG,ChessConstants.YKORDH};
 	private Integer[] numbers = {ChessConstants.XKORDONE,ChessConstants.XKORDTWO,ChessConstants.XKORDTHREE,ChessConstants.XKORDFOUR,ChessConstants.XKORDFIVE,ChessConstants.XKORDSIX,ChessConstants.XKORDSEVEN,ChessConstants.XKORDEIGHT};
-	private Figure empty = null;
+	private Figure empty = new Figure();
+	
+	public Map<Integer, Map<Integer,Figure>> getFields() {
+		return this.fields;
+	}
 	
 	public void buildField() {
-		for(int i = 0; i < letters.length; i++) {
-			Map<Integer,Figure> field = new HashMap<Integer,Figure>();
+		Map<Integer,Figure> field;
+		for(int i = 0; i < numbers.length; i++) {
+			field = new HashMap<Integer,Figure>();
 			field = initializeXAxis(field);
-			fields.put(letters[i], field);
+			getFields().put(numbers[i], field);
 		}
 	}
 	
 	public void initializeField(Figure figure) {
-		Integer yKord = figure.getField()[0];
-		Integer xKord = figure.getField()[1];
-		fields.get(yKord).put(xKord, figure);
+		int yKord = figure.getY();
+		int xKord = figure.getX();
+		System.out.println(this.fields.keySet().toString());
+		System.out.println(this.fields.get(yKord).keySet().toString());
+		getFields().get(yKord).put(xKord, figure);
 	}
 	
 	public Map<Integer,Figure> initializeXAxis(Map<Integer,Figure> field) {

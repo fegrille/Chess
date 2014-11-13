@@ -12,7 +12,6 @@ public class Queen extends Figure{
 		setColor(color);
 	}
 	
-	//TODO Find out the possible Field where the Figure can go to
 	@Override
 	public List<Integer[]> possibleFields() {
 		List<Integer[]> fields = new ArrayList<Integer[]>();
