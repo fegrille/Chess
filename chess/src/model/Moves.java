@@ -99,5 +99,11 @@ public class Moves {
 		}
 		return fields;
 	}
+	
+	public Figure moveFigure(Figure f, int yKord, int xKord) {
+		f.setX(xKord);
+		f.setY(yKord);
+		return f;
+	}
 
 }
