@@ -5,17 +5,17 @@ import java.util.List;
 
 public class Player {
 	
-	public List<Figure> figureList;
+	private List<Figure> figureList;
 	private char col;
 	
 	public Player(char color) {
-		figureList = new ArrayList<Figure>();
-		figureList = addPawns(figureList);
-		figureList = addRooks(figureList);
-		figureList = addKnights(figureList);
-		figureList = addBishops(figureList);
-		figureList = addQueen(figureList);
-		figureList = addKing(figureList);
+		this.figureList = new ArrayList<Figure>();
+		this.figureList = addPawns(figureList);
+		this.figureList = addRooks(figureList);
+		this.figureList = addKnights(figureList);
+		this.figureList = addBishops(figureList);
+		this.figureList = addQueen(figureList);
+		this.figureList = addKing(figureList);
 		this.col = color;
 	}
 	
