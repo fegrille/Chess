@@ -1,10 +1,6 @@
 package model;
 
-public final class ChessConstants {
-	
-	private ChessConstants() {
-		
-	}
+public abstract class ChessConstants {
 	
 	public static final int XKORD = 1;
 	public static final int YKORD = 0;
