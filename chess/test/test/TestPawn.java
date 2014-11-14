@@ -100,6 +100,7 @@ public class TestPawn {
 	public void testBlackNoFirstMove() {
 		test.setFirstMove(false);
 		test.setColor('b');
+		test.setField(8, 8);
 		List<Integer[]> testList = test.possibleFields();
 		Integer[] firstField = testList.get(0);
 		int yKord = test.getField()[0];
