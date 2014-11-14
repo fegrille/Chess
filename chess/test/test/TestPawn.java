@@ -97,6 +97,19 @@ public class TestPawn {
 	}
 	
 	@Test
+	public void testBlackNoFirstMove() {
+		test.setFirstMove(false);
+		test.setColor('b');
+		List<Integer[]> testList = test.possibleFields();
+		Integer[] firstField = testList.get(0);
+		int yKord = test.getField()[0];
+		if(firstField[0] == yKord - 1) {
+			testright = true;
+		}
+		assertTrue(testright);
+	}
+	
+	@Test
 	public void testNoPossibleFieldsBlack() {
 		test.setFirstMove(false);
 		test.setColor('b');
