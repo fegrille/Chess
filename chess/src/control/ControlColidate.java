@@ -9,12 +9,13 @@ public class ControlColidate {
 	
 	public List<Integer[]> colidateFigurePawn(Figure f, List<Integer[]> pf, Player p) {
 		List<Figure> figureList = unmovedFigures(f,p);
+		List<Integer[]> posFields = pf;
 		for(int i = 0; i < pf.size(); i++) {
 			if(colidate(figureList, pf.get(i))) {
-				pf = removeFieldsPawn(pf,pf.get(i),f.getColor());
+				posFields = removeFieldsPawn(pf,pf.get(i),f.getColor());
 			}
 		}
-		return pf;
+		return posFields;
 	}
 	
 	public List<Figure> unmovedFigures(Figure f, Player p) {
@@ -42,10 +43,11 @@ public class ControlColidate {
 	}
 	
 	public List<Integer[]> removeFieldsPawn(List<Integer[]> pf, Integer[] colField, char color) {
+		List<Integer[]> posFields = pf;
 		for(int i = 0; i < pf.size(); i++) {
-			pf = removeFieldForColor(pf, colField, i, color);
+			posFields = removeFieldForColor(pf, colField, i, color);
 		}
-		return pf;
+		return posFields;
 	}
 	
 	public List<Integer[]> removeFieldForColor(List<Integer[]> pf, Integer[] colField, int index, char color) {
