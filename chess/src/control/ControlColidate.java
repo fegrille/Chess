@@ -7,14 +7,38 @@ import model.Player;
 
 public class ControlColidate {
 	
+	private List<Integer[]> possibleFields;
+	
+	public List<Integer[]> getPossibleFields() {
+		return possibleFields;
+	}
+
+	public void setPossibleFields(List<Integer[]> possibleFields) {
+		this.possibleFields = possibleFields;
+	}
+
 	public List<Integer[]> colidateFigurePawn(Figure f, List<Integer[]> pf, Player p) {
 		List<Figure> figureList = unmovedFigures(f,p);
-		List<Integer[]> posFields = pf;
+		setPossibleFields(pf);
 		for(int i = 0; i < pf.size(); i++) {
 			if(colidate(figureList, pf.get(i))) {
-				posFields = removeFieldsPawn(pf,pf.get(i),f.getColor());
+				setPossibleFields(removeFieldsPawn(pf,pf.get(i),f.getColor()));
 			}
 		}
+		return getPossibleFields();
+	}
+	
+	public List<Integer[]> colidateOwnFigureRook(Figure f, List<Integer[]> pf, Player p) {
+		List<Figure> figureList = unmovedFigures(f,p);
+		List<Integer[]> posFields = pf;
+		
+		return posFields;
+	}
+	
+	public List<Integer[]> colidateOtherFigureRook(Figure f, List<Integer[]> pf, Player p) {
+		List<Figure> figureList = unmovedFigures(f,p);
+		List<Integer[]> posFields = pf;
+		
 		return posFields;
 	}
 	
