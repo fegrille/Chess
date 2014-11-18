@@ -1,11 +1,11 @@
 package control;
 
-import model.Bishop;
 import model.Figure;
-import model.Knight;
-import model.Pawn;
-import model.Queen;
-import model.Rook;
+import model.figures.Bishop;
+import model.figures.Knight;
+import model.figures.Pawn;
+import model.figures.Queen;
+import model.figures.Rook;
 
 public class ControlPawn {
 	

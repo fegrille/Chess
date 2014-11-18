@@ -1,7 +1,10 @@
-package model;
+package model.figures;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import model.ChessConstants;
+import model.Figure;
 
 //Bauer
 public class Pawn extends Figure{

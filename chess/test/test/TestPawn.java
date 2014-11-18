@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import model.Pawn;
+import model.figures.Pawn;
 
 import org.junit.After;
 import org.junit.Before;

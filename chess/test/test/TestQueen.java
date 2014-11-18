@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Queen;
+import model.figures.Queen;
 
 import org.junit.After;
 import org.junit.Before;

@@ -3,7 +3,7 @@ package test;
 import static org.junit.Assert.*;
 import model.Figure;
 import model.Moves;
-import model.Pawn;
+import model.figures.Pawn;
 
 import org.junit.After;
 import org.junit.Before;
