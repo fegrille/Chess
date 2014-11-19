@@ -10,19 +10,17 @@ import model.Rook;
 
 public class ControlPawn {
 	
-	private Figure newFig;
+	private Figure newFig = null;
 	
 	public Figure getNewFig() {
 		return newFig;
 	}
 
-
 	public void setNewFig(Figure newFig) {
 		this.newFig = newFig;
 	}
 
-
-	public boolean checkEndfield(Pawn pawn) {
+	public boolean checkEndfield(Figure pawn) {
 		boolean endField = false;
 		setNewFig(pawn);
 		int y = getNewFig().getY();
@@ -34,7 +32,6 @@ public class ControlPawn {
 		}
 		return endField;
 	}
-
 
 	public Figure changeFigure(String choice) {
 		setBishop(choice);
