@@ -9,28 +9,59 @@ import model.figures.Rook;
 
 public class ControlPawn {
 	
+	private Figure newFig;
+	
+	public Figure getNewFig() {
+		return newFig;
+	}
+
+
+	public void setNewFig(Figure newFig) {
+		this.newFig = newFig;
+	}
+
+
 	public boolean checkEndfield(Pawn pawn) {
 		boolean endField = false;
-		if(pawn.getColor() == 'w' && pawn.getY() == 8) {
+		setNewFig(pawn);
+		if(getNewFig().getColor() == 'w' && getNewFig().getY() == 8) {
 			endField = true;
-		} else if(pawn.getColor() == 'b'&& pawn.getY() == 1) {
+		} else if(getNewFig().getColor() == 'b'&& getNewFig().getY() == 1) {
 			endField = true;
 		}
 		return endField;
 	}
 
 
-	public Figure changeFigure(Pawn pawn, String choise) {
-		Figure newFig = null;
-		if(choise.equals("Bishop")) {
-			newFig = new Bishop(pawn.getX(), pawn.getY(), pawn.getColor());
-		} else if(choise.equals("Knight")) {
-			newFig = new Knight(pawn.getX(), pawn.getY(), pawn.getColor());
-		} else if(choise.equals("Queen")) {
-			newFig = new Queen(pawn.getX(), pawn.getY(), pawn.getColor());
-		} else if(choise.equals("Rook")) {
-			newFig = new Rook(pawn.getX(), pawn.getY(), pawn.getColor());
+	public Figure changeFigure(String choice) {
+		setBishop(choice);
+		setKnight(choice);
+		setQueen(choice);
+		setRook(choice);
+		return getNewFig();
+	}
+	
+	private void setBishop(String choice) {
+		if(choice.equals("Bishop")) {
+			setNewFig(new Bishop(getNewFig().getX(), getNewFig().getY(), getNewFig().getColor()));
 		}
-		return newFig;
+	}
+	
+	private void setKnight(String choice) {
+		if(choice.equals("Knight")) {
+			setNewFig(new Knight(getNewFig().getX(), getNewFig().getY(), getNewFig().getColor()));
+		}
+	}
+	
+	private void setQueen(String choice) {
+		if(choice.equals("Queen")) {
+			setNewFig(new Queen(getNewFig().getX(), getNewFig().getY(), getNewFig().getColor()));
+		}
+	}
+	
+	private void setRook(String choice) {
+		if(choice.equals("Rook")) {
+			setNewFig(new Rook(getNewFig().getX(), getNewFig().getY(), getNewFig().getColor()));
+		}
 	}
 }
