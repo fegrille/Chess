@@ -1,10 +1,7 @@
-package model.figures;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import model.ChessConstants;
-import model.Figure;
 
 //Pferd
 public class Knight extends Figure{

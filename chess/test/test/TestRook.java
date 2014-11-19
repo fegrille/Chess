@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.figures.Rook;
+import model.Rook;
 
 import org.junit.After;
 import org.junit.Before;

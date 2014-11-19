@@ -1,10 +1,7 @@
-package model.figures;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import model.ChessConstants;
-import model.Figure;
 
 public class King extends Figure{
 	

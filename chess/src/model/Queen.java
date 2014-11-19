@@ -1,17 +1,13 @@
-package model.figures;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Figure;
-import model.Moves;
-
-//Turm
-public class Rook extends Figure{
-
+public class Queen extends Figure{
+	
 	private Moves move = new Moves();
 	
-	public Rook(int y, int x, char color) {
+	public Queen(int y, int x, char color) {
 		setField(y,x);
 		setColor(color);
 	}
@@ -23,8 +19,12 @@ public class Rook extends Figure{
 		fields = move.moveDownFields(fields, getY(), getX());
 		fields = move.moveLeftFields(fields, getY(), getX());
 		fields = move.moveRightFields(fields, getY(), getX());
+		fields = move.moveRightUp(fields, getY(), getX());
+		fields = move.moveLeftUp(fields, getY(), getX());
+		fields = move.moveRightDown(fields, getY(), getX());
+		fields = move.moveLeftDown(fields, getY(), getX());
 
 		return fields;
 	}
-
+	
 }
