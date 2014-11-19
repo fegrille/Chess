@@ -1,6 +1,7 @@
 package control;
 
 import model.Bishop;
+import model.ChessConstants;
 import model.Figure;
 import model.Knight;
 import model.Pawn;
@@ -24,9 +25,11 @@ public class ControlPawn {
 	public boolean checkEndfield(Pawn pawn) {
 		boolean endField = false;
 		setNewFig(pawn);
-		if(getNewFig().getColor() == 'w' && getNewFig().getY() == 8) {
+		int y = getNewFig().getY();
+		int color = getNewFig().getColor();
+		if(color == 'w' && y == ChessConstants.MAXAXIS) {
 			endField = true;
-		} else if(getNewFig().getColor() == 'b'&& getNewFig().getY() == 1) {
+		} else if(color == 'b'&& y == ChessConstants.MINAXIS) {
 			endField = true;
 		}
 		return endField;
