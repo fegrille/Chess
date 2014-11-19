@@ -3,7 +3,7 @@ package control;
 import view.Gui;
 import view.Tui;
 
-public class StartGame {
+public final class StartGame {
 	
 	private StartGame() {
 		
