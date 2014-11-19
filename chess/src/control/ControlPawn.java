@@ -10,29 +10,27 @@ import model.figures.Rook;
 public class ControlPawn {
 	
 	public boolean checkEndfield(Pawn pawn) {
-		if(pawn.getColor() == 'w') {
-			if(pawn.getY() == 8) {
-				return true;
-			}
-		} else if(pawn.getColor() == 'b') {
-			if(pawn.getY() == 1) {
-				return true;
-			}
+		boolean endField = false;
+		if(pawn.getColor() == 'w' && pawn.getY() == 8) {
+			endField = true;
+		} else if(pawn.getColor() == 'b'&& pawn.getY() == 1) {
+			endField = true;
 		}
-		return false;
+		return endField;
 	}
 
 
 	public Figure changeFigure(Pawn pawn, String choise) {
+		Figure newFig = null;
 		if(choise.equals("Bishop")) {
-			return new Bishop(pawn.getX(), pawn.getY(), pawn.getColor());
+			newFig = new Bishop(pawn.getX(), pawn.getY(), pawn.getColor());
 		} else if(choise.equals("Knight")) {
-			return new Knight(pawn.getX(), pawn.getY(), pawn.getColor());
+			newFig = new Knight(pawn.getX(), pawn.getY(), pawn.getColor());
 		} else if(choise.equals("Queen")) {
-			return new Queen(pawn.getX(), pawn.getY(), pawn.getColor());
+			newFig = new Queen(pawn.getX(), pawn.getY(), pawn.getColor());
 		} else if(choise.equals("Rook")) {
-			return new Rook(pawn.getX(), pawn.getY(), pawn.getColor());
+			newFig = new Rook(pawn.getX(), pawn.getY(), pawn.getColor());
 		}
-		return null;
+		return newFig;
 	}
 }

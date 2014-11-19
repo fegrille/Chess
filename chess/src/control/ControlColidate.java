@@ -8,7 +8,16 @@ import model.Player;
 public class ControlColidate {
 	
 	private List<Integer[]> possibleFields;
+	private List<Figure> figureList;
 	
+	public List<Figure> getFigureList() {
+		return figureList;
+	}
+
+	public void setFigureList(List<Figure> figureList) {
+		this.figureList = figureList;
+	}
+
 	public List<Integer[]> getPossibleFields() {
 		return possibleFields;
 	}
@@ -18,46 +27,47 @@ public class ControlColidate {
 	}
 
 	public List<Integer[]> colidateFigurePawn(Figure f, List<Integer[]> pf, Player p) {
-		List<Figure> figureList = unmovedFigures(f,p);
+		unmovedFigures(f);
 		setPossibleFields(pf);
-		for(int i = 0; i < pf.size(); i++) {
-			if(colidate(figureList, pf.get(i))) {
-				setPossibleFields(removeFieldsPawn(pf,pf.get(i),f.getColor()));
+		setFigureList(p.getFigureList());
+		for(int i = 0; i < getPossibleFields().size(); i++) {
+			if(colidate(getPossibleFields().get(i))) {
+				removeFieldsPawn(getPossibleFields().get(i),f.getColor());
 			}
 		}
 		return getPossibleFields();
 	}
 	
 	public List<Integer[]> colidateOwnFigureRook(Figure f, List<Integer[]> pf, Player p) {
-		List<Figure> figureList = unmovedFigures(f,p);
-		List<Integer[]> posFields = pf;
+		unmovedFigures(f);
+		setPossibleFields(pf);
+		setFigureList(p.getFigureList());
 		
-		return posFields;
+		return getPossibleFields();
 	}
 	
 	public List<Integer[]> colidateOtherFigureRook(Figure f, List<Integer[]> pf, Player p) {
-		List<Figure> figureList = unmovedFigures(f,p);
-		List<Integer[]> posFields = pf;
+		unmovedFigures(f);
+		setPossibleFields(pf);
+		setFigureList(p.getFigureList());
 		
-		return posFields;
+		return getPossibleFields();
 	}
 	
-	public List<Figure> unmovedFigures(Figure f, Player p) {
-		List<Figure> figureList = p.getFigureList();
+	public void unmovedFigures(Figure f) {
 		int[] fPos = f.getField();
-		for(int i = 0; i < figureList.size(); i++) {
-			int[] figPos = figureList.get(i).getField();
+		for(int i = 0; i < getFigureList().size(); i++) {
+			int[] figPos = getFigureList().get(i).getField();
 			if(fPos[0] == figPos[0] && fPos[1] == figPos[1]) {
-				figureList.remove(i);
+				getFigureList().remove(i);
 			}
 		}
-		return figureList;
 	}
 	
-	public boolean colidate(List<Figure> f, Integer[] posF) {
+	public boolean colidate(Integer[] posF) {
 		boolean col = false;
-		for(int i = 0; i < f.size(); i++) {
-			int[] position = f.get(i).getField();
+		for(int i = 0; i < getFigureList().size(); i++) {
+			int[] position = getFigureList().get(i).getField();
 			if(posF[0] == position[0] && posF[1] == position[1]) {
 				col = true;
 				break;
@@ -66,27 +76,31 @@ public class ControlColidate {
 		return col;
 	}
 	
-	public List<Integer[]> removeFieldsPawn(List<Integer[]> pf, Integer[] colField, char color) {
-		List<Integer[]> posFields = pf;
-		for(int i = 0; i < pf.size(); i++) {
-			posFields = removeFieldForColor(pf, colField, i, color);
+	public void removeFieldsPawn(Integer[] colField, char color) {
+		for(int i = 0; i < getPossibleFields().size(); i++) {
+			removeFieldForColor(colField, i, color);
 		}
-		return posFields;
 	}
 	
-	public List<Integer[]> removeFieldForColor(List<Integer[]> pf, Integer[] colField, int index, char color) {
-		Integer[] position = pf.get(index);
+	public void removeFieldForColor(Integer[] colField, int index, char color) {
+		Integer[] position = getPossibleFields().get(index);
 		if(color == 'b') {
-			if(position[0] == colField[0] && position[1] == colField[1] || position[0] < colField[0]) {
-				pf.remove(index);
-			}
+			removeForBlack(colField, index, position);
 		} else {
-			if(position[0] == colField[0] && position[1] == colField[1] || position[0] > colField[0]) {
-				pf.remove(index);
-			}
+			removeForWhite(colField, index, position);
 		}
-		
-		return pf;
+	}
+
+	private void removeForWhite(Integer[] colField, int index, Integer[] position) {
+		if(position[0] == colField[0] && position[1] == colField[1] || position[0] > colField[0]) {
+			getPossibleFields().remove(index);
+		}
+	}
+
+	private void removeForBlack(Integer[] colField, int index, Integer[] position) {
+		if(position[0] == colField[0] && position[1] == colField[1] || position[0] < colField[0]) {
+			getPossibleFields().remove(index);
+		}
 	}
 
 }
