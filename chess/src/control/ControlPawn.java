@@ -4,7 +4,6 @@ import model.Bishop;
 import model.ChessConstants;
 import model.Figure;
 import model.Knight;
-import model.Pawn;
 import model.Queen;
 import model.Rook;
 

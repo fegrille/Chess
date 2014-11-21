@@ -5,6 +5,25 @@ import java.util.List;
 
 public class King extends Figure{
 	
+	private List<Integer[]> fields;
+	private Integer[] field;
+	
+	public Integer[] returnField() {
+		return field;
+	}
+
+	public void setField(Integer[] field) {
+		this.field = field;
+	}
+
+	public List<Integer[]> getFields() {
+		return fields;
+	}
+
+	public void setFields(List<Integer[]> fields) {
+		this.fields = fields;
+	}
+
 	public King(int y, int x, char color) {
 		setField(y,x);
 		setColor(color);
@@ -12,48 +31,46 @@ public class King extends Figure{
 	
 	@Override
 	public List<Integer[]> possibleFields() {
-		List<Integer[]> fields = new ArrayList<Integer[]>();
-		fields.add(addField(getX()+1, getY()));
+		setFields(new ArrayList<Integer[]>());
+		addField(getX()+1, getY());
 		
-		fields.add(addField(getX()+1,getY()-1));
+		addField(getX()+1,getY()-1);
 		
-		fields.add(addField(getX(),getY()-1));
+		addField(getX(),getY()-1);
 		
-		fields.add(addField(getX()-1,getY()-1));
+		addField(getX()-1,getY()-1);
 		
-		fields.add(addField(getX()-1,getY()));
+		addField(getX()-1,getY());
 		
-		fields.add(addField(getX()-1,getY()+1));
+		addField(getX()-1,getY()+1);
 		
-		fields.add(addField(getX(),getY()+1));
+		addField(getX(),getY()+1);
 		
-		fields.add(addField(getX()+1,getY()+1));
+		addField(getX()+1,getY()+1);
 		
-		fields = removeNullFields(fields);
+		removeNullFields();
 		
-		return fields;
+		return getFields();
 	}
 	
-	private Integer[] addField(int x, int y) {
-		Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
+	private void addField(int x, int y) {
+		setField(new Integer[ChessConstants.FIGUREFIELDSIZE]);
 		if(x > ChessConstants.MAXAXIS || x < 1 || y > ChessConstants.MAXAXIS || y < 1) {
-			return null;
+			setField(null);
+		} else {
+			getField()[0] = y;
+			getField()[1] = x;
 		}
-		field[0] = y;
-		field[1] = x;
-		return field;
+		getFields().add(returnField());
 	}
 	
-	private List<Integer[]> removeNullFields(List<Integer[]> fields) {
-		int size = fields.size();
-		for(int i = 0; i < size; i++) {
-			if(fields.get(i) == null) {
-				fields.remove(i);
+	private void removeNullFields() {
+		for(int i = 0; i < getFields().size(); i++) {
+			if(getFields().get(i) == null) {
+				getFields().remove(i);
 				i--;
-				size = fields.size();
 			}
 		}
-		return fields;
 	}
 
 }

@@ -129,7 +129,7 @@ public class ControlColidate {
 		int y = getPossibleFields().get(index)[0];
 		int yNext = getPossibleFields().get(index + 1)[0];
 		getPossibleFields().remove(index);
-		while(y < yNext && (index + 1) < getPossibleFields().size() || y == ChessConstants.MAXAXIS) {
+		while(checkNextFieldGrater(index, y, yNext) || y == ChessConstants.MAXAXIS) {
 			if(y != ChessConstants.MAXAXIS) {
 				y = getPossibleFields().get(index)[0];
 				yNext = getPossibleFields().get(index + 1)[0];
@@ -142,7 +142,7 @@ public class ControlColidate {
 		int y = getPossibleFields().get(index)[0];
 		int yNext = getPossibleFields().get(index + 1)[0];
 		getPossibleFields().remove(index);
-		while(y > yNext && (index + 1) < getPossibleFields().size() || y == ChessConstants.MINAXIS) {
+		while(checkFieldSmaller(index, y, yNext) || y == ChessConstants.MINAXIS) {
 			if(y != ChessConstants.MINAXIS) {
 				y = getPossibleFields().get(index)[0];
 				yNext = getPossibleFields().get(index + 1)[0];
@@ -155,7 +155,7 @@ public class ControlColidate {
 		int x = getPossibleFields().get(index)[1];
 		int xNext = getPossibleFields().get(index + 1)[1];
 		getPossibleFields().remove(index);
-		while(x > xNext && (index + 1) < getPossibleFields().size() || x == ChessConstants.MINAXIS) {
+		while(checkFieldSmaller(index, x, xNext) || x == ChessConstants.MINAXIS) {
 			if(x != ChessConstants.MINAXIS) {
 				x = getPossibleFields().get(index)[0];
 				xNext = getPossibleFields().get(index + 1)[0];
@@ -164,17 +164,25 @@ public class ControlColidate {
 		}
 	}
 
+	private boolean checkFieldSmaller(int index, int x, int xNext) {
+		return x > xNext && (index + 1) < getPossibleFields().size();
+	}
+
 	private void removeRight(int index) {
 		int x = getPossibleFields().get(index)[1];
 		int xNext = getPossibleFields().get(index + 1)[1];
 		getPossibleFields().remove(index);
-		while(x < xNext && (index + 1) < getPossibleFields().size() || x == ChessConstants.MAXAXIS) {
+		while(checkNextFieldGrater(index, x, xNext) || x == ChessConstants.MAXAXIS) {
 			if(x != ChessConstants.MAXAXIS) {
 				x = getPossibleFields().get(index)[0];
 				xNext = getPossibleFields().get(index + 1)[0];
 			}
 			getPossibleFields().remove(index);
 		}
+	}
+
+	private boolean checkNextFieldGrater(int index, int x, int xNext) {
+		return x < xNext && (index + 1) < getPossibleFields().size();
 	}
 	
 	private void removeRightUp(int index) {
@@ -183,7 +191,7 @@ public class ControlColidate {
 		int y = getPossibleFields().get(index)[0];
 		int yNext = getPossibleFields().get(index + 1)[0];
 		getPossibleFields().remove(index);
-		while(x < xNext && y < yNext && (index + 1) < getPossibleFields().size() || y == ChessConstants.MAXAXIS && x == ChessConstants.MAXAXIS) {
+		while(checkXandYSmaller(index, x, xNext, y, yNext) || y == ChessConstants.MAXAXIS && x == ChessConstants.MAXAXIS) {
 			if(y != ChessConstants.MAXAXIS && x != ChessConstants.MAXAXIS) {
 				x = getPossibleFields().get(index)[0];
 				xNext = getPossibleFields().get(index + 1)[0];
@@ -193,6 +201,11 @@ public class ControlColidate {
 			getPossibleFields().remove(index);
 		}
 	}
+
+	private boolean checkXandYSmaller(int index, int x, int xNext,
+			int y, int yNext) {
+		return x < xNext && y < yNext && (index + 1) < getPossibleFields().size();
+	}
 	
     private void removeLeftUp(int index) {
     	int x = getPossibleFields().get(index)[1];
@@ -200,7 +213,7 @@ public class ControlColidate {
 		int y = getPossibleFields().get(index)[0];
 		int yNext = getPossibleFields().get(index + 1)[0];
 		getPossibleFields().remove(index);
-		while(x > xNext && y < yNext && (index + 1) < getPossibleFields().size() || y == ChessConstants.MAXAXIS && x == ChessConstants.MINAXIS) {
+		while(checkXgreaterYsmaller(index, x, xNext, y, yNext) || y == ChessConstants.MAXAXIS && x == ChessConstants.MINAXIS) {
 			if(y != ChessConstants.MAXAXIS && x != ChessConstants.MINAXIS) {
 				x = getPossibleFields().get(index)[0];
 				xNext = getPossibleFields().get(index + 1)[0];
@@ -210,6 +223,11 @@ public class ControlColidate {
 			getPossibleFields().remove(index);
 		}
 	}
+
+	private boolean checkXgreaterYsmaller(int index, int x, int xNext, int y,
+			int yNext) {
+		return x > xNext && y < yNext && (index + 1) < getPossibleFields().size();
+	}
     
     private void removeRightDown(int index) {
     	int x = getPossibleFields().get(index)[1];
@@ -217,7 +235,7 @@ public class ControlColidate {
 		int y = getPossibleFields().get(index)[0];
 		int yNext = getPossibleFields().get(index + 1)[0];
 		getPossibleFields().remove(index);
-		while(x < xNext && y > yNext && (index + 1) < getPossibleFields().size() || y == ChessConstants.MINAXIS && x == ChessConstants.MAXAXIS) {
+		while(checkXsmallerYgreater(index, x, xNext, y, yNext) || y == ChessConstants.MINAXIS && x == ChessConstants.MAXAXIS) {
 			if(y != ChessConstants.MINAXIS && x != ChessConstants.MAXAXIS) {
 				x = getPossibleFields().get(index)[0];
 				xNext = getPossibleFields().get(index + 1)[0];
@@ -227,6 +245,11 @@ public class ControlColidate {
 			getPossibleFields().remove(index);
 		}
     }
+
+	private boolean checkXsmallerYgreater(int index, int x, int xNext, int y,
+			int yNext) {
+		return x < xNext && y > yNext && (index + 1) < getPossibleFields().size();
+	}
     
     private void removeLeftDown(int index) {
     	int x = getPossibleFields().get(index)[1];
@@ -234,7 +257,7 @@ public class ControlColidate {
 		int y = getPossibleFields().get(index)[0];
 		int yNext = getPossibleFields().get(index + 1)[0];
 		getPossibleFields().remove(index);
-		while(x > xNext && y > yNext && (index + 1) < getPossibleFields().size() || y == ChessConstants.MINAXIS && x == ChessConstants.MINAXIS) {
+		while(checkXandYGreater(index, x, xNext, y, yNext) || y == ChessConstants.MINAXIS && x == ChessConstants.MINAXIS) {
 			if(x != ChessConstants.MINAXIS && y != ChessConstants.MINAXIS) {
 				x = getPossibleFields().get(index)[0];
 				xNext = getPossibleFields().get(index + 1)[0];
@@ -244,5 +267,10 @@ public class ControlColidate {
 			getPossibleFields().remove(index);
 		}
     }
+
+	private boolean checkXandYGreater(int index, int x, int xNext, int y,
+			int yNext) {
+		return x > xNext && y > yNext && (index + 1) < getPossibleFields().size();
+	}
 
 }
