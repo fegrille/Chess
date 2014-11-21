@@ -6,6 +6,15 @@ import java.util.List;
 public class King extends Figure{
 	
 	private List<Integer[]> fields;
+	private int counter;
+
+	public int getCounter() {
+		return counter;
+	}
+
+	public void setCounter(int counter) {
+		this.counter = counter;
+	}
 
 	public List<Integer[]> getFields() {
 		return fields;
@@ -57,11 +66,15 @@ public class King extends Figure{
 	}
 	
 	private void removeNullFields() {
-		for(int i = 0; i < getFields().size(); i++) {
-			if(getFields().get(i) == null) {
-				getFields().remove(i);
-				i--;
-			}
+		for(setCounter(0); getCounter() < getFields().size(); setCounter(getCounter() + 1)) {
+			removeField();
+		}
+	}
+
+	private void removeField() {
+		if(getFields().get(getCounter()) == null) {
+			getFields().remove(getCounter());
+			setCounter(getCounter() - 1);
 		}
 	}
 

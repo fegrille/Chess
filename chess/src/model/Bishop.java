@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,12 +26,11 @@ public class Bishop extends Figure{
 	 */
 	@Override
 	public List<Integer[]> possibleFields() {
-		List<Integer[]> fields = new ArrayList<Integer[]>();
-		fields = move.moveRightUp(fields, getY(), getX());
-		fields = move.moveLeftUp(fields, getY(), getX());
-		fields = move.moveRightDown(fields, getY(), getX());
-		fields = move.moveLeftDown(fields, getY(), getX());
-		return fields;
+		move.moveRightUp(getY(), getX());
+		move.moveLeftUp(getY(), getX());
+		move.moveRightDown(getY(), getX());
+		move.moveLeftDown(getY(), getX());
+		return move.getFields();
 	}	
 
 }

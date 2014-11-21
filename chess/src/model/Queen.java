@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Queen extends Figure{
@@ -14,17 +13,16 @@ public class Queen extends Figure{
 	
 	@Override
 	public List<Integer[]> possibleFields() {
-		List<Integer[]> fields = new ArrayList<Integer[]>();
-		fields = move.moveUpFields(fields, getY(), getX());
-		fields = move.moveDownFields(fields, getY(), getX());
-		fields = move.moveLeftFields(fields, getY(), getX());
-		fields = move.moveRightFields(fields, getY(), getX());
-		fields = move.moveRightUp(fields, getY(), getX());
-		fields = move.moveLeftUp(fields, getY(), getX());
-		fields = move.moveRightDown(fields, getY(), getX());
-		fields = move.moveLeftDown(fields, getY(), getX());
+		move.moveUpFields(getY(), getX());
+		move.moveDownFields(getY(), getX());
+		move.moveLeftFields(getY(), getX());
+		move.moveRightFields(getY(), getX());
+		move.moveRightUp(getY(), getX());
+		move.moveLeftUp(getY(), getX());
+		move.moveRightDown(getY(), getX());
+		move.moveLeftDown(getY(), getX());
 
-		return fields;
+		return move.getFields();
 	}
 	
 }

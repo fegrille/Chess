@@ -10,7 +10,16 @@ public class ControlColidate {
 	
 	private List<Integer[]> possibleFields;
 	private List<Figure> figureList;
+	private boolean colidate = false;
 	
+	public boolean isColidate() {
+		return colidate;
+	}
+
+	public void setColidate(boolean colidate) {
+		this.colidate = colidate;
+	}
+
 	public List<Figure> getFigureList() {
 		return figureList;
 	}
@@ -32,11 +41,15 @@ public class ControlColidate {
 		setPossibleFields(pf);
 		setFigureList(p.getFigureList());
 		for(int i = 0; i < getPossibleFields().size(); i++) {
-			if(colidate(getPossibleFields().get(i))) {
-				removeFieldsPawn(getPossibleFields().get(i),f.getColor());
-			}
+			checkColidatePawn(f, i);
 		}
 		return getPossibleFields();
+	}
+
+	private void checkColidatePawn(Figure f, int i) {
+		if(colidate(getPossibleFields().get(i))) {
+			removeFieldsPawn(getPossibleFields().get(i),f.getColor());
+		}
 	}
 	
 	public List<Integer[]> colidateOwnFigureHorVer(Figure f, List<Integer[]> pf, Player p) {
@@ -112,20 +125,17 @@ public class ControlColidate {
 	}
 	
 	public boolean colidate(Integer[] posF) {
-		boolean col = false;
 		for(int i = 0; i < getFigureList().size(); i++) {
 			int[] position = getFigureList().get(i).getField();
-			col = checkColidatePosition(posF, position);
+			checkColidatePosition(posF, position);
 		}
-		return col;
+		return isColidate();
 	}
 
-	private boolean checkColidatePosition(Integer[] posF, int[] position) {
-		boolean colidate = false;
+	private void checkColidatePosition(Integer[] posF, int[] position) {
 		if(posF[0] == position[0] && posF[1] == position[1]) {
-			colidate = true;
+			setColidate(true);
 		}
-		return colidate;
 	}
 	
 	public void removeFieldsPawn(Integer[] colField, char color) {

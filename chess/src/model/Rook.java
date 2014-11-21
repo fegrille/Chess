@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 //Turm
@@ -15,13 +14,12 @@ public class Rook extends Figure{
 	
 	@Override
 	public List<Integer[]> possibleFields() {
-		List<Integer[]> fields = new ArrayList<Integer[]>();
-		fields = move.moveUpFields(fields, getY(), getX());
-		fields = move.moveDownFields(fields, getY(), getX());
-		fields = move.moveLeftFields(fields, getY(), getX());
-		fields = move.moveRightFields(fields, getY(), getX());
+		move.moveUpFields(getY(), getX());
+		move.moveDownFields(getY(), getX());
+		move.moveLeftFields(getY(), getX());
+		move.moveRightFields(getY(), getX());
 
-		return fields;
+		return move.getFields();
 	}
 
 }
