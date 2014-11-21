@@ -44,12 +44,12 @@ public class ControlColidate {
 		setPossibleFields(pf);
 		setFigureList(p.getFigureList());
 		for(int i = 0; i < getPossibleFields().size(); i++) { 
-			checkColidate(i);
+			checkColidateHorVer(i);
 		}
 		return getPossibleFields();
 	}
 
-	private void checkColidate(int i) {
+	private void checkColidateHorVer(int i) {
 		if(colidate(getPossibleFields().get(i))) {
 			removeUp(i);
 			removeDown(i);
@@ -58,12 +58,41 @@ public class ControlColidate {
 		}
 	}
 	
+	public List<Integer[]> colidateOtherFigureDiagonal(Figure f, List<Integer[]> pf, Player p) {
+		unmovedFigures(f);
+		setPossibleFields(pf);
+		setFigureList(p.getFigureList());
+		for(int i = 0; i < getPossibleFields().size(); i++) {
+			checkColidateDiagonal(i);
+		}
+		return getPossibleFields();
+	}
+	
+	public List<Integer[]> colidateOwnFigureDiagonal(Figure f, List<Integer[]> pf, Player p) {
+		unmovedFigures(f);
+		setPossibleFields(pf);
+		setFigureList(p.getFigureList());
+		for(int i = 0; i < getPossibleFields().size(); i++) {
+			checkColidateDiagonal(i + 1);
+		}
+		return getPossibleFields();
+	}
+
+	private void checkColidateDiagonal(int i) {
+		if(colidate(getPossibleFields().get(i))) {
+			removeRightUp(i);
+			removeLeftUp(i);
+			removeRightDown(i);
+			removeLeftDown(i);
+		}
+	}
+	
 	public List<Integer[]> colidateOtherFigureHorVer(Figure f, List<Integer[]> pf, Player p) {
 		unmovedFigures(f);
 		setPossibleFields(pf);
 		setFigureList(p.getFigureList());
 		for(int i = 0; i < getPossibleFields().size(); i++) {
-			checkColidate(i + 1);
+			checkColidateHorVer(i + 1);
 		}
 		return getPossibleFields();
 	}
@@ -92,10 +121,11 @@ public class ControlColidate {
 	}
 
 	private boolean checkColidatePosition(Integer[] posF, boolean col, int[] position) {
+		boolean colidate = false;
 		if(posF[0] == position[0] && posF[1] == position[1]) {
-			col = true;
+			colidate = true;
 		}
-		return col;
+		return colidate;
 	}
 	
 	public void removeFieldsPawn(Integer[] colField, char color) {

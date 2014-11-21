@@ -33,7 +33,7 @@ public class ControlPawn {
 		int y = getNewFig().getY();
 		int color = getNewFig().getColor();
 		checkEndFieldWhite(y, color);
-		checkEndFieldBlack(endField, y, color);
+		checkEndFieldBlack(y, color);
 		return isEndField();
 	}
 
@@ -43,7 +43,7 @@ public class ControlPawn {
 		}
 	}
 
-	private void checkEndFieldBlack(boolean endField, int y, int color) {
+	private void checkEndFieldBlack(int y, int color) {
 		if(color == 'b'&& y == ChessConstants.MINAXIS) {
 			setEndField(true);
 		}

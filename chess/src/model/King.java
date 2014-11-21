@@ -13,7 +13,7 @@ public class King extends Figure{
 	}
 
 	public void setField(Integer[] field) {
-		this.field = field;
+		this.field = field.clone();
 	}
 
 	public List<Integer[]> getFields() {
