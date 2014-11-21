@@ -6,15 +6,6 @@ import java.util.List;
 public class King extends Figure{
 	
 	private List<Integer[]> fields;
-	private Integer[] field;
-	
-	public Integer[] returnField() {
-		return field;
-	}
-
-	public void setField(Integer[] field) {
-		this.field = field.clone();
-	}
 
 	public List<Integer[]> getFields() {
 		return fields;
@@ -32,6 +23,7 @@ public class King extends Figure{
 	@Override
 	public List<Integer[]> possibleFields() {
 		setFields(new ArrayList<Integer[]>());
+		
 		addField(getX()+1, getY());
 		
 		addField(getX()+1,getY()-1);
@@ -54,14 +46,17 @@ public class King extends Figure{
 	}
 	
 	private void addField(int x, int y) {
-		setField(new Integer[ChessConstants.FIGUREFIELDSIZE]);
+		Integer[] posField = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if(x > ChessConstants.MAXAXIS || x < 1 || y > ChessConstants.MAXAXIS || y < 1) {
-			setField(null);
+			posField = null;
+			System.out.println("Add no field");
 		} else {
-			getField()[0] = y;
-			getField()[1] = x;
+			posField[0] = y;
+			posField[1] = x;
+			System.out.println("Add a field");
 		}
-		getFields().add(returnField());
+		System.out.println(posField);
+		getFields().add(posField);
 	}
 	
 	private void removeNullFields() {
