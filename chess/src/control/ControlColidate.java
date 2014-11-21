@@ -27,7 +27,7 @@ public class ControlColidate {
 		this.possibleFields = possibleFields;
 	}
 
-	public List<Integer[]> colidateFigurePawn(Figure f, List<Integer[]> pf, Player p) {
+	public List<Integer[]> colidateFigurePawn(Figure f, List<Integer[]> pf, Player p, Player p2) {
 		unmovedFigures(f);
 		setPossibleFields(pf);
 		setFigureList(p.getFigureList());
@@ -43,15 +43,19 @@ public class ControlColidate {
 		unmovedFigures(f);
 		setPossibleFields(pf);
 		setFigureList(p.getFigureList());
-		for(int i = 0; i < getPossibleFields().size(); i++) {
-			if(colidate(getPossibleFields().get(i))) {
-				removeUp(i);
-				removeDown(i);
-				removeLeft(i);
-				removeRight(i);
-			}
+		for(int i = 0; i < getPossibleFields().size(); i++) { 
+			checkColidate(i);
 		}
 		return getPossibleFields();
+	}
+
+	private void checkColidate(int i) {
+		if(colidate(getPossibleFields().get(i))) {
+			removeUp(i);
+			removeDown(i);
+			removeLeft(i);
+			removeRight(i);
+		}
 	}
 	
 	public List<Integer[]> colidateOtherFigureHorVer(Figure f, List<Integer[]> pf, Player p) {
@@ -59,12 +63,7 @@ public class ControlColidate {
 		setPossibleFields(pf);
 		setFigureList(p.getFigureList());
 		for(int i = 0; i < getPossibleFields().size(); i++) {
-			if(colidate(getPossibleFields().get(i)) && (i + 1) < getPossibleFields().size()) {
-				removeUp(i + 1);
-				removeDown(i + 1);
-				removeLeft(i + 1);
-				removeRight(i + 1);
-			}
+			checkColidate(i + 1);
 		}
 		return getPossibleFields();
 	}
@@ -73,9 +72,13 @@ public class ControlColidate {
 		int[] fPos = f.getField();
 		for(int i = 0; i < getFigureList().size(); i++) {
 			int[] figPos = getFigureList().get(i).getField();
-			if(fPos[0] == figPos[0] && fPos[1] == figPos[1]) {
-				getFigureList().remove(i);
-			}
+			removeFigure(fPos, i, figPos);
+		}
+	}
+
+	private void removeFigure(int[] fPos, int i, int[] figPos) {
+		if(fPos[0] == figPos[0] && fPos[1] == figPos[1]) {
+			getFigureList().remove(i);
 		}
 	}
 	
@@ -83,10 +86,14 @@ public class ControlColidate {
 		boolean col = false;
 		for(int i = 0; i < getFigureList().size(); i++) {
 			int[] position = getFigureList().get(i).getField();
-			if(posF[0] == position[0] && posF[1] == position[1]) {
-				col = true;
-				break;
-			}
+			col = checkColidatePosition(posF, col, position);
+		}
+		return col;
+	}
+
+	private boolean checkColidatePosition(Integer[] posF, boolean col, int[] position) {
+		if(posF[0] == position[0] && posF[1] == position[1]) {
+			col = true;
 		}
 		return col;
 	}

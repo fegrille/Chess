@@ -11,7 +11,16 @@ import model.Rook;
 public class ControlPawn {
 	
 	private Figure newFig = null;
+	private boolean endField = false;
 	
+	public boolean isEndField() {
+		return endField;
+	}
+
+	public void setEndField(boolean endField) {
+		this.endField = endField;
+	}
+
 	public Figure getNewFig() {
 		return newFig;
 	}
@@ -21,16 +30,24 @@ public class ControlPawn {
 	}
 
 	public boolean checkEndfield(Figure pawn) {
-		boolean endField = false;
 		setNewFig(pawn);
 		int y = getNewFig().getY();
 		int color = getNewFig().getColor();
+		checkEndFieldWhite(y, color);
+		checkEndFieldBlack(endField, y, color);
+		return isEndField();
+	}
+
+	private void checkEndFieldWhite(int y, int color) {
 		if(color == 'w' && y == ChessConstants.MAXAXIS) {
-			endField = true;
-		} else if(color == 'b'&& y == ChessConstants.MINAXIS) {
-			endField = true;
+			setEndField(true);
 		}
-		return endField;
+	}
+
+	private void checkEndFieldBlack(boolean endField, int y, int color) {
+		if(color == 'b'&& y == ChessConstants.MINAXIS) {
+			setEndField(true);
+		}
 	}
 
 	public Figure changeFigure(String choice) {
