@@ -7,13 +7,21 @@ import java.util.List;
 public class Pawn extends Figure{
 
 	private boolean firstMove = true;
-	
+	private List<Integer[]> fields;
+
 	public Pawn(int y, int x, char color) {
 		setField(y,x);
 		setColor(color);
 		
 	}
+	
+	public List<Integer[]> getFields() {
+		return fields;
+	}
 
+	public void setFields(List<Integer[]> fields) {
+		this.fields = fields;
+	}
 	public boolean getFirstMove() {
 		return firstMove;
 	}
@@ -25,44 +33,59 @@ public class Pawn extends Figure{
 
 	@Override
 	public List<Integer[]> possibleFields() {
-		List<Integer[]> fields = new ArrayList<Integer[]>();
-		if(getColor() == 'b') {
-			fields = possibleFieldsBlack(fields);
-		} else {
-			fields = possibleFieldsWhite(fields);
-		}
-		return fields;
+		setFields(new ArrayList<Integer[]>());
+		isFigureBlack();
+		isFigureWhite();
+		return getFields();
 	}
 	
-	public List<Integer[]> possibleFieldsBlack(List<Integer[]> fields) {
+	public void isFigureBlack() {
+		if(getColor() == 'b') {
+			possibleFieldsBlack();
+		}
+	}
+	
+	public void isFigureWhite() {
+		if(getColor() == 'w') {
+			possibleFieldsWhite();
+		}
+	}
+	
+	public void possibleFieldsBlack() {
 		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
-		Integer[] f2 = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((getY() - 1) >= ChessConstants.MINAXIS) {
 			f[ChessConstants.YKORD] = getY() - 1;
 			f[ChessConstants.XKORD] = getX();
-			fields.add(f);
-			if(getFirstMove()) {
-				f2[ChessConstants.XKORD] = getX();
-				f2[ChessConstants.YKORD] = getY() - 2;
-				fields.add(f2);
-			} 
+			getFields().add(f);
+			isFirstMoveBlack(); 
 		}
-		return fields;
+	}
+
+	private void isFirstMoveBlack() {
+		Integer[] f2 = new Integer[ChessConstants.FIGUREFIELDSIZE];
+		if(getFirstMove()) {
+			f2[ChessConstants.XKORD] = getX();
+			f2[ChessConstants.YKORD] = getY() - 2;
+			getFields().add(f2);
+		}
 	}
 	
-	public List<Integer[]> possibleFieldsWhite(List<Integer[]> fields) {
+	public void possibleFieldsWhite() {
 		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
-		Integer[] f2 = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((getY() + 1) <= ChessConstants.MAXAXIS) {
 			f[ChessConstants.YKORD] = getY() + 1;
 			f[ChessConstants.XKORD] = getX();
-			fields.add(f);
-			if(getFirstMove()) {
-				f2[ChessConstants.XKORD] = getX();
-				f2[ChessConstants.YKORD] = getY() + 2;
-				fields.add(f2);
-			} 
+			getFields().add(f);
+			isFirstMoveWhite(); 
 		}
-		return fields;
+	}
+
+	private void isFirstMoveWhite() {
+		Integer[] f2 = new Integer[ChessConstants.FIGUREFIELDSIZE];
+		if(getFirstMove()) {
+			f2[ChessConstants.XKORD] = getX();
+			f2[ChessConstants.YKORD] = getY() + 2;
+			getFields().add(f2);
+		}
 	}
 }
