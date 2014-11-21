@@ -9,7 +9,6 @@ public class Knight extends Figure{
 	private List<Integer[]> fields;
 
 	public Knight(int x, int y, char color) {
-		setFields(new ArrayList<Integer[]>());
 		setField(y,x);
 		setColor(color);
 	}

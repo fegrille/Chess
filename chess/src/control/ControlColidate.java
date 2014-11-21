@@ -2,9 +2,15 @@ package control;
 
 import java.util.List;
 
+import model.Bishop;
 import model.ChessConstants;
 import model.Figure;
+import model.King;
+import model.Knight;
+import model.Pawn;
 import model.Player;
+import model.Queen;
+import model.Rook;
 
 public class ControlColidate {
 	
@@ -14,6 +20,107 @@ public class ControlColidate {
 	
 	public boolean isColidate() {
 		return colidate;
+	}
+	
+	public  List<Integer[]> colidate(Figure f, List<Integer[]> pf, Player p, Player p2) {
+		return getPossibleFields(); 
+	}
+	
+	public void isPawn(Figure f, List<Integer[]> pf, Player p, Player p2) {
+		if(f instanceof Pawn) {
+			colidateFigurePawn(f,pf,p,p2);
+		}
+	}
+	
+	public void isRook(Figure f, List<Integer[]> pf, Player p, Player p2) {
+		if(f instanceof Rook) {
+			colidateOwnFigureHorVer(f,pf,p);
+			colidateOtherFigureHorVer(f,pf,p2);
+		}
+	}
+	
+	public void isBishop(Figure f, List<Integer[]> pf, Player p, Player p2) {
+		if(f instanceof Bishop) {
+			colidateOwnFigureDiagonal(f,pf,p);
+			colidateOtherFigureDiagonal(f,pf,p2);
+		}
+	}
+	
+	public void isKnight(Figure f, List<Integer[]> pf, Player p, Player p2) {
+		if(f instanceof Knight) {
+			colidateFigurePawn(f,pf,p,p2);
+		}
+	}
+	
+	public void isQueen(Figure f, List<Integer[]> pf, Player p, Player p2) {
+		if(f instanceof Queen) {
+			colidateOwnFigureHorVer(f,pf,p);
+			colidateOtherFigureHorVer(f,pf,p2);
+			colidateOwnFigureDiagonal(f,pf,p);
+			colidateOtherFigureDiagonal(f,pf,p2);
+		}
+	}
+	
+	public void isKing(Figure f, List<Integer[]> pf, Player p, Player p2) {
+		if(f instanceof King) {
+			colidateOwnFigureKing(f,pf,p);
+			colidateOtherFigureKing(f,pf,p2);
+		}
+	}
+	
+	private void colidateOwnFigureKing(Figure f, List<Integer[]> pf, Player p) {
+		unmovedFigures(f);
+		setPossibleFields(pf);
+		setFigureList(p.getFigureList());
+		for(int i = 0; i < getPossibleFields().size(); i++) {
+			checkColidateOwnFigureKing(f, i);
+		}
+	}
+	
+	private void checkColidateOwnFigureKing(Figure f, int i) {
+		if(colidate(getPossibleFields().get(i))) {
+			getPossibleFields().remove(i);
+		}
+	}
+	
+	private void colidateOtherFigureKing(Figure f, List<Integer[]> pf, Player p) {
+		unmovedFigures(f);
+		setPossibleFields(pf);
+		setFigureList(p.getFigureList());
+		for(int i = 0; i < getPossibleFields().size(); i++) {
+			checkColidateOtherFigureKing(f,i,p);
+		}
+	}
+	
+	private void checkColidateOtherFigureKing(Figure f, int i, Player p) {
+		if(colidate(getPossibleFields().get(i))) {
+			blockedField(i, p);
+		}
+		
+	}
+
+	private void blockedField(int i, Player p) {
+		if(isFieldBlocked(p,getPossibleFields().get(i)[0], getPossibleFields().get(i)[1])) {
+			getPossibleFields().remove(i);
+		}
+	}
+	
+	private boolean isFieldBlocked(Player p, int y, int x) {
+		boolean blocked = true;
+		for(Figure f : p.getFigureList()) {
+			blocked = isAPossibleField(f.possibleFields(),y,x);
+		}
+		return blocked;
+	}
+	
+	private boolean isAPossibleField(List<Integer[]> pf, int y, int x) {
+		boolean check = true;
+		for(int i = 0; i < pf.size(); i++) {
+			if(pf.get(i)[0] == y && pf.get(i)[1] == x) {
+				check = true;
+			}
+		}
+		return check;
 	}
 
 	public void setColidate(boolean colidate) {
