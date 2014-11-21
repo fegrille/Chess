@@ -115,12 +115,12 @@ public class ControlColidate {
 		boolean col = false;
 		for(int i = 0; i < getFigureList().size(); i++) {
 			int[] position = getFigureList().get(i).getField();
-			col = checkColidatePosition(posF, col, position);
+			col = checkColidatePosition(posF, position);
 		}
 		return col;
 	}
 
-	private boolean checkColidatePosition(Integer[] posF, boolean col, int[] position) {
+	private boolean checkColidatePosition(Integer[] posF, int[] position) {
 		boolean colidate = false;
 		if(posF[0] == position[0] && posF[1] == position[1]) {
 			colidate = true;

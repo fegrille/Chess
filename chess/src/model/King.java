@@ -49,13 +49,10 @@ public class King extends Figure{
 		Integer[] posField = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if(x > ChessConstants.MAXAXIS || x < 1 || y > ChessConstants.MAXAXIS || y < 1) {
 			posField = null;
-			System.out.println("Add no field");
 		} else {
 			posField[0] = y;
 			posField[1] = x;
-			System.out.println("Add a field");
 		}
-		System.out.println(posField);
 		getFields().add(posField);
 	}
 	
