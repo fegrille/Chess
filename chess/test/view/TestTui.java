@@ -1,4 +1,4 @@
-package test;
+package view;
 
 import static org.junit.Assert.*;
 
@@ -6,15 +6,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import control.ControlSpecialMoves;
+import view.Tui;
 
-public class TestControlSpecialMoves {
+public class TestTui {
 	
-	ControlSpecialMoves test;
+	Tui test;
 
 	@Before
 	public void setUp() throws Exception {
-		test = new ControlSpecialMoves();
+		test = new Tui();
 	}
 
 	@After

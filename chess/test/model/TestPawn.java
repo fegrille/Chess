@@ -1,4 +1,4 @@
-package test;
+package model;
 
 import static org.junit.Assert.*;
 
@@ -50,10 +50,7 @@ public class TestPawn {
 	public void testPossibleFieldsFirstMove() {
 		test.setFirstMove(true);
 		List<Integer[]> testList = test.possibleFields();
-		Integer[] firstField = testList.get(0);
-		Integer[] secondField = testList.get(1);
-		int yKord = test.getField()[0];
-		if(firstField[0] == yKord + 1 && secondField[0] == yKord + 2) {
+		if(testList.size() == 3) {
 			testright = true;
 		}
 		assertTrue(testright);
@@ -63,9 +60,7 @@ public class TestPawn {
 	public void testPossibleFieldNoFirstMove(){
 		test.setFirstMove(false);
 		List<Integer[]> testList = test.possibleFields();
-		Integer[] firstField = testList.get(0);
-		int yKord = test.getField()[0];
-		if(firstField[0] == yKord + 1) {
+		if(testList.size() == 2) {
 			testright = true;
 		}
 		assertTrue(testright);
@@ -83,14 +78,12 @@ public class TestPawn {
 	}
 	
 	@Test 
-	public void testPossibleFieldsBlack() {
+	public void testBlackFirstMove() {
 		test.setColor('b');
 		test.setField(8, 8);
 		List<Integer[]> testList = test.possibleFields();
-		Integer[] firstField = testList.get(0);
-		Integer[] secondField = testList.get(1);
-		int yKord = test.getField()[0];
-		if(firstField[0] == yKord - 1 && secondField[0] == yKord - 2) {
+		System.out.println(testList.size());
+		if(testList.size() == 3) {
 			testright = true;
 		}
 		assertTrue(testright);
@@ -102,9 +95,7 @@ public class TestPawn {
 		test.setColor('b');
 		test.setField(8, 8);
 		List<Integer[]> testList = test.possibleFields();
-		Integer[] firstField = testList.get(0);
-		int yKord = test.getField()[0];
-		if(firstField[0] == yKord - 1) {
+		if(testList.size() == 2) {
 			testright = true;
 		}
 		assertTrue(testright);
@@ -145,6 +136,29 @@ public class TestPawn {
 	public void testSetY() {
 		test.setY(2);
 		if(test.getY() == 2) {
+			testright = true;
+		}
+		assertTrue(testright);
+	}
+	
+	@Test
+	public void testLeftUpFieldBlack() {
+		test.setColor('b');
+		test.setField(8, 1);
+		test.setFirstMove(false);
+		List<Integer[]> testList = test.possibleFields();
+		if(testList.size() == 2) {
+			testright = true;
+		}
+		assertTrue(testright);
+	}
+	
+	@Test
+	public void testLeftUpFieldWhite() {
+		test.setField(1, 8);
+		test.setFirstMove(false);
+		List<Integer[]> testList = test.possibleFields();
+		if(testList.size() == 2) {
 			testright = true;
 		}
 		assertTrue(testright);

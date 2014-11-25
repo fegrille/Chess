@@ -1,30 +1,30 @@
-package test;
+package model;
 
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Knight;
+import model.Queen;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestKnight {
+public class TestQueen {
 
-	Knight test;
-	Knight test1;
-	Knight test2;
-	Knight test3;
+	Queen test;
+	Queen test1;
+	Queen test2;
+	Queen test3;
 	boolean testright;
 	
 	@Before
 	public void setup() {
-		test = new Knight(1,1,'b');
-		test1 = new Knight(1,8,'b');
-		test2 = new Knight(8,1,'b');
-		test3 = new Knight(8,8,'b');
+		test = new Queen(1,1,'b');
+		test1 = new Queen(1,8,'b');
+		test2 = new Queen(8,1,'b');
+		test3 = new Queen(8,8,'b');
 		testright = false;
 		
 	}
@@ -39,7 +39,7 @@ public class TestKnight {
 		testfield1 = test1.possibleFields();
 		testfield2 = test2.possibleFields();
 		testfield3 = test3.possibleFields();
-		if(testfield.size() == 2 && testfield1.size() == 2 && testfield2.size() == 2 && testfield3.size() == 2) {
+		if(testfield.size() == 21 && testfield1.size() == 21 && testfield2.size() == 21 && testfield3.size() == 21) {
 			testright = true;
 		}
 		assertTrue(testright);

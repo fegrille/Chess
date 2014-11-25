@@ -1,4 +1,4 @@
-package test;
+package control;
 
 import static org.junit.Assert.*;
 import model.Bishop;

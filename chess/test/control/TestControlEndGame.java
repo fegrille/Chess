@@ -1,4 +1,4 @@
-package test;
+package control;
 
 import static org.junit.Assert.*;
 
@@ -6,15 +6,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import view.Tui;
+import control.ControlEndGame;
 
-public class TestTui {
+public class TestControlEndGame {
 	
-	Tui test;
+	ControlEndGame test;
 
 	@Before
 	public void setUp() throws Exception {
-		test = new Tui();
+		test = new ControlEndGame();
 	}
 
 	@After

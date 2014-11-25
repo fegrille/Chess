@@ -57,7 +57,45 @@ public class Pawn extends Figure{
 			f[ChessConstants.YKORD] = getY() - 1;
 			f[ChessConstants.XKORD] = getX();
 			getFields().add(f);
-			isFirstMoveBlack(); 
+			leftUpFieldBlack();
+			rightUpFieldBlack();
+			isFirstMoveBlack();
+		}
+	}
+
+	private void rightUpFieldWhite() {
+		if((getX() + 1) <= ChessConstants.MAXAXIS) {
+			Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
+			f[ChessConstants.YKORD] = getY() + 1;
+			f[ChessConstants.XKORD] = getX() + 1;
+			getFields().add(f);
+		}
+	}
+
+	private void leftUpFieldWhite() {
+		if((getX() - 1) >= ChessConstants.MINAXIS) {
+			Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
+			f[ChessConstants.YKORD] = getY() + 1;
+			f[ChessConstants.XKORD] = getX() - 1;
+			getFields().add(f);
+		}
+	}
+	
+	private void rightUpFieldBlack() {
+		if((getX() + 1) <= ChessConstants.MAXAXIS) {
+			Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
+			f[ChessConstants.YKORD] = getY() - 1;
+			f[ChessConstants.XKORD] = getX() + 1;
+			getFields().add(f);
+		}
+	}
+
+	private void leftUpFieldBlack() {
+		if((getX() - 1) >= ChessConstants.MINAXIS) {
+			Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
+			f[ChessConstants.YKORD] = getY() - 1;
+			f[ChessConstants.XKORD] = getX() - 1;
+			getFields().add(f);
 		}
 	}
 
@@ -76,6 +114,8 @@ public class Pawn extends Figure{
 			f[ChessConstants.YKORD] = getY() + 1;
 			f[ChessConstants.XKORD] = getX();
 			getFields().add(f);
+			leftUpFieldWhite();
+			rightUpFieldWhite();
 			isFirstMoveWhite(); 
 		}
 	}

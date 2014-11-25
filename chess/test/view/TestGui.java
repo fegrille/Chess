@@ -1,4 +1,4 @@
-package test;
+package view;
 
 import static org.junit.Assert.*;
 
@@ -6,16 +6,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import control.ControlColidate;
+import view.Gui;
 
-public class TestControlColidate {
+public class TestGui {
 	
-	ControlColidate test;
+	Gui test;
 
 	@Before
 	public void setUp() throws Exception {
-		test = new ControlColidate();
-		
+		test = new Gui();
 	}
 
 	@After
