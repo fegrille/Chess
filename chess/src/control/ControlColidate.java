@@ -46,7 +46,7 @@ public class ControlColidate {
 	}
 	
 	public  List<Integer[]> colidate(Figure f, List<Integer[]> pf, Player p, Player p2) {
-		isPawn(f,pf,p);
+		isPawn(f,pf,p,p2);
 		isRook(f,pf,p,p2);
 		isBishop(f,pf,p,p2);
 		isKnight(f,pf,p,p2);
@@ -55,9 +55,9 @@ public class ControlColidate {
 		return getPossibleFields(); 
 	}
 	
-	public void isPawn(Figure f, List<Integer[]> pf, Player p) {
+	public void isPawn(Figure f, List<Integer[]> pf, Player p, Player p2) {
 		if(f instanceof Pawn) {
-			setPossibleFields(getColPawKnig().colidateFigurePawnKnight(f,pf,p));
+			setPossibleFields(getColPawKnig().colidateFigurePawn(f,pf,p,p2));
 		}
 	}
 	
@@ -75,7 +75,7 @@ public class ControlColidate {
 	
 	public void isKnight(Figure f, List<Integer[]> pf, Player p, Player p2) {
 		if(f instanceof Knight) {
-			getColPawKnig().colidateFigurePawnKnight(f,pf,p);
+			getColPawKnig().colidateFigurePawn(f,pf,p,p2);
 		}
 	}
 	

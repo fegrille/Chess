@@ -34,27 +34,35 @@ public class ControlColidatePawnKnight {
 		this.fields = fields;
 	}
 	
-	public List<Integer[]> colidateFigurePawnKnight(Figure f, List<Integer[]> pf, Player p) {
+	public List<Integer[]> colidateFigurePawn(Figure f, List<Integer[]> pf, Player p, Player p2) {
 		setFigureList(p.getFigureList());
 		getColi().unmovedFigures(f);
 		setFields(pf);
 		checkColidation(f);
 		return getFields();
 	}
+	
+	public List<Integer[]> colidateOwnFigureKnight(Figure f, List<Integer[]> pf, Player p, Player p2) {
+		return getFields();
+	}
+	
+	public List<Integer[]> colidateOtherFigureKnight() {
+		return getFields();
+	}
 
 	private void checkColidation(Figure f) {
 		for(int i = 0; i < getFields().size(); i++) {
-			checkColidatePawnKnight(f, i);
+			checkColidatePawn(f, i);
 		}
 	}
 	
-	private void checkColidatePawnKnight(Figure f, int i) {
+	private void checkColidatePawn(Figure f, int i) {
 		if(getColi().colidate(getFields().get(i))) {
-			removeFieldsPawnKnight(getFields().get(i),f.getColor());
+			removeFieldsPawn(getFields().get(i),f.getColor());
 		}
 	}
 	
-	public void removeFieldsPawnKnight(Integer[] colField, char color) {
+	public void removeFieldsPawn(Integer[] colField, char color) {
 		for(int i = 0; i < getFields().size(); i++) {
 			isBlack(colField, i, color);
 			isWhite(colField, i, color);

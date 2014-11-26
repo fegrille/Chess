@@ -30,6 +30,8 @@ public class TestMoves {
 		assertTrue(testright);
 	}
 	
+	
+	
 	@After
 	public void tearDown() {
 		test = null;

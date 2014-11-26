@@ -72,10 +72,9 @@ public class ColidatingFields {
 	}
 	
 	public void unmovedFigures(Figure f) {
-		int[] fPos = f.getField();
 		for(int i = 0; i < getFigureList().size(); i++) {
 			int[] figPos = getFigureList().get(i).getField();
-			removeFigure(fPos, i, figPos);
+			removeFigure(f.getField(), i, figPos);
 		}
 	}
 
