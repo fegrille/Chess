@@ -178,130 +178,139 @@ public class ColidatingFields {
 	}
 	
 	public void removeRightUp(int index) {
-		int x = getFields().get(index)[1];
-		int xNext = getFields().get(index + 1)[1];
-		int y = getFields().get(index)[0];
-		int yNext = getFields().get(index + 1)[0];
+		setXYKords(index);
 		getFields().remove(index);
-		while(checkXandYSmaller(index, x, xNext, y, yNext) || y == ChessConstants.MAXAXIS && x == ChessConstants.MAXAXIS) {
-			if(y != ChessConstants.MAXAXIS && x != ChessConstants.MAXAXIS) {
-				x = getFields().get(index)[0];
-				xNext = getFields().get(index + 1)[0];
-				y = getFields().get(index)[0];
-				yNext = getFields().get(index + 1)[0];
-			}
-			getFields().remove(index);
-		}
-	}
-	
-	private boolean checkXandYSmaller(int index, int x, int xNext,
-			int y, int yNext) {
-		return x < xNext && y < yNext && (index + 1) < getFields().size();
-	}
-	
-	public void removeLeftUp(int index) {
-		int x = getFields().get(index)[1];
-		int xNext = getFields().get(index + 1)[1];
-		int y = getFields().get(index)[0];
-		int yNext = getFields().get(index + 1)[0];
-		getFields().remove(index);
-		while(checkXgreaterYsmaller(index, x, xNext, y, yNext) || y == ChessConstants.MAXAXIS && x == ChessConstants.MINAXIS) {
-			if(y != ChessConstants.MAXAXIS && x != ChessConstants.MINAXIS) {
-				x = getFields().get(index)[0];
-				xNext = getFields().get(index + 1)[0];
-				y = getFields().get(index)[0];
-				yNext = getFields().get(index + 1)[0];
-			}
-			getFields().remove(index);
-		}
-	}
-	
-	private boolean checkXgreaterYsmaller(int index, int x, int xNext, int y,
-			int yNext) {
-		return x > xNext && y < yNext && (index + 1) < getFields().size();
-	}
-	
-	public void removeRightDown(int index) {
-		setX(getFields().get(index)[1]);
-		setxNext(getFields().get(index + 1)[1]);
-		int y = getFields().get(index)[0];
-		int yNext = getFields().get(index + 1)[0];
-		getFields().remove(index);
-		while(checkXsmallerYgreater(index, x, xNext, y, yNext) || y == ChessConstants.MINAXIS && x == ChessConstants.MAXAXIS) {
-			if(y != ChessConstants.MINAXIS && x != ChessConstants.MAXAXIS) {
-				setX(getFields().get(index)[0]);
-				setxNext(getFields().get(index + 1)[0]);
-				y = getFields().get(index)[0];
-				yNext = getFields().get(index + 1)[0];
-			}
-			getFields().remove(index);
-		}
-	}
-	
-	private boolean checkXsmallerYgreater(int index, int x, int xNext, int y,
-			int yNext) {
-		return x < xNext && y > yNext && (index + 1) < getFields().size();
-	}
-	
-	public void removeLeftDown(int index) {
-		int x = getFields().get(index)[1];
-		setxNext(getFields().get(index + 1)[1]);
-		int y = getFields().get(index)[0];
-		int yNext = getFields().get(index + 1)[0];
-		getFields().remove(index);
-		while(checkXandYGreater(index, x, xNext, y, yNext) || y == ChessConstants.MINAXIS && x == ChessConstants.MINAXIS) {
-			if(x != ChessConstants.MINAXIS && y != ChessConstants.MINAXIS) {
-				x = getFields().get(index)[0];
-				setxNext(getFields().get(index + 1)[0]);
-				y = getFields().get(index)[0];
-				yNext = getFields().get(index + 1)[0];
-			}
-			getFields().remove(index);
-		}
-	}
-	
-	private boolean checkXandYGreater(int index, int x, int xNext, int y,
-			int yNext) {
-		return x > xNext && y > yNext && (index + 1) < getFields().size();
-	}
-	
-	public void removeUp(int index) {
-		setY(getFields().get(index)[0]);
-		setyNext(getFields().get(index + 1)[0]);
-		getFields().remove(index);
-		while(checkNextFieldGrater(index, getY(), getyNext()) || getY() == ChessConstants.MAXAXIS) {
-			if(getY() != ChessConstants.MAXAXIS) {
-				setY(getFields().get(index)[0]);
-				setyNext(getFields().get(index + 1)[0]);
-			}
-			getFields().remove(index);
-		}
-	}
-	
-	public void removeDown(int index) {
-		setY(getFields().get(index)[0]);
-		setyNext(getFields().get(index + 1)[0]);
-		getFields().remove(index);
-		while(checkFieldSmaller(index, getY(), getyNext()) || getY() == ChessConstants.MINAXIS) {
-			if(getY() != ChessConstants.MINAXIS) {
-				setY(getFields().get(index)[0]);
-				setyNext(getFields().get(index + 1)[0]);
-			}
+		while(checkXandYSmaller(index) || getY() == ChessConstants.MAXAXIS && getX() == ChessConstants.MAXAXIS) {
+			checkXYnotequalMaxAxis(index);
 			getFields().remove(index);
 		}
 	}
 
-	public void removeLeft(int index) {
-		setX(getFields().get(index)[1]);
-		setxNext(getFields().get(index + 1)[1]);
+	private void checkXYnotequalMaxAxis(int index) {
+		if(getY() != ChessConstants.MAXAXIS && getX() != ChessConstants.MAXAXIS) {
+			setXYKords(index);
+		}
+	}
+	
+	private boolean checkXandYSmaller(int index) {
+		return getX() < getxNext() && getY() < getyNext() && (index + 1) < getFields().size();
+	}
+	
+	public void removeLeftUp(int index) {
+		setXYKords(index);
 		getFields().remove(index);
-		while(checkFieldSmaller(index, getX(), getxNext()) || getX() == ChessConstants.MINAXIS) {
-			if(getX() != ChessConstants.MINAXIS) {
-				setX(getFields().get(index)[0]);
-				setxNext(getFields().get(index + 1)[0]);
-			}
+		while(checkXgreaterYsmaller(index) || getY() == ChessConstants.MAXAXIS && getX() == ChessConstants.MINAXIS) {
+			checkYnotequalMaxXnotequalMinAxis(index);
 			getFields().remove(index);
 		}
+	}
+
+	private void checkYnotequalMaxXnotequalMinAxis(int index) {
+		if(getY() != ChessConstants.MAXAXIS && getX() != ChessConstants.MINAXIS) {
+			setXYKords(index);
+		}
+	}
+
+	private void setXYKords(int index) {
+		setXKords(index);
+		setYKords(index);
+	}
+	
+	private boolean checkXgreaterYsmaller(int index) {
+		return getX() > getxNext() && getY() < getyNext() && (index + 1) < getFields().size();
+	}
+	
+	public void removeRightDown(int index) {
+		setXYKords(index);
+		getFields().remove(index);
+		while(checkXsmallerYgreater(index) || getY() == ChessConstants.MINAXIS && getX() == ChessConstants.MAXAXIS) {
+			checkYnotequalMinXnotequalMaxAxis(index);
+			getFields().remove(index);
+		}
+	}
+
+	private void checkYnotequalMinXnotequalMaxAxis(int index) {
+		if(getY() != ChessConstants.MINAXIS && getX() != ChessConstants.MAXAXIS) {
+			setXYKords(index);
+		}
+	}
+	
+	private boolean checkXsmallerYgreater(int index) {
+		return getX() < getxNext() && getY() > getyNext() && (index + 1) < getFields().size();
+	}
+	
+	public void removeLeftDown(int index) {
+		setXYKords(index);
+		getFields().remove(index);
+		while(checkXandYGreater(index) || getY() == ChessConstants.MINAXIS && getX() == ChessConstants.MINAXIS) {
+			checkXYnotequalMinAxis(index);
+			getFields().remove(index);
+		}
+	}
+
+	private void checkXYnotequalMinAxis(int index) {
+		if(getX() != ChessConstants.MINAXIS && getY() != ChessConstants.MINAXIS) {
+			setXYKords(index);
+		}
+	}
+	
+	private boolean checkXandYGreater(int index) {
+		return getX() > getxNext() && getY() > getyNext() && (index + 1) < getFields().size();
+	}
+	
+	public void removeUp(int index) {
+		setYKords(index);
+		getFields().remove(index);
+		while(checkNextFieldGrater(index, getY(), getyNext()) || getY() == ChessConstants.MAXAXIS) {
+			checkYnotequalMaxAxis(index);
+			getFields().remove(index);
+		}
+	}
+
+	private void checkYnotequalMaxAxis(int index) {
+		if(getY() != ChessConstants.MAXAXIS) {
+			setYKords(index);
+		}
+	}
+
+	private void setYKords(int index) {
+		setY(getFields().get(index)[0]);
+		setyNext(getFields().get(index + 1)[0]);
+	}
+	
+	public void removeDown(int index) {
+		setYKords(index);
+		getFields().remove(index);
+		while(checkFieldSmaller(index, getY(), getyNext()) || getY() == ChessConstants.MINAXIS) {
+			checkYnotequalMinAxis(index);
+			getFields().remove(index);
+		}
+	}
+
+	private void checkYnotequalMinAxis(int index) {
+		if(getY() != ChessConstants.MINAXIS) {
+			setYKords(index);
+		}
+	}
+
+	public void removeLeft(int index) {
+		setXKords(index);
+		getFields().remove(index);
+		while(checkFieldSmaller(index, getX(), getxNext()) || getX() == ChessConstants.MINAXIS) {
+			checkXnotequalMinAxis(index);
+			getFields().remove(index);
+		}
+	}
+
+	private void checkXnotequalMinAxis(int index) {
+		if(getX() != ChessConstants.MINAXIS) {
+			setXKords(index);
+		}
+	}
+
+	private void setXKords(int index) {
+		setX(getFields().get(index)[1]);
+		setxNext(getFields().get(index + 1)[1]);
 	}
 
 	private boolean checkFieldSmaller(int index, int kord, int nextKord) {
@@ -309,15 +318,17 @@ public class ColidatingFields {
 	}
 
 	public void removeRight(int index) {
-		setX(getFields().get(index)[1]);
-		setxNext(getFields().get(index + 1)[1]);
+		setXKords(index);
 		getFields().remove(index);
 		while(checkNextFieldGrater(index, getX(), getxNext()) || getX() == ChessConstants.MAXAXIS) {
-			if(getX() != ChessConstants.MAXAXIS) {
-				setX(getFields().get(index)[0]);
-				setxNext(getFields().get(index + 1)[0]);
-			}
+			checkXnotequalMaxAxis(index);
 			getFields().remove(index);
+		}
+	}
+
+	private void checkXnotequalMaxAxis(int index) {
+		if(getX() != ChessConstants.MAXAXIS) {
+			setXKords(index);
 		}
 	}
 

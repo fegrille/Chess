@@ -3,7 +3,6 @@ package control;
 import java.util.List;
 
 import model.Bishop;
-import model.ChessConstants;
 import model.Figure;
 import model.King;
 import model.Knight;
