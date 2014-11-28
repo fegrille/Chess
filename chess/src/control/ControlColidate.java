@@ -16,7 +16,8 @@ public class ControlColidate {
 	private List<Integer[]> possibleFields;
 	private List<Figure> figureList;
 	private ControlColidateBishop colBis = new ControlColidateBishop();
-	private ControlColidatePawnKnight colPawKnig = new ControlColidatePawnKnight();
+	private ControlColidatePawn colPaw = new ControlColidatePawn();
+	private ControlColidateKnight colKnig = new ControlColidateKnight();
 	private ControlColidateQueen colQueen = new ControlColidateQueen();
 	private ControlColidateKing colKing = new ControlColidateKing();
 	private ControlColidateRook colRook = new ControlColidateRook();
@@ -25,9 +26,12 @@ public class ControlColidate {
 	public ControlColidateBishop getColBis() {
 		return colBis;
 	}
-
-	public ControlColidatePawnKnight getColPawKnig() {
-		return colPawKnig;
+	
+	public ControlColidateKnight getColKnig() {
+		return colKnig;
+	}
+	public ControlColidatePawn getColPaw() {
+		return colPaw;
 	}
 
 	public ControlColidateQueen getColQueen() {
@@ -57,38 +61,38 @@ public class ControlColidate {
 	
 	public void isPawn(Figure f, List<Integer[]> pf, Player p, Player p2) {
 		if(f instanceof Pawn) {
-			setPossibleFields(getColPawKnig().colidateFigurePawn(f,pf,p,p2));
+			setPossibleFields(getColPaw().colidateFigurePawn(f,pf,p,p2));
 		}
 	}
 	
 	public void isRook(Figure f, List<Integer[]> pf, Player p, Player p2) {
 		if(f instanceof Rook) {
-			getColRook().colidateRook(f, pf, p, p2);
+			setPossibleFields(getColRook().colidateRook(f, pf, p, p2));
 		}
 	}
 	
 	public void isBishop(Figure f, List<Integer[]> pf, Player p, Player p2) {
 		if(f instanceof Bishop) {
-			getColBis().colidateBishop(f, pf, p, p2);
+			setPossibleFields(getColBis().colidateBishop(f, pf, p, p2));
 		}
 	}
 	
 	public void isKnight(Figure f, List<Integer[]> pf, Player p, Player p2) {
 		if(f instanceof Knight) {
-			getColPawKnig().colidateFigurePawn(f,pf,p,p2);
+			setPossibleFields(getColKnig().colidateOwnFigureKnight(f,pf,p));
 		}
 	}
 	
 	public void isQueen(Figure f, List<Integer[]> pf, Player p, Player p2) {
 		if(f instanceof Queen) {
-			getColQueen().colidateQueen(f, pf, p, p2);
+			setPossibleFields(getColQueen().colidateQueen(f, pf, p, p2));
 		}
 	}
 	
 	public void isKing(Figure f, List<Integer[]> pf, Player p, Player p2) {
 		if(f instanceof King) {
-			getColKing().colidateOwnFigureKing(f,pf,p);
-			getColKing().colidateOtherFigureKing(f,pf,p2);
+			setPossibleFields(getColKing().colidateOwnFigureKing(f,pf,p));
+			setPossibleFields(getColKing().colidateOtherFigureKing(f,pf,p2));
 		}
 	}
 

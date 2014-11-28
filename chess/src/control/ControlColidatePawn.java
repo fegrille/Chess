@@ -1,11 +1,12 @@
 package control;
 
+import java.util.Arrays;
 import java.util.List;
 
 import model.Figure;
 import model.Player;
 
-public class ControlColidatePawnKnight {
+public class ControlColidatePawn {
 	
 	private ColidatingFields coli = new ColidatingFields();
 	private List<Integer[]> fields;
@@ -39,14 +40,6 @@ public class ControlColidatePawnKnight {
 		getColi().unmovedFigures(f);
 		setFields(pf);
 		checkColidation(f);
-		return getFields();
-	}
-	
-	public List<Integer[]> colidateOwnFigureKnight(Figure f, List<Integer[]> pf, Player p, Player p2) {
-		return getFields();
-	}
-	
-	public List<Integer[]> colidateOtherFigureKnight() {
 		return getFields();
 	}
 
@@ -84,13 +77,13 @@ public class ControlColidatePawnKnight {
 	}
 
 	private void removeForWhite(Integer[] colField, int index, Integer[] position) {
-		if(position[0] == colField[0] && position[1] == colField[1] || position[0] > colField[0]) {
+		if(Arrays.equals(colField, position) || position[0] > colField[0]) {
 			getFields().remove(index);
 		}
 	}
 
 	private void removeForBlack(Integer[] colField, int index, Integer[] position) {
-		if(position[0] == colField[0] && position[1] == colField[1] || position[0] < colField[0]) {
+		if(Arrays.equals(colField, position) || position[0] < colField[0]) {
 			getFields().remove(index);
 		}
 	}
