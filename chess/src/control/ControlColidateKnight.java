@@ -33,7 +33,9 @@ public class ControlColidateKnight {
 
 	public List<Integer[]> colidateOwnFigureKnight(Figure f, List<Integer[]> pf, Player p) {
 		setFigureList(p.getFigureList());
+		getColi().setFigureList(getFigureList());
 		getColi().unmovedFigures(f);
+		setFigureList(getColi().getFigureList());
 		setFields(pf);
 		checkColidateOwn();
 		return getFields();

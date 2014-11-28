@@ -37,7 +37,9 @@ public class ControlColidatePawn {
 	
 	public List<Integer[]> colidateFigurePawn(Figure f, List<Integer[]> pf, Player p, Player p2) {
 		setFigureList(p.getFigureList());
+		getColi().setFigureList(getFigureList());
 		getColi().unmovedFigures(f);
+		setFigureList(getColi().getFigureList());
 		setFields(pf);
 		checkColidation(f);
 		return getFields();

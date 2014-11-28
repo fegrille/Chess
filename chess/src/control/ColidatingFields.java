@@ -12,11 +12,19 @@ public class ColidatingFields {
 	private List<Integer[]> fields;
 	private List<Figure> figureList;
 	private boolean colidate = false;
+	private int counter;
 	private int x;
 	private int y;
 	private int xNext;
 	private int yNext;
 	
+	public int getCounter() {
+		return counter;
+	}
+
+	public void setCounter(int counter) {
+		this.counter = counter;
+	}
 	public int getX() {
 		return x;
 	}
@@ -73,15 +81,16 @@ public class ColidatingFields {
 	}
 	
 	public void unmovedFigures(Figure f) {
-		for(int i = 0; i < getFigureList().size(); i++) {
-			int[] figPos = getFigureList().get(i).getField();
-			removeFigure(f.getField(), i, figPos);
+		for(setCounter(0); getCounter() < getFigureList().size(); setCounter(getCounter() + 1)) {
+			int[] figPos = getFigureList().get(getCounter()).getField();
+			removeFigure(f.getField(),figPos);
 		}
 	}
 
-	private void removeFigure(int[] fPos, int i, int[] figPos) {
+	private void removeFigure(int[] fPos,int[] figPos) {
 		if(Arrays.equals(fPos, figPos)) {
-			getFigureList().remove(i);
+			getFigureList().remove(getCounter());
+			setCounter(getCounter() - 1);
 		}
 	}
 	
@@ -346,8 +355,9 @@ public class ColidatingFields {
 	
 	private boolean equalsArray(Integer[] arr1, int[] arr2) {
 		boolean equals = false;
-		if(arr1[0] == arr2[0] && arr1[1] == arr2[1])
+		if(arr1[0] == arr2[0] && arr1[1] == arr2[1]) {
 			equals = true;
+		}
 		return equals;
 	}
 }

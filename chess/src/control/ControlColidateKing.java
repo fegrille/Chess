@@ -39,7 +39,9 @@ public class ControlColidateKing {
 	
 	public List<Integer[]> colidateOwnFigureKing(Figure f, List<Integer[]> pf, Player p) {
 		setFigureList(p.getFigureList());
+		getColi().setFigureList(getFigureList());
 		getColi().unmovedFigures(f);
+		setFigureList(getColi().getFigureList());
 		setPossibleFields(pf);
 		checkColidateOwn();
 		return getPossibleFields();
@@ -58,7 +60,9 @@ public class ControlColidateKing {
 	
 	public List<Integer[]> colidateOtherFigureKing(Figure f, List<Integer[]> pf, Player p) {
 		setFigureList(p.getFigureList());
+		getColi().setFigureList(getFigureList());
 		getColi().unmovedFigures(f);
+		setFigureList(getColi().getFigureList());
 		setPossibleFields(pf);
 		checkColidateOther(p);
 		return getPossibleFields();
