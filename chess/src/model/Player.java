@@ -45,7 +45,7 @@ public class Player {
 	private void addQueen(Field field) {
 		int xKord = ChessConstants.QUEENXKORDS;
 		int yKord = blackOrWhite();
-		f = new Queen(xKord,yKord,this.col);
+		f = new Queen(yKord,xKord,this.col);
 		getFigureList().add(f);
 		field.initializeField(f);
 	}
@@ -53,7 +53,7 @@ public class Player {
 	private void addKing(Field field) {
 		int xKord = ChessConstants.KINGXKORDS;
 		int yKord = blackOrWhite();
-		f = new King(xKord,yKord,this.col);
+		f = new King(yKord,xKord,this.col);
 		getFigureList().add(f);
 		field.initializeField(f);
 	}
@@ -61,11 +61,11 @@ public class Player {
 	private void addKnights(Field field) {
 		int xKord = ChessConstants.KNIGHTXKORDS[0];
 		int yKord = blackOrWhite();
-		f = new Knight(xKord,yKord,this.col);
+		f = new Knight(yKord,xKord,this.col);
 		getFigureList().add(f);
 		field.initializeField(f);
 		xKord = ChessConstants.KNIGHTXKORDS[1];
-		f = new Knight(xKord,yKord,this.col);
+		f = new Knight(yKord,xKord,this.col);
 		getFigureList().add(f);
 		field.initializeField(f);
 	}
@@ -73,11 +73,11 @@ public class Player {
 	private void addBishops(Field field) {
 		int xKord = ChessConstants.BISHOPXKORDS[0];
 		int yKord = blackOrWhite();
-		f = new Bishop(xKord,yKord,this.col);
+		f = new Bishop(yKord,xKord,this.col);
 		getFigureList().add(f);
 		field.initializeField(f);
 		xKord = ChessConstants.BISHOPXKORDS[1];
-		f = new Bishop(xKord,yKord,this.col);
+		f = new Bishop(yKord,xKord,this.col);
 		getFigureList().add(f);
 		field.initializeField(f);
 	}
@@ -85,11 +85,11 @@ public class Player {
 	private void addRooks(Field field) {
 		int xKord = ChessConstants.ROOKXKORDS[0];
 		int yKord = blackOrWhite();
-		f = new Rook(xKord,yKord,this.col);
+		f = new Rook(yKord,xKord,this.col);
 		getFigureList().add(f);
 		field.initializeField(f);
 		xKord = ChessConstants.ROOKXKORDS[1];
-		f = new Rook(xKord,yKord,this.col);
+		f = new Rook(yKord,xKord,this.col);
 		getFigureList().add(f);
 		field.initializeField(f);
 	}

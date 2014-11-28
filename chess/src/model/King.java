@@ -56,7 +56,7 @@ public class King extends Figure{
 	
 	private void addField(int x, int y) {
 		Integer[] posField = new Integer[ChessConstants.FIGUREFIELDSIZE];
-		if(x > ChessConstants.MAXAXIS || x < 1 || y > ChessConstants.MAXAXIS || y < 1) {
+		if(x > ChessConstants.MAXAXIS || x < ChessConstants.MINAXIS || y > ChessConstants.MAXAXIS || y < ChessConstants.MINAXIS) {
 			posField = null;
 		} else {
 			posField[0] = y;

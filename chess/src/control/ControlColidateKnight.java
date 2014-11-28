@@ -37,11 +37,11 @@ public class ControlColidateKnight {
 		getColi().unmovedFigures(f);
 		setFigureList(getColi().getFigureList());
 		setFields(pf);
-		checkColidateOwn();
+		checkColidateOwn(p);
 		return getFields();
 	}
 	
-	private void checkColidateOwn() {
+	private void checkColidateOwn(Player p) {
 		for(int i = 0; i < getFields().size(); i++) {
 			checkColidateOwnFigureKnight(i);
 		}

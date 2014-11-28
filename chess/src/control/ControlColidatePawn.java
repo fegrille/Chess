@@ -35,7 +35,7 @@ public class ControlColidatePawn {
 		this.fields = fields;
 	}
 	
-	public List<Integer[]> colidateFigurePawn(Figure f, List<Integer[]> pf, Player p, Player p2) {
+	public List<Integer[]> colidateOwnFigurePawn(Figure f, List<Integer[]> pf, Player p, Player p2) {
 		setFigureList(p.getFigureList());
 		getColi().setFigureList(getFigureList());
 		getColi().unmovedFigures(f);
@@ -45,6 +45,18 @@ public class ControlColidatePawn {
 		return getFields();
 	}
 
+	private void checkColidateOwn() {
+		for(int i = 0; i < getFields().size(); i++) {
+			checkColidateOwnFigurePawn(i);
+		}
+	}
+	
+	private void checkColidateOwnFigurePawn(int i) {
+		if(getColi().colidate(getFields().get(i))) {
+			getFields().remove(i);
+		}
+	}
+	
 	private void checkColidation(Figure f) {
 		for(int i = 0; i < getFields().size(); i++) {
 			checkColidatePawn(f, i);

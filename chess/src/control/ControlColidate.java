@@ -56,12 +56,12 @@ public class ControlColidate {
 		isKnight(f,pf,p,p2);
 		isQueen(f,pf,p,p2);
 		isKing(f,pf,p,p2);
-		return getPossibleFields(); 
+		return getPossibleFields();
 	}
 	
 	public void isPawn(Figure f, List<Integer[]> pf, Player p, Player p2) {
 		if(f instanceof Pawn) {
-			setPossibleFields(getColPaw().colidateFigurePawn(f,pf,p,p2));
+			setPossibleFields(getColPaw().colidateOwnFigurePawn(f,pf,p,p2));
 		}
 	}
 	
@@ -90,9 +90,10 @@ public class ControlColidate {
 	}
 	
 	public void isKing(Figure f, List<Integer[]> pf, Player p, Player p2) {
+		setPossibleFields(pf);
 		if(f instanceof King) {
-			setPossibleFields(getColKing().colidateOwnFigureKing(f,pf,p));
-			setPossibleFields(getColKing().colidateOtherFigureKing(f,pf,p2));
+			setPossibleFields(getColKing().colidateOwnFigureKing(f,getPossibleFields(),p));
+			setPossibleFields(getColKing().colidateOtherFigureKing(f,getPossibleFields(),p2));
 		}
 	}
 

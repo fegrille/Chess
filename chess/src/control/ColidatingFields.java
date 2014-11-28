@@ -81,20 +81,22 @@ public class ColidatingFields {
 	}
 	
 	public void unmovedFigures(Figure f) {
+		int[] cords = f.getField();
 		for(setCounter(0); getCounter() < getFigureList().size(); setCounter(getCounter() + 1)) {
 			int[] figPos = getFigureList().get(getCounter()).getField();
-			removeFigure(f.getField(),figPos);
+			removeFigure(cords,figPos);
 		}
 	}
 
 	private void removeFigure(int[] fPos,int[] figPos) {
-		if(Arrays.equals(fPos, figPos)) {
+		if(fPos[0] == figPos[0] && fPos[1] == figPos[1]) {
 			getFigureList().remove(getCounter());
 			setCounter(getCounter() - 1);
 		}
 	}
 	
 	public boolean colidate(Integer[] posF) {
+		setColidate(false);
 		checkColidateFigures(posF);
 		return isColidate();
 	}

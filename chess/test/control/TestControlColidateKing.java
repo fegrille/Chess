@@ -47,6 +47,7 @@ public class TestControlColidateKing {
 
 	@Test
 	public void testColidateOwnFiguresKing() {
+		pf = king.possibleFields();
 		pf = cK.colidateOwnFigureKing(king, pf, p1);
 		if(pf.size() == 0) {
 			right = true;
