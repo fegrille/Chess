@@ -119,7 +119,7 @@ public class ControlColidateKing {
 		setPossibleFields2(f.possibleFields());
 		for(setCounter(0); getCounter() < getPossibleFields2().size(); setCounter(getCounter() + 1)) {
 			Integer[] field = getPossibleFields2().get(getCounter());
-			isPFInFrontOfPawn(f, getPossibleFields2(), field);
+			isPFInFrontOfPawn(f, field);
 			isPfInFrontOfPawnFirstMove(f, field);
 		}
 		isAPossibleField(getPossibleFields2(),y,x);
@@ -127,13 +127,15 @@ public class ControlColidateKing {
 
 	private void isPfInFrontOfPawnFirstMove(Figure f, Integer[] field) {
 		if(field[0] == f.getY() + 2){
+			System.out.print("Remove field first move pawn");
 			getPossibleFields2().remove(getCounter());
 			setCounter(getCounter() - 1);
 		}
 	}
 
-	private void isPFInFrontOfPawn(Figure f, List<Integer[]> pf, Integer[] field) {
+	private void isPFInFrontOfPawn(Figure f, Integer[] field) {
 		if(field[0] == f.getY() + 1){
+			System.out.print("Remove field pawn");
 			getPossibleFields2().remove(getCounter());
 			setCounter(getCounter() - 1);
 		}
