@@ -15,14 +15,16 @@ public class Queen extends Figure{
 	@Override
 	public List<Integer[]> possibleFields() {
 		move.setFields(new ArrayList<Integer[]>());
-		move.moveUpFields(getY(), getX());
-		move.moveDownFields(getY(), getX());
-		move.moveLeftFields(getY(), getX());
-		move.moveRightFields(getY(), getX());
-		move.moveRightUp(getY(), getX());
-		move.moveLeftUp(getY(), getX());
-		move.moveRightDown(getY(), getX());
-		move.moveLeftDown(getY(), getX());
+		int x = getX();
+		int y = getY();
+		move.moveUpFields(y, x);
+		move.moveDownFields(y, x);
+		move.moveLeftFields(y, x);
+		move.moveRightFields(y, x);
+		move.moveRightUp(y, x);
+		move.moveLeftUp(y, x);
+		move.moveRightDown(y, x);
+		move.moveLeftDown(y, x);
 
 		return move.getFields();
 	}

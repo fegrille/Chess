@@ -51,7 +51,7 @@ public class TestControlColidate {
 		p2.getFigureList().get(3).setField(2, 4);
 		pf = f.possibleFields();
 		pf = test.colidate(f, pf, p1, p2);
-		if(pf.size() == 2) {
+		if(pf.size() == 1) {
 			right = true;
 		}
 		assertTrue(right);
