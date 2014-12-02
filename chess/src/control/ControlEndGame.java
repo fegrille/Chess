@@ -2,8 +2,6 @@ package control;
 
 import java.util.List;
 
-import com.sun.glass.ui.Size;
-
 import model.Figure;
 import model.King;
 import model.Player;
