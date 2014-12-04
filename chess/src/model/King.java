@@ -56,13 +56,17 @@ public class King extends Figure{
 	
 	private void addField(int x, int y) {
 		Integer[] posField = new Integer[ChessConstants.FIGUREFIELDSIZE];
-		if(x > ChessConstants.MAXAXIS || x < ChessConstants.MINAXIS || y > ChessConstants.MAXAXIS || y < ChessConstants.MINAXIS) {
+		if(checkCordinsideAxis(x) || checkCordinsideAxis(y)) {
 			posField = null;
 		} else {
 			posField[0] = y;
 			posField[1] = x;
 		}
 		getFields().add(posField);
+	}
+
+	private boolean checkCordinsideAxis(int axis) {
+		return axis > ChessConstants.MAXAXIS || axis < ChessConstants.MINAXIS;
 	}
 	
 	private void removeNullFields() {

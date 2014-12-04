@@ -7,8 +7,8 @@ import model.Player;
 
 public class ControlChess {
 	
-	boolean chess = false;
-	int[] kingField = {};
+	private boolean chess = false;
+	private int[] kingField = {};
 
 	public boolean checkChess(Player p, Figure lastMovedFigure, ControlColidate col, Player p2) {
 		setChess(false);
@@ -39,8 +39,8 @@ public class ControlChess {
 		return kingField;
 	}
 
-	private void setKingField(int[] kingField) {
-		this.kingField = kingField;
+	private void setKingField(int[] kf) {
+		this.kingField = kf;
 	}
 
 	public boolean isChess() {
