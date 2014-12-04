@@ -10,7 +10,16 @@ public class ControlColidateKnight {
 	private ColidatingFields coli = new ColidatingFields();
 	private List<Integer[]> fields;
 	private List<Figure> figureList;
+	private int counter;
 	
+	public int getCounter() {
+		return counter;
+	}
+
+	public void setCounter(int counter) {
+		this.counter = counter;
+	}
+
 	public List<Integer[]> getFields() {
 		return fields;
 	}
@@ -37,19 +46,20 @@ public class ControlColidateKnight {
 		getColi().unmovedFigures(f);
 		setFigureList(getColi().getFigureList());
 		setFields(pf);
-		checkColidateOwn(p);
+		checkColidateOwn();
 		return getFields();
 	}
 	
-	private void checkColidateOwn(Player p) {
-		for(int i = 0; i < getFields().size(); i++) {
-			checkColidateOwnFigureKnight(i);
+	private void checkColidateOwn() {
+		for(setCounter(0); getCounter() < getFields().size(); setCounter(getCounter() + 1)) {
+			checkColidateOwnFigureKnight();
 		}
 	}
 	
-	private void checkColidateOwnFigureKnight(int i) {
-		if(getColi().colidate(getFields().get(i))) {
-			getFields().remove(i);
+	private void checkColidateOwnFigureKnight() {
+		if(getColi().colidate(getFields().get(getCounter()))) {
+			getFields().remove(getCounter());
+			setCounter(getCounter() - 1);
 		}
 	}
 

@@ -190,8 +190,6 @@ public class ControlColidateKing {
 	}
 	
 	private void checkBlock(Integer[] pf, int y, int x) {
-		System.out.print(pf[0]);
-		System.out.println(pf[1]);
 		if(pf[0] == y && pf[1] == x) {
 			setBlocked(true);
 		}

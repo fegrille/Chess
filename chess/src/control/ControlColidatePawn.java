@@ -11,7 +11,16 @@ public class ControlColidatePawn {
 	private ColidatingFields coli = new ColidatingFields();
 	private List<Integer[]> fields;
 	private List<Figure> figureList;
+	private int c1;
 	
+	public int getC1() {
+		return c1;
+	}
+
+	public void setC1(int c1) {
+		this.c1 = c1;
+	}
+
 	public ColidatingFields getColi() {
 		return coli;
 	}
@@ -43,18 +52,6 @@ public class ControlColidatePawn {
 		setFields(pf);
 		checkColidation(f);
 		return getFields();
-	}
-
-	private void checkColidateOwn() {
-		for(int i = 0; i < getFields().size(); i++) {
-			checkColidateOwnFigurePawn(i);
-		}
-	}
-	
-	private void checkColidateOwnFigurePawn(int i) {
-		if(getColi().colidate(getFields().get(i))) {
-			getFields().remove(i);
-		}
 	}
 	
 	private void checkColidation(Figure f) {
