@@ -1,5 +1,7 @@
 package control;
 
+import java.util.List;
+
 import model.Figure;
 import model.Player;
 
@@ -9,6 +11,7 @@ public class ControlChess {
 	int[] kingField = {};
 
 	public boolean checkChess(Player p, Figure lastMovedFigure, ControlColidate col, Player p2) {
+		setChess(false);
 		getKingField(p);
 		checkFigures(lastMovedFigure, col, p, p2);
 		return isChess();
@@ -20,11 +23,12 @@ public class ControlChess {
 	}
 
 	private void checkFigures(Figure lastMovedFigure, ControlColidate col, Player p, Player p2) {
-		for(Integer[] field : col.colidate(lastMovedFigure, lastMovedFigure.possibleFields(), p2, p)) {
+		List<Integer[]> finalFields = col.colidate(lastMovedFigure, lastMovedFigure.possibleFields(), p2, p);
+		for(Integer[] field : finalFields) {
 			compareField(field);
 		}
 	}
-	
+
 	private void compareField(Integer[] field) {
 		if(getKingField()[0] == field[0] && getKingField()[1] ==  field[1]) {
 			setChess(true);

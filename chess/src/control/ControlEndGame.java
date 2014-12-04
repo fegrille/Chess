@@ -3,7 +3,6 @@ package control;
 import java.util.List;
 
 import model.Figure;
-import model.King;
 import model.Player;
 
 public class ControlEndGame {
@@ -21,42 +20,67 @@ public class ControlEndGame {
 	
 	private boolean win = false;
 	private boolean kingCantMove = false;
-	private boolean cantKillBadFigure = false;
+	private boolean canKillBadFigure = false;
 	private boolean cantBlockBadFigure = false;
 	
 	private ControlChess cChess = new ControlChess();
 	
-	public void controlWin(Player pl, Player plOpp,  ControlColidate col, Figure lastMovedFigure) {
+	private Player pl = null;
+	private Player plOpp = null;
+	private ControlColidate col = null;
+	private Figure lastMovedFigure = null;
+	
+	public void controlWin(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
+		setPl(pl);
+		setPlOpp(plOpp);
+		setCol(col);
+		setLastMovedFigure(lastMovedFigure);
+		resetValues();
 		if(cChess.checkChess(pl, lastMovedFigure, col, plOpp)) {
-			checkRetireOptions(pl);
+			checkRetireOptions();
 		}
 	}
 
-	private void checkRetireOptions(Player pl) {
-		checkPossibleFieldsKing(pl);
-		killBadFigure(pl);
-		blockBadFigure(pl);
-		if(isKingCantMove() && isCantKillBadFigure() && isCantBlockBadFigure()) {
+	private void checkRetireOptions() {
+		checkPossibleFieldsKing();
+		killBadFigure();
+		blockBadFigure();
+		if(isKingCantMove() && !isCanKillBadFigure() && isCantBlockBadFigure()) {
 			setWin(true);
 		}
 	}
 
-	private boolean blockBadFigure(Player pl) {
+	private void blockBadFigure() {
 		
-		return false;
 	}
 
-	private boolean killBadFigure(Player pl) {
-		
-		return false;
+	private void killBadFigure() {
+		List<Figure> figureList = getPl().getFigureList();
+		for(Figure f : figureList) {
+			killingPossibleAllFields(f);
+		}
 	}
 
-	private void checkPossibleFieldsKing(Player pl) {
-		int size = pl.getFigureList().size();
-		Figure king = pl.getFigureList().get(size - 1);
-		if(king.possibleFields().size() == 0)
-		setKingCantMove(true);
-		
+	private void killingPossibleAllFields(Figure f) {
+		List<Integer[]> finalFields = getCol().colidate(f, f.possibleFields(), getPl(), getPlOpp());
+		for(Integer[] field : finalFields) {
+			killingPossibleOneField(field);
+		}
+	}
+
+	private void killingPossibleOneField(Integer[] field) {
+		int[] evilField = getLastMovedFigure().getField();
+		if(field[0] == evilField[0] && field[1] == evilField[1]) {
+			setCanKillBadFigure(true);
+		}
+	}
+
+	private void checkPossibleFieldsKing() {
+		int size = getPl().getFigureList().size();
+		Figure king = getPl().getFigureList().get(size - 1);
+		if(getCol().colidate(king, king.possibleFields(), getPl(), getPlOpp()).size() == 0) {
+			setKingCantMove(true);
+		}
 	}
 
 
@@ -76,12 +100,12 @@ public class ControlEndGame {
 		this.kingCantMove = kingCantMove;
 	}
 
-	public boolean isCantKillBadFigure() {
-		return cantKillBadFigure;
+	public boolean isCanKillBadFigure() {
+		return canKillBadFigure;
 	}
 
-	public void setCantKillBadFigure(boolean cantKillBadFigure) {
-		this.cantKillBadFigure = cantKillBadFigure;
+	public void setCanKillBadFigure(boolean canKillBadFigure) {
+		this.canKillBadFigure = canKillBadFigure;
 	}
 
 	public boolean isCantBlockBadFigure() {
@@ -92,5 +116,42 @@ public class ControlEndGame {
 		this.cantBlockBadFigure = cantBlockBadFigure;
 	}
 	
+	private Player getPl() {
+		return pl;
+	}
+
+	private void setPl(Player pl) {
+		this.pl = pl;
+	}
+
+	private Player getPlOpp() {
+		return plOpp;
+	}
+
+	private void setPlOpp(Player plOpp) {
+		this.plOpp = plOpp;
+	}
+
+	private ControlColidate getCol() {
+		return col;
+	}
+
+	private void setCol(ControlColidate col) {
+		this.col = col;
+	}
+
+	private Figure getLastMovedFigure() {
+		return lastMovedFigure;
+	}
+
+	private void setLastMovedFigure(Figure lastMovedFigure) {
+		this.lastMovedFigure = lastMovedFigure;
+	}
+	
+	private void resetValues() {
+		setKingCantMove(false);
+		setCanKillBadFigure(false);
+		setCantBlockBadFigure(false);
+	}
 	
 }
