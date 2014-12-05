@@ -51,8 +51,12 @@ public class ControlEndGame {
 	}
 
 	private void blockBadFigure() {
-		
+		ControlBlock cB = new ControlBlock();
+		cB.isRook(pl, plOpp, col, lastMovedFigure);
+		cB.isBishop(pl, plOpp, col, lastMovedFigure);
+		cB.isQueen(pl, plOpp, col, lastMovedFigure);
 	}
+
 
 	private void killBadFigure() {
 		List<Figure> figureList = getPl().getFigureList();
@@ -92,27 +96,27 @@ public class ControlEndGame {
 		this.win = win;
 	}
 
-	public boolean isKingCantMove() {
+	private boolean isKingCantMove() {
 		return kingCantMove;
 	}
 
-	public void setKingCantMove(boolean kingCantMove) {
+	private void setKingCantMove(boolean kingCantMove) {
 		this.kingCantMove = kingCantMove;
 	}
 
-	public boolean isCanKillBadFigure() {
+	private boolean isCanKillBadFigure() {
 		return canKillBadFigure;
 	}
 
-	public void setCanKillBadFigure(boolean canKillBadFigure) {
+	private void setCanKillBadFigure(boolean canKillBadFigure) {
 		this.canKillBadFigure = canKillBadFigure;
 	}
 
-	public boolean isCantBlockBadFigure() {
+	private boolean isCantBlockBadFigure() {
 		return cantBlockBadFigure;
 	}
 
-	public void setCantBlockBadFigure(boolean cantBlockBadFigure) {
+	private void setCantBlockBadFigure(boolean cantBlockBadFigure) {
 		this.cantBlockBadFigure = cantBlockBadFigure;
 	}
 	

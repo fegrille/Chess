@@ -76,13 +76,13 @@ public class ControlColidate {
 			setPossibleFields(getColBis().colidateBishop(f, pf, p, p2));
 		}
 	}
-	
+
 	public void isKnight(Figure f, List<Integer[]> pf, Player p, Player p2) {
 		if(f instanceof Knight) {
 			setPossibleFields(getColKnig().colidateOwnFigureKnight(f,pf,p));
 		}
 	}
-	
+
 	public void isQueen(Figure f, List<Integer[]> pf, Player p, Player p2) {
 		if(f instanceof Queen) {
 			setPossibleFields(getColQueen().colidateQueen(f, pf, p, p2));
