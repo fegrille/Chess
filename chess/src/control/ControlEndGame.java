@@ -1,9 +1,13 @@
 package control;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import model.Bishop;
 import model.Figure;
 import model.Player;
+import model.Queen;
+import model.Rook;
 
 public class ControlEndGame {
 	/*
@@ -29,6 +33,8 @@ public class ControlEndGame {
 	private Player plOpp = null;
 	private ControlColidate col = null;
 	private Figure lastMovedFigure = null;
+	private List<int[]> possBlockFields = new ArrayList<int[]>();
+	
 	
 	public void controlWin(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
 		setPl(pl);
@@ -51,12 +57,87 @@ public class ControlEndGame {
 	}
 
 	private void blockBadFigure() {
-		ControlBlock cB = new ControlBlock();
-		cB.isRook(pl, plOpp, col, lastMovedFigure);
-		cB.isBishop(pl, plOpp, col, lastMovedFigure);
-		cB.isQueen(pl, plOpp, col, lastMovedFigure);
+		isRook(pl, plOpp, col, lastMovedFigure);
+		isBishop(pl, plOpp, col, lastMovedFigure);
+		isQueen(pl, plOpp, col, lastMovedFigure);
+	}
+	
+	public void isRook(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
+		if(lastMovedFigure instanceof Rook) {
+			checkBlockRook();
+		}
+	}
+	
+	private void checkBlockRook() {
+		int size = getPl().getFigureList().size();
+		int[] kingField = getPl().getFigureList().get(size - 1).getField();
+		int[] evilField = getLastMovedFigure().getField();
+		possBlockFields = new ArrayList<int[]>();
+		getPossibleBlockingFieldsRook(kingField, evilField);
 	}
 
+	private void getPossibleBlockingFieldsRook(int[] kingField, int[] evilField) {;
+		if(kingField[0] != evilField[0]) {
+			getYFieldsRook(kingField, evilField);
+		} else {
+			getXFieldsRook(kingField, evilField);
+		}
+	}
+
+	private void getXFieldsRook(int[] kingField, int[] evilField) {
+		if(kingField[1] > evilField[1]) {
+			getFinalXFieldsRook(kingField, evilField);
+		} else {
+			getFinalXFieldsRook(evilField, kingField);
+		}
+	}
+
+	private void getFinalXFieldsRook(int[] bigField, int[] smallField) {
+		int big = bigField[1];
+		int small = smallField[1];
+		for(int x = small; (x + 1) < big; x++) {
+			int i[] = {bigField[0], x + 1};
+			possBlockFields.add(i);
+		}
+	}
+
+	private void getYFieldsRook(int[] kingField, int[] evilField) {
+		if(kingField[0] > evilField[0]) {
+			getFinalYFieldsRook(kingField, evilField);
+		} else {
+			getFinalYFieldsRook(evilField, kingField);
+		}
+	}
+
+	private void getFinalYFieldsRook(int[] bigField, int[] smallField) {
+		int big = bigField[0];
+		int small = smallField[0];
+		for(int x = small; (x + 1) < big; x++) {
+			int i[] = {x + 1, bigField[1]};
+			possBlockFields.add(i);
+		}
+	}
+
+	public void isBishop(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
+		if(lastMovedFigure instanceof Bishop) {
+			checkBlockBishop();
+		}
+	}
+	
+	private void checkBlockBishop() {
+		
+	}
+
+	public void isQueen(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
+		if(lastMovedFigure instanceof Queen) {
+			checkBlockQueen();
+		}
+	}
+
+
+	private void checkBlockQueen() {
+		
+	}
 
 	private void killBadFigure() {
 		List<Figure> figureList = getPl().getFigureList();
