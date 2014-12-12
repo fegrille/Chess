@@ -34,8 +34,7 @@ public class ControlEndGame {
 	private ControlColidate col = null;
 	private Figure lastMovedFigure = null;
 	private List<int[]> possBlockFields = new ArrayList<int[]>();
-	
-	
+
 	public void controlWin(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
 		setPl(pl);
 		setPlOpp(plOpp);
@@ -68,11 +67,12 @@ public class ControlEndGame {
 		}
 	}
 	
+	//Evil Figure is Rook
 	private void checkBlockRook() {
 		int size = getPl().getFigureList().size();
 		int[] kingField = getPl().getFigureList().get(size - 1).getField();
 		int[] evilField = getLastMovedFigure().getField();
-		possBlockFields = new ArrayList<int[]>();
+		setPossBlockFields(new ArrayList<int[]>());
 		getPossibleBlockingFieldsRook(kingField, evilField);
 	}
 
@@ -97,7 +97,7 @@ public class ControlEndGame {
 		int small = smallField[1];
 		for(int x = small; (x + 1) < big; x++) {
 			int i[] = {bigField[0], x + 1};
-			possBlockFields.add(i);
+			getPossBlockFields().add(i);
 		}
 	}
 
@@ -114,10 +114,11 @@ public class ControlEndGame {
 		int small = smallField[0];
 		for(int x = small; (x + 1) < big; x++) {
 			int i[] = {x + 1, bigField[1]};
-			possBlockFields.add(i);
+			getPossBlockFields().add(i);
 		}
 	}
 
+	//Evil Figure is Bishop
 	public void isBishop(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
 		if(lastMovedFigure instanceof Bishop) {
 			checkBlockBishop();
@@ -125,9 +126,48 @@ public class ControlEndGame {
 	}
 	
 	private void checkBlockBishop() {
-		
+		int size = getPl().getFigureList().size();
+		int[] kingField = getPl().getFigureList().get(size - 1).getField();
+		int[] evilField = getLastMovedFigure().getField();
+		setPossBlockFields(new ArrayList<int[]>());
+		getPossibleBlockingFieldsBishop(kingField, evilField);
+	}
+	
+	private void getPossibleBlockingFieldsBishop(int[] kingField, int[] evilField) {
+		if(kingField[1] > evilField[1]) {
+			getXOrderedFieldsBishop(kingField, evilField);
+		} else {
+			getXOrderedFieldsBishop(evilField, kingField);
+		}
 	}
 
+	private void getXOrderedFieldsBishop(int[] XBigField, int[] XSmallField) {
+		if(XBigField[0] > XSmallField[0]) {
+			getBothOrderedFieldsBishopPlus(XBigField[1], XSmallField[1], XBigField[0], XSmallField[0]);
+		} else {
+			getBothOrderedFieldsBishopMinus(XBigField[1], XSmallField[1], XSmallField[0], XBigField[0]);
+		}
+	}
+
+	private void getBothOrderedFieldsBishopPlus(int xBigField, int xSmallField, int yBigField, int ySmallField) {
+		int y = ySmallField;
+		for(int x = xSmallField; (x + 1) < xBigField; x++) {
+			int i[] = {x + 1, y + 1};
+			getPossBlockFields().add(i);
+			y++;
+		}
+	}
+	
+	private void getBothOrderedFieldsBishopMinus(int xBigField, int xSmallField, int yBigField, int ySmallField) {
+		int y = yBigField;
+		for(int x = xSmallField; (x + 1) < xBigField; x++) {
+			int i[] = {x + 1, y - 1};
+			getPossBlockFields().add(i);
+			y--;
+		}
+	}
+
+	//Evil Figure is Queen
 	public void isQueen(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
 		if(lastMovedFigure instanceof Queen) {
 			checkBlockQueen();
@@ -136,9 +176,18 @@ public class ControlEndGame {
 
 
 	private void checkBlockQueen() {
-		
+		int size = getPl().getFigureList().size();
+		int[] kingField = getPl().getFigureList().get(size - 1).getField();
+		int[] evilField = getLastMovedFigure().getField();
+		setPossBlockFields(new ArrayList<int[]>());
+		if(kingField[0] == evilField[0] || kingField[1] == evilField[1]) {
+			getPossibleBlockingFieldsRook(kingField, evilField);
+		} else {
+			getPossibleBlockingFieldsBishop(kingField, evilField);
+		}
 	}
 
+	//Methods for Killing bad Figure
 	private void killBadFigure() {
 		List<Figure> figureList = getPl().getFigureList();
 		for(Figure f : figureList) {
@@ -161,6 +210,7 @@ public class ControlEndGame {
 		}
 	}
 
+	//Method for King escape
 	private void checkPossibleFieldsKing() {
 		int size = getPl().getFigureList().size();
 		Figure king = getPl().getFigureList().get(size - 1);
@@ -233,6 +283,14 @@ public class ControlEndGame {
 
 	private void setLastMovedFigure(Figure lastMovedFigure) {
 		this.lastMovedFigure = lastMovedFigure;
+	}
+
+	private List<int[]> getPossBlockFields() {
+		return possBlockFields;
+	}
+
+	private void setPossBlockFields(List<int[]> possBlockFields) {
+		this.possBlockFields = possBlockFields;
 	}
 	
 	private void resetValues() {
