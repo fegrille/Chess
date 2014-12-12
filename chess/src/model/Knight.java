@@ -5,30 +5,19 @@ import java.util.List;
 
 //Pferd
 public class Knight extends Figure{
-	
-	private List<Integer[]> fields;
 
 	public Knight(int y, int x, char color) {
 		setField(y,x);
 		setColor(color);
 	}
-	
-	public List<Integer[]> getFields() {
-		return fields;
-	}
-
-	public void setFields(List<Integer[]> fields) {
-		this.fields = fields;
-	}
 
 	@Override
-	public List<Integer[]> possibleFields() {
-		setFields(new ArrayList<Integer[]>());
+	public void possibleFields() {
+		setPosFields(new ArrayList<Integer[]>());
 		topFields();
 		buttomFields();
 		rightFields();
 		leftFields();
-		return getFields();
 	}
 	
 	public void topFields() {
@@ -45,7 +34,7 @@ public class Knight extends Figure{
 		if((x - 1) >= ChessConstants.MINAXIS) {
 			f[ChessConstants.YKORD] = y + 2;
 			f[ChessConstants.XKORD] = x - 1;
-			fields.add(f);
+			getPosFields().add(f);
 		}
 	}
 
@@ -53,7 +42,7 @@ public class Knight extends Figure{
 		if((x + 1) <= ChessConstants.MAXAXIS) {
 			f[ChessConstants.YKORD] = y + 2;
 			f[ChessConstants.XKORD] = x + 1;
-			fields.add(f);
+			getPosFields().add(f);
 		}
 	}
 	
@@ -71,7 +60,7 @@ public class Knight extends Figure{
 		if((y - 1) >= ChessConstants.MINAXIS) {
 			f[ChessConstants.YKORD] = y - 1;
 			f[ChessConstants.XKORD] = x - 2;
-			fields.add(f);
+			getPosFields().add(f);
 		}
 	}
 
@@ -79,7 +68,7 @@ public class Knight extends Figure{
 		if((y + 1) <= ChessConstants.MAXAXIS) {
 			f[ChessConstants.YKORD] = y + 1;
 			f[ChessConstants.XKORD] = x - 2;
-			fields.add(f);
+			getPosFields().add(f);
 		}
 	}
 	
@@ -97,7 +86,7 @@ public class Knight extends Figure{
 		if((x - 1) >= ChessConstants.MINAXIS) {
 			f[ChessConstants.YKORD] = y - 2;
 			f[ChessConstants.XKORD] = x - 1;
-			fields.add(f);
+			getPosFields().add(f);
 		}
 	}
 
@@ -105,7 +94,7 @@ public class Knight extends Figure{
 		if((x + 1) <= ChessConstants.MAXAXIS) {
 			f[ChessConstants.YKORD] = y - 2;
 			f[ChessConstants.XKORD] = x + 1;
-			fields.add(f);
+			getPosFields().add(f);
 		}
 	}
 	
@@ -123,7 +112,7 @@ public class Knight extends Figure{
 		if((y - 1) >= ChessConstants.MINAXIS) {
 			f[ChessConstants.YKORD] = y - 1;
 			f[ChessConstants.XKORD] = x + 2;
-			fields.add(f);
+			getPosFields().add(f);
 		}
 	}
 
@@ -131,7 +120,7 @@ public class Knight extends Figure{
 		if((y + 1) <= ChessConstants.MAXAXIS) {
 			f[ChessConstants.YKORD] = y + 1;
 			f[ChessConstants.XKORD] = x + 2;
-			fields.add(f);
+			getPosFields().add(f);
 		}
 	}
 

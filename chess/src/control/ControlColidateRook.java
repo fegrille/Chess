@@ -22,10 +22,10 @@ public class ControlColidateRook {
 		return coli;
 	}
 
-	public List<Integer[]> colidateRook(Figure f, List<Integer[]> pf, Player p, Player p2) {
-		setFields(getColi().colidateOwnFigureHorVer(f,pf,p));
-		setFields(getColi().colidateOtherFigureHorVer(f,pf,p2));
-		return getFields();
+	public void colidateRook(Figure f, Player p, Player p2) {
+		setFields(getColi().colidateOwnFigureHorVer(f,f.getPosFields(),p));
+		setFields(getColi().colidateOtherFigureHorVer(f,getFields(),p2));
+		f.setPosFields(getFields());
 	}
 
 }

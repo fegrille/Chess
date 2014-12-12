@@ -13,7 +13,7 @@ public class Queen extends Figure{
 	}
 	
 	@Override
-	public List<Integer[]> possibleFields() {
+	public void possibleFields() {
 		move.setFields(new ArrayList<Integer[]>());
 		int x = getX();
 		int y = getY();
@@ -25,8 +25,7 @@ public class Queen extends Figure{
 		move.moveLeftUp(y, x);
 		move.moveRightDown(y, x);
 		move.moveLeftDown(y, x);
-
-		return move.getFields();
+		setPosFields(move.getFields());
 	}
 	
 }

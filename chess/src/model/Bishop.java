@@ -26,13 +26,13 @@ public class Bishop extends Figure{
 	 * Method to get the fields where the bishop figure can go to
 	 */
 	@Override
-	public List<Integer[]> possibleFields() {
+	public void possibleFields() {
 		move.setFields(new ArrayList<Integer[]>());
 		move.moveRightUp(getY(), getX());
 		move.moveLeftUp(getY(), getX());
 		move.moveRightDown(getY(), getX());
 		move.moveLeftDown(getY(), getX());
-		return move.getFields();
+		setPosFields(move.getFields());
 	}	
 
 }

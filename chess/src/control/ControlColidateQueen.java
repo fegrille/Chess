@@ -22,12 +22,12 @@ public class ControlColidateQueen {
 		return coli;
 	}
 
-	public List<Integer[]> colidateQueen(Figure f, List<Integer[]> pf, Player p, Player p2) {
-		setFields(getColi().colidateOwnFigureHorVer(f,pf,p));
-		setFields(getColi().colidateOtherFigureHorVer(f,pf,p2));
-		setFields(getColi().colidateOwnFigureDiagonal(f,pf,p));
-		setFields(getColi().colidateOtherFigureDiagonal(f,pf,p2));
-		return getFields();
+	public void colidateQueen(Figure f, Player p, Player p2) {
+		setFields(getColi().colidateOwnFigureHorVer(f,f.getPosFields(),p));
+		setFields(getColi().colidateOtherFigureHorVer(f,getFields(),p2));
+		setFields(getColi().colidateOwnFigureDiagonal(f,getFields(),p));
+		setFields(getColi().colidateOtherFigureDiagonal(f,getFields(),p2));
+		f.setPosFields(getFields());
 	}
 
 }

@@ -23,7 +23,8 @@ public class ControlChess {
 	}
 
 	private void checkFigures(Figure lastMovedFigure, ControlColidate col, Player p, Player p2) {
-		List<Integer[]> finalFields = col.colidate(lastMovedFigure, lastMovedFigure.possibleFields(), p2, p);
+		col.colidate(lastMovedFigure, p2, p);
+		List<Integer[]> finalFields = lastMovedFigure.getPosFields();
 		for(Integer[] field : finalFields) {
 			compareField(field);
 		}

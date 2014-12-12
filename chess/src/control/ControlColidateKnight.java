@@ -40,14 +40,14 @@ public class ControlColidateKnight {
 		return coli;
 	}
 
-	public List<Integer[]> colidateOwnFigureKnight(Figure f, List<Integer[]> pf, Player p) {
+	public void colidateOwnFigureKnight(Figure f, Player p) {
 		setFigureList(p.getFigureList());
 		getColi().setFigureList(getFigureList());
 		getColi().unmovedFigures(f);
 		setFigureList(getColi().getFigureList());
-		setFields(pf);
+		setFields(f.getPosFields());
 		checkColidateOwn();
-		return getFields();
+		f.setPosFields(getFields());
 	}
 	
 	private void checkColidateOwn() {

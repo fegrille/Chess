@@ -147,7 +147,8 @@ public class ControlEndGame {
 	}
 
 	private void killingPossibleAllFields(Figure f) {
-		List<Integer[]> finalFields = getCol().colidate(f, f.possibleFields(), getPl(), getPlOpp());
+		getCol().colidate(f, getPl(), getPlOpp());
+		List<Integer[]> finalFields = f.getPosFields();
 		for(Integer[] field : finalFields) {
 			killingPossibleOneField(field);
 		}
@@ -163,7 +164,8 @@ public class ControlEndGame {
 	private void checkPossibleFieldsKing() {
 		int size = getPl().getFigureList().size();
 		Figure king = getPl().getFigureList().get(size - 1);
-		if(getCol().colidate(king, king.possibleFields(), getPl(), getPlOpp()).size() == 0) {
+		getCol().colidate(king, getPl(), getPlOpp());
+		if(king.getPosFields().size() == 0) {
 			setKingCantMove(true);
 		}
 	}

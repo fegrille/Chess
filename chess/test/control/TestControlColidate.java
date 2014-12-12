@@ -49,8 +49,9 @@ public class TestControlColidate {
 		p1.getFigureList().get(14).setField(1, 5);
 		p1.getFigureList().get(3).setField(7, 4);
 		p2.getFigureList().get(3).setField(2, 4);
-		pf = f.possibleFields();
-		pf = test.colidate(f, pf, p1, p2);
+		f.possibleFields();
+		test.colidate(f, p1, p2);
+		pf = f.getPosFields();
 		if(pf.isEmpty()) {
 			right = true;
 		}

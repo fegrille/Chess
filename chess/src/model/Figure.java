@@ -6,10 +6,11 @@ public class Figure {
 	
 	private int x;
 	private int y;
+	private List<Integer[]> posFields;
 	private char color;
 	
-	public List<Integer[]> possibleFields() {
-		return null;
+	public void possibleFields() {
+		setPosFields(null);
 	}
 	
 	public int[] getField() {
@@ -47,5 +48,13 @@ public class Figure {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+
+	public List<Integer[]> getPosFields() {
+		return posFields;
+	}
+
+	public void setPosFields(List<Integer[]> posFields) {
+		this.posFields = posFields;
 	}
 }

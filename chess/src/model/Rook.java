@@ -14,14 +14,13 @@ public class Rook extends Figure{
 	}
 	
 	@Override
-	public List<Integer[]> possibleFields() {
+	public void possibleFields() {
 		move.setFields(new ArrayList<Integer[]>());
 		move.moveUpFields(getY(), getX());
 		move.moveDownFields(getY(), getX());
 		move.moveLeftFields(getY(), getX());
 		move.moveRightFields(getY(), getX());
-
-		return move.getFields();
+		setPosFields(move.getFields());
 	}
 
 }

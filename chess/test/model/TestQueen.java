@@ -35,10 +35,14 @@ public class TestQueen {
 		List<Integer[]> testfield1 = new ArrayList<Integer[]>();
 		List<Integer[]> testfield2 = new ArrayList<Integer[]>();
 		List<Integer[]> testfield3 = new ArrayList<Integer[]>();
-		testfield = test.possibleFields();
-		testfield1 = test1.possibleFields();
-		testfield2 = test2.possibleFields();
-		testfield3 = test3.possibleFields();
+		test.possibleFields();
+		testfield = test.getPosFields();
+		test1.possibleFields();
+		testfield1 = test1.getPosFields();
+		test2.possibleFields();
+		testfield2 = test2.getPosFields();
+		test3.possibleFields();
+		testfield3 = test3.getPosFields();
 		if(testfield.size() == 21 && testfield1.size() == 21 && testfield2.size() == 21 && testfield3.size() == 21) {
 			testright = true;
 		}

@@ -32,9 +32,12 @@ public class TestKing {
 		List<Integer[]> testfield = new ArrayList<Integer[]>();
 		List<Integer[]> testfield2 = new ArrayList<Integer[]>();
 		List<Integer[]> testfield3 = new ArrayList<Integer[]>();
-		testfield = test.possibleFields();
-		testfield2 = test2.possibleFields();
-		testfield3 = test3.possibleFields();
+		test.possibleFields();
+		testfield = test.getPosFields();
+		test2.possibleFields();
+		testfield2 = test2.getPosFields();
+		test3.possibleFields();
+		testfield3 = test3.getPosFields();
 		if(testfield.size() == 3 && testfield2.size() == 8 && testfield3.size() == 3) {
 			testright = true;
 		}

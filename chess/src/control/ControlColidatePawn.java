@@ -44,14 +44,14 @@ public class ControlColidatePawn {
 		this.fields = fields;
 	}
 	
-	public List<Integer[]> colidateOwnFigurePawn(Figure f, List<Integer[]> pf, Player p, Player p2) {
+	public void colidateOwnFigurePawn(Figure f, Player p, Player p2) {
 		setFigureList(p.getFigureList());
 		getColi().setFigureList(getFigureList());
 		getColi().unmovedFigures(f);
 		setFigureList(getColi().getFigureList());
-		setFields(pf);
+		setFields(f.getPosFields());
 		checkColidation(f);
-		return getFields();
+		f.setPosFields(getFields());
 	}
 	
 	private void checkColidation(Figure f) {

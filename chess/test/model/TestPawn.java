@@ -49,7 +49,8 @@ public class TestPawn {
 	@Test
 	public void testPossibleFieldsFirstMove() {
 		test.setFirstMove(true);
-		List<Integer[]> testList = test.possibleFields();
+		test.possibleFields();
+		List<Integer[]> testList = test.getPosFields();
 		if(testList.size() == 3) {
 			testright = true;
 		}
@@ -59,7 +60,8 @@ public class TestPawn {
 	@Test
 	public void testPossibleFieldNoFirstMove(){
 		test.setFirstMove(false);
-		List<Integer[]> testList = test.possibleFields();
+		test.possibleFields();
+		List<Integer[]> testList = test.getPosFields();
 		if(testList.size() == 2) {
 			testright = true;
 		}
@@ -70,7 +72,8 @@ public class TestPawn {
 	public void testNoPossibleFields() {
 		test.setFirstMove(false);
 		test.setField(8, 8);
-		List<Integer[]> testList = test.possibleFields();
+		test.possibleFields();
+		List<Integer[]> testList = test.getPosFields();
 		if(testList.isEmpty()) {
 			testright = true;
 		}
@@ -81,7 +84,8 @@ public class TestPawn {
 	public void testBlackFirstMove() {
 		test.setColor('b');
 		test.setField(8, 8);
-		List<Integer[]> testList = test.possibleFields();
+		test.possibleFields();
+		List<Integer[]> testList = test.getPosFields();
 		System.out.println(testList.size());
 		if(testList.size() == 3) {
 			testright = true;
@@ -94,7 +98,8 @@ public class TestPawn {
 		test.setFirstMove(false);
 		test.setColor('b');
 		test.setField(8, 8);
-		List<Integer[]> testList = test.possibleFields();
+		test.possibleFields();
+		List<Integer[]> testList = test.getPosFields();
 		if(testList.size() == 2) {
 			testright = true;
 		}
@@ -106,7 +111,8 @@ public class TestPawn {
 		test.setFirstMove(false);
 		test.setColor('b');
 		test.setField(1, 1);
-		List<Integer[]> testList = test.possibleFields();
+		test.possibleFields();
+		List<Integer[]> testList = test.getPosFields();
 		if(testList.isEmpty()) {
 			testright = true;
 		}
@@ -146,7 +152,8 @@ public class TestPawn {
 		test.setColor('b');
 		test.setField(8, 1);
 		test.setFirstMove(false);
-		List<Integer[]> testList = test.possibleFields();
+		test.possibleFields();
+		List<Integer[]> testList = test.getPosFields();
 		if(testList.size() == 2) {
 			testright = true;
 		}
@@ -157,7 +164,8 @@ public class TestPawn {
 	public void testLeftUpFieldWhite() {
 		test.setField(1, 8);
 		test.setFirstMove(false);
-		List<Integer[]> testList = test.possibleFields();
+		test.possibleFields();
+		List<Integer[]> testList = test.getPosFields();
 		if(testList.size() == 2) {
 			testright = true;
 		}

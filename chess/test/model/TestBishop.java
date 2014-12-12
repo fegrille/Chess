@@ -26,7 +26,8 @@ public class TestBishop {
 	@Test
 	public void testPossibleMoves() {
 		List<Integer[]> testfield = new ArrayList<Integer[]>();
-		testfield = test.possibleFields();
+		test.possibleFields();
+		testfield = test.getPosFields();
 		if(testfield.size() == 7) {
 			testright = true;
 		}

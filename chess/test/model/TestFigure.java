@@ -19,7 +19,8 @@ public class TestFigure {
 	@Test
 	public void testPossibleField() {
 		boolean right = false;
-		if(test.possibleFields() == null) {
+		test.possibleFields();
+		if(test.getPosFields() == null) {
 			right = true;
 		}
 		assertTrue(right);

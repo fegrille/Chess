@@ -22,10 +22,10 @@ public class ControlColidateBishop {
 		return coli;
 	}
 
-	public List<Integer[]> colidateBishop(Figure f, List<Integer[]> pf, Player p, Player p2) {
-		setFields(getColi().colidateOwnFigureDiagonal(f,pf,p));
-		setFields(getColi().colidateOtherFigureDiagonal(f,pf,p2));
-		return getFields();
+	public void colidateBishop(Figure f, Player p, Player p2) {
+		setFields(getColi().colidateOwnFigureDiagonal(f,f.getPosFields(),p));
+		setFields(getColi().colidateOtherFigureDiagonal(f,getFields(),p2));
+		f.setPosFields(getFields());
 	}
 
 }
