@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This class contains everything that is special for the bishop figure

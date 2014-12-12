@@ -41,7 +41,7 @@ public class ControlChess {
 	}
 
 	private void setKingField(int[] kf) {
-		this.kingField = kf;
+		this.kingField = kf.clone();
 	}
 
 	public boolean isChess() {

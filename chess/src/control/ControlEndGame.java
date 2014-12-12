@@ -76,7 +76,7 @@ public class ControlEndGame {
 		getPossibleBlockingFieldsRook(kingField, evilField);
 	}
 
-	private void getPossibleBlockingFieldsRook(int[] kingField, int[] evilField) {;
+	private void getPossibleBlockingFieldsRook(int[] kingField, int[] evilField) {
 		if(kingField[0] != evilField[0]) {
 			getYFieldsRook(kingField, evilField);
 		} else {
