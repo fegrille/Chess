@@ -56,13 +56,13 @@ public class ControlEndGame {
 	}
 
 	private void blockBadFigure() {
-		isRook(pl, plOpp, col, lastMovedFigure);
-		isBishop(pl, plOpp, col, lastMovedFigure);
-		isQueen(pl, plOpp, col, lastMovedFigure);
-		CheckOwnFiguresBlock();
+		isRook(lastMovedFigure);
+		isBishop(lastMovedFigure);
+		isQueen(lastMovedFigure);
+		checkOwnFiguresBlock();
 	}
 	
-	private void isRook(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
+	private void isRook(Figure lastMovedFigure) {
 		if(lastMovedFigure instanceof Rook) {
 			checkBlockRook();
 		}
@@ -120,7 +120,7 @@ public class ControlEndGame {
 	}
 
 	//Evil Figure is Bishop
-	private void isBishop(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
+	private void isBishop(Figure lastMovedFigure) {
 		if(lastMovedFigure instanceof Bishop) {
 			checkBlockBishop();
 		}
@@ -142,11 +142,11 @@ public class ControlEndGame {
 		}
 	}
 
-	private void getXOrderedFieldsBishop(int[] XBigField, int[] XSmallField) {
-		if(XBigField[0] > XSmallField[0]) {
-			getBothOrderedFieldsBishopPlus(XBigField[1], XSmallField[1], XBigField[0], XSmallField[0]);
+	private void getXOrderedFieldsBishop(int[] xBigField, int[] xSmallField) {
+		if(xBigField[0] > xSmallField[0]) {
+			getBothOrderedFieldsBishopPlus(xBigField[1], xSmallField[1], xBigField[0], xSmallField[0]);
 		} else {
-			getBothOrderedFieldsBishopMinus(XBigField[1], XSmallField[1], XSmallField[0], XBigField[0]);
+			getBothOrderedFieldsBishopMinus(xBigField[1], xSmallField[1], xSmallField[0], xBigField[0]);
 		}
 	}
 
@@ -169,7 +169,7 @@ public class ControlEndGame {
 	}
 
 	//Evil Figure is Queen
-	private void isQueen(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
+	private void isQueen(Figure lastMovedFigure) {
 		if(lastMovedFigure instanceof Queen) {
 			checkBlockQueen();
 		}
@@ -189,7 +189,7 @@ public class ControlEndGame {
 	}
 	
 	//Method for check if a own Figure is able to block
-	private void CheckOwnFiguresBlock() {
+	private void checkOwnFiguresBlock() {
 		List<Figure> figureList = getPl().getFigureList();
 		for(Figure f : figureList) {
 			compareBlockingFields(f);

@@ -1,6 +1,5 @@
 package control;
 
-import java.util.Arrays;
 import java.util.List;
 
 import model.Figure;
@@ -12,7 +11,6 @@ public class ControlColidatePawn {
 	private List<Integer[]> fields;
 	private List<Figure> figureList;
 	private int c1;
-	private boolean same;
 	
 	public int getC1() {
 		return c1;

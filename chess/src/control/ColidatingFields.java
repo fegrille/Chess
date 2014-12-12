@@ -343,7 +343,7 @@ public class ColidatingFields {
 	}
 
 	private boolean checkFieldSmallerLeft(int index, int[] kords,
-			int[] nextKords2) {
+			int[] nextKords) {
 		return kords[1] > nextKords[1] && kords[0] == nextKords[0]&& (index + 1) < getFields().size();
 	}
 
@@ -375,7 +375,7 @@ public class ColidatingFields {
 	}
 
 	private boolean checkNextFieldRight(int index, int[] kords,
-			int[] nextKords2) {
+			int[] nextKords) {
 		return kords[1] < nextKords[1] && kords[0] == nextKords[0] && (index + 1) < getFields().size();
 	}
 
