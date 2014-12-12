@@ -23,9 +23,8 @@ public class ControlColidateBishop {
 	}
 
 	public void colidateBishop(Figure f, Player p, Player p2) {
-		setFields(getColi().colidateOwnFigureDiagonal(f,f.getPosFields(),p));
-		setFields(getColi().colidateOtherFigureDiagonal(f,getFields(),p2));
-		f.setPosFields(getFields());
+		getColi().colidateOwnFigureDiagonal(f,p);
+		getColi().colidateOtherFigureDiagonal(f,p2);
 	}
 
 }

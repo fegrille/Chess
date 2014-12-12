@@ -23,11 +23,10 @@ public class ControlColidateQueen {
 	}
 
 	public void colidateQueen(Figure f, Player p, Player p2) {
-		setFields(getColi().colidateOwnFigureHorVer(f,f.getPosFields(),p));
-		setFields(getColi().colidateOtherFigureHorVer(f,getFields(),p2));
-		setFields(getColi().colidateOwnFigureDiagonal(f,getFields(),p));
-		setFields(getColi().colidateOtherFigureDiagonal(f,getFields(),p2));
-		f.setPosFields(getFields());
+		getColi().colidateOwnFigureHorVer(f,p);
+		getColi().colidateOtherFigureHorVer(f,p2);
+		getColi().colidateOwnFigureDiagonal(f,p);
+		getColi().colidateOtherFigureDiagonal(f,p2);
 	}
 
 }

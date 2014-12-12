@@ -23,9 +23,8 @@ public class ControlColidateRook {
 	}
 
 	public void colidateRook(Figure f, Player p, Player p2) {
-		setFields(getColi().colidateOwnFigureHorVer(f,f.getPosFields(),p));
-		setFields(getColi().colidateOtherFigureHorVer(f,getFields(),p2));
-		f.setPosFields(getFields());
+		getColi().colidateOwnFigureHorVer(f,p);
+		getColi().colidateOtherFigureHorVer(f,p2);
 	}
 
 }

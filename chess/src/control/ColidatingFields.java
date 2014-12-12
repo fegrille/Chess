@@ -113,12 +113,12 @@ public class ColidatingFields {
 		}
 	}
 	
-	public List<Integer[]> colidateOwnFigureHorVer(Figure f, List<Integer[]> pf, Player p) {
+	public void colidateOwnFigureHorVer(Figure f, Player p) {
 		setFigureList(p.getFigureList());
 		unmovedFigures(f);
-		setFields(pf);
+		setFields(f.getPosFields());
 		checkColiOwnHorVer();
-		return getFields();
+		f.setPosFields(getFields());
 	}
 
 	private void checkColiOwnHorVer() {
@@ -136,12 +136,12 @@ public class ColidatingFields {
 		}
 	}
 	
-	public List<Integer[]> colidateOtherFigureDiagonal(Figure f, List<Integer[]> pf, Player p) {
+	public void colidateOtherFigureDiagonal(Figure f, Player p) {
 		setFigureList(p.getFigureList());
 		unmovedFigures(f);
-		setFields(pf);
+		setFields(f.getPosFields());
 		checkColiOtherDiag();
-		return getFields();
+		f.setPosFields(getFields());
 	}
 
 	private void checkColiOtherDiag() {
@@ -150,12 +150,12 @@ public class ColidatingFields {
 		}
 	}
 	
-	public List<Integer[]> colidateOwnFigureDiagonal(Figure f, List<Integer[]> pf, Player p) {
+	public void colidateOwnFigureDiagonal(Figure f, Player p) {
 		setFigureList(p.getFigureList());
 		unmovedFigures(f);
-		setFields(pf);
+		setFields(f.getPosFields());
 		checkColiOwnDiag();
-		return getFields();
+		f.setPosFields(getFields());
 	}
 
 	private void checkColiOwnDiag() {
@@ -173,12 +173,12 @@ public class ColidatingFields {
 		}
 	}
 	
-	public List<Integer[]> colidateOtherFigureHorVer(Figure f, List<Integer[]> pf, Player p) {
+	public void colidateOtherFigureHorVer(Figure f, Player p) {
 		setFigureList(p.getFigureList());
 		unmovedFigures(f);
-		setFields(pf);
+		setFields(f.getPosFields());
 		checkColiOtherHorVer();
-		return getFields();
+		f.setPosFields(getFields());
 	}
 
 	private void checkColiOtherHorVer() {
@@ -275,7 +275,7 @@ public class ColidatingFields {
 	public void removeUp(int index) {
 		setYKords(index);
 		getFields().remove(index);
-		while(checkNextFieldGrater(index, getY(), getyNext()) || cordAtLimit(getY(), ChessConstants.MAXAXIS)) {
+		while(checkNextFieldGrater(index, getY(), getyNext()) && cordAtLimit(getY(), ChessConstants.MAXAXIS)) {
 			checkYnotequalMaxAxis(index);
 			getFields().remove(index);
 		}
