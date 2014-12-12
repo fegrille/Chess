@@ -12,6 +12,7 @@ public class ControlColidatePawn {
 	private List<Integer[]> fields;
 	private List<Figure> figureList;
 	private int c1;
+	private boolean same;
 	
 	public int getC1() {
 		return c1;
@@ -50,53 +51,35 @@ public class ControlColidatePawn {
 		getColi().unmovedFigures(f);
 		setFigureList(getColi().getFigureList());
 		setFields(f.getPosFields());
-		checkColidation(f);
+		checkColidationOwn(f);
 		f.setPosFields(getFields());
 	}
 	
-	private void checkColidation(Figure f) {
-		for(int i = 0; i < getFields().size(); i++) {
-			checkColidatePawn(f, i);
+	private void checkColidationOwn(Figure f) {
+		for(setC1(0); getC1() < getFields().size(); setC1(getC1() + 1)) {
+			checkColidatePawn(f);
 		}
 	}
 	
-	private void checkColidatePawn(Figure f, int i) {
-		if(getColi().colidate(getFields().get(i))) {
-			removeFieldsPawn(getFields().get(i),f.getColor());
+	private void checkColidatePawn(Figure f) {
+		if(getColi().colidate(getFields().get(getC1()))) {
+			isBlack(f.getColor());
+			isWhite(f.getColor());
 		}
 	}
-	
-	public void removeFieldsPawn(Integer[] colField, char color) {
-		for(int i = 0; i < getFields().size(); i++) {
-			isBlack(colField, i, color);
-			isWhite(colField, i, color);
-		}
-	}
-	
-	private void isBlack(Integer[] colField, int index, char color) {
-		Integer[] position = getFields().get(index);
-		if(color == 'b') {
-			removeForBlack(colField, index, position);
-		}
-	}
-	
-	private void isWhite(Integer[] colField, int index, char color) {
-		Integer[] position = getFields().get(index);
+
+	private void isWhite(char color) {
 		if(color == 'w') {
-			removeForWhite(colField, index, position);
+			coli.removeUp(getC1());
 		}
+		
 	}
 
-	private void removeForWhite(Integer[] colField, int index, Integer[] position) {
-		if(Arrays.equals(colField, position) || position[0] > colField[0]) {
-			getFields().remove(index);
+	private void isBlack(char color) {
+		if(color == 'b') {
+			coli.removeDown(getC1());
 		}
-	}
-
-	private void removeForBlack(Integer[] colField, int index, Integer[] position) {
-		if(Arrays.equals(colField, position) || position[0] < colField[0]) {
-			getFields().remove(index);
-		}
+		
 	}
 
 }

@@ -41,9 +41,9 @@ public class TestControlColidate {
 	public void tearDown() throws Exception {
 		test = null;
 	}
-
-	/*@Test
-	public void testColidateForKing() {
+	/*
+	@Test
+	public void testupdatePossibleFields() {
 		Figure f = p1.getFigureList().get(15);
 		moveFigures();
 		p1.getFigureList().get(14).setField(1, 5);
@@ -57,7 +57,6 @@ public class TestControlColidate {
 		}
 		assertTrue(right);
 	}
-	
 	private void moveFigures() {
 		p1.getFigureList().get(0).setField(7, 1);
 		p1.getFigureList().get(2).setField(7, 3);
