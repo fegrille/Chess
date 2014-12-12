@@ -25,7 +25,7 @@ public class ControlEndGame {
 	private boolean win = false;
 	private boolean kingCantMove = false;
 	private boolean canKillBadFigure = false;
-	private boolean cantBlockBadFigure = false;
+	private boolean cantBlockBadFigure = true;
 	
 	private ControlChess cChess = new ControlChess();
 	
@@ -59,9 +59,10 @@ public class ControlEndGame {
 		isRook(pl, plOpp, col, lastMovedFigure);
 		isBishop(pl, plOpp, col, lastMovedFigure);
 		isQueen(pl, plOpp, col, lastMovedFigure);
+		CheckOwnFiguresBlock();
 	}
 	
-	public void isRook(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
+	private void isRook(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
 		if(lastMovedFigure instanceof Rook) {
 			checkBlockRook();
 		}
@@ -119,7 +120,7 @@ public class ControlEndGame {
 	}
 
 	//Evil Figure is Bishop
-	public void isBishop(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
+	private void isBishop(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
 		if(lastMovedFigure instanceof Bishop) {
 			checkBlockBishop();
 		}
@@ -168,7 +169,7 @@ public class ControlEndGame {
 	}
 
 	//Evil Figure is Queen
-	public void isQueen(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
+	private void isQueen(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
 		if(lastMovedFigure instanceof Queen) {
 			checkBlockQueen();
 		}
@@ -184,6 +185,32 @@ public class ControlEndGame {
 			getPossibleBlockingFieldsRook(kingField, evilField);
 		} else {
 			getPossibleBlockingFieldsBishop(kingField, evilField);
+		}
+	}
+	
+	//Method for check if a own Figure is able to block
+	private void CheckOwnFiguresBlock() {
+		List<Figure> figureList = getPl().getFigureList();
+		for(Figure f : figureList) {
+			compareBlockingFields(f);
+		}
+	}
+
+	private void compareBlockingFields(Figure f) {
+		for(Integer[] field : f.getPosFields()) {
+			compareAvailableBlockFields(field);
+		}
+	}
+
+	private void compareAvailableBlockFields(Integer[] ownField) {
+		for(int[] field :getPossBlockFields()) {
+			compareBothFields(ownField, field);
+		}
+	}
+
+	private void compareBothFields(Integer[] ownField, int[] field) {
+		if(ownField[0] == field[0] && ownField[1] == field[1]) {
+			setCantBlockBadFigure(false);
 		}
 	}
 
@@ -220,7 +247,7 @@ public class ControlEndGame {
 		}
 	}
 
-
+	//Getter and Setter
 	public boolean getWin() {
 		return win;
 	}
@@ -293,10 +320,10 @@ public class ControlEndGame {
 		this.possBlockFields = possBlockFields;
 	}
 	
+	//Reset Global Values
 	private void resetValues() {
 		setKingCantMove(false);
 		setCanKillBadFigure(false);
-		setCantBlockBadFigure(false);
+		setCantBlockBadFigure(true);
 	}
-	
 }
