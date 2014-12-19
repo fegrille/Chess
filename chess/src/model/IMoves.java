@@ -48,6 +48,6 @@ public interface IMoves {
 	 * @param yKord
 	 * @param xKord
 	 */
-	void moveFigure(Figure f, int yKord, int xKord);
+	void moveFigure(IFigure f, int yKord, int xKord);
 
 }

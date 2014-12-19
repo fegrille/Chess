@@ -157,7 +157,7 @@ public class Moves implements IMoves {
 		}
 	}
 	
-	public void moveFigure(Figure f, int yKord, int xKord) {
+	public void moveFigure(IFigure f, int yKord, int xKord) {
 		Integer[] field = {yKord, xKord};
 		for(int i = 0; i < f.getPosFields().size(); i++) {
 			Integer[] entry = f.getPosFields().get(i);

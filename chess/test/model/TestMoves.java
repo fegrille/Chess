@@ -22,7 +22,8 @@ public class TestMoves {
 
 	@Test
 	public void testMoveFigure() {
-		Figure testFigure = new Pawn(1,1,'w');
+		IFigure testFigure = new Pawn(1,1,'w');
+		testFigure.possibleFields();
 		test.moveFigure(testFigure, 2, 2);
 		if(testFigure.getField()[0] == 2 && testFigure.getField()[1] == 2) {
 			testright = true;
