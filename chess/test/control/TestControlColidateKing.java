@@ -28,14 +28,11 @@ public class TestControlColidateKing {
 	@Before
 	public void setUp() throws Exception {
 		cK = new ControlColidateKing();
-		king = new King(ChessConstants.MINAXIS,ChessConstants.KINGXKORDS,'w');
-		p1 = new Player('w');
-		p2 = new Player('b');
 		f = new Field();
+		king = new King(ChessConstants.MINAXIS,ChessConstants.KINGXKORDS,'w');
+		p1 = new Player('w',f);
+		p2 = new Player('b',f);
 		pf = new ArrayList<Integer[]>();
-		f.buildField();
-		p1.initializeFigures(f);
-		p2.initializeFigures(f);
 		right = false;
 	}
 

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Field;
-import model.Figure;
 import model.Player;
 
 import org.junit.After;
@@ -27,13 +26,10 @@ public class TestControlColidate {
 	@Before
 	public void setUp() throws Exception {
 		test = new ControlColidate();
-		p1 = new Player('w');
-		p2 = new Player('b');
 		f = new Field();
+		p1 = new Player('w',f);
+		p2 = new Player('b',f);
 		pf = new ArrayList<Integer[]>();
-		f.buildField();
-		p1.initializeFigures(f);
-		p2.initializeFigures(f);
 		right = false;
 	}
 

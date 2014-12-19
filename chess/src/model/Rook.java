@@ -5,7 +5,7 @@ import java.util.ArrayList;
 //Turm
 public class Rook extends Figure{
 
-	private Moves move = new Moves();
+	private IMoves move = new Moves();
 	
 	public Rook(int y, int x, char color) {
 		setField(y,x);
@@ -15,10 +15,7 @@ public class Rook extends Figure{
 	@Override
 	public void possibleFields() {
 		move.setFields(new ArrayList<Integer[]>());
-		move.moveUpFields(getY(), getX());
-		move.moveDownFields(getY(), getX());
-		move.moveLeftFields(getY(), getX());
-		move.moveRightFields(getY(), getX());
+		move.movesRook(getY(), getX());
 		setPosFields(move.getFields());
 	}
 

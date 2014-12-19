@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 
-public class Figure {
+public class Figure implements IFigure{
 	
 	private int x;
 	private int y;

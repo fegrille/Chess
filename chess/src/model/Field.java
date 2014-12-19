@@ -3,18 +3,22 @@ package model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Field {
+public class Field implements IField{
 	
 	private Map<Integer, Map<Integer,Figure>> fields = new HashMap<Integer, Map<Integer,Figure>>();
 	
 	private Integer[] numbers = {ChessConstants.XKORDONE,ChessConstants.XKORDTWO,ChessConstants.XKORDTHREE,ChessConstants.XKORDFOUR,ChessConstants.XKORDFIVE,ChessConstants.XKORDSIX,ChessConstants.XKORDSEVEN,ChessConstants.XKORDEIGHT};
 	private Figure empty = new Figure();
 	
+	public Field () {
+		buildField();
+	}
+	
 	public Map<Integer, Map<Integer,Figure>> getFields() {
 		return this.fields;
 	}
 	
-	public void buildField() {
+	private void buildField() {
 		Map<Integer,Figure> field;
 		for(int i = 0; i < numbers.length; i++) {
 			field = new HashMap<Integer,Figure>();
@@ -29,7 +33,7 @@ public class Field {
 		getFields().get(yKord).put(xKord, figure);
 	}
 	
-	public Map<Integer,Figure> initializeXAxis(Map<Integer,Figure> field) {
+	private Map<Integer,Figure> initializeXAxis(Map<Integer,Figure> field) {
 		for(int a = 0; a < numbers.length; a++) {
 			field.put(numbers[a], empty);
 		}

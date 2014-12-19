@@ -11,14 +11,17 @@ import org.junit.Test;
 public class TestPlayer {
 	
 	Player test;
+	Player test2;
 	boolean testright;
 	Field f;
 
 	@Before
 	public void setUp() throws Exception {
-		test = new Player('b');
-		testright = false;
 		f = new Field();
+		test = new Player('b',f);
+		test2 = new Player('w', f);
+		testright = false;
+		
 	}
 
 	@After
@@ -28,8 +31,6 @@ public class TestPlayer {
 
 	@Test
 	public void testInitializeFiguresBlack() {
-		f.buildField();
-		test.initializeFigures(f);
 		if(test.getFigureList().size() == 16) {
 			testright = true;
 		}
@@ -38,10 +39,7 @@ public class TestPlayer {
 	
 	@Test
 	public void testInitializeFiguresWhite() {
-		test.setCol('w');
-		f.buildField();
-		test.initializeFigures(f);
-		if(test.getFigureList().size() == 16) {
+		if(test2.getFigureList().size() == 16) {
 			testright = true;
 		}
 		assertTrue(testright);
@@ -50,8 +48,7 @@ public class TestPlayer {
 	
 	@Test
 	public void testGetColor() {
-		test.setCol('w');
-		if(test.getCol() == 'w'){
+		if(test.getCol() == 'b'){
 			testright = true;
 		}
 		assertTrue(testright);

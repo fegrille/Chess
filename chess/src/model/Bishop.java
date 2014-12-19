@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class Bishop extends Figure{
 	
-	private Moves move = new Moves();
+	private IMoves move = new Moves();
 	
 	/**
 	 * Constructor to initialize bishop
@@ -27,10 +27,7 @@ public class Bishop extends Figure{
 	@Override
 	public void possibleFields() {
 		move.setFields(new ArrayList<Integer[]>());
-		move.moveRightUp(getY(), getX());
-		move.moveLeftUp(getY(), getX());
-		move.moveRightDown(getY(), getX());
-		move.moveLeftDown(getY(), getX());
+		move.movesBishop(getY(), getX());
 		setPosFields(move.getFields());
 	}	
 

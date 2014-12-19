@@ -9,9 +9,10 @@ public class Player {
 	private Figure f;
 	private char col;
 	
-	public Player(char color) {
+	public Player(char color, Field field) {
 		this.figureList = new ArrayList<Figure>();
 		this.col = color;
+		initializeFigures(field);
 	}
 	
 	public List<Figure> getFigureList() {
@@ -26,7 +27,7 @@ public class Player {
 		return col;
 	}
 
-	public void setCol(char col) {
+	private void setCol(char col) {
 		this.col = col;
 	}
 	
@@ -102,7 +103,7 @@ public class Player {
 		return yKord;
 	}
 	
-	public void initializeFigures(Field field) {
+	private void initializeFigures(Field field) {
 		addPawns(field);
 		addRooks(field);
 		addKnights(field);
