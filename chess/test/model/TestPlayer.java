@@ -10,10 +10,10 @@ import org.junit.Test;
 
 public class TestPlayer {
 	
-	Player test;
-	Player test2;
+	IPlayer test;
+	IPlayer test2;
 	boolean testright;
-	Field f;
+	IField f;
 
 	@Before
 	public void setUp() throws Exception {

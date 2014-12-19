@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Bishop;
-import model.Figure;
+import model.IFigure;
 import model.Player;
 import model.Queen;
 import model.Rook;
@@ -32,10 +32,10 @@ public class ControlEndGame {
 	private Player pl = null;
 	private Player plOpp = null;
 	private ControlColidate col = null;
-	private Figure lastMovedFigure = null;
+	private IFigure lastMovedFigure = null;
 	private List<int[]> possBlockFields = new ArrayList<int[]>();
 
-	public void controlWin(Player pl, Player plOpp, ControlColidate col, Figure lastMovedFigure) {
+	public void controlWin(Player pl, Player plOpp, ControlColidate col, IFigure lastMovedFigure) {
 		setPl(pl);
 		setPlOpp(plOpp);
 		setCol(col);
@@ -62,7 +62,7 @@ public class ControlEndGame {
 		checkOwnFiguresBlock();
 	}
 	
-	private void isRook(Figure lastMovedFigure) {
+	private void isRook(IFigure lastMovedFigure) {
 		if(lastMovedFigure instanceof Rook) {
 			checkBlockRook();
 		}
@@ -120,7 +120,7 @@ public class ControlEndGame {
 	}
 
 	//Evil Figure is Bishop
-	private void isBishop(Figure lastMovedFigure) {
+	private void isBishop(IFigure lastMovedFigure) {
 		if(lastMovedFigure instanceof Bishop) {
 			checkBlockBishop();
 		}
@@ -169,7 +169,7 @@ public class ControlEndGame {
 	}
 
 	//Evil Figure is Queen
-	private void isQueen(Figure lastMovedFigure) {
+	private void isQueen(IFigure lastMovedFigure) {
 		if(lastMovedFigure instanceof Queen) {
 			checkBlockQueen();
 		}
@@ -190,13 +190,13 @@ public class ControlEndGame {
 	
 	//Method for check if a own Figure is able to block
 	private void checkOwnFiguresBlock() {
-		List<Figure> figureList = getPl().getFigureList();
-		for(Figure f : figureList) {
+		List<IFigure> figureList = getPl().getFigureList();
+		for(IFigure f : figureList) {
 			compareBlockingFields(f);
 		}
 	}
 
-	private void compareBlockingFields(Figure f) {
+	private void compareBlockingFields(IFigure f) {
 		for(Integer[] field : f.getPosFields()) {
 			compareAvailableBlockFields(field);
 		}
@@ -216,13 +216,13 @@ public class ControlEndGame {
 
 	//Methods for Killing bad Figure
 	private void killBadFigure() {
-		List<Figure> figureList = getPl().getFigureList();
-		for(Figure f : figureList) {
+		List<IFigure> figureList = getPl().getFigureList();
+		for(IFigure f : figureList) {
 			killingPossibleAllFields(f);
 		}
 	}
 
-	private void killingPossibleAllFields(Figure f) {
+	private void killingPossibleAllFields(IFigure f) {
 		getCol().colidate(f, getPl(), getPlOpp());
 		List<Integer[]> finalFields = f.getPosFields();
 		for(Integer[] field : finalFields) {
@@ -240,7 +240,7 @@ public class ControlEndGame {
 	//Method for King escape
 	private void checkPossibleFieldsKing() {
 		int size = getPl().getFigureList().size();
-		Figure king = getPl().getFigureList().get(size - 1);
+		IFigure king = getPl().getFigureList().get(size - 1);
 		getCol().colidate(king, getPl(), getPlOpp());
 		if(king.getPosFields().size() == 0) {
 			setKingCantMove(true);
@@ -304,11 +304,11 @@ public class ControlEndGame {
 		this.col = col;
 	}
 
-	private Figure getLastMovedFigure() {
+	private IFigure getLastMovedFigure() {
 		return lastMovedFigure;
 	}
 
-	private void setLastMovedFigure(Figure lastMovedFigure) {
+	private void setLastMovedFigure(IFigure lastMovedFigure) {
 		this.lastMovedFigure = lastMovedFigure;
 	}
 

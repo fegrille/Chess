@@ -2,7 +2,7 @@ package control;
 
 import java.util.List;
 
-import model.Figure;
+import model.IFigure;
 import model.Player;
 
 public class ControlColidateQueen {
@@ -22,7 +22,7 @@ public class ControlColidateQueen {
 		return coli;
 	}
 
-	public void colidateQueen(Figure f, Player p, Player p2) {
+	public void colidateQueen(IFigure f, Player p, Player p2) {
 		getColi().colidateOwnFigureHorVer(f,p);
 		getColi().colidateOtherFigureHorVer(f,p2);
 		getColi().colidateOwnFigureDiagonal(f,p);

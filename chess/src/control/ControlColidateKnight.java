@@ -2,14 +2,14 @@ package control;
 
 import java.util.List;
 
-import model.Figure;
+import model.IFigure;
 import model.Player;
 
 public class ControlColidateKnight {
 	
 	private ColidatingFields coli = new ColidatingFields();
 	private List<Integer[]> fields;
-	private List<Figure> figureList;
+	private List<IFigure> figureList;
 	private int counter;
 	
 	public int getCounter() {
@@ -28,11 +28,11 @@ public class ControlColidateKnight {
 		this.fields = fields;
 	}
 
-	public List<Figure> getFigureList() {
+	public List<IFigure> getFigureList() {
 		return figureList;
 	}
 
-	public void setFigureList(List<Figure> figureList) {
+	public void setFigureList(List<IFigure> figureList) {
 		this.figureList = figureList;
 	}
 
@@ -40,7 +40,7 @@ public class ControlColidateKnight {
 		return coli;
 	}
 
-	public void colidateOwnFigureKnight(Figure f, Player p) {
+	public void colidateOwnFigureKnight(IFigure f, Player p) {
 		setFigureList(p.getFigureList());
 		getColi().setFigureList(getFigureList());
 		getColi().unmovedFigures(f);

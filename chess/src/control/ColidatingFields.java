@@ -3,13 +3,13 @@ package control;
 import java.util.List;
 
 import model.ChessConstants;
-import model.Figure;
+import model.IFigure;
 import model.Player;
 
 public class ColidatingFields {
 	
 	private List<Integer[]> fields;
-	private List<Figure> figureList;
+	private List<IFigure> figureList;
 	private boolean colidate = false;
 	private int counter;
 	private int x;
@@ -58,11 +58,11 @@ public class ColidatingFields {
 		this.yNext = yNext;
 	}
 
-	public List<Figure> getFigureList() {
+	public List<IFigure> getFigureList() {
 		return figureList;
 	}
 
-	public void setFigureList(List<Figure> figureList) {
+	public void setFigureList(List<IFigure> figureList) {
 		this.figureList = figureList;
 	}
 	private void setColidate(boolean b) {
@@ -81,7 +81,7 @@ public class ColidatingFields {
 		this.fields = fields;
 	}
 	
-	public void unmovedFigures(Figure f) {
+	public void unmovedFigures(IFigure f) {
 		int[] cords = f.getField();
 		for(setCounter(0); getCounter() < getFigureList().size(); setCounter(getCounter() + 1)) {
 			int[] figPos = getFigureList().get(getCounter()).getField();
@@ -115,7 +115,7 @@ public class ColidatingFields {
 		}
 	}
 	
-	public void colidateOwnFigureHorVer(Figure f, Player p) {
+	public void colidateOwnFigureHorVer(IFigure f, Player p) {
 		setFigureList(p.getFigureList());
 		unmovedFigures(f);
 		setFields(f.getPosFields());
@@ -144,7 +144,7 @@ public class ColidatingFields {
 		}
 	}
 	
-	public void colidateOtherFigureDiagonal(Figure f, Player p) {
+	public void colidateOtherFigureDiagonal(IFigure f, Player p) {
 		setFigureList(p.getFigureList());
 		unmovedFigures(f);
 		setFields(f.getPosFields());
@@ -158,7 +158,7 @@ public class ColidatingFields {
 		}
 	}
 	
-	public void colidateOwnFigureDiagonal(Figure f, Player p) {
+	public void colidateOwnFigureDiagonal(IFigure f, Player p) {
 		setFigureList(p.getFigureList());
 		unmovedFigures(f);
 		setFields(f.getPosFields());
@@ -181,7 +181,7 @@ public class ColidatingFields {
 		}
 	}
 	
-	public void colidateOtherFigureHorVer(Figure f, Player p) {
+	public void colidateOtherFigureHorVer(IFigure f, Player p) {
 		setFigureList(p.getFigureList());
 		unmovedFigures(f);
 		setFields(f.getPosFields());

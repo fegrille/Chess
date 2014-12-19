@@ -2,7 +2,7 @@ package control;
 
 import java.util.List;
 
-import model.Figure;
+import model.IFigure;
 import model.Player;
 
 public class ControlChess {
@@ -10,7 +10,7 @@ public class ControlChess {
 	private boolean chess = false;
 	private int[] kingField = {};
 
-	public boolean checkChess(Player p, Figure lastMovedFigure, ControlColidate col, Player p2) {
+	public boolean checkChess(Player p, IFigure lastMovedFigure, ControlColidate col, Player p2) {
 		setChess(false);
 		getKingField(p);
 		checkFigures(lastMovedFigure, col, p, p2);
@@ -18,11 +18,11 @@ public class ControlChess {
 	}
 
 	private void getKingField(Player p) {
-		Figure king = p.getFigureList().get(p.getFigureList().size() - 1);
+		IFigure king = p.getFigureList().get(p.getFigureList().size() - 1);
 		setKingField(king.getField());
 	}
 
-	private void checkFigures(Figure lastMovedFigure, ControlColidate col, Player p, Player p2) {
+	private void checkFigures(IFigure lastMovedFigure, ControlColidate col, Player p, Player p2) {
 		col.colidate(lastMovedFigure, p2, p);
 		List<Integer[]> finalFields = lastMovedFigure.getPosFields();
 		for(Integer[] field : finalFields) {

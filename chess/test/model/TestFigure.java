@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class TestFigure {
 	
-	Figure test;
+	IFigure test;
 
 	@Before
 	public void setUp() {

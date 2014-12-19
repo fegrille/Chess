@@ -2,14 +2,14 @@ package control;
 
 import java.util.List;
 
-import model.Figure;
+import model.IFigure;
 import model.Pawn;
 import model.Player;
 
 public class ControlColidateKing {
 	
 	private ColidatingFields coli = new ColidatingFields();
-	private List<Figure> figureList;
+	private List<IFigure> figureList;
 	private List<Integer[]> possibleFields;
 	private List<Integer[]> possibleFields2;
 	private boolean blocked = false;
@@ -49,11 +49,11 @@ public class ControlColidateKing {
 	public ColidatingFields getColi() {
 		return coli;
 	}
-	public List<Figure> getFigureList() {
+	public List<IFigure> getFigureList() {
 		return figureList;
 	}
 
-	public void setFigureList(List<Figure> figureList) {
+	public void setFigureList(List<IFigure> figureList) {
 		this.figureList = figureList;
 	}
 	
@@ -65,7 +65,7 @@ public class ControlColidateKing {
 		this.possibleFields = possibleFields;
 	}
 	
-	public List<Integer[]> colidateOwnFigureKing(Figure f, Player p) {
+	public List<Integer[]> colidateOwnFigureKing(IFigure f, Player p) {
 		setFigureList(p.getFigureList());
 		getColi().setFigureList(getFigureList());
 		getColi().unmovedFigures(f);
@@ -87,7 +87,7 @@ public class ControlColidateKing {
 		}
 	}
 	
-	public List<Integer[]> colidateOtherFigureKing(Figure f, List<Integer[]> pf, Player p) {
+	public List<Integer[]> colidateOtherFigureKing(IFigure f, List<Integer[]> pf, Player p) {
 		setFigureList(p.getFigureList());
 		getColi().setFigureList(getFigureList());
 		setPossibleFields(pf);
@@ -117,7 +117,7 @@ public class ControlColidateKing {
 	}
 	
 	private void isFieldBlocked(Player p, int y, int x) {
-		for(Figure f : p.getFigureList()) {
+		for(IFigure f : p.getFigureList()) {
 			if(f instanceof Pawn) {
 				isFieldBlockedByPawn(f,y,x);
 			} else {
@@ -126,7 +126,7 @@ public class ControlColidateKing {
 		}
 	}
 	
-	private void isFieldBlockedByPawn(Figure f, int y,
+	private void isFieldBlockedByPawn(IFigure f, int y,
 			int x) {
 		setPossibleFields2(f.getPosFields());
 		for(setCounter(0); getCounter() < getPossibleFields2().size(); setCounter(getCounter() + 1)) {
@@ -137,13 +137,13 @@ public class ControlColidateKing {
 		isAPossibleField(getPossibleFields2(),y,x);
 	}
 
-	private void removeFieldsWhite(Figure f, Integer[] field) {
+	private void removeFieldsWhite(IFigure f, Integer[] field) {
 		isPFInFrontOfPawnWhite(f, field);
 		isPfInFrontOfPawnFirstMoveWhite(f, field);
 		
 	}
 
-	private void isPfInFrontOfPawnFirstMoveWhite(Figure f, Integer[] field) {
+	private void isPfInFrontOfPawnFirstMoveWhite(IFigure f, Integer[] field) {
 		int y = f.getY() + 2;
 		if(field[0] == y && field[0] == f.getX()){
 			getPossibleFields2().remove(getCounter());
@@ -152,7 +152,7 @@ public class ControlColidateKing {
 		
 	}
 
-	private void isPFInFrontOfPawnWhite(Figure f, Integer[] field) {
+	private void isPFInFrontOfPawnWhite(IFigure f, Integer[] field) {
 		int y = f.getY() + 1;
 		if(field[0] == y && field[0] == f.getX()){
 			getPossibleFields2().remove(getCounter());
@@ -161,13 +161,13 @@ public class ControlColidateKing {
 		
 	}
 
-	private void removeFieldsBlack(Figure f, Integer[] field) {
+	private void removeFieldsBlack(IFigure f, Integer[] field) {
 		isPFInFrontOfPawnBlack(f, field);
 		isPfInFrontOfPawnFirstMoveBlack(f, field);
 		
 	}
 
-	private void isPfInFrontOfPawnFirstMoveBlack(Figure f, Integer[] field) {
+	private void isPfInFrontOfPawnFirstMoveBlack(IFigure f, Integer[] field) {
 		int y = f.getY() - 2;
 		if(field[0] == y && field[0] == f.getX()){
 			getPossibleFields2().remove(getCounter());
@@ -175,7 +175,7 @@ public class ControlColidateKing {
 		}
 	}
 
-	private void isPFInFrontOfPawnBlack(Figure f, Integer[] field) {
+	private void isPFInFrontOfPawnBlack(IFigure f, Integer[] field) {
 		int y = f.getY() - 1;
 		if(field[0] == y && field[0] == f.getX()){
 			getPossibleFields2().remove(getCounter());

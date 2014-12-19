@@ -3,35 +3,31 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
+public class Player implements IPlayer{
 	
-	private List<Figure> figureList;
+	private List<IFigure> figureList;
 	private Figure f;
 	private char col;
 	
-	public Player(char color, Field field) {
-		this.figureList = new ArrayList<Figure>();
+	public Player(char color, IField field) {
+		this.figureList = new ArrayList<IFigure>();
 		this.col = color;
 		initializeFigures(field);
 	}
 	
-	public List<Figure> getFigureList() {
+	public List<IFigure> getFigureList() {
 		return figureList;
 	}
 
-	public void setFigureList(List<Figure> figureList) {
+	public void setFigureList(List<IFigure> figureList) {
 		this.figureList = figureList;
 	}
 
 	public char getCol() {
 		return col;
 	}
-
-	private void setCol(char col) {
-		this.col = col;
-	}
 	
-	private void addPawns(Field field) {
+	private void addPawns(IField field) {
 		int yKord = ChessConstants.PAWNYKORDS[0];
 		if(this.col == 'b') {
 			yKord = ChessConstants.PAWNYKORDS[1];
@@ -43,7 +39,7 @@ public class Player {
 		}
 	}
 	
-	private void addQueen(Field field) {
+	private void addQueen(IField field) {
 		int xKord = ChessConstants.QUEENXKORDS;
 		int yKord = blackOrWhite();
 		f = new Queen(yKord,xKord,this.col);
@@ -51,7 +47,7 @@ public class Player {
 		field.initializeField(f);
 	}
 	
-	private void addKing(Field field) {
+	private void addKing(IField field) {
 		int xKord = ChessConstants.KINGXKORDS;
 		int yKord = blackOrWhite();
 		f = new King(yKord,xKord,this.col);
@@ -59,7 +55,7 @@ public class Player {
 		field.initializeField(f);
 	}
 	
-	private void addKnights(Field field) {
+	private void addKnights(IField field) {
 		int xKord = ChessConstants.KNIGHTXKORDS[0];
 		int yKord = blackOrWhite();
 		f = new Knight(yKord,xKord,this.col);
@@ -71,7 +67,7 @@ public class Player {
 		field.initializeField(f);
 	}
 	
-	private void addBishops(Field field) {
+	private void addBishops(IField field) {
 		int xKord = ChessConstants.BISHOPXKORDS[0];
 		int yKord = blackOrWhite();
 		f = new Bishop(yKord,xKord,this.col);
@@ -83,7 +79,7 @@ public class Player {
 		field.initializeField(f);
 	}
 	
-	private void addRooks(Field field) {
+	private void addRooks(IField field) {
 		int xKord = ChessConstants.ROOKXKORDS[0];
 		int yKord = blackOrWhite();
 		f = new Rook(yKord,xKord,this.col);
@@ -103,7 +99,7 @@ public class Player {
 		return yKord;
 	}
 	
-	private void initializeFigures(Field field) {
+	private void initializeFigures(IField field) {
 		addPawns(field);
 		addRooks(field);
 		addKnights(field);

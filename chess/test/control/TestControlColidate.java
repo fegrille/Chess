@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Field;
+import model.IFigure;
 import model.Player;
 
 import org.junit.After;
@@ -37,10 +38,10 @@ public class TestControlColidate {
 	public void tearDown() throws Exception {
 		test = null;
 	}
-	/*
+	
 	@Test
-	public void testupdatePossibleFields() {
-		Figure f = p1.getFigureList().get(15);
+	public void testUpdatePossibleFields() {
+		IFigure f = p1.getFigureList().get(15);
 		moveFigures();
 		p1.getFigureList().get(14).setField(1, 5);
 		p1.getFigureList().get(3).setField(7, 4);
@@ -53,6 +54,7 @@ public class TestControlColidate {
 		}
 		assertTrue(right);
 	}
+	
 	private void moveFigures() {
 		p1.getFigureList().get(0).setField(7, 1);
 		p1.getFigureList().get(2).setField(7, 3);
@@ -71,6 +73,6 @@ public class TestControlColidate {
 		p2.getFigureList().get(11).setField(1, 7);
 		p2.getFigureList().get(12).setField(1, 3);
 		p2.getFigureList().get(14).setField(3, 3);
-	}*/
+	}
 
 }

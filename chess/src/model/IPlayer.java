@@ -15,13 +15,13 @@ public interface IPlayer {
 	 * Method to return a list with all figures on the field from the player
 	 * @return
 	 */
-	List<Figure> getFigureList();
+	List<IFigure> getFigureList();
 	
 	/**
 	 * Method to set the figure list of the player
 	 * @param figureList
 	 */
-	void setFigureList(List<Figure> figureList);
+	void setFigureList(List<IFigure> figureList);
 	
 	/**
 	 * Method to get the color of the player (black or white)

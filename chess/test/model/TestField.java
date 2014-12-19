@@ -7,7 +7,7 @@ import org.junit.Before;
 
 public class TestField {
 	
-	Field test;
+	IField test;
 	boolean testright;
 
 	@Before

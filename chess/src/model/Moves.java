@@ -10,18 +10,34 @@ public class Moves implements IMoves {
 	private int xKord;
 	private int yKord;
 	
+	/**
+	 * 
+	 * @return
+	 */
 	private int getxKord() {
 		return xKord;
 	}
 
+	/**
+	 * 
+	 * @param xKord
+	 */
 	private void setxKord(int xKord) {
 		this.xKord = xKord;
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	private int getyKord() {
 		return yKord;
 	}
 
+	/**
+	 * 
+	 * @param yKord
+	 */
 	private void setyKord(int yKord) {
 		this.yKord = yKord;
 	}
@@ -68,7 +84,10 @@ public class Moves implements IMoves {
 		moveLeftFields();
 		moveRightFields();
 	}
-
+	
+	/**
+	 * 
+	 */
 	private void moveUpFields() {
 		for(int i = (getyKord() + 1); i <= ChessConstants.MAXAXIS; i++) {
 			Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
@@ -78,6 +97,9 @@ public class Moves implements IMoves {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	private void moveDownFields() {
 		for(int i = (getyKord() - 1); i >= ChessConstants.MINAXIS; i--) {
 			Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
@@ -87,6 +109,9 @@ public class Moves implements IMoves {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	private void moveLeftFields() {
 		for(int i = (getxKord() - 1); i >= ChessConstants.MINAXIS; i--) {
 			Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
@@ -96,6 +121,9 @@ public class Moves implements IMoves {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	private void moveRightFields() {
 		for(int i = (getxKord() + 1); i <= ChessConstants.MAXAXIS; i++) {
 			Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
@@ -105,10 +133,13 @@ public class Moves implements IMoves {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	private void moveRightUp() {
 		int y = getyKord() + 1;
 		int x = getxKord() + 1;
-		while(y <= ChessConstants.MAXAXIS && x <= ChessConstants.MAXAXIS) {
+		while(isInsideMaxAxis(y, x)) {
 			Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
 			field[ChessConstants.YKORD] = y;
 			field[ChessConstants.XKORD] = x;
@@ -117,11 +148,23 @@ public class Moves implements IMoves {
 			x++;
 		}
 	}
+
+	/**
+	 * @param y
+	 * @param x
+	 * @return
+	 */
+	private boolean isInsideMaxAxis(int y, int x) {
+		return y <= ChessConstants.MAXAXIS && x <= ChessConstants.MAXAXIS;
+	}
 	
+	/**
+	 * 
+	 */
 	private void moveLeftUp() {
 		int y = getyKord() + 1;
 		int x = getxKord() - 1;
-		while(y <= ChessConstants.MAXAXIS && x >= ChessConstants.MINAXIS) {
+		while(isInsideMaxAndMinAxis(y, x)) {
 			Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
 			field[ChessConstants.YKORD] = y;
 			field[ChessConstants.XKORD] = x;
@@ -130,11 +173,23 @@ public class Moves implements IMoves {
 			x--;
 		}
 	}
+
+	/**
+	 * @param y
+	 * @param x
+	 * @return
+	 */
+	private boolean isInsideMaxAndMinAxis(int y, int x) {
+		return y <= ChessConstants.MAXAXIS && x >= ChessConstants.MINAXIS;
+	}
 	
+	/**
+	 * 
+	 */
 	private void moveRightDown() {
 		int y = getyKord() - 1;
 		int x = getxKord() + 1;
-		while(y >= ChessConstants.MINAXIS && x <= ChessConstants.MAXAXIS) {
+		while(isInsideMinAndMaxAxis(y, x)) {
 			Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
 			field[ChessConstants.YKORD] = y;
 			field[ChessConstants.XKORD] = x;
@@ -143,11 +198,23 @@ public class Moves implements IMoves {
 			x++;
 		}
 	}
+
+	/**
+	 * @param y
+	 * @param x
+	 * @return
+	 */
+	private boolean isInsideMinAndMaxAxis(int y, int x) {
+		return y >= ChessConstants.MINAXIS && x <= ChessConstants.MAXAXIS;
+	}
 	
+	/**
+	 * 
+	 */
 	private void moveLeftDown() {
 		int y = getyKord() - 1;
 		int x = getxKord() - 1;
-		while(y >= ChessConstants.MINAXIS && x >= ChessConstants.MINAXIS) {
+		while(isInsideMinAxis(y, x)) {
 			Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
 			field[ChessConstants.YKORD] = y;
 			field[ChessConstants.XKORD] = x;
@@ -155,6 +222,15 @@ public class Moves implements IMoves {
 			y--;
 			x--;
 		}
+	}
+
+	/**
+	 * @param y
+	 * @param x
+	 * @return
+	 */
+	private boolean isInsideMinAxis(int y, int x) {
+		return y >= ChessConstants.MINAXIS && x >= ChessConstants.MINAXIS;
 	}
 	
 	public void moveFigure(IFigure f, int yKord, int xKord) {
