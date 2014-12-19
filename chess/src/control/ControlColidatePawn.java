@@ -49,6 +49,7 @@ public class ControlColidatePawn {
 		getColi().unmovedFigures(f);
 		setFigureList(getColi().getFigureList());
 		setFields(f.getPosFields());
+		getColi().setFields(getFields());
 		checkColidationOwn(f);
 		f.setPosFields(getFields());
 	}

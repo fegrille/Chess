@@ -49,6 +49,10 @@ public class TestControlColidate {
 		f.possibleFields();
 		test.colidate(f, p1, p2);
 		pf = f.getPosFields();
+		for(int i = 0; i < pf.size(); i++) {
+			System.out.print(pf.get(i)[0]);
+			System.out.println(pf.get(i)[1]);
+		}
 		if(pf.isEmpty()) {
 			right = true;
 		}

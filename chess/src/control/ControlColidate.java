@@ -107,6 +107,7 @@ public class ControlColidate {
 	
 	public void isKing(IFigure f, Player p, Player p2) {
 		if(f instanceof King) {
+			f.possibleFields();
 			getColKing().colidateOwnFigureKing(f,p);
 			getColKing().colidateOwnFigureKing(f,p2);
 		}

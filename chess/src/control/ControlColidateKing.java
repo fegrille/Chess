@@ -76,7 +76,8 @@ public class ControlColidateKing {
 	}
 	private void checkColidateOwn() {
 		for(setCounter(0); getCounter() < getPossibleFields().size(); setCounter(getCounter() + 1)) {
-			checkColidateOwnFigureKing(getCounter());
+			int i = getCounter();
+			checkColidateOwnFigureKing(i);
 		}
 	}
 	

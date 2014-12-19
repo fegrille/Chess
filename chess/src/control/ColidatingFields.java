@@ -197,15 +197,14 @@ public class ColidatingFields {
 	
 	public void removeRightUp(int index) {
 		checkXYnotequalMaxAxis(index);
-		getFields().remove(index);
-		while(checkXandYSmaller(index) || cordsAtLimit(ChessConstants.MAXAXIS,ChessConstants.MAXAXIS)) {
-			checkXYnotequalMaxAxis(index);
+		while(checkXandYSmaller(index) || cordsAtLimit(ChessConstants.MAXAXIS,ChessConstants.MAXAXIS, index)) {
 			getFields().remove(index);
+			checkXYnotequalMaxAxis(index);
 		}
 	}
 
-	private boolean cordsAtLimit(int yLimit , int xLimit) {
-		return getY() == yLimit && getX() == xLimit;
+	private boolean cordsAtLimit(int yLimit , int xLimit, int index) {
+		return getY() == yLimit && getX() == xLimit  && (index) < getFields().size();
 	}
 
 	private void checkXYnotequalMaxAxis(int index) {
@@ -223,10 +222,9 @@ public class ColidatingFields {
 	
 	public void removeLeftUp(int index) {
 		checkYnotequalMaxXnotequalMinAxis(index);
-		getFields().remove(index);
-		while(checkXgreaterYsmaller(index) || cordsAtLimit(ChessConstants.MAXAXIS,ChessConstants.MINAXIS)) {
-			checkYnotequalMaxXnotequalMinAxis(index);
+		while(checkXgreaterYsmaller(index) || cordsAtLimit(ChessConstants.MAXAXIS,ChessConstants.MINAXIS, index)) {
 			getFields().remove(index);
+			checkYnotequalMaxXnotequalMinAxis(index);
 		}
 	}
 
@@ -245,10 +243,9 @@ public class ColidatingFields {
 	
 	public void removeRightDown(int index) {
 		checkYnotequalMinXnotequalMaxAxis(index);
-		getFields().remove(index);
-		while(checkXsmallerYgreater(index) || cordsAtLimit(ChessConstants.MINAXIS,ChessConstants.MAXAXIS)) {
-			checkYnotequalMinXnotequalMaxAxis(index);
+		while(checkXsmallerYgreater(index) || cordsAtLimit(ChessConstants.MINAXIS,ChessConstants.MAXAXIS, index)) {
 			getFields().remove(index);
+			checkYnotequalMinXnotequalMaxAxis(index);
 		}
 	}
 
@@ -267,10 +264,9 @@ public class ColidatingFields {
 	
 	public void removeLeftDown(int index) {
 		checkXYnotequalMinAxis(index);
-		getFields().remove(index);
-		while(checkXandYGreater(index) || cordsAtLimit(ChessConstants.MINAXIS,ChessConstants.MINAXIS)) {
-			checkXYnotequalMinAxis(index);
+		while(checkXandYGreater(index) || cordsAtLimit(ChessConstants.MINAXIS,ChessConstants.MINAXIS, index)) {
 			getFields().remove(index);
+			checkXYnotequalMinAxis(index);
 		}
 	}
 
@@ -289,10 +285,9 @@ public class ColidatingFields {
 	
 	public void removeUp(int index) {
 		checkYnotequalMaxAxis(index);
-		getFields().remove(index);
 		while(checkNextFieldUp(index, getCurKords(), getNextKords()) || cordAtLimit(index, getY(), ChessConstants.MAXAXIS)) {
-			checkYnotequalMaxAxis(index);
 			getFields().remove(index);
+			checkYnotequalMaxAxis(index);
 		}
 	}
 
@@ -317,10 +312,9 @@ public class ColidatingFields {
 	
 	public void removeDown(int index) {
 		checkYnotequalMinAxis(index);
-		getFields().remove(index);
 		while(checkFieldSmallerUp(index, getCurKords(), getNextKords()) || cordAtLimit(index, getY(), ChessConstants.MINAXIS)) {
-			checkYnotequalMinAxis(index);
 			getFields().remove(index);
+			checkYnotequalMinAxis(index);
 		}
 	}
 
@@ -335,10 +329,9 @@ public class ColidatingFields {
 
 	public void removeLeft(int index) {
 		checkXnotequalMinAxis(index);
-		getFields().remove(index);
 		while(checkFieldSmallerLeft(index, getCurKords(), getNextKords()) || cordAtLimit(index, getX(), ChessConstants.MINAXIS)) {
-			checkXnotequalMinAxis(index);
 			getFields().remove(index);
+			checkXnotequalMinAxis(index);
 		}
 	}
 
@@ -367,10 +360,9 @@ public class ColidatingFields {
 
 	public void removeRight(int index) {
 		checkXnotequalMaxAxis(index);
-		getFields().remove(index);
 		while(checkNextFieldRight(index, getCurKords(), getNextKords()) || cordAtLimit(index, getX(), ChessConstants.MAXAXIS)) {
-			checkXnotequalMaxAxis(index);
 			getFields().remove(index);
+			checkXnotequalMaxAxis(index);
 		}
 	}
 
