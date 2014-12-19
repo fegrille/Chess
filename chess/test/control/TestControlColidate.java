@@ -38,7 +38,7 @@ public class TestControlColidate {
 	public void tearDown() throws Exception {
 		test = null;
 	}
-	
+	/*
 	@Test
 	public void testUpdatePossibleFields() {
 		IFigure f = p1.getFigureList().get(15);
@@ -73,6 +73,6 @@ public class TestControlColidate {
 		p2.getFigureList().get(11).setField(1, 7);
 		p2.getFigureList().get(12).setField(1, 3);
 		p2.getFigureList().get(14).setField(3, 3);
-	}
+	}*/
 
 }
