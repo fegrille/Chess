@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import control.ControlGame;
 import view.Tui;
 
 public class TestTui {
@@ -14,7 +15,7 @@ public class TestTui {
 
 	@Before
 	public void setUp() throws Exception {
-		test = new Tui();
+		test = new Tui(new ControlGame());
 	}
 
 	@After

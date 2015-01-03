@@ -1,5 +1,7 @@
 package control;
 
+import java.awt.EventQueue;
+
 import view.Gui;
 import view.Tui;
 
@@ -10,11 +12,10 @@ public final class StartGame {
 	}
 
 	public static void main(String[] args) {
-		Tui tui = new Tui();
-		Gui gui = new Gui();
-		
-		tui.start();
-		gui.start();
+		ControlGame controlGame = new ControlGame();
+		Tui tui = new Tui(controlGame);
+		Gui gui = new Gui(controlGame);
+		controlGame.start();
 	}
 
 }
