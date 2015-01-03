@@ -124,24 +124,26 @@ public class ColidatingFields {
 	}
 
 	private void checkColiOwnHorVer() {
-		for(int i = 0; i < getFields().size(); i++) { 
+		for(setCounter(0); getCounter() + 1 < getFields().size(); setCounter(getCounter() + 1)) {
+			int i = getCounter();
 			checkColidateHorVer(i);
 		}
 	}
 	
-	private void checkColiOtherIndex(int i) {
-		if( i < getFields().size()) {
-			checkColidateHorVer(i);
-		}
+	private void checkColidateHorVerOther(int i) {
+		removeUp(i, 1);
+		removeDown(i, 1);
+		removeLeft(i, 1);
+		removeRight(i, 1);
+		setCounter(getCounter() - 1);
 	}
-	
+
 	private void checkColidateHorVer(int i) {
-		if(colidate(getFields().get(i))) {
-			removeUp(i);
-			removeDown(i);
-			removeLeft(i);
-			removeRight(i);
-		}
+		removeUp(i, 0);
+		removeDown(i, 0);
+		removeLeft(i, 0);
+		removeRight(i, 0);
+		setCounter(getCounter() - 1);
 	}
 	
 	public void colidateOtherFigureDiagonal(IFigure f, Player p) {
@@ -160,13 +162,11 @@ public class ColidatingFields {
 	}
 	
 	private void checkColidateDiagonalOther(int i) {
-		if(colidate(getFields().get(i))) {
-			removeRightUp(i+1);
-			removeLeftUp(i+1);
-			removeRightDown(i+1);
-			removeLeftDown(i+1);
-			setCounter(getCounter() - 1);
-		}
+		removeRightUp(i,1);
+		removeLeftUp(i,1);
+		removeRightDown(i,1);
+		removeLeftDown(i,1);
+		setCounter(getCounter() - 1);
 		
 	}
 
@@ -186,13 +186,11 @@ public class ColidatingFields {
 	}
 
 	private void checkColidateDiagonal(int i) {
-		if(colidate(getFields().get(i))) {
-			removeRightUp(i);
-			removeLeftUp(i);
-			removeRightDown(i);
-			removeLeftDown(i);
-			setCounter(getCounter() - 1);
-		}
+		removeRightUp(i,0);
+		removeLeftUp(i,0);
+		removeRightDown(i,0);
+		removeLeftDown(i,0);
+		setCounter(getCounter() - 1);
 	}
 	
 	public void colidateOtherFigureHorVer(IFigure f, Player p) {
@@ -204,21 +202,22 @@ public class ColidatingFields {
 	}
 
 	private void checkColiOtherHorVer() {
-		for(int i = 0; i < getFields().size(); i++) {
-			checkColiOtherIndex(i + 1);
+		for(setCounter(0); getCounter() + 1 < getFields().size(); setCounter(getCounter() + 1)) {
+			int i = getCounter();
+			checkColidateHorVerOther(i);
 		}
 	}
 	
-	public void removeRightUp(int index) {
-		checkXYnotequalMaxAxis(index);
-		while(checkXandYSmaller(index) || cordsAtLimit(ChessConstants.MAXAXIS,ChessConstants.MAXAXIS, index)) {
-			getFields().remove(index);
-			checkXYnotequalMaxAxis(index);
+	public void removeRightUp(int index, int i) {
+		int ind = index + i;
+		if(!getFields().isEmpty() && colidate(getFields().get(index))) {
+			checkXYnotequalMaxAxis(ind);
+			while(checkXandYSmaller(ind)) {
+				getFields().remove(ind);
+				checkXYnotequalMaxAxis(ind);
+			}
+			removeLastField(ind);
 		}
-	}
-
-	private boolean cordsAtLimit(int yLimit , int xLimit, int index) {
-		return getY() == yLimit && getX() == xLimit  && (index) < getFields().size();
 	}
 
 	private void checkXYnotequalMaxAxis(int index) {
@@ -234,11 +233,15 @@ public class ColidatingFields {
 		return getX() < getxNext() && getY() < getyNext() && (index + 1) < getFields().size();
 	}
 	
-	public void removeLeftUp(int index) {
-		checkYnotequalMaxXnotequalMinAxis(index);
-		while(checkXgreaterYsmaller(index) || cordsAtLimit(ChessConstants.MAXAXIS,ChessConstants.MINAXIS, index)) {
-			getFields().remove(index);
-			checkYnotequalMaxXnotequalMinAxis(index);
+	public void removeLeftUp(int index, int i) {
+		int ind = index + i;
+		if(!getFields().isEmpty() && colidate(getFields().get(index))) {
+			checkYnotequalMaxXnotequalMinAxis(ind);
+			while(checkXgreaterYsmaller(ind)) {
+				getFields().remove(ind);
+				checkYnotequalMaxXnotequalMinAxis(ind);
+			}
+			removeLastField(ind);
 		}
 	}
 
@@ -255,12 +258,23 @@ public class ColidatingFields {
 		return getX() > getxNext() && getY() < getyNext() && (index + 1) < getFields().size();
 	}
 	
-	public void removeRightDown(int index) {
-		checkYnotequalMinXnotequalMaxAxis(index);
-		while(checkXsmallerYgreater(index) || cordsAtLimit(ChessConstants.MINAXIS,ChessConstants.MAXAXIS, index)) {
-			getFields().remove(index);
-			checkYnotequalMinXnotequalMaxAxis(index);
+	public void removeRightDown(int index, int i) {
+		int ind = index + i;
+		if(!getFields().isEmpty() && colidate(getFields().get(index))) {
+			checkYnotequalMinXnotequalMaxAxis(ind);
+			while(checkXsmallerYgreater(ind)) {
+				getFields().remove(ind);
+				checkYnotequalMinXnotequalMaxAxis(ind);
+			}
+			removeLastField(ind);
 		}
+	}
+
+	private void removeLastField(int index) {
+		if(!getFields().isEmpty()) {
+			getFields().remove(index);
+		}
+		
 	}
 
 	private void checkYnotequalMinXnotequalMaxAxis(int index) {
@@ -276,11 +290,15 @@ public class ColidatingFields {
 		return getX() < getxNext() && getY() > getyNext() && (index + 1) < getFields().size();
 	}
 	
-	public void removeLeftDown(int index) {
-		checkXYnotequalMinAxis(index);
-		while(checkXandYGreater(index) || cordsAtLimit(ChessConstants.MINAXIS,ChessConstants.MINAXIS, index)) {
-			getFields().remove(index);
-			checkXYnotequalMinAxis(index);
+	public void removeLeftDown(int index, int i) {
+		int ind = index + i;
+		if(!getFields().isEmpty() && colidate(getFields().get(index))) {
+			checkXYnotequalMinAxis(ind);
+			while(checkXandYGreater(ind)) {
+				getFields().remove(ind);
+				checkXYnotequalMinAxis(ind);
+			}
+			removeLastField(ind);
 		}
 	}
 
@@ -297,16 +315,16 @@ public class ColidatingFields {
 		return getX() > getxNext() && getY() > getyNext() && (index + 1) < getFields().size();
 	}
 	
-	public void removeUp(int index) {
-		checkYnotequalMaxAxis(index);
-		while(checkNextFieldUp(index, getCurKords(), getNextKords()) || cordAtLimit(index, getY(), ChessConstants.MAXAXIS)) {
-			getFields().remove(index);
-			checkYnotequalMaxAxis(index);
+	public void removeUp(int index, int i) {
+		int ind = index + i;
+		if(!getFields().isEmpty() && colidate(getFields().get(index))) {
+			checkYnotequalMaxAxis(ind);
+			while(checkNextFieldUp(ind, getCurKords(), getNextKords())) {
+				getFields().remove(ind);
+				checkYnotequalMaxAxis(ind);
+			}
+			removeLastField(ind);
 		}
-	}
-
-	private boolean cordAtLimit(int index, int cord, int limit) {
-		return cord == limit && (index + 1) > getFields().size();
 	}
 
 	private void checkYnotequalMaxAxis(int index) {
@@ -324,11 +342,15 @@ public class ColidatingFields {
 		
 	}
 	
-	public void removeDown(int index) {
-		checkYnotequalMinAxis(index);
-		while(checkFieldSmallerUp(index, getCurKords(), getNextKords()) || cordAtLimit(index, getY(), ChessConstants.MINAXIS)) {
-			getFields().remove(index);
-			checkYnotequalMinAxis(index);
+	public void removeDown(int index, int i) {
+		int ind = index + i;
+		if(!getFields().isEmpty() && colidate(getFields().get(index))) {
+			checkYnotequalMinAxis(ind);
+			while(checkFieldSmallerUp(ind, getCurKords(), getNextKords())) {
+				getFields().remove(ind);
+				checkYnotequalMinAxis(ind);
+			}
+			removeLastField(ind);
 		}
 	}
 
@@ -341,11 +363,15 @@ public class ColidatingFields {
 		}
 	}
 
-	public void removeLeft(int index) {
-		checkXnotequalMinAxis(index);
-		while(checkFieldSmallerLeft(index, getCurKords(), getNextKords()) || cordAtLimit(index, getX(), ChessConstants.MINAXIS)) {
-			getFields().remove(index);
-			checkXnotequalMinAxis(index);
+	public void removeLeft(int index, int i) {
+		int ind = index + i;
+		if(!getFields().isEmpty() && colidate(getFields().get(index))) {
+			checkXnotequalMinAxis(ind);
+			while(checkFieldSmallerLeft(ind, getCurKords(), getNextKords())) {
+				getFields().remove(ind);
+				checkXnotequalMinAxis(ind);
+			}
+			removeLastField(ind);
 		}
 	}
 
@@ -372,11 +398,15 @@ public class ColidatingFields {
 		return kords[0] > nextKords[0] && kords[1] == nextKords[1]&& (index + 1) < getFields().size();
 	}
 
-	public void removeRight(int index) {
-		checkXnotequalMaxAxis(index);
-		while(checkNextFieldRight(index, getCurKords(), getNextKords()) || cordAtLimit(index, getX(), ChessConstants.MAXAXIS)) {
-			getFields().remove(index);
-			checkXnotequalMaxAxis(index);
+	public void removeRight(int index, int i) {
+		int ind = index + i;
+		if(!getFields().isEmpty() && colidate(getFields().get(index))) {
+			checkXnotequalMaxAxis(ind);
+			while(checkNextFieldRight(ind, getCurKords(), getNextKords())) {
+				getFields().remove(ind);
+				checkXnotequalMaxAxis(ind);
+			}
+			removeLastField(ind);
 		}
 	}
 

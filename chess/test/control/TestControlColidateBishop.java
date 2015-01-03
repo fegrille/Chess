@@ -40,7 +40,7 @@ public class TestControlColidateBishop {
 		pf = null;
 		f = null;
 	}
-/*
+
 	@Test
 	public void testColidateBishop() {
 		IFigure f = p1.getFigureList().get(12);
@@ -51,6 +51,20 @@ public class TestControlColidateBishop {
 			right = true;
 		}
 		assertTrue(right);
-	}*/
+	}
+	
+	@Test
+	public void testColidateOtherBishop() {
+		IFigure f = p1.getFigureList().get(12);
+		p1.getFigureList().get(2).setField(7, 2);
+		p2.getFigureList().get(2).setField(2, 2);
+		f.possibleFields();
+		test.colidateBishop(f, p1, p2);
+		pf = f.getPosFields();
+		if(pf.size() == 1) {
+			right = true;
+		}
+		assertTrue(right);
+	}
 
 }

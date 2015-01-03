@@ -121,14 +121,14 @@ public class ControlColidatePawn {
 
 	private void isWhite(char color) {
 		if(color == 'w') {
-			coli.removeUp(getC1());
+			coli.removeUp(getC1(),0);
 		}
 		
 	}
 
 	private void isBlack(char color) {
 		if(color == 'b') {
-			coli.removeDown(getC1());
+			coli.removeDown(getC1(),0);
 		}
 	}
 
