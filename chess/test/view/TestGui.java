@@ -6,15 +6,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import view.Gui;
+import control.ControlGame;
+import view.Tui;
 
 public class TestGui {
 	
-	Gui test;
+	Tui test;
 
 	@Before
 	public void setUp() throws Exception {
-		test = new Gui();
+		test = new Tui(new ControlGame());
 	}
 
 	@After
