@@ -252,71 +252,71 @@ public class ControlEndGame {
 		return win;
 	}
 
-	private void setWin(boolean win) {
+	public void setWin(boolean win) {
 		this.win = win;
 	}
 
-	private boolean isKingCantMove() {
+	public boolean isKingCantMove() {
 		return kingCantMove;
 	}
 
-	private void setKingCantMove(boolean kingCantMove) {
+	public void setKingCantMove(boolean kingCantMove) {
 		this.kingCantMove = kingCantMove;
 	}
 
-	private boolean isCanKillBadFigure() {
+	public boolean isCanKillBadFigure() {
 		return canKillBadFigure;
 	}
 
-	private void setCanKillBadFigure(boolean canKillBadFigure) {
+	public void setCanKillBadFigure(boolean canKillBadFigure) {
 		this.canKillBadFigure = canKillBadFigure;
 	}
 
-	private boolean isCantBlockBadFigure() {
+	public boolean isCantBlockBadFigure() {
 		return cantBlockBadFigure;
 	}
 
-	private void setCantBlockBadFigure(boolean cantBlockBadFigure) {
+	public void setCantBlockBadFigure(boolean cantBlockBadFigure) {
 		this.cantBlockBadFigure = cantBlockBadFigure;
 	}
 	
-	private Player getPl() {
+	public Player getPl() {
 		return pl;
 	}
 
-	private void setPl(Player pl) {
+	public void setPl(Player pl) {
 		this.pl = pl;
 	}
 
-	private Player getPlOpp() {
+	public Player getPlOpp() {
 		return plOpp;
 	}
 
-	private void setPlOpp(Player plOpp) {
+	public void setPlOpp(Player plOpp) {
 		this.plOpp = plOpp;
 	}
 
-	private ControlColidate getCol() {
+	public ControlColidate getCol() {
 		return col;
 	}
 
-	private void setCol(ControlColidate col) {
+	public void setCol(ControlColidate col) {
 		this.col = col;
 	}
 
-	private IFigure getLastMovedFigure() {
+	public IFigure getLastMovedFigure() {
 		return lastMovedFigure;
 	}
 
-	private void setLastMovedFigure(IFigure lastMovedFigure) {
+	public void setLastMovedFigure(IFigure lastMovedFigure) {
 		this.lastMovedFigure = lastMovedFigure;
 	}
 
-	private List<int[]> getPossBlockFields() {
+	public List<int[]> getPossBlockFields() {
 		return possBlockFields;
 	}
 
-	private void setPossBlockFields(List<int[]> possBlockFields) {
+	public void setPossBlockFields(List<int[]> possBlockFields) {
 		this.possBlockFields = possBlockFields;
 	}
 	
