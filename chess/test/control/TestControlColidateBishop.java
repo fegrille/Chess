@@ -66,5 +66,18 @@ public class TestControlColidateBishop {
 		}
 		assertTrue(right);
 	}
+	
+	@Test
+	public void testColidateDifferentPositions() {
+		p1.getFigureList().get(12).setField(5, 5);
+		IFigure f = p1.getFigureList().get(12);
+		f.possibleFields();
+		test.colidateBishop(f, p1, p2);
+		pf = f.getPosFields();
+		if(pf.size() == 8) {
+			right = true;
+		}
+		assertTrue(right);
+	}
 
 }

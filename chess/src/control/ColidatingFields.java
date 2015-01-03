@@ -221,7 +221,8 @@ public class ColidatingFields {
 	
 	public void removeRightUp(int index, int i) {
 		int ind = index + i;
-		if(!getFields().isEmpty() && colidate(getFields().get(index))) {
+		checkXYnotequalMaxAxis(index);
+		if(!getFields().isEmpty() && checkXandYSmaller(index) && colidate(getFields().get(index))) {
 			checkXYnotequalMaxAxis(ind);
 			while(checkXandYSmaller(ind)) {
 				getFields().remove(ind);
@@ -249,7 +250,8 @@ public class ColidatingFields {
 	
 	public void removeLeftUp(int index, int i) {
 		int ind = index + i;
-		if(!getFields().isEmpty() && colidate(getFields().get(index))) {
+		checkYnotequalMaxXnotequalMinAxis(index);
+		if(!getFields().isEmpty() && checkXgreaterYsmaller(index) && colidate(getFields().get(index))) {
 			checkYnotequalMaxXnotequalMinAxis(ind);
 			while(checkXgreaterYsmaller(ind)) {
 				getFields().remove(ind);
@@ -272,12 +274,14 @@ public class ColidatingFields {
 	}
 	
 	private boolean checkXgreaterYsmaller(int index) {
-		return getX() > getxNext() && getY() < getyNext() && (index + 1) < getFields().size();
+		boolean b = getX() > getxNext() && getY() < getyNext() && (index + 1) < getFields().size();
+		return b;
 	}
 	
 	public void removeRightDown(int index, int i) {
 		int ind = index + i;
-		if(!getFields().isEmpty() && colidate(getFields().get(index))) {
+		checkYnotequalMinXnotequalMaxAxis(index);
+		if(!getFields().isEmpty() && checkXsmallerYgreater(index) &&  colidate(getFields().get(index))) {
 			checkYnotequalMinXnotequalMaxAxis(ind);
 			while(checkXsmallerYgreater(ind)) {
 				getFields().remove(ind);
@@ -312,7 +316,8 @@ public class ColidatingFields {
 	
 	public void removeLeftDown(int index, int i) {
 		int ind = index + i;
-		if(!getFields().isEmpty() && colidate(getFields().get(index))) {
+		checkXYnotequalMinAxis(index);
+		if(!getFields().isEmpty() && checkXandYGreater(index) && colidate(getFields().get(index))) {
 			checkXYnotequalMinAxis(ind);
 			while(checkXandYGreater(ind)) {
 				getFields().remove(ind);
@@ -340,7 +345,8 @@ public class ColidatingFields {
 	
 	public void removeUp(int index, int i) {
 		int ind = index + i;
-		if(!getFields().isEmpty() && colidate(getFields().get(index))) {
+		checkYnotequalMaxAxis(index);
+		if(!getFields().isEmpty() && checkNextFieldUp(index, getCurKords(), getNextKords()) && colidate(getFields().get(index))) {
 			checkYnotequalMaxAxis(ind);
 			while(checkNextFieldUp(ind, getCurKords(), getNextKords())) {
 				getFields().remove(ind);
@@ -370,7 +376,8 @@ public class ColidatingFields {
 	
 	public void removeDown(int index, int i) {
 		int ind = index + i;
-		if(!getFields().isEmpty() && colidate(getFields().get(index))) {
+		checkYnotequalMinAxis(index);
+		if(!getFields().isEmpty() && checkFieldSmallerUp(index, getCurKords(), getNextKords()) && colidate(getFields().get(index))) {
 			checkYnotequalMinAxis(ind);
 			while(checkFieldSmallerUp(ind, getCurKords(), getNextKords())) {
 				getFields().remove(ind);
@@ -394,7 +401,8 @@ public class ColidatingFields {
 
 	public void removeLeft(int index, int i) {
 		int ind = index + i;
-		if(!getFields().isEmpty() && colidate(getFields().get(index))) {
+		checkXnotequalMinAxis(index);
+		if(!getFields().isEmpty() && checkFieldSmallerLeft(index, getCurKords(), getNextKords()) && colidate(getFields().get(index))) {
 			checkXnotequalMinAxis(ind);
 			while(checkFieldSmallerLeft(ind, getCurKords(), getNextKords())) {
 				getFields().remove(ind);
@@ -409,6 +417,7 @@ public class ColidatingFields {
 
 	private boolean checkFieldSmallerLeft(int index, int[] kords,
 			int[] nextKords) {
+		//TODO update methode einfügen
 		return kords[1] > nextKords[1] && kords[0] == nextKords[0]&& (index + 1) < getFields().size();
 	}
 
@@ -432,7 +441,8 @@ public class ColidatingFields {
 
 	public void removeRight(int index, int i) {
 		int ind = index + i;
-		if(!getFields().isEmpty() && colidate(getFields().get(index))) {
+		checkXnotequalMaxAxis(index);
+		if(!getFields().isEmpty() && checkNextFieldRight(index, getCurKords(), getNextKords()) && colidate(getFields().get(index))) {
 			checkXnotequalMaxAxis(ind);
 			while(checkNextFieldRight(ind, getCurKords(), getNextKords())) {
 				getFields().remove(ind);
