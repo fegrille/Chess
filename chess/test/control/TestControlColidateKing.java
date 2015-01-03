@@ -23,7 +23,7 @@ public class TestControlColidateKing {
 	ControlColidateKing cK;
 	boolean right;
 	Field f;
-	List<Integer[]> pf;
+	List<List<Integer[]>> pf;
 
 	@Before
 	public void setUp() throws Exception {
@@ -32,7 +32,7 @@ public class TestControlColidateKing {
 		king = new King(ChessConstants.MINAXIS,ChessConstants.KINGXKORDS,'w');
 		p1 = new Player('w',f);
 		p2 = new Player('b',f);
-		pf = new ArrayList<Integer[]>();
+		pf = new ArrayList<List<Integer[]>>();
 		right = false;
 	}
 
@@ -47,8 +47,11 @@ public class TestControlColidateKing {
 		king.possibleFields();
 		cK.colidateOwnFigureKing(king, p1);
 		pf = king.getPosFields();
-		if(pf.size() == 0) {
-			right = true;
+		right = true;
+		for(int i = 0; i < pf.size(); i++) {
+			if(pf.get(i).size() != 0) {
+				right = false;
+			}
 		}
 		assertTrue(right);
 	}

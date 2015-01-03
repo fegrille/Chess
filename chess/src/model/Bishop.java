@@ -28,7 +28,7 @@ public class Bishop extends Figure{
 	public void possibleFields() {
 		move.setFields(new ArrayList<Integer[]>());
 		move.movesBishop(getY(), getX());
-		setPosFields(move.getFields());
+		setPosFields(move.getFieldList());
 	}	
 
 }

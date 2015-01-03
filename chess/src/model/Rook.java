@@ -16,7 +16,7 @@ public class Rook extends Figure{
 	public void possibleFields() {
 		move.setFields(new ArrayList<Integer[]>());
 		move.movesRook(getY(), getX());
-		setPosFields(move.getFields());
+		setPosFields(move.getFieldList());
 	}
 
 }

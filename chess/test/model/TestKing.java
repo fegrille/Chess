@@ -29,16 +29,16 @@ public class TestKing {
 	
 	@Test
 	public void testPossibleMoves() {
-		List<Integer[]> testfield = new ArrayList<Integer[]>();
-		List<Integer[]> testfield2 = new ArrayList<Integer[]>();
-		List<Integer[]> testfield3 = new ArrayList<Integer[]>();
+		List<List<Integer[]>> testfield = new ArrayList<>();
+		List<List<Integer[]>> testfield2 = new ArrayList<>();
+		List<List<Integer[]>> testfield3 = new ArrayList<>();
 		test.possibleFields();
 		testfield = test.getPosFields();
 		test2.possibleFields();
 		testfield2 = test2.getPosFields();
 		test3.possibleFields();
 		testfield3 = test3.getPosFields();
-		if(testfield.size() == 3 && testfield2.size() == 8 && testfield3.size() == 3) {
+		if(testfield.size() == 8 && testfield2.size() == 8 && testfield3.size() == 8) {
 			testright = true;
 		}
 		assertTrue(testright);

@@ -29,8 +29,8 @@ public interface IFigure {
 	
 	void setY(int y);
 	
-	List<Integer[]> getPosFields();
+	List<List<Integer[]>> getPosFields();
 	
-	void setPosFields(List<Integer[]> posFields);
+	void setPosFields(List<List<Integer[]>> posFields);
 
 }

@@ -25,10 +25,10 @@ public class TestBishop {
 	
 	@Test
 	public void testPossibleMoves() {
-		List<Integer[]> testfield = new ArrayList<Integer[]>();
+		List<List<Integer[]>> testfield = new ArrayList<>();
 		test.possibleFields();
 		testfield = test.getPosFields();
-		if(testfield.size() == 7) {
+		if(testfield.size() == 4) {
 			testright = true;
 		}
 		assertTrue(testright);

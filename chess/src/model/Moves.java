@@ -7,6 +7,7 @@ import java.util.List;
 public class Moves implements IMoves {
 	
 	private List<Integer[]> fields;
+	private List<List<Integer[]>> fieldList;
 	private int xKord;
 	private int yKord;
 	
@@ -55,6 +56,7 @@ public class Moves implements IMoves {
 	}
 	
 	public void movesQueen(int yKord, int xKord) {
+		setFieldList(new ArrayList<>());
 		setyKord(yKord);
 		setxKord(xKord);
 		moveUpFields();
@@ -62,21 +64,27 @@ public class Moves implements IMoves {
 		moveLeftFields();
 		moveRightFields();
 		moveRightUp();
-		moveLeftUp();
 		moveRightDown();
+		moveLeftUp();
 		moveLeftDown();
+		
+		
 	}
 	
 	public void movesBishop(int yKord, int xKord) {
+		setFieldList(new ArrayList<>());
 		setyKord(yKord);
 		setxKord(xKord);
 		moveRightUp();
-		moveLeftUp();
 		moveRightDown();
+		moveLeftUp();
 		moveLeftDown();
+		
+		
 	}
 	
 	public void movesRook(int yKord, int xKord) {
+		setFieldList(new ArrayList<>());
 		setyKord(yKord);
 		setxKord(xKord);
 		moveUpFields();
@@ -89,54 +97,63 @@ public class Moves implements IMoves {
 	 * 
 	 */
 	private void moveUpFields() {
+		setFields(new ArrayList<Integer[]>());
 		for(int i = (getyKord() + 1); i <= ChessConstants.MAXAXIS; i++) {
 			Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
 			field[ChessConstants.YKORD] = i;
 			field[ChessConstants.XKORD] = getxKord();
 			getFields().add(field);
 		}
+		getFieldList().add(getFields());
 	}
 	
 	/**
 	 * 
 	 */
 	private void moveDownFields() {
+		setFields(new ArrayList<Integer[]>());
 		for(int i = (getyKord() - 1); i >= ChessConstants.MINAXIS; i--) {
 			Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
 			field[ChessConstants.YKORD] = i;
 			field[ChessConstants.XKORD] = getxKord();
 			getFields().add(field);
 		}
+		getFieldList().add(getFields());
 	}
 	
 	/**
 	 * 
 	 */
 	private void moveLeftFields() {
+		setFields(new ArrayList<Integer[]>());
 		for(int i = (getxKord() - 1); i >= ChessConstants.MINAXIS; i--) {
 			Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
 			field[ChessConstants.YKORD] = getyKord();
 			field[ChessConstants.XKORD] = i;
 			getFields().add(field);
 		}
+		getFieldList().add(getFields());
 	}
 	
 	/**
 	 * 
 	 */
 	private void moveRightFields() {
+		setFields(new ArrayList<Integer[]>());
 		for(int i = (getxKord() + 1); i <= ChessConstants.MAXAXIS; i++) {
 			Integer[] field = new Integer[ChessConstants.FIGUREFIELDSIZE];
 			field[ChessConstants.YKORD] = getyKord();
 			field[ChessConstants.XKORD] = i;
 			getFields().add(field);
 		}
+		getFieldList().add(getFields());
 	}
 	
 	/**
 	 * 
 	 */
 	private void moveRightUp() {
+		setFields(new ArrayList<Integer[]>());
 		int y = getyKord() + 1;
 		int x = getxKord() + 1;
 		while(isInsideMaxAxis(y, x)) {
@@ -147,6 +164,7 @@ public class Moves implements IMoves {
 			y++;
 			x++;
 		}
+		getFieldList().add(getFields());
 	}
 
 	/**
@@ -162,6 +180,7 @@ public class Moves implements IMoves {
 	 * 
 	 */
 	private void moveLeftUp() {
+		setFields(new ArrayList<Integer[]>());
 		int y = getyKord() + 1;
 		int x = getxKord() - 1;
 		while(isInsideMaxAndMinAxis(y, x)) {
@@ -172,6 +191,7 @@ public class Moves implements IMoves {
 			y++;
 			x--;
 		}
+		getFieldList().add(getFields());
 	}
 
 	/**
@@ -187,6 +207,7 @@ public class Moves implements IMoves {
 	 * 
 	 */
 	private void moveRightDown() {
+		setFields(new ArrayList<Integer[]>());
 		int y = getyKord() - 1;
 		int x = getxKord() + 1;
 		while(isInsideMinAndMaxAxis(y, x)) {
@@ -197,6 +218,8 @@ public class Moves implements IMoves {
 			y--;
 			x++;
 		}
+		getFieldList().add(getFields());
+		
 	}
 
 	/**
@@ -212,6 +235,7 @@ public class Moves implements IMoves {
 	 * 
 	 */
 	private void moveLeftDown() {
+		setFields(new ArrayList<Integer[]>());
 		int y = getyKord() - 1;
 		int x = getxKord() - 1;
 		while(isInsideMinAxis(y, x)) {
@@ -222,6 +246,7 @@ public class Moves implements IMoves {
 			y--;
 			x--;
 		}
+		getFieldList().add(getFields());
 	}
 
 	/**
@@ -234,15 +259,16 @@ public class Moves implements IMoves {
 	}
 	
 	public void moveFigure(IFigure f, int yKord, int xKord) {
-		Integer[] field = {yKord, xKord};
-		for(int i = 0; i < f.getPosFields().size(); i++) {
-			Integer[] entry = f.getPosFields().get(i);
-			if(Arrays.equals(field, entry)) {
-				f.setX(xKord);
-				f.setY(yKord);
-			}
-		}
-		
+		f.setX(xKord);
+		f.setY(yKord);
+	}
+
+	public List<List<Integer[]>> getFieldList() {
+		return fieldList;
+	}
+
+	public void setFieldList(List<List<Integer[]>> fieldList) {
+		this.fieldList = fieldList;
 	}
 
 }

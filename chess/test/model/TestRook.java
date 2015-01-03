@@ -25,10 +25,10 @@ public class TestRook {
 	
 	@Test
 	public void testPossibleMoves() {
-		List<Integer[]> testfield = new ArrayList<Integer[]>();
+		List<List<Integer[]>> testfield = new ArrayList<>();
 		test.possibleFields();
 		testfield = test.getPosFields();
-		if(testfield.size() == 14) {
+		if(testfield.size() == 4 && testfield.get(0).size() == 7 && testfield.get(3).size() == 7) {
 			testright = true;
 		}
 		assertTrue(testright);

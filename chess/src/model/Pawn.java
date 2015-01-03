@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //Bauer
 public class Pawn extends Figure{
@@ -24,7 +25,7 @@ public class Pawn extends Figure{
 
 	@Override
 	public void possibleFields() {
-		setPosFields(new ArrayList<Integer[]>());
+		setPosFields(new ArrayList<List<Integer[]>>());
 		isFigureBlack();
 		isFigureWhite();
 	}
@@ -42,14 +43,19 @@ public class Pawn extends Figure{
 	}
 	
 	public void possibleFieldsBlack() {
+		List<Integer[]> fields = new ArrayList<>();
+		List<Integer[]> fields2 = new ArrayList<>();
+		getPosFields().add(fields);
+		getPosFields().add(fields2);
 		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((getY() - 1) >= ChessConstants.MINAXIS) {
 			f[ChessConstants.YKORD] = getY() - 1;
 			f[ChessConstants.XKORD] = getX();
-			getPosFields().add(f);
+			getPosFields().get(0).add(f);
+			isFirstMoveBlack();
 			leftUpFieldBlack();
 			rightUpFieldBlack();
-			isFirstMoveBlack();
+			
 		}
 	}
 
@@ -58,7 +64,7 @@ public class Pawn extends Figure{
 			Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 			f[ChessConstants.YKORD] = getY() + 1;
 			f[ChessConstants.XKORD] = getX() + 1;
-			getPosFields().add(f);
+			getPosFields().get(1).add(f);
 		}
 	}
 
@@ -67,7 +73,7 @@ public class Pawn extends Figure{
 			Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 			f[ChessConstants.YKORD] = getY() + 1;
 			f[ChessConstants.XKORD] = getX() - 1;
-			getPosFields().add(f);
+			getPosFields().get(1).add(f);
 		}
 	}
 	
@@ -76,7 +82,7 @@ public class Pawn extends Figure{
 			Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 			f[ChessConstants.YKORD] = getY() - 1;
 			f[ChessConstants.XKORD] = getX() + 1;
-			getPosFields().add(f);
+			getPosFields().get(1).add(f);
 		}
 	}
 
@@ -85,7 +91,7 @@ public class Pawn extends Figure{
 			Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 			f[ChessConstants.YKORD] = getY() - 1;
 			f[ChessConstants.XKORD] = getX() - 1;
-			getPosFields().add(f);
+			getPosFields().get(1).add(f);
 		}
 	}
 
@@ -94,19 +100,24 @@ public class Pawn extends Figure{
 		if(getFirstMove()) {
 			f2[ChessConstants.XKORD] = getX();
 			f2[ChessConstants.YKORD] = getY() - 2;
-			getPosFields().add(f2);
+			getPosFields().get(0).add(f2);
 		}
 	}
 	
 	public void possibleFieldsWhite() {
+		List<Integer[]> fields = new ArrayList<>();
+		List<Integer[]> fields2 = new ArrayList<>();
+		getPosFields().add(fields);
+		getPosFields().add(fields2);
 		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((getY() + 1) <= ChessConstants.MAXAXIS) {
 			f[ChessConstants.YKORD] = getY() + 1;
 			f[ChessConstants.XKORD] = getX();
-			getPosFields().add(f);
+			getPosFields().get(0).add(f);
+			isFirstMoveWhite();
 			leftUpFieldWhite();
 			rightUpFieldWhite();
-			isFirstMoveWhite(); 
+			
 		}
 	}
 
@@ -115,7 +126,7 @@ public class Pawn extends Figure{
 		if(getFirstMove()) {
 			f2[ChessConstants.XKORD] = getX();
 			f2[ChessConstants.YKORD] = getY() + 2;
-			getPosFields().add(f2);
+			getPosFields().get(0).add(f2);
 		}
 	}
 }

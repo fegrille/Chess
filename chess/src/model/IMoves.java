@@ -49,5 +49,17 @@ public interface IMoves {
 	 * @param xKord
 	 */
 	void moveFigure(IFigure f, int yKord, int xKord);
+	
+	/**
+	 * 
+	 * @return
+	 */
+	List<List<Integer[]>> getFieldList();
+
+	/**
+	 * 
+	 * @param fieldList
+	 */
+	void setFieldList(List<List<Integer[]>> fieldList);
 
 }

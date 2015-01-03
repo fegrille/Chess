@@ -15,7 +15,7 @@ public class Queen extends Figure{
 	public void possibleFields() {
 		move.setFields(new ArrayList<Integer[]>());
 		move.movesQueen(getY(), getX());
-		setPosFields(move.getFields());
+		setPosFields(move.getFieldList());
 	}
 	
 }

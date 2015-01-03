@@ -197,8 +197,10 @@ public class ControlEndGame {
 	}
 
 	private void compareBlockingFields(IFigure f) {
-		for(Integer[] field : f.getPosFields()) {
-			compareAvailableBlockFields(field);
+		for(List<Integer[]> fields : f.getPosFields()) {
+			for(Integer[] field : fields) {
+				compareAvailableBlockFields(field);
+			}
 		}
 	}
 
@@ -224,10 +226,13 @@ public class ControlEndGame {
 
 	private void killingPossibleAllFields(IFigure f) {
 		getCol().colidate(f, getPl(), getPlOpp());
-		List<Integer[]> finalFields = f.getPosFields();
-		for(Integer[] field : finalFields) {
-			killingPossibleOneField(field);
+		List<List<Integer[]>> finalFields = f.getPosFields();
+		for(List<Integer[]> fields: finalFields) {
+			for(Integer[] field : fields) {
+				killingPossibleOneField(field);
+			}
 		}
+		
 	}
 
 	private void killingPossibleOneField(Integer[] field) {

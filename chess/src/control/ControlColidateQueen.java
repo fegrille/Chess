@@ -23,10 +23,8 @@ public class ControlColidateQueen {
 	}
 
 	public void colidateQueen(IFigure f, Player p, Player p2) {
-		getColi().colidateOwnFigureHorVer(f,p);
-		getColi().colidateOtherFigureHorVer(f,p2);
-		getColi().colidateOwnFigureDiagonal(f,p);
-		getColi().colidateOtherFigureDiagonal(f,p2);
+		getColi().colidateOwnQueen(f, p);
+		getColi().colidateOtherQueen(f, p2);
 	}
 
 }

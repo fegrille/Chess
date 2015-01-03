@@ -20,7 +20,7 @@ public class TestControlColidateBishop {
 	Player p2;
 	boolean right;
 	Field f;
-	List<Integer[]> pf;
+	List<List<Integer[]>> pf;
 
 	@Before
 	public void setUp() throws Exception {
@@ -28,7 +28,7 @@ public class TestControlColidateBishop {
 		f = new Field();
 		p1 = new Player('w',f);
 		p2 = new Player('b',f);
-		pf = new ArrayList<Integer[]>();
+		pf = new ArrayList<>();
 		right = false;
 	}
 
@@ -47,7 +47,7 @@ public class TestControlColidateBishop {
 		f.possibleFields();
 		test.colidateBishop(f, p1, p2);
 		pf = f.getPosFields();
-		if(pf.isEmpty()) {
+		if(pf.get(0).isEmpty() && pf.get(1).isEmpty() && pf.get(2).isEmpty() && pf.get(3).isEmpty()) {
 			right = true;
 		}
 		assertTrue(right);
@@ -61,7 +61,7 @@ public class TestControlColidateBishop {
 		f.possibleFields();
 		test.colidateBishop(f, p1, p2);
 		pf = f.getPosFields();
-		if(pf.size() == 1) {
+		if(pf.get(2).size() == 1) {
 			right = true;
 		}
 		assertTrue(right);
@@ -74,7 +74,7 @@ public class TestControlColidateBishop {
 		f.possibleFields();
 		test.colidateBishop(f, p1, p2);
 		pf = f.getPosFields();
-		if(pf.size() == 8) {
+		if(pf.get(0).size() == 2 && pf.get(1).size() == 2 && pf.get(2).size() == 2 && pf.get(3).size() == 2) {
 			right = true;
 		}
 		assertTrue(right);

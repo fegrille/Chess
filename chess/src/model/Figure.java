@@ -6,7 +6,7 @@ public class Figure implements IFigure{
 	
 	private int x;
 	private int y;
-	private List<Integer[]> posFields;
+	private List<List<Integer[]>> posFields;
 	private char color;
 	
 	public void possibleFields() {
@@ -50,11 +50,11 @@ public class Figure implements IFigure{
 		this.y = y;
 	}
 
-	public List<Integer[]> getPosFields() {
+	public List<List<Integer[]>> getPosFields() {
 		return posFields;
 	}
 
-	public void setPosFields(List<Integer[]> posFields) {
+	public void setPosFields(List<List<Integer[]>> posFields) {
 		this.posFields = posFields;
 	}
 }

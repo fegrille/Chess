@@ -31,10 +31,10 @@ public class TestQueen {
 	
 	@Test
 	public void testPossibleMoves() {
-		List<Integer[]> testfield = new ArrayList<Integer[]>();
-		List<Integer[]> testfield1 = new ArrayList<Integer[]>();
-		List<Integer[]> testfield2 = new ArrayList<Integer[]>();
-		List<Integer[]> testfield3 = new ArrayList<Integer[]>();
+		List<List<Integer[]>> testfield = new ArrayList<>();
+		List<List<Integer[]>> testfield1 = new ArrayList<>();
+		List<List<Integer[]>> testfield2 = new ArrayList<>();
+		List<List<Integer[]>> testfield3 = new ArrayList<>();
 		test.possibleFields();
 		testfield = test.getPosFields();
 		test1.possibleFields();
@@ -43,7 +43,7 @@ public class TestQueen {
 		testfield2 = test2.getPosFields();
 		test3.possibleFields();
 		testfield3 = test3.getPosFields();
-		if(testfield.size() == 21 && testfield1.size() == 21 && testfield2.size() == 21 && testfield3.size() == 21) {
+		if(testfield.size() == 8 && testfield1.size() == 8 && testfield2.size() == 8 && testfield3.size() == 8) {
 			testright = true;
 		}
 		assertTrue(testright);

@@ -2,6 +2,7 @@ package model;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Pawn;
@@ -50,8 +51,9 @@ public class TestPawn {
 	public void testPossibleFieldsFirstMove() {
 		test.setFirstMove(true);
 		test.possibleFields();
-		List<Integer[]> testList = test.getPosFields();
-		if(testList.size() == 3) {
+		List<List<Integer[]>> testfield = new ArrayList<>();
+		testfield = test.getPosFields();
+		if(testfield.size() == 2 && testfield.get(0).size() == 2) {
 			testright = true;
 		}
 		assertTrue(testright);
@@ -61,8 +63,9 @@ public class TestPawn {
 	public void testPossibleFieldNoFirstMove(){
 		test.setFirstMove(false);
 		test.possibleFields();
-		List<Integer[]> testList = test.getPosFields();
-		if(testList.size() == 2) {
+		List<List<Integer[]>> testfield = new ArrayList<>();
+		testfield = test.getPosFields();
+		if(testfield.size() == 2 && testfield.get(0).size() == 1) {
 			testright = true;
 		}
 		assertTrue(testright);
@@ -73,8 +76,9 @@ public class TestPawn {
 		test.setFirstMove(false);
 		test.setField(8, 8);
 		test.possibleFields();
-		List<Integer[]> testList = test.getPosFields();
-		if(testList.isEmpty()) {
+		List<List<Integer[]>> testfield = new ArrayList<>();
+		testfield = test.getPosFields();
+		if(testfield.size() == 2 && testfield.get(0).isEmpty() && testfield.get(1).isEmpty()) {
 			testright = true;
 		}
 		assertTrue(testright);
@@ -85,9 +89,9 @@ public class TestPawn {
 		test.setColor('b');
 		test.setField(8, 8);
 		test.possibleFields();
-		List<Integer[]> testList = test.getPosFields();
-		System.out.println(testList.size());
-		if(testList.size() == 3) {
+		List<List<Integer[]>> testfield = new ArrayList<>();
+		testfield = test.getPosFields();
+		if(testfield.size() == 2 && testfield.get(0).size() == 2) {
 			testright = true;
 		}
 		assertTrue(testright);
@@ -99,8 +103,9 @@ public class TestPawn {
 		test.setColor('b');
 		test.setField(8, 8);
 		test.possibleFields();
-		List<Integer[]> testList = test.getPosFields();
-		if(testList.size() == 2) {
+		List<List<Integer[]>> testfield = new ArrayList<>();
+		testfield = test.getPosFields();
+		if(testfield.size() == 2 && testfield.get(0).size() == 1) {
 			testright = true;
 		}
 		assertTrue(testright);
@@ -112,8 +117,9 @@ public class TestPawn {
 		test.setColor('b');
 		test.setField(1, 1);
 		test.possibleFields();
-		List<Integer[]> testList = test.getPosFields();
-		if(testList.isEmpty()) {
+		List<List<Integer[]>> testfield = new ArrayList<>();
+		testfield = test.getPosFields();
+		if(testfield.size() == 2 && testfield.get(0).isEmpty() && testfield.get(1).isEmpty()) {
 			testright = true;
 		}
 		assertTrue(testright);
@@ -153,8 +159,9 @@ public class TestPawn {
 		test.setField(8, 1);
 		test.setFirstMove(false);
 		test.possibleFields();
-		List<Integer[]> testList = test.getPosFields();
-		if(testList.size() == 2) {
+		List<List<Integer[]>> testfield = new ArrayList<>();
+		testfield = test.getPosFields();
+		if(testfield.size() == 2  && testfield.get(1).size() == 1) {
 			testright = true;
 		}
 		assertTrue(testright);
@@ -165,8 +172,9 @@ public class TestPawn {
 		test.setField(1, 8);
 		test.setFirstMove(false);
 		test.possibleFields();
-		List<Integer[]> testList = test.getPosFields();
-		if(testList.size() == 2) {
+		List<List<Integer[]>> testfield = new ArrayList<>();
+		testfield = test.getPosFields();
+		if(testfield.size() == 2 && testfield.get(1).size() == 1) {
 			testright = true;
 		}
 		assertTrue(testright);

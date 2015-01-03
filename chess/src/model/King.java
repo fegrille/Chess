@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class King extends Figure{
 	
@@ -21,7 +22,7 @@ public class King extends Figure{
 	
 	@Override
 	public void possibleFields() {
-		setPosFields(new ArrayList<Integer[]>());
+		setPosFields(new ArrayList<List<Integer[]>>());
 		
 		addField(getX()+1, getY());
 		
@@ -43,6 +44,7 @@ public class King extends Figure{
 	}
 	
 	private void addField(int x, int y) {
+		List<Integer[]> fields = new ArrayList<>();
 		Integer[] posField = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if(checkCordinsideAxis(x) || checkCordinsideAxis(y)) {
 			posField = null;
@@ -50,7 +52,8 @@ public class King extends Figure{
 			posField[0] = y;
 			posField[1] = x;
 		}
-		getPosFields().add(posField);
+		fields.add(posField);
+		getPosFields().add(fields);
 	}
 
 	private boolean checkCordinsideAxis(int axis) {
