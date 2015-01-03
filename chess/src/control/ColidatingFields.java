@@ -2,7 +2,6 @@ package control;
 
 import java.util.List;
 
-import model.ChessConstants;
 import model.IFigure;
 import model.Player;
 
@@ -11,14 +10,8 @@ public class ColidatingFields {
 	private List<List<Integer[]>> fields;
 	private List<IFigure> figureList;
 	private boolean colidate = false;
-	private boolean deleted = false;
 	private int counter;
-	private int x;
-	private int y;
-	private int xNext;
-	private int yNext;
-	private int[] curKords = new int[ChessConstants.FIGUREFIELDSIZE];
-	private int[] nextKords = new int[ChessConstants.FIGUREFIELDSIZE];
+
 	
 	public int getCounter() {
 		return counter;
@@ -26,37 +19,6 @@ public class ColidatingFields {
 
 	public void setCounter(int counter) {
 		this.counter = counter;
-	}
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public int getxNext() {
-		return xNext;
-	}
-
-	public void setxNext(int xNext) {
-		this.xNext = xNext;
-	}
-
-	public int getyNext() {
-		return yNext;
-	}
-
-	public void setyNext(int yNext) {
-		this.yNext = yNext;
 	}
 
 	public List<IFigure> getFigureList() {
