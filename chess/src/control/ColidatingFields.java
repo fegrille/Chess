@@ -11,6 +11,7 @@ public class ColidatingFields {
 	private List<Integer[]> fields;
 	private List<IFigure> figureList;
 	private boolean colidate = false;
+	private boolean deleted = false;
 	private int counter;
 	private int x;
 	private int y;
@@ -125,6 +126,7 @@ public class ColidatingFields {
 
 	private void checkColiOwnHorVer() {
 		for(setCounter(0); getCounter() + 1 < getFields().size(); setCounter(getCounter() + 1)) {
+			setDeleted(false);
 			int i = getCounter();
 			checkColidateHorVer(i);
 		}
@@ -135,7 +137,9 @@ public class ColidatingFields {
 		removeDown(i, 1);
 		removeLeft(i, 1);
 		removeRight(i, 1);
-		setCounter(getCounter() - 1);
+		if(isDeleted()) {
+			setCounter(getCounter() - 1);
+		}
 	}
 
 	private void checkColidateHorVer(int i) {
@@ -143,12 +147,13 @@ public class ColidatingFields {
 		removeDown(i, 0);
 		removeLeft(i, 0);
 		removeRight(i, 0);
-		setCounter(getCounter() - 1);
+		if(isDeleted()) {
+			setCounter(getCounter() - 1);
+		}
 	}
 	
 	public void colidateOtherFigureDiagonal(IFigure f, Player p) {
 		setFigureList(p.getFigureList());
-		unmovedFigures(f);
 		setFields(f.getPosFields());
 		checkColiOtherDiag();
 		f.setPosFields(getFields());
@@ -156,7 +161,8 @@ public class ColidatingFields {
 
 	private void checkColiOtherDiag() {
 		for(setCounter(0); getCounter() + 1 < getFields().size(); setCounter(getCounter() + 1)) {
-			int i = getCounter() + 1;
+			setDeleted(false);
+			int i = getCounter();
 			checkColidateDiagonalOther(i);
 		}
 	}
@@ -166,8 +172,9 @@ public class ColidatingFields {
 		removeLeftUp(i,1);
 		removeRightDown(i,1);
 		removeLeftDown(i,1);
-		setCounter(getCounter() - 1);
-		
+		if(isDeleted()) {
+			setCounter(getCounter() - 1);
+		}
 	}
 
 	public void colidateOwnFigureDiagonal(IFigure f, Player p) {
@@ -180,6 +187,7 @@ public class ColidatingFields {
 
 	private void checkColiOwnDiag() {
 		for(setCounter(0); getCounter() < getFields().size(); setCounter(getCounter() + 1)) {
+			setDeleted(false);
 			int i = getCounter();
 			checkColidateDiagonal(i);
 		}
@@ -190,7 +198,9 @@ public class ColidatingFields {
 		removeLeftUp(i,0);
 		removeRightDown(i,0);
 		removeLeftDown(i,0);
-		setCounter(getCounter() - 1);
+		if(isDeleted()) {
+			setCounter(getCounter() - 1);
+		}
 	}
 	
 	public void colidateOtherFigureHorVer(IFigure f, Player p) {
@@ -203,6 +213,7 @@ public class ColidatingFields {
 
 	private void checkColiOtherHorVer() {
 		for(setCounter(0); getCounter() + 1 < getFields().size(); setCounter(getCounter() + 1)) {
+			setDeleted(false);
 			int i = getCounter();
 			checkColidateHorVerOther(i);
 		}
@@ -216,7 +227,10 @@ public class ColidatingFields {
 				getFields().remove(ind);
 				checkXYnotequalMaxAxis(ind);
 			}
-			removeLastField(ind);
+			if(ind < getFields().size()) {
+				removeLastField(ind);
+			}
+			setDeleted(true);
 		}
 	}
 
@@ -241,7 +255,10 @@ public class ColidatingFields {
 				getFields().remove(ind);
 				checkYnotequalMaxXnotequalMinAxis(ind);
 			}
-			removeLastField(ind);
+			if(ind < getFields().size()) {
+				removeLastField(ind);
+			}
+			setDeleted(true);
 		}
 	}
 
@@ -266,7 +283,10 @@ public class ColidatingFields {
 				getFields().remove(ind);
 				checkYnotequalMinXnotequalMaxAxis(ind);
 			}
-			removeLastField(ind);
+			if(ind < getFields().size()) {
+				removeLastField(ind);
+			}
+			setDeleted(true);
 		}
 	}
 
@@ -298,7 +318,10 @@ public class ColidatingFields {
 				getFields().remove(ind);
 				checkXYnotequalMinAxis(ind);
 			}
-			removeLastField(ind);
+			if(ind < getFields().size()) {
+				removeLastField(ind);
+			}
+			setDeleted(true);
 		}
 	}
 
@@ -323,7 +346,10 @@ public class ColidatingFields {
 				getFields().remove(ind);
 				checkYnotequalMaxAxis(ind);
 			}
-			removeLastField(ind);
+			if(ind < getFields().size()) {
+				removeLastField(ind);
+			}
+			setDeleted(true);
 		}
 	}
 
@@ -350,7 +376,10 @@ public class ColidatingFields {
 				getFields().remove(ind);
 				checkYnotequalMinAxis(ind);
 			}
-			removeLastField(ind);
+			if(ind < getFields().size()) {
+				removeLastField(ind);
+			}
+			setDeleted(true);
 		}
 	}
 
@@ -371,7 +400,10 @@ public class ColidatingFields {
 				getFields().remove(ind);
 				checkXnotequalMinAxis(ind);
 			}
-			removeLastField(ind);
+			if(ind < getFields().size()) {
+				removeLastField(ind);
+			}
+			setDeleted(true);
 		}
 	}
 
@@ -406,7 +438,10 @@ public class ColidatingFields {
 				getFields().remove(ind);
 				checkXnotequalMaxAxis(ind);
 			}
-			removeLastField(ind);
+			if(ind < getFields().size()) {
+				removeLastField(ind);
+			}
+			setDeleted(true);
 		}
 	}
 
@@ -452,5 +487,13 @@ public class ColidatingFields {
 	public void setCurKords() {
 		this.curKords[0] = getY();
 		this.curKords[1] = getX();
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 }

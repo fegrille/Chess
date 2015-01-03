@@ -56,8 +56,8 @@ public class TestControlColidateBishop {
 	@Test
 	public void testColidateOtherBishop() {
 		IFigure f = p1.getFigureList().get(12);
-		p1.getFigureList().get(2).setField(7, 2);
-		p2.getFigureList().get(2).setField(2, 2);
+		p1.getFigureList().get(1).setField(7, 2);
+		p2.getFigureList().get(1).setField(2, 2);
 		f.possibleFields();
 		test.colidateBishop(f, p1, p2);
 		pf = f.getPosFields();
