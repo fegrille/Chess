@@ -37,6 +37,10 @@ public class TestControlColidate {
 	@After
 	public void tearDown() throws Exception {
 		test = null;
+		p1 = null;
+		p2 = null;
+		pf = null;
+		f = null;
 	}
 	/*
 	@Test

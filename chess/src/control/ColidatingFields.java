@@ -153,11 +153,23 @@ public class ColidatingFields {
 	}
 
 	private void checkColiOtherDiag() {
-		for(int i = 0; i < getFields().size(); i++) {
-			checkColidateDiagonal(i);
+		for(setCounter(0); getCounter() + 1 < getFields().size(); setCounter(getCounter() + 1)) {
+			int i = getCounter() + 1;
+			checkColidateDiagonalOther(i);
 		}
 	}
 	
+	private void checkColidateDiagonalOther(int i) {
+		if(colidate(getFields().get(i))) {
+			removeRightUp(i+1);
+			removeLeftUp(i+1);
+			removeRightDown(i+1);
+			removeLeftDown(i+1);
+			setCounter(getCounter() - 1);
+		}
+		
+	}
+
 	public void colidateOwnFigureDiagonal(IFigure f, Player p) {
 		setFigureList(p.getFigureList());
 		unmovedFigures(f);
@@ -167,7 +179,8 @@ public class ColidatingFields {
 	}
 
 	private void checkColiOwnDiag() {
-		for(int i = 0; i < getFields().size(); i++) {
+		for(setCounter(0); getCounter() < getFields().size(); setCounter(getCounter() + 1)) {
+			int i = getCounter();
 			checkColidateDiagonal(i);
 		}
 	}
@@ -178,6 +191,7 @@ public class ColidatingFields {
 			removeLeftUp(i);
 			removeRightDown(i);
 			removeLeftDown(i);
+			setCounter(getCounter() - 1);
 		}
 	}
 	

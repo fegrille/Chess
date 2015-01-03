@@ -77,7 +77,8 @@ public class ControlColidate {
 
 	public void isPawn(IFigure f, Player p, Player p2) {
 		if(f instanceof Pawn) {
-			getColPaw().colidateOwnFigurePawn(f,p,p2);
+			getColPaw().colidateOwnFigurePawn(f,p);
+			getColPaw().colidateOtherFigurePawn(f, p2);
 		}
 	}
 	
