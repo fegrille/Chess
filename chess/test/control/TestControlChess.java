@@ -2,15 +2,11 @@ package control;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import model.ChessConstants;
 import model.Field;
 import model.Figure;
 import model.IFigure;
-import model.King;
 import model.Player;
+import model.Queen;
 
 import org.junit.After;
 import org.junit.Before;
@@ -19,49 +15,42 @@ import org.junit.Test;
 public class TestControlChess {
 
 	private ControlChess controlChess;
-	private boolean chess;
-	private int[] kingField = {1,1};
+	
+	private Player p1;
+	private Player p2;
+	private IFigure lastMovedFigure;
+	private ControlColidate col;
+	private Field f;
 
 	@Before
 	public void setUp() throws Exception {
 		controlChess = new ControlChess();
-		chess = false;
+		col = new ControlColidate();
+		f = new Field();
+		p1 = new Player('w',f);
+		p2 = new Player('b',f);
+		lastMovedFigure = new Figure();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-
+		controlChess = null;
+		col = null;
+		f = null;
+		p1 = null;
+		p2 = null;
+		lastMovedFigure = null;
 	}
 
 	@Test
 	public void testCheckChess() {
-	
-	}
-
-	@Test
-	private void testGetKingField(Player p) {
-
-	}
-
-	@Test
-	private void testCheckFigures(IFigure lastMovedFigure, ControlColidate col, Player p, Player p2) {
-
-	}
-
-	@Test
-	private void testCompareField() {
-
-	}
-
-	@Test
-	private void testGetKingField() {
-
-	}
-
-	@Test
-	private void testSetKingField() {
-		int[] testKingField = {1,1};
-		//controlChess.setK
+		boolean testChess = false;
+		lastMovedFigure = new Queen(5, 5, 'b');
+		lastMovedFigure.possibleFields();
+		p1.getFigureList().get(p1.getFigureList().size() - 1).setField(3, 5);
+		p1.getFigureList().get(p1.getFigureList().size() - 1).possibleFields();
+		controlChess.checkChess(p1, lastMovedFigure, col, p2);
+		assertEquals(controlChess.isChess(), testChess);
 	}
 
 	@Test
@@ -69,14 +58,13 @@ public class TestControlChess {
 		controlChess.setChess(true);
 		boolean TestChess = controlChess.isChess();
 		assertTrue(TestChess);
-		
 	}
 
 	@Test
 	public void testSetChess() {
-		boolean TestChess = true;
+		boolean testChess = true;
 		controlChess.setChess(true);
-		assertEquals(controlChess.isChess(), TestChess);
+		assertEquals(controlChess.isChess(), testChess);
 	}
 
 }
