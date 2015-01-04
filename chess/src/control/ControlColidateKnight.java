@@ -10,14 +10,14 @@ public class ControlColidateKnight {
 	private ColidatingFields coli = new ColidatingFields();
 	private List<List<Integer[]>> fields;
 	private List<IFigure> figureList;
-	private int counter;
+	private int c;
 	
-	public int getCounter() {
-		return counter;
+	public int getC() {
+		return c;
 	}
 
-	public void setCounter(int counter) {
-		this.counter = counter;
+	public void setC(int counter) {
+		this.c = counter;
 	}
 
 	public List<List<Integer[]>> getFields() {
@@ -58,14 +58,16 @@ public class ControlColidateKnight {
 	}
 
 	private void checkEntriesForColidate(int i) {
-		for(int j = 0; i < getFields().get(i).size(); i++) {
-			checkColidateKnight(i, j);
+		for(setC(0); getC() < getFields().get(i).size(); setC(getC() + 1)) {
+			checkColidateKnight(i);
 		}
 	}
 
-	private void checkColidateKnight(int i, int j) {
-		if(getColi().colidate(getFields().get(i).get(j))) {
-			getFields().get(i).remove(j);
+	private void checkColidateKnight(int i) {
+		Integer[] field = getFields().get(i).get(getC());
+		if(getColi().colidate(field)) {
+			getFields().get(i).remove(getC());
+			setC(getC() - 1);
 		}
 	}
 	

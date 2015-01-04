@@ -5,10 +5,8 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.ChessConstants;
 import model.Field;
-import model.Figure;
-import model.King;
+import model.IFigure;
 import model.Player;
 
 import org.junit.After;
@@ -19,7 +17,6 @@ public class TestControlColidateKing {
 	
 	Player p1;
 	Player p2;
-	Figure king;
 	ControlColidateKing cK;
 	boolean right;
 	Field f;
@@ -29,7 +26,6 @@ public class TestControlColidateKing {
 	public void setUp() throws Exception {
 		cK = new ControlColidateKing();
 		f = new Field();
-		king = new King(ChessConstants.MINAXIS,ChessConstants.KINGXKORDS,'w');
 		p1 = new Player('w',f);
 		p2 = new Player('b',f);
 		pf = new ArrayList<List<Integer[]>>();
@@ -44,6 +40,7 @@ public class TestControlColidateKing {
 
 	@Test
 	public void testColidateOwnFiguresKing() {
+		IFigure king = p1.getFigureList().get(15);
 		king.possibleFields();
 		cK.colidateOwnFigureKing(king, p1);
 		pf = king.getPosFields();

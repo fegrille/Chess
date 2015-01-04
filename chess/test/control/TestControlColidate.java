@@ -22,7 +22,7 @@ public class TestControlColidate {
 	Player p2;
 	boolean right;
 	Field f;
-	List<Integer[]> pf;
+	List<List<Integer[]>> pf;
 
 	@Before
 	public void setUp() throws Exception {
@@ -30,7 +30,7 @@ public class TestControlColidate {
 		f = new Field();
 		p1 = new Player('w',f);
 		p2 = new Player('b',f);
-		pf = new ArrayList<Integer[]>();
+		pf = new ArrayList<List<Integer[]>>();
 		right = false;
 	}
 
@@ -42,23 +42,21 @@ public class TestControlColidate {
 		pf = null;
 		f = null;
 	}
-	/*
+
 	@Test
 	public void testUpdatePossibleFields() {
 		IFigure f = p1.getFigureList().get(15);
 		moveFigures();
-		p1.getFigureList().get(14).setField(1, 5);
 		p1.getFigureList().get(3).setField(7, 4);
 		p2.getFigureList().get(3).setField(2, 4);
 		f.possibleFields();
 		test.colidate(f, p1, p2);
 		pf = f.getPosFields();
-		for(int i = 0; i < pf.size(); i++) {
-			System.out.print(pf.get(i)[0]);
-			System.out.println(pf.get(i)[1]);
-		}
-		if(pf.isEmpty()) {
-			right = true;
+		right = true;
+		for(List<Integer[]> fields : pf) {
+			if(!fields.isEmpty()) {
+				right = false;
+			}
 		}
 		assertTrue(right);
 	}
@@ -81,6 +79,6 @@ public class TestControlColidate {
 		p2.getFigureList().get(11).setField(1, 7);
 		p2.getFigureList().get(12).setField(1, 3);
 		p2.getFigureList().get(14).setField(3, 3);
-	}*/
+	}
 
 }

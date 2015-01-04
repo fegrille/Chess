@@ -49,10 +49,11 @@ public class ControlColidate {
 	}
 	
 	public  void colidate(IFigure f, Player p, Player p2) {
-		updatePossibleFields(p,p2);
-		updatePossibleFields(p2,p);
 		updatePossibleFieldsKing(p,p2);
 		updatePossibleFieldsKing(p2,p);
+		updatePossibleFields(p,p2);
+		updatePossibleFields(p2,p);
+		
 	}
 	
 	private void updatePossibleFields(Player p, Player p2) {
@@ -110,7 +111,7 @@ public class ControlColidate {
 		if(f instanceof King) {
 			f.possibleFields();
 			getColKing().colidateOwnFigureKing(f,p);
-			getColKing().colidateOwnFigureKing(f,p2);
+			getColKing().colidateOtherFigureKing(f,p2);
 		}
 	}
 

@@ -16,23 +16,24 @@ public class Knight extends Figure{
 		setPosFields(new ArrayList<List<Integer[]>>());
 		topFields();
 		buttomFields();
-		rightFields();
 		leftFields();
+		rightFields();
+		
 	}
 	
 	public void topFields() {
 		List<Integer[]> fields = new ArrayList<>();
 		getPosFields().add(fields);
-		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		int y = getY();
 		int x = getX();
 		if((y + 2) <= ChessConstants.MAXAXIS) {
-			isXCordUnderMaxAxisTop(f, y, x);
-			isXCordAboveMinAxisTop(f, y, x);
+			isXCordUnderMaxAxisTop(y, x);
+			isXCordAboveMinAxisTop(y, x);
 		}
 	}
 
-	private void isXCordAboveMinAxisTop(Integer[] f, int y, int x) {
+	private void isXCordAboveMinAxisTop(int y, int x) {
+		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((x - 1) >= ChessConstants.MINAXIS) {
 			f[ChessConstants.YKORD] = y + 2;
 			f[ChessConstants.XKORD] = x - 1;
@@ -40,7 +41,8 @@ public class Knight extends Figure{
 		}
 	}
 
-	private void isXCordUnderMaxAxisTop(Integer[] f, int y, int x) {
+	private void isXCordUnderMaxAxisTop(int y, int x) {
+		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((x + 1) <= ChessConstants.MAXAXIS) {
 			f[ChessConstants.YKORD] = y + 2;
 			f[ChessConstants.XKORD] = x + 1;
@@ -51,44 +53,45 @@ public class Knight extends Figure{
 	public void leftFields() {
 		List<Integer[]> fields = new ArrayList<>();
 		getPosFields().add(fields);
-		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		int y = getY();
 		int x = getX();
 		if((x - 2) >= ChessConstants.MINAXIS) {
-			isYCordUnderMaxAxisLeft(f, y, x);
-			isYCordAboveMinAxisLeft(f, y, x);
+			isYCordUnderMaxAxisLeft(y, x);
+			isYCordAboveMinAxisLeft(y, x);
 		}
 	}
 
-	private void isYCordAboveMinAxisLeft(Integer[] f, int y, int x) {
+	private void isYCordAboveMinAxisLeft(int y, int x) {
+		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((y - 1) >= ChessConstants.MINAXIS) {
 			f[ChessConstants.YKORD] = y - 1;
 			f[ChessConstants.XKORD] = x - 2;
-			getPosFields().get(3).add(f);
+			getPosFields().get(2).add(f);
 		}
 	}
 
-	private void isYCordUnderMaxAxisLeft(Integer[] f, int y, int x) {
+	private void isYCordUnderMaxAxisLeft(int y, int x) {
+		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((y + 1) <= ChessConstants.MAXAXIS) {
 			f[ChessConstants.YKORD] = y + 1;
 			f[ChessConstants.XKORD] = x - 2;
-			getPosFields().get(3).add(f);
+			getPosFields().get(2).add(f);
 		}
 	}
 	
 	public void buttomFields() {
 		List<Integer[]> fields = new ArrayList<>();
 		getPosFields().add(fields);
-		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		int y = getY();
 		int x = getX();
 		if((y - 2) >= ChessConstants.MINAXIS) {
-			isXCordUnderMaxAxisButtom(f, y, x);
-			isXCordAboveMinAxisButtom(f, y, x);
+			isXCordUnderMaxAxisButtom(y, x);
+			isXCordAboveMinAxisButtom(y, x);
 		}
 	}
 
-	private void isXCordAboveMinAxisButtom(Integer[] f, int y, int x) {
+	private void isXCordAboveMinAxisButtom(int y, int x) {
+		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((x - 1) >= ChessConstants.MINAXIS) {
 			f[ChessConstants.YKORD] = y - 2;
 			f[ChessConstants.XKORD] = x - 1;
@@ -96,7 +99,8 @@ public class Knight extends Figure{
 		}
 	}
 
-	private void isXCordUnderMaxAxisButtom(Integer[] f, int y, int x) {
+	private void isXCordUnderMaxAxisButtom(int y, int x) {
+		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((x + 1) <= ChessConstants.MAXAXIS) {
 			f[ChessConstants.YKORD] = y - 2;
 			f[ChessConstants.XKORD] = x + 1;
@@ -107,28 +111,29 @@ public class Knight extends Figure{
 	public void rightFields() {
 		List<Integer[]> fields = new ArrayList<>();
 		getPosFields().add(fields);
-		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		int y = getY();
 		int x = getX();
 		if((x + 2) <= ChessConstants.MAXAXIS) {
-			isYCordUnderMaxAxisRight(f, y, x);
-			isYCordAboveMinAxisRight(f, y, x);
+			isYCordUnderMaxAxisRight(y, x);
+			isYCordAboveMinAxisRight(y, x);
 		}
 	}
 
-	private void isYCordAboveMinAxisRight(Integer[] f, int y, int x) {
+	private void isYCordAboveMinAxisRight(int y, int x) {
+		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((y - 1) >= ChessConstants.MINAXIS) {
 			f[ChessConstants.YKORD] = y - 1;
 			f[ChessConstants.XKORD] = x + 2;
-			getPosFields().get(2).add(f);
+			getPosFields().get(3).add(f);
 		}
 	}
 
-	private void isYCordUnderMaxAxisRight(Integer[] f, int y, int x) {
+	private void isYCordUnderMaxAxisRight(int y, int x) {
+		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((y + 1) <= ChessConstants.MAXAXIS) {
 			f[ChessConstants.YKORD] = y + 1;
 			f[ChessConstants.XKORD] = x + 2;
-			getPosFields().get(2).add(f);
+			getPosFields().get(3).add(f);
 		}
 	}
 

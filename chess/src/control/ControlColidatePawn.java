@@ -10,14 +10,14 @@ public class ControlColidatePawn {
 	private ColidatingFields coli = new ColidatingFields();
 	private List<List<Integer[]>> fields;
 	private List<IFigure> figureList;
-	private int c1;
+	private int c;
 	
-	public int getC1() {
-		return c1;
+	public int getC() {
+		return c;
 	}
 
-	public void setC1(int c1) {
-		this.c1 = c1;
+	public void setC(int c1) {
+		this.c = c1;
 	}
 
 	public ColidatingFields getColi() {
@@ -57,10 +57,15 @@ public class ControlColidatePawn {
 	}
 
 	private void colidateSideFields() {
-		for(int i = 0; i < getFields().get(1).size(); i++) {
-			if(getColi().colidate(getFields().get(1).get(i))) {
-				getColi().getFields().get(1).remove(i);
-			}
+		for(setC(0); getC() < getFields().get(1).size(); setC(getC() + 1)) {
+			checkColidation();
+		}
+	}
+
+	private void checkColidation() {
+		if(getColi().colidate(getFields().get(1).get(getC()))) {
+			getFields().get(1).remove(getC());
+			setC(getC() - 1);
 		}
 	}
 

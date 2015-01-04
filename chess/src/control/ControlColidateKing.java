@@ -13,15 +13,14 @@ public class ControlColidateKing {
 	private List<List<Integer[]>> possibleFields;
 	private List<List<Integer[]>> possibleFields2;
 	private boolean blocked = false;
-	private int counter;
-	private int counterFields;
+	private int c;
 	
-	public int getCounterFields() {
-		return counterFields;
+	public int getC() {
+		return c;
 	}
 
-	public void setCounterFields(int counterFields) {
-		this.counterFields = counterFields;
+	public void setC(int counterFields) {
+		this.c = counterFields;
 	}
 
 	public List<List<Integer[]>> getPossibleFields2() {
@@ -30,14 +29,6 @@ public class ControlColidateKing {
 
 	public void setPossibleFields2(List<List<Integer[]>> possibleFields) {
 		this.possibleFields2 = possibleFields;
-	}
-	
-	public int getCounter() {
-		return counter;
-	}
-	
-	public void setCounter(int counter) {
-		this.counter = counter;
 	}
 	
 	public boolean isBlocked() {
@@ -81,8 +72,8 @@ public class ControlColidateKing {
 	}
 
 	private void checkFieldsOwn(int i) {
-		for(int j = 0; j < getPossibleFields().get(i).size(); j++) {
-			checkForNullOwn(i, j);
+		for(setC(0); getC() < getPossibleFields().get(i).size(); setC(getC() + 1)) {
+			checkForNullOwn(i, getC());
 		}
 	}
 
@@ -91,12 +82,14 @@ public class ControlColidateKing {
 			checkColidateOwnFigureKing(i , j);
 		} else {
 			getPossibleFields().get(i).remove(j);
+			setC(getC() - 1);
 		}
 	}
 	
 	private void checkColidateOwnFigureKing(int i, int j) {
 		if(getColi().colidate(getPossibleFields().get(i).get(j))) {
 			getPossibleFields().get(i).remove(j);
+			setC(getC() - 1);
 		}
 	}
 	
@@ -114,37 +107,31 @@ public class ControlColidateKing {
 	}
 
 	private void checkFieldsOther(Player p, int a) {
-		for(int t = 0; t < getPossibleFields().get(a).size(); t++){
-			checkForNullOther(p, a, t);
+		for(setC(0); getC() < getPossibleFields().get(a).size(); setC(getC() + 1)){
+			checkForNullOther(p, a, getC());
 		}
 	}
 
 	private void checkForNullOther(Player p, int a, int t) {
 		if(getPossibleFields().get(a).get(t) != null) {
-			checkColidateOtherFigureKing(p,a,t);
+			blockedField(p,a,t);
 		} else {
 			getPossibleFields().get(a).remove(t);
 		}
-	}
-	
-	private void checkColidateOtherFigureKing(Player p, int a, int t) {
-		if(getColi().colidate(getPossibleFields().get(a).get(t))) {
-			blockedField(p,a,t);
-		}
-		
 	}
 
 	private void blockedField(Player p, int a, int t) {
 		setBlocked(false);
 		isFieldBlocked(p,getPossibleFields().get(a).get(t)[0], getPossibleFields().get(a).get(t)[1]);
 		if(isBlocked()) {
-			getPossibleFields().remove(getCounterFields());
-			setCounterFields(getCounterFields() - 1);
+			getPossibleFields().get(a).remove(getC());
+			setC(getC() - 1);
 		}
 	}
 	
 	private void isFieldBlocked(Player p, int y, int x) {
 		for(IFigure f : p.getFigureList()) {
+			f.possibleFields();
 			checkFigureType(y, x, f);
 		}
 	}
@@ -160,7 +147,7 @@ public class ControlColidateKing {
 	
 	private void isFieldBlockedByPawn(IFigure f, int y, int x) {
 		setPossibleFields2(f.getPosFields());
-		for(int i = 0; i < getPossibleFields2().size(); i++) {
+		for(int i = 0; i < getPossibleFields2().get(1).size(); i++) {
 			checkBlock(getPossibleFields2().get(1).get(i),y, x);
 		}
 	}
@@ -172,13 +159,13 @@ public class ControlColidateKing {
 	}
 
 	private void getFieldForCheckBlock(int y, int x, int i) {
-		for(int a = 0; a < getPossibleFields2().get(i).size(); a++) {
-			checkBlock(getPossibleFields2().get(i).get(a), y, x);
+		for(int b = 0; b < getPossibleFields2().get(i).size(); b++) {
+			checkBlock(getPossibleFields2().get(i).get(b), y, x);
 		}
 	}
 	
 	private void checkBlock(Integer[] pf, int y, int x) {
-		if(pf[0] == y && pf[1] == x) {
+		if(pf != null && pf[0] == y && pf[1] == x) {
 			setBlocked(true);
 		}
 	}

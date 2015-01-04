@@ -43,10 +43,10 @@ public class TestControlColidateBishop {
 
 	@Test
 	public void testColidateBishop() {
-		IFigure f = p1.getFigureList().get(12);
-		f.possibleFields();
-		test.colidateBishop(f, p1, p2);
-		pf = f.getPosFields();
+		IFigure fig = p1.getFigureList().get(12);
+		fig.possibleFields();
+		test.colidateBishop(fig, p1, p2);
+		pf = fig.getPosFields();
 		if(pf.get(0).isEmpty() && pf.get(1).isEmpty() && pf.get(2).isEmpty() && pf.get(3).isEmpty()) {
 			right = true;
 		}
