@@ -9,7 +9,6 @@ public class ControlColidatePawn {
 	
 	private ColidatingFields coli = new ColidatingFields();
 	private List<List<Integer[]>> fields;
-	private List<IFigure> figureList;
 	private int c;
 	
 	public int getC() {
@@ -27,13 +26,6 @@ public class ControlColidatePawn {
 	public void setColi(ColidatingFields coli) {
 		this.coli = coli;
 	}
-	public List<IFigure> getFigureList() {
-		return figureList;
-	}
-
-	public void setFigureList(List<IFigure> figureList) {
-		this.figureList = figureList;
-	}
 
 	public List<List<Integer[]>> getFields() {
 		return fields;
@@ -48,8 +40,6 @@ public class ControlColidatePawn {
 	}
 
 	public void colidateOwnFigurePawn(IFigure f, Player p) {
-		setFigureList(p.getFigureList());
-		setFigureList(getColi().getFigureList());
 		setFields(f.getPosFields());
 		getColi().colidateInFrontPawn(f,p);
 		colidateSideFields();

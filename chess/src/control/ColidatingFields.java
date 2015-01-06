@@ -1,7 +1,9 @@
 package control;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import model.Figure;
 import model.IFigure;
 import model.Player;
 
@@ -25,9 +27,21 @@ public class ColidatingFields {
 		return figureList;
 	}
 
-	public void setFigureList(List<IFigure> figureList) {
-		this.figureList = figureList;
+	public void setFigureList(List<IFigure> figList) {
+		this.figureList = new ArrayList<IFigure>();
+		for(IFigure fig : figList) {
+			IFigure f = deepCopy(fig);
+			this.figureList.add(f);
+		}
 	}
+	
+	private IFigure deepCopy(IFigure fig) {
+		IFigure copy = new Figure();
+		copy.setColor(fig.getColor());
+		copy.setField(fig.getField()[0], fig.getField()[1]);
+		return copy;
+	}
+
 	private void setColidate(boolean b) {
 		this.colidate = b;
 	}
@@ -189,7 +203,8 @@ public class ColidatingFields {
 	}
 	
 	public void colidateInFrontPawn(IFigure f, Player p) {
-		setFigureList(p.getFigureList());
+		List<IFigure> flist = p.getFigureList();
+		setFigureList(flist);
 		unmovedFigures(f);
 		setFields(f.getPosFields());
 		checkColiDirectionOwn(0);
