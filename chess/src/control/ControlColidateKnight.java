@@ -44,7 +44,6 @@ public class ControlColidateKnight {
 		setFigureList(p.getFigureList());
 		getColi().setFigureList(getFigureList());
 		getColi().unmovedFigures(f);
-		setFigureList(getColi().getFigureList());
 		setFields(f.getPosFields());
 		checkColidateField();
 		f.setPosFields(getFields());

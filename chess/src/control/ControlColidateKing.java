@@ -60,7 +60,6 @@ public class ControlColidateKing {
 		setFigureList(p.getFigureList());
 		getColi().setFigureList(getFigureList());
 		getColi().unmovedFigures(f);
-		setFigureList(getColi().getFigureList());
 		setPossibleFields(f.getPosFields());
 		checkColidateOwn();
 		f.setPosFields(getPossibleFields());
