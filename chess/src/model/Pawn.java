@@ -129,4 +129,8 @@ public class Pawn extends Figure{
 			getPosFields().get(0).add(f2);
 		}
 	}
+	
+	public String returnName() {
+		return "Pawn";
+	}
 }

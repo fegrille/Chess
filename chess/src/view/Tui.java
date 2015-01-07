@@ -1,88 +1,103 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-import model.Figure;
-import model.Player;
+import model.IFigure;
 import control.ControlGame;
 import control.Observer;
-import control.Subject;
 
 public class Tui implements Observer, Runnable {
 
 	private ControlGame controlGame;
-	private Player currentPlayer;
-	private Player currentOpponent;
-	private UIMethods uiMethods;
+	private List<IFigure> availableFigures;
+	private List<Integer[]> availableFields;
+	private String tmpCase = "";
 	
 	private String newLine = System.getProperty("line.separator");
 	
 	private Logger logger = Logger.getLogger("view.tui");
 	
 	public Tui(ControlGame controlGame) {
-		uiMethods = new UIMethods();
 		this.controlGame = controlGame;
+		availableFigures = new ArrayList<IFigure>();
+		availableFields = new ArrayList<Integer[]>();
 		controlGame.register(this);
 	}
 	
 	@Override
-	public void update(Player currentPlayer, Player currentOpponent) {
-		setCurrentPlayer(currentPlayer);
-		setCurrentOpponent(currentOpponent);
-		printTUI();
+	public void update(List<IFigure> availableFigures, List<Integer[]> availableFields, String tmpCase) {
+		setAvailableFigures(availableFigures);
+		setAvailableFields(availableFields);
+		setTmpCase(tmpCase);
+		updateTuiText();
 	}
 
 	@Override
 	public void run() {
 		Scanner scan = new Scanner(System.in);
 		String s;
-		Figure f = null;
-		int[] field = null;
-		while(true) {
-			while(checkFigure(s = scan.next())) {
-				continue;
+		while(!controlGame.getControlEG().getWin()) {
+			s = scan.next();
+			controlGame.setChoise(s);	
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-			//setFigure
-			uiMethods.selectFigure(s);
-			//update Text
-			while(checkField(s = scan.next())) {
-				continue;
-			}
-			//setField
-			uiMethods.selectField(s);
-			controlGame.figureChosen(getCurrentPlayer(), getCurrentOpponent(), f, field);
 		}
-	}
-	
-	private boolean checkFigure(String string) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	private boolean checkField(String string) {
-		// TODO Auto-generated method stub
-		return false;
+		scan.close();
 	}
 
-	public void printTUI() {	
-		logger.info(newLine + "Please select Figure!");
+	public void updateTuiText() {
+        switch (this.tmpCase) {
+        case "figure":
+        	logger.info(newLine + "Please select Figure! Write the Index of the Figure!");
+        	int index = 0;
+        	for(IFigure f : getAvailableFigures()) {
+        		logger.info(newLine + index + " " + f.returnName() + f.getField().toString());
+        		index++;
+        	}
+            break;
+        case "field":
+        	logger.info(newLine + "Please select Field or press \"exit\" to return to Figure selection!");
+        	logger.info(newLine + "Write the Index of the Figure!");
+        	index = 0;
+        	for(Integer[] i : getAvailableFields()) {
+        		logger.info(newLine + index + " " + i.toString());
+        		index++;
+        	}
+            break;
+        case "wrong":
+        	logger.info(newLine + "You wrote a wrong value!");
+            break;
+        }
 	}
 
-	public Player getCurrentPlayer() {
-		return currentPlayer;
+	public List<IFigure> getAvailableFigures() {
+		return availableFigures;
 	}
 
-	public void setCurrentPlayer(Player currentPlayer) {
-		this.currentPlayer = currentPlayer;
+	public void setAvailableFigures(List<IFigure> availableFigures) {
+		this.availableFigures = availableFigures;
 	}
 
-	public Player getCurrentOpponent() {
-		return currentOpponent;
+	public List<Integer[]> getAvailableFields() {
+		return availableFields;
 	}
 
-	public void setCurrentOpponent(Player currentOpponent) {
-		this.currentOpponent = currentOpponent;
+	public void setAvailableFields(List<Integer[]> availableFields) {
+		this.availableFields = availableFields;
+	}
+
+	public String getTmpCase() {
+		return tmpCase;
+	}
+
+	public void setTmpCase(String tmpCase) {
+		this.tmpCase = tmpCase;
 	}
 	
 }

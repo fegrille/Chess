@@ -198,7 +198,7 @@ public class ControlEndGame {
 
 	private void compareBlockingFields(IFigure f) {
 		f.possibleFields();
-		getCol().colidate(f, getPl(), getPlOpp()); //TODO löscht leider figuren aus Liste
+		getCol().colidate(f, getPl(), getPlOpp());
 		for(List<Integer[]> fields : f.getPosFields()) {
 			for(Integer[] field : fields) {
 				compareAvailableBlockFields(field);

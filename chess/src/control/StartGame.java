@@ -1,6 +1,5 @@
 package control;
 
-import java.awt.EventQueue;
 
 import view.Gui;
 import view.Tui;

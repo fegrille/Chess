@@ -18,4 +18,7 @@ public class Queen extends Figure{
 		setPosFields(move.getFieldList());
 	}
 	
+	public String returnName() {
+		return "Queen";
+	}
 }

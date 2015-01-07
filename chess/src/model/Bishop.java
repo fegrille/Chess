@@ -29,6 +29,9 @@ public class Bishop extends Figure{
 		move.setFields(new ArrayList<Integer[]>());
 		move.movesBishop(getY(), getX());
 		setPosFields(move.getFieldList());
-	}	
+	}
 
+	public String returnName() {
+		return "Bishop";
+	}
 }

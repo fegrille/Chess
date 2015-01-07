@@ -57,4 +57,8 @@ public class Figure implements IFigure{
 	public void setPosFields(List<List<Integer[]>> posFields) {
 		this.posFields = posFields;
 	}
+	
+	public String returnName() {
+		return "";
+	}
 }

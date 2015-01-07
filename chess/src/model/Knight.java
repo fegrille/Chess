@@ -137,4 +137,7 @@ public class Knight extends Figure{
 		}
 	}
 
+	public String returnName() {
+		return "Knight";
+	}
 }

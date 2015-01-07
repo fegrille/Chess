@@ -19,4 +19,7 @@ public class Rook extends Figure{
 		setPosFields(move.getFieldList());
 	}
 
+	public String returnName() {
+		return "Rook";
+	}
 }

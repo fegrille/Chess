@@ -72,5 +72,9 @@ public class King extends Figure{
 			setCounter(getCounter() - 1);
 		}
 	}
+	
+	public String returnName() {
+		return "King";
+	}
 
 }

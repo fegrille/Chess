@@ -1,8 +1,10 @@
 package control;
 
-import model.Player;
+import java.util.List;
+
+import model.IFigure;
 
 public interface Observer {
 
-	public void update(Player currentPlayer, Player currentOpponent);
+	public void update(List<IFigure> availableFigures, List<Integer[]> availableFields, String tmpCase);
 }
