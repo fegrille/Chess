@@ -59,7 +59,6 @@ public class ControlColidate {
 	private void updatePossibleFields(Player p, Player p2) {
 		for(int i = 0; i < p.getFigureList().size(); i++) {
 			IFigure f = p.getFigureList().get(i);
-			f.possibleFields();
 			isPawn(f,p,p2);
 			isRook(f,p,p2);
 			isBishop(f,p,p2);
@@ -78,6 +77,7 @@ public class ControlColidate {
 
 	public void isPawn(IFigure f, Player p, Player p2) {
 		if(f instanceof Pawn) {
+			f.possibleFields();
 			getColPaw().colidateOwnFigurePawn(f,p);
 			getColPaw().colidateOtherFigurePawn(f, p2);
 		}
@@ -85,24 +85,28 @@ public class ControlColidate {
 	
 	public void isRook(IFigure f, Player p, Player p2) {
 		if(f instanceof Rook) {
+			f.possibleFields();
 			getColRook().colidateRook(f, p, p2);
 		}
 	}
 	
 	public void isBishop(IFigure f, Player p, Player p2) {
 		if(f instanceof Bishop) {
+			f.possibleFields();
 			getColBis().colidateBishop(f, p, p2);
 		}
 	}
 
 	public void isKnight(IFigure f, Player p, Player p2) {
 		if(f instanceof Knight) {
+			f.possibleFields();
 			getColKnig().colidateOwnFigureKnight(f,p);
 		}
 	}
 
 	public void isQueen(IFigure f, Player p, Player p2) {
 		if(f instanceof Queen) {
+			f.possibleFields();
 			getColQueen().colidateQueen(f, p, p2);
 		}
 	}

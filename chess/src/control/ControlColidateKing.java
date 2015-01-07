@@ -129,7 +129,8 @@ public class ControlColidateKing {
 	}
 	
 	private void isFieldBlocked(Player p, int y, int x) {
-		for(IFigure f : p.getFigureList()) {
+		for(int i = 0; i < (p.getFigureList().size() - 1); i++) {
+			IFigure f = p.getFigureList().get(i);
 			f.possibleFields();
 			checkFigureType(y, x, f);
 		}
