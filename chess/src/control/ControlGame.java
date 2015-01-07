@@ -72,6 +72,7 @@ public class ControlGame implements Subject {
 				continue;
 			}
 			setChosenFigure(Integer.parseInt(getChoise()));
+			setPossiFields(getChosenFigure());
 			setChoise("");
 			setTask("field");
 			notifyObserver();
@@ -110,7 +111,6 @@ public class ControlGame implements Subject {
 		try {
 			value = Integer.parseInt(choise2);
 		} catch (Exception e) {
-			notifyObserver();
 			return false;
 		}
 		if(value >= 0 && value < getPossiFields().size()) {
@@ -124,19 +124,12 @@ public class ControlGame implements Subject {
 		try {
 			value = Integer.parseInt(choise2);
 		} catch (Exception e) {
-			notifyObserver();
 			return false;
 		}
 		if(value >= 0 && value < getPossiFigures().size()) {
 			return true;
 		}
 		return false;
-	}
-	
-	private boolean checkFigure(IFigure f) {
-		f.possibleFields();
-		col.colidate(f, getCurrentPlayer(), getPlayerOpponent());
-		return !f.getPosFields().isEmpty();
 	}
 	
 	public Player getCurrentPlayer() {
@@ -207,6 +200,15 @@ public class ControlGame implements Subject {
 			}
 		}
 		this.possiFigures = tmpFigures;
+	}
+	
+	private boolean checkFigure(IFigure f) {
+		f.possibleFields();
+		col.colidate(f, getCurrentPlayer(), getPlayerOpponent());
+		if(!f.getPosFields().isEmpty()) {
+			return true;
+		}
+		return false;
 	}
 
 	public List<Integer[]> getPossiFields() {

@@ -49,6 +49,7 @@ public class Tui implements Observer, Runnable {
 			}
 		}
 		scan.close();
+		logger.info(newLine + "Player " + controlGame.getPlayerOpponent().getCol() + " has won! Concratulation!");
 	}
 
 	public void updateTuiText() {
@@ -57,7 +58,7 @@ public class Tui implements Observer, Runnable {
         	logger.info(newLine + "Please select Figure! Write the Index of the Figure!");
         	int index = 0;
         	for(IFigure f : getAvailableFigures()) {
-        		logger.info(newLine + index + " " + f.returnName() + f.getField().toString());
+        		logger.info(newLine + index + " " + f.returnName() + "[" + f.getField()[0] + "," + f.getField()[1] + "]");
         		index++;
         	}
             break;
@@ -66,7 +67,7 @@ public class Tui implements Observer, Runnable {
         	logger.info(newLine + "Write the Index of the Figure!");
         	index = 0;
         	for(Integer[] i : getAvailableFields()) {
-        		logger.info(newLine + index + " " + i.toString());
+        		logger.info(newLine + index + " " + "[" + i[0] + "," + i[1] + "]");
         		index++;
         	}
             break;
