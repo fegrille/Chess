@@ -1,7 +1,5 @@
 package control;
 
-import java.util.List;
-
 import model.Bishop;
 import model.IFigure;
 import model.King;
@@ -13,14 +11,12 @@ import model.Rook;
 
 public class ControlColidate {
 	
-	private List<IFigure> figureList;
 	private ControlColidateBishop colBis = new ControlColidateBishop();
 	private ControlColidatePawn colPaw = new ControlColidatePawn();
 	private ControlColidateKnight colKnig = new ControlColidateKnight();
 	private ControlColidateQueen colQueen = new ControlColidateQueen();
 	private ControlColidateKing colKing = new ControlColidateKing();
 	private ControlColidateRook colRook = new ControlColidateRook();
-	private boolean colidate = false;
 	
 	public ControlColidateBishop getColBis() {
 		return colBis;
@@ -43,9 +39,6 @@ public class ControlColidate {
 
 	public ControlColidateRook getColRook() {
 		return colRook;
-	}
-	public boolean isColidate() {
-		return colidate;
 	}
 	
 	public  void colidate(IFigure f, Player p, Player p2) {
@@ -117,18 +110,6 @@ public class ControlColidate {
 			getColKing().colidateOwnFigureKing(f,p);
 			getColKing().colidateOtherFigureKing(f,p2);
 		}
-	}
-
-	public void setColidate(boolean colidate) {
-		this.colidate = colidate;
-	}
-
-	public List<IFigure> getFigureList() {
-		return figureList;
-	}
-
-	public void setFigureList(List<IFigure> figureList) {
-		this.figureList = figureList;
 	}
 
 }

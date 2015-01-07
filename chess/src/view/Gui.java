@@ -33,41 +33,47 @@ public class Gui extends JFrame {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 604, 425);
-		JLabel btBild = new JLabel();
+		JLabel btBild = new JLabel(new ImageIcon("C:/Users/Felix/git/Chess/chess/src/images/Schachhintergrund.png"));
 		Image field, background, queen, king, rook, bishop, knight, pawn;
 		
 		JMenuBar menuBar = new JMenuBar();
-		try {
-			background = ImageIO.read(getClass().getResource("C:/Users/Felix/git/Chess/chess/src/images/Schachhintergrund.png"));
-			btBild_1 = new JLabel(new ImageIcon(background));
-			btBild_1.setBounds(new Rectangle(2, 2, 699, 434));
-			btBild_1.setText("");
-		} 
-		catch(IllegalArgumentException iae) {
-			JOptionPane.showMessageDialog(this, "Grafikdatei nicht gefunden!");
-	    }
-	    catch(IOException ioe) {
-	    	JOptionPane.showMessageDialog(this, "Fehler beim Einlesen der Grafikdatei!");
-	    }
 		setJMenuBar(menuBar);
 		contentPane = new JPanel();
+		btBild.setLabelFor(contentPane);
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		
+		JButton btnStartGame = new JButton("Start Game");
+		
+		JButton btnCloseGame = new JButton("Close Game");
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(btBild_1, GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
-					.addGap(287))
+					.addComponent(btBild, GroupLayout.PREFERRED_SIZE, 585, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnStartGame)
+						.addComponent(btnCloseGame))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(btBild_1, GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(305)
+							.addComponent(btnCloseGame)
+							.addGap(15)
+							.addComponent(btnStartGame))
+						.addComponent(btBild, GroupLayout.PREFERRED_SIZE, 355, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(gl_contentPane);
+		contentPane.add(btBild,0);
+		contentPane.add(btnStartGame,0);
+		contentPane.add(btnCloseGame,0);
 	}
 }
