@@ -4,16 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class King extends Figure{
-	
-	private int counter;
-
-	public int getCounter() {
-		return counter;
-	}
-
-	public void setCounter(int counter) {
-		this.counter = counter;
-	}
 
 	public King(int y, int x, char color) {
 		setField(y,x);

@@ -49,26 +49,33 @@ public class Tui implements Observer, Runnable {
 			}
 		}
 		scan.close();
-		logger.info(newLine + "Player " + controlGame.getPlayerOpponent().getCol() + " has won! Concratulation!");
+		logger.info(newLine + "Player " + controlGame.getPlayerOpponent().getCol() + " has won! Congratulation!");
 	}
 
 	public void updateTuiText() {
         switch (this.tmpCase) {
         case 'f':
-        	logger.info(newLine + "Please select Figure! Write the Index of the Figure!");
+        	logger.info(newLine + "Figures that can be moved:");
         	int index = 0;
         	for(IFigure f : getAvailableFigures()) {
         		logger.info(newLine + index + " " + f.returnName() + "[" + f.getField()[0] + "," + f.getField()[1] + "]");
         		index++;
         	}
+        	logger.info(newLine + "Please select the figure you want to move with entering the index:");
             break;
         case 's':
-        	logger.info(newLine + "Please select Field or press \"exit\" to return to Figure selection!");
-        	logger.info(newLine + "Write the Index of the Figure!");
         	index = 0;
-        	for(Integer[] i : getAvailableFields()) {
-        		logger.info(newLine + index + " " + "[" + i[0] + "," + i[1] + "]");
-        		index++;
+        	if(getAvailableFields().isEmpty()) {
+        		logger.info(newLine + "Figure can`t be moved please choose another figure:");
+        		// wieder zurück zur figuren auswahl gehen
+        	} else {
+        		logger.info(newLine + "These are the fields you can move to:");
+        		for(Integer[] i : getAvailableFields()) {
+        			logger.info(newLine + index + " " + "[" + i[0] + "," + i[1] + "]");
+        			index++;
+        		}
+        		logger.info(newLine + "Please select Field or press \"exit\" to return to Figure selection!");
+            	logger.info(newLine + "Write the Index of the Field!");
         	}
             break;
         default:
