@@ -100,7 +100,11 @@ public class Tui implements Observer, Runnable {
 	}
 
 	private void fillField() {
-		//for(IFigure f : )
+		for(IFigure f : spieler) {
+			int index = 0;
+			String s = "" + index + f.returnName().charAt(0) + f.getColor();
+		    index++;
+		}
 		
 	}
 
