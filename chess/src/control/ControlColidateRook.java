@@ -24,7 +24,7 @@ public class ControlColidateRook {
 
 	public void colidateRook(IFigure f, Player p, Player p2) {
 		getColi().colidateOwnFigure(f, p);
-		getColi().colidateOwnFigure(f, p2);
+		getColi().colidateOtherFigure(f, p2);
 	}
 
 }
