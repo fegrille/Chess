@@ -71,5 +71,20 @@ public class TestControlColidatePawn {
 		}
 		assertTrue(right);
 	}
+	
+	@Test
+	public void testOwnAndOtherFigures() {
+		IFigure f = p1.getFigureList().get(2);
+		p1.getFigureList().get(3).setField(3, 4);
+		p1.getFigureList().get(1).setField(3, 2);
+		p1.getFigureList().get(0).setField(3, 3);
+		f.possibleFields();
+		test.colidateOwnFigurePawn(f, p1);
+		test.colidateOtherFigurePawn(f, p2);
+		if(f.getPosFields().get(0).isEmpty() && f.getPosFields().get(1).isEmpty()) {
+			right = true;
+		}
+		assertTrue(right);
+	}
 
 }
