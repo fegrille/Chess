@@ -10,17 +10,6 @@ import model.Queen;
 import model.Rook;
 
 public class ControlEndGame {
-	/*
-	 * Gewonnen: setzt gegnerischen könig schach:
-	 * 1. könig kann sich nicht bewegen.
-	 * 2. gegner kann die Figur nicht schmeißen.
-	 * 3. gegner kann keine Figur so bewegen, dass König nicht mehr im Schach ist
-	 * 
-	 * Unentschieden:
-	 * 1. König gegen gegn. König + Läufer oder König + Pferd
-	 * 2. König + Läufer gegen gegn. König + Läufer (Beide Läufer auf der gleichen Farbe)
-	 * 3.
-	 */
 	
 	private boolean win = false;
 	private boolean kingCantMove = false;
@@ -153,7 +142,7 @@ public class ControlEndGame {
 	private void getBothOrderedFieldsBishopPlus(int xBigField, int xSmallField, int yBigField, int ySmallField) {
 		int y = ySmallField;
 		for(int x = xSmallField; (x + 1) < xBigField; x++) {
-			int i[] = {x + 1, y + 1};
+			int i[] = {y + 1, x + 1};//TODO
 			getPossBlockFields().add(i);
 			y++;
 		}
@@ -162,7 +151,7 @@ public class ControlEndGame {
 	private void getBothOrderedFieldsBishopMinus(int xBigField, int xSmallField, int yBigField, int ySmallField) {
 		int y = yBigField;
 		for(int x = xSmallField; (x + 1) < xBigField; x++) {
-			int i[] = {x + 1, y - 1};
+			int i[] = {y - 1, x + 1};
 			getPossBlockFields().add(i);
 			y--;
 		}
@@ -249,9 +238,12 @@ public class ControlEndGame {
 		int size = getPl().getFigureList().size();
 		IFigure king = getPl().getFigureList().get(size - 1);
 		getCol().colidate(getPl(), getPlOpp());
-		if(king.getPosFields().size() == 0) {
-			setKingCantMove(true);
+		for(List<Integer[]> l : king.getPosFields()) {
+			if(l.size() != 0) {
+				return;
+			}
 		}
+		setKingCantMove(true);
 	}
 
 	//Getter and Setter
