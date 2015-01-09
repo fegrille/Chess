@@ -13,8 +13,12 @@ public class Tui implements Observer, Runnable {
 
 	private ControlGame controlGame;
 	private List<IFigure> availableFigures;
+	private List<IFigure> spieler;
+	private List<IFigure> gegenspieler;
 	private List<Integer[]> availableFields;
 	private char tmpCase = ' ';
+	private List<List<String>> fieldlines;
+	private StringBuilder field;
 	
 	private String newLine = System.getProperty("line.separator");
 	
@@ -55,7 +59,18 @@ public class Tui implements Observer, Runnable {
 	public void updateTuiText() {
         switch (this.tmpCase) {
         case 'f':
+        	field = new StringBuilder();
+        	buildField();
+        	fillField();
+        	field.append(newLine);
+        	for( int i = 0; i < fieldlines.size(); i++) {
+        		for(int a = 0; a < fieldlines.get(i).size(); a++) {
+        			field.append(fieldlines.get(i).get(a));
+        		}
+        		field.append(newLine);
+        	}
         	StringBuilder figures = new StringBuilder();
+        	figures.append(field);
         	figures.append(newLine + "Figures that can be moved:" + newLine);
         	int index = 0;
         	for(IFigure f : getAvailableFigures()) {
@@ -74,7 +89,7 @@ public class Tui implements Observer, Runnable {
         		fields.append(index + " " + "[" + i[0] + "," + i[1] + "]" + newLine);
         		index++;
         	}
-        	fields.append("Please select Field or press \"exit\" to return to Figure selection!" + newLine);
+        	fields.append("Please select a Field to move you figure" + newLine + "or select -1 to return to Figure selection!" + newLine);
             fields.append("Write the Index of the Field!");
         	logger.info(newLine + fields);
             break;
@@ -82,6 +97,33 @@ public class Tui implements Observer, Runnable {
         	logger.info(newLine + "You wrote a wrong value!");
             break;
         }
+	}
+
+	private void fillField() {
+		//for(IFigure f : )
+		
+	}
+
+	private void buildField() {
+		fieldlines = new ArrayList<List<String>>();
+		int c = 1;
+		for(int i = 10; i > 0; i--) {
+			fieldlines.add(new ArrayList<String>());
+		}
+		for(int i = 9; i > 0; i--) {
+			if(i == 9) {
+				fieldlines.get(i).add(" ");
+				for(int b = 1; b < 9; b++) {
+					fieldlines.get(i).add(" " + b + " ");
+				}
+			} else {
+				fieldlines.get(c).add("" + i);
+				for(int a = 0; a < 8; a++) {
+					fieldlines.get(c).add("[ ]");
+				}
+				c++;
+			}
+		}
 	}
 
 	public List<IFigure> getAvailableFigures() {
