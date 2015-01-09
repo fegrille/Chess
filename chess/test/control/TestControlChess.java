@@ -6,7 +6,6 @@ import model.Field;
 import model.Figure;
 import model.IFigure;
 import model.Player;
-import model.Queen;
 
 import org.junit.After;
 import org.junit.Before;
@@ -41,17 +40,17 @@ public class TestControlChess {
 		p2 = null;
 		lastMovedFigure = null;
 	}
-	/*
+
 	@Test
 	public void testCheckChess() {
-		boolean testChess = false;
-		lastMovedFigure = new Queen(5, 5, 'b');
-		lastMovedFigure.possibleFields();
+		boolean testChess = true;
+		lastMovedFigure = p2.getFigureList().get(14); //Queen
+		lastMovedFigure.setField(5, 5);
 		p1.getFigureList().get(p1.getFigureList().size() - 1).setField(3, 5);
-		p1.getFigureList().get(p1.getFigureList().size() - 1).possibleFields();
+		col.colidate(p1, p2);
 		controlChess.checkChess(p1, lastMovedFigure, col, p2);
 		assertEquals(controlChess.isChess(), testChess);
-	}*/
+	}
 
 	@Test
 	public void testIsChess() {
