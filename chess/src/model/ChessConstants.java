@@ -27,8 +27,8 @@ public abstract class ChessConstants {
 	public static final int XKORDEIGHT = 8;
 	
 	public static final int MAXPAWNS = 8;
-	public static final int KINGXKORDS = 4;
-	public static final int QUEENXKORDS = 5;
+	public static final int KINGXKORDS = 5;
+	public static final int QUEENXKORDS = 4;
 	public static final int[] KNIGHTXKORDS = {2, 7};
 	public static final int[] ROOKXKORDS = {1, 8};
 	public static final int[] BISHOPXKORDS = {3, 6};
