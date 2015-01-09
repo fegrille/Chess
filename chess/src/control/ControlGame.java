@@ -203,10 +203,11 @@ public class ControlGame implements Subject {
 	}
 	
 	private boolean checkFigure(IFigure f) {
-		f.possibleFields();
 		col.colidate(getCurrentPlayer(), getPlayerOpponent());
-		if(!f.getPosFields().isEmpty()) {
-			return true;
+		for(List<Integer[]> l : f.getPosFields()) {
+			if(l.size() != 0) {
+				return true;
+			}
 		}
 		return false;
 	}
