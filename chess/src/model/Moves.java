@@ -55,7 +55,7 @@ public class Moves implements IMoves {
 	}
 	
 	public void movesQueen(int yKord, int xKord) {
-		setFieldList(new ArrayList<>());
+		setFieldList(new ArrayList<List<Integer[]>>());
 		setyKord(yKord);
 		setxKord(xKord);
 		moveUpFields();
@@ -71,7 +71,7 @@ public class Moves implements IMoves {
 	}
 	
 	public void movesBishop(int yKord, int xKord) {
-		setFieldList(new ArrayList<>());
+		setFieldList(new ArrayList<List<Integer[]>>());
 		setyKord(yKord);
 		setxKord(xKord);
 		moveRightUp();
@@ -83,7 +83,7 @@ public class Moves implements IMoves {
 	}
 	
 	public void movesRook(int yKord, int xKord) {
-		setFieldList(new ArrayList<>());
+		setFieldList(new ArrayList<List<Integer[]>>());
 		setyKord(yKord);
 		setxKord(xKord);
 		moveUpFields();

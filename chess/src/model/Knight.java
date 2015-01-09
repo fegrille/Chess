@@ -22,7 +22,7 @@ public class Knight extends Figure{
 	}
 	
 	public void topFields() {
-		List<Integer[]> fields = new ArrayList<>();
+		List<Integer[]> fields = new ArrayList<Integer[]>();
 		getPosFields().add(fields);
 		int y = getY();
 		int x = getX();

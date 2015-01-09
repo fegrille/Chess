@@ -216,7 +216,7 @@ public class ControlGame implements Subject {
 	}
 
 	public void setPossiFields(IFigure fig) {
-		List<Integer[]> tmpList = new ArrayList<>();
+		List<Integer[]> tmpList = new ArrayList<Integer[]>();
 		fig.possibleFields();
 		col.colidate(fig, getCurrentPlayer(), getPlayerOpponent());
 		for(List<Integer[]> list : fig.getPosFields()) {

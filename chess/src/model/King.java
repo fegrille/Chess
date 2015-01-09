@@ -44,7 +44,7 @@ public class King extends Figure{
 	}
 	
 	private void addField(int x, int y) {
-		List<Integer[]> fields = new ArrayList<>();
+		List<Integer[]> fields = new ArrayList<Integer[]>();
 		Integer[] posField = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if(checkCordinsideAxis(x) || checkCordinsideAxis(y)) {
 			posField = null;
