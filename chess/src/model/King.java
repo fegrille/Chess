@@ -39,8 +39,6 @@ public class King extends Figure{
 		addField(getX(),getY()+1);
 		
 		addField(getX()+1,getY()+1);
-		
-		removeNullFields();
 	}
 	
 	private void addField(int x, int y) {
@@ -58,19 +56,6 @@ public class King extends Figure{
 
 	private boolean checkCordinsideAxis(int axis) {
 		return axis > ChessConstants.MAXAXIS || axis < ChessConstants.MINAXIS;
-	}
-	
-	private void removeNullFields() {
-		for(setCounter(0); getCounter() < getPosFields().size(); setCounter(getCounter() + 1)) {
-			removeField();
-		}
-	}
-
-	private void removeField() {
-		if(getPosFields().get(getCounter()) == null) {
-			getPosFields().remove(getCounter());
-			setCounter(getCounter() - 1);
-		}
 	}
 	
 	public String returnName() {

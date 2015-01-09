@@ -26,6 +26,16 @@ public class TestFigure {
 		assertTrue(right);
 	}
 	
+	@Test
+	public void testReturnName() {
+		boolean testright = false;
+		String name = test.returnName();
+		if(name.equals("")) {
+			testright = true;
+		}
+		assertTrue(testright);
+	}
+	
 	@After
 	public void tearDown() {
 		test = null;

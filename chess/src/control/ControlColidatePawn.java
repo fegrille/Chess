@@ -23,10 +23,6 @@ public class ControlColidatePawn {
 		return coli;
 	}
 
-	public void setColi(ColidatingFields coli) {
-		this.coli = coli;
-	}
-
 	public List<List<Integer[]>> getFields() {
 		return fields;
 	}

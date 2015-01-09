@@ -50,6 +50,14 @@ public class TestKnight {
 		assertTrue(testright);
 	}
 	
+	@Test
+	public void testReturnName() {
+		String name = test.returnName();
+		if(name.equals("Knight")) {
+			testright = true;
+		}
+		assertTrue(testright);
+	}
 	
 	@After
 	public void tearDown() {

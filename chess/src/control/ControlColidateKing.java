@@ -108,15 +108,7 @@ public class ControlColidateKing {
 
 	private void checkFieldsOther(Player p, int a) {
 		for(setC(0); getC() < getPossibleFields().get(a).size(); setC(getC() + 1)){
-			checkForNullOther(p, a, getC());
-		}
-	}
-
-	private void checkForNullOther(Player p, int a, int t) {
-		if(getPossibleFields().get(a).get(t) != null) {
-			blockedField(p,a,t);
-		} else {
-			getPossibleFields().get(a).remove(t);
+			blockedField(p,a,getC());
 		}
 	}
 

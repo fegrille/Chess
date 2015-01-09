@@ -180,6 +180,15 @@ public class TestPawn {
 		assertTrue(testright);
 	}
 	
+	@Test
+	public void testReturnName() {
+		String name = test.returnName();
+		if(name.equals("Pawn")) {
+			testright = true;
+		}
+		assertTrue(testright);
+	}
+	
 	@After
 	public void tearDown() {
 		test = null;
