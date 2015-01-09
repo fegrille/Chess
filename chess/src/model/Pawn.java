@@ -43,8 +43,8 @@ public class Pawn extends Figure{
 	}
 	
 	public void possibleFieldsBlack() {
-		List<Integer[]> fields = new ArrayList<>();
-		List<Integer[]> fields2 = new ArrayList<>();
+		List<Integer[]> fields = new ArrayList<Integer[]>();
+		List<Integer[]> fields2 = new ArrayList<Integer[]>();
 		getPosFields().add(fields);
 		getPosFields().add(fields2);
 		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
@@ -105,8 +105,8 @@ public class Pawn extends Figure{
 	}
 	
 	public void possibleFieldsWhite() {
-		List<Integer[]> fields = new ArrayList<>();
-		List<Integer[]> fields2 = new ArrayList<>();
+		List<Integer[]> fields = new ArrayList<Integer[]>();
+		List<Integer[]> fields2 = new ArrayList<Integer[]>();
 		getPosFields().add(fields);
 		getPosFields().add(fields2);
 		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
