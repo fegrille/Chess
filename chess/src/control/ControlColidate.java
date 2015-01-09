@@ -43,7 +43,6 @@ public class ControlColidate {
 	
 	public  void colidate(Player p, Player p2) {
 		updatePossibleFieldsKing(p,p2);
-		updatePossibleFieldsKing(p2,p);
 		updatePossibleFields(p,p2);
 		updatePossibleFields(p2,p);
 		
@@ -107,9 +106,32 @@ public class ControlColidate {
 	public void isKing(IFigure f, Player p, Player p2) {
 		if(f instanceof King) {
 			f.possibleFields();
+			IFigure k = getKingP2(p2);
+			k.possibleFields();
 			getColKing().colidateOwnFigureKing(f,p);
 			getColKing().colidateOtherFigureKing(f,p2);
+			getColKing().colidateOwnFigureKing(k, p2);
+			getColKing().colidateOtherFigureKing(k, p);
 		}
+	}
+
+	private IFigure getKingP2(Player p2) {
+		IFigure king = null;
+		for(IFigure k : p2.getFigureList()) {
+			king = returnKing(k);
+		}
+		return king;
+	}
+
+	/**
+	 * @param k
+	 */
+	private IFigure returnKing(IFigure k) {
+		IFigure king = null;
+		if(k instanceof King) {
+			king = k;
+		}
+		return king;
 	}
 
 }

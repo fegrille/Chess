@@ -3,6 +3,7 @@ package control;
 import java.util.List;
 
 import model.IFigure;
+import model.King;
 import model.Pawn;
 import model.Player;
 
@@ -129,11 +130,20 @@ public class ControlColidateKing {
 	}
 	
 	private void isFieldBlocked(Player p, int y, int x) {
-		for(int i = 0; i < (p.getFigureList().size() - 1); i++) {
+		for(int i = 0; i < p.getFigureList().size(); i++) {
 			IFigure f = p.getFigureList().get(i);
+			checkForKing(y,x,f);
+		}
+	}
+
+	private void checkForKing(int y, int x, IFigure f) {
+		if(f instanceof King) {
+			checkFigureType(y, x, f);
+		} else {
 			f.possibleFields();
 			checkFigureType(y, x, f);
 		}
+		
 	}
 
 	private void checkFigureType(int y, int x, IFigure f) {
