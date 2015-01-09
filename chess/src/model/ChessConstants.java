@@ -43,4 +43,11 @@ public abstract class ChessConstants {
 	public static final int LISTELESEVEN = 6;
 	public static final int LISTELEEIGHT = 7;
 	
+	public static final String PAWN = "PAWN";
+	public static final String BISHOP = "BISHOP";
+	public static final String ROOK = "ROOK";
+	public static final String KNIGHT = "KNIGHT";
+	public static final String QUEEN = "QUEEN";
+	public static final String KING = "KING";
+	
 }

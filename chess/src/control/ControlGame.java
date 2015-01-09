@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.Field;
 import model.IFigure;
+import model.Pawn;
 import model.Player;
 
 
@@ -79,16 +80,20 @@ public class ControlGame implements Subject {
 			while(!checkFieldChoise(getChoise())) {
 				continue;
 			}
+			if(Integer.parseInt(getChoise()) == -1) {
+				continue;
+			}
 			setChosenField(Integer.parseInt(getChoise()));
 			setChoise("");
 			moveFigure(getCurrentPlayer(), getPlayerOpponent(), getChosenFigure(), getChosenField());
-			if(getCurrentPlayer().equals(p1)){
+			if(getCurrentPlayer().equals(p1)) {
 				setCurrentPlayer(p2);
 				setPlayerOpponent(p1);
 			} else {
 				setCurrentPlayer(p1);
 				setPlayerOpponent(p2);
 			}
+			getControlEG().controlWin(getCurrentPlayer(), getPlayerOpponent(), col, getChosenFigure());
 		}
 	}
 	
@@ -101,6 +106,9 @@ public class ControlGame implements Subject {
 		}
 		for(IFigure f : currentPl.getFigureList()) {
 			if(f.equals(chosenFig)) {
+				if(f instanceof Pawn) {
+					((Pawn)f).setFirstMove(false);
+				}
 				f.setField(newField[0], newField[1]);
 			}
 		}
@@ -113,7 +121,7 @@ public class ControlGame implements Subject {
 		} catch (Exception e) {
 			return false;
 		}
-		if(value >= 0 && value < getPossiFields().size()) {
+		if(value >= 0 && value < getPossiFields().size() || value == -1) {
 			return true;
 		}
 		return false;

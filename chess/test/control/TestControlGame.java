@@ -53,5 +53,20 @@ public class TestControlGame {
 	public void testCheckFigure() {
 		
 	}
+	
+	@Test
+	public void testSetPossibleFields() {
+		col.colidate(p1, p2);
+		
+		
+	}
+	
+	@Test
+	public void testMoveFigure() {
+		col.colidate(p1, p2);
+		IFigure fig = p1.getFigureList().get(0);
+		test.setChoise("0");
+		
+	}
 
 }
