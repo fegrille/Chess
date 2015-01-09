@@ -34,5 +34,13 @@ public abstract class ChessConstants {
 	public static final int[] BISHOPXKORDS = {3, 6};
 	public static final int[] PAWNYKORDS = {2, 7};
 	
+	public static final int LISTELEONE = 0;
+	public static final int LISTELETWO = 1;
+	public static final int LISTELETHREE = 2;
+	public static final int LISTELEFOUR = 3;
+	public static final int LISTELEFIVE = 4;
+	public static final int LISTELESIX = 5;
+	public static final int LISTELESEVEN = 6;
+	public static final int LISTELEEIGHT = 7;
 	
 }
