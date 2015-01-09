@@ -33,10 +33,20 @@ public class ControlColidatePawn {
 	
 	public void colidateOtherFigurePawn(IFigure f, Player p2) {
 		getColi().colidateInFrontPawn(f,p2);
+		setFields(f.getPosFields());
 		checkColiateSideFieldsOther();
 	}
 
 	private void checkColiateSideFieldsOther() {
+		if(getFields().get(1) != null) {
+			iterateFields();
+		}
+	}
+
+	/**
+	 * 
+	 */
+	private void iterateFields() {
 		for(setC(0); getC() < getFields().get(1).size(); setC(getC() + 1)) {
 			checkColidationOther();
 		}
