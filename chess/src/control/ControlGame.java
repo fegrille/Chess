@@ -80,6 +80,9 @@ public class ControlGame implements Subject {
 			while(!checkFieldChoise(getChoise())) {
 				continue;
 			}
+			if(Integer.parseInt(getChoise()) == -1) {
+				continue;
+			}
 			setChosenField(Integer.parseInt(getChoise()));
 			setChoise("");
 			moveFigure(getCurrentPlayer(), getPlayerOpponent(), getChosenFigure(), getChosenField());
@@ -118,7 +121,7 @@ public class ControlGame implements Subject {
 		} catch (Exception e) {
 			return false;
 		}
-		if(value >= 0 && value < getPossiFields().size()) {
+		if(value >= 0 && value < getPossiFields().size() || value == -1) {
 			return true;
 		}
 		return false;
