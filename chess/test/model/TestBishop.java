@@ -25,7 +25,7 @@ public class TestBishop {
 	
 	@Test
 	public void testPossibleMoves() {
-		List<List<Integer[]>> testfield = new ArrayList<>();
+		List<List<Integer[]>> testfield = new ArrayList<List<Integer[]>>();
 		test.possibleFields();
 		testfield = test.getPosFields();
 		if(testfield.size() == 4) {

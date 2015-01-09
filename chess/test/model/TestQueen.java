@@ -31,10 +31,10 @@ public class TestQueen {
 	
 	@Test
 	public void testPossibleMoves() {
-		List<List<Integer[]>> testfield = new ArrayList<>();
-		List<List<Integer[]>> testfield1 = new ArrayList<>();
-		List<List<Integer[]>> testfield2 = new ArrayList<>();
-		List<List<Integer[]>> testfield3 = new ArrayList<>();
+		List<List<Integer[]>> testfield = new ArrayList<List<Integer[]>>();
+		List<List<Integer[]>> testfield1 = new ArrayList<List<Integer[]>>();
+		List<List<Integer[]>> testfield2 = new ArrayList<List<Integer[]>>();
+		List<List<Integer[]>> testfield3 = new ArrayList<List<Integer[]>>();
 		test.possibleFields();
 		testfield = test.getPosFields();
 		test1.possibleFields();

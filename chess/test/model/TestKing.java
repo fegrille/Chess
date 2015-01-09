@@ -29,9 +29,9 @@ public class TestKing {
 	
 	@Test
 	public void testPossibleMoves() {
-		List<List<Integer[]>> testfield = new ArrayList<>();
-		List<List<Integer[]>> testfield2 = new ArrayList<>();
-		List<List<Integer[]>> testfield3 = new ArrayList<>();
+		List<List<Integer[]>> testfield = new ArrayList<List<Integer[]>>();
+		List<List<Integer[]>> testfield2 = new ArrayList<List<Integer[]>>();
+		List<List<Integer[]>> testfield3 = new ArrayList<List<Integer[]>>();
 		test.possibleFields();
 		testfield = test.getPosFields();
 		test2.possibleFields();

@@ -28,7 +28,7 @@ public class TestControlColidateKnight {
 		f = new Field();
 		p1 = new Player('w',f);
 		p2 = new Player('b',f);
-		pf = new ArrayList<>();
+		pf = new ArrayList<List<Integer[]>>();
 		right = false;
 	}
 

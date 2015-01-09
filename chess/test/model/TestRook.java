@@ -25,7 +25,7 @@ public class TestRook {
 	
 	@Test
 	public void testPossibleMoves() {
-		List<List<Integer[]>> testfield = new ArrayList<>();
+		List<List<Integer[]>> testfield = new ArrayList<List<Integer[]>>();
 		test.possibleFields();
 		testfield = test.getPosFields();
 		if(testfield.size() == 4 && testfield.get(0).size() == 7 && testfield.get(3).size() == 7) {
