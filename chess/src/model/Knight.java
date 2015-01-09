@@ -51,7 +51,7 @@ public class Knight extends Figure{
 	}
 	
 	public void leftFields() {
-		List<Integer[]> fields = new ArrayList<>();
+		List<Integer[]> fields = new ArrayList<Integer[]>();
 		getPosFields().add(fields);
 		int y = getY();
 		int x = getX();
@@ -80,7 +80,7 @@ public class Knight extends Figure{
 	}
 	
 	public void buttomFields() {
-		List<Integer[]> fields = new ArrayList<>();
+		List<Integer[]> fields = new ArrayList<Integer[]>();
 		getPosFields().add(fields);
 		int y = getY();
 		int x = getX();
@@ -109,7 +109,7 @@ public class Knight extends Figure{
 	}
 	
 	public void rightFields() {
-		List<Integer[]> fields = new ArrayList<>();
+		List<Integer[]> fields = new ArrayList<Integer[]>();
 		getPosFields().add(fields);
 		int y = getY();
 		int x = getX();
