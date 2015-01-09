@@ -8,6 +8,7 @@ public class Player implements IPlayer{
 	private List<IFigure> figureList;
 	private Figure f;
 	private char col;
+	FigureFactory figureFactory = new FigureFactory();
 	
 	public Player(char color, IField field) {
 		this.figureList = new ArrayList<IFigure>();
@@ -33,7 +34,7 @@ public class Player implements IPlayer{
 			yKord = ChessConstants.PAWNYKORDS[1];
 		}
 		for(int i = 1; i <= ChessConstants.MAXPAWNS; i++) {
-			f = new Pawn(yKord, i, this.col);
+			f = figureFactory.getFigure(ChessConstants.PAWN, yKord, i, this.col);
 			getFigureList().add(f);
 			field.initializeField(f);
 		}
@@ -42,7 +43,7 @@ public class Player implements IPlayer{
 	private void addQueen(IField field) {
 		int xKord = ChessConstants.QUEENXKORDS;
 		int yKord = blackOrWhite();
-		f = new Queen(yKord,xKord,this.col);
+		f = figureFactory.getFigure(ChessConstants.QUEEN, yKord, xKord, this.col);
 		getFigureList().add(f);
 		field.initializeField(f);
 	}
@@ -50,7 +51,7 @@ public class Player implements IPlayer{
 	private void addKing(IField field) {
 		int xKord = ChessConstants.KINGXKORDS;
 		int yKord = blackOrWhite();
-		f = new King(yKord,xKord,this.col);
+		f = figureFactory.getFigure(ChessConstants.KING, yKord, xKord, this.col);
 		getFigureList().add(f);
 		field.initializeField(f);
 	}
@@ -58,11 +59,11 @@ public class Player implements IPlayer{
 	private void addKnights(IField field) {
 		int xKord = ChessConstants.KNIGHTXKORDS[0];
 		int yKord = blackOrWhite();
-		f = new Knight(yKord,xKord,this.col);
+		f = figureFactory.getFigure(ChessConstants.KNIGHT, yKord, xKord, this.col);
 		getFigureList().add(f);
 		field.initializeField(f);
 		xKord = ChessConstants.KNIGHTXKORDS[1];
-		f = new Knight(yKord,xKord,this.col);
+		f = figureFactory.getFigure(ChessConstants.KNIGHT, yKord, xKord, this.col);
 		getFigureList().add(f);
 		field.initializeField(f);
 	}
@@ -70,11 +71,11 @@ public class Player implements IPlayer{
 	private void addBishops(IField field) {
 		int xKord = ChessConstants.BISHOPXKORDS[0];
 		int yKord = blackOrWhite();
-		f = new Bishop(yKord,xKord,this.col);
+		f = figureFactory.getFigure(ChessConstants.BISHOP, yKord, xKord, this.col);
 		getFigureList().add(f);
 		field.initializeField(f);
 		xKord = ChessConstants.BISHOPXKORDS[1];
-		f = new Bishop(yKord,xKord,this.col);
+		f = figureFactory.getFigure(ChessConstants.BISHOP, yKord, xKord, this.col);
 		getFigureList().add(f);
 		field.initializeField(f);
 	}
@@ -82,11 +83,11 @@ public class Player implements IPlayer{
 	private void addRooks(IField field) {
 		int xKord = ChessConstants.ROOKXKORDS[0];
 		int yKord = blackOrWhite();
-		f = new Rook(yKord,xKord,this.col);
+		f = figureFactory.getFigure(ChessConstants.ROOK, yKord, xKord, this.col);
 		getFigureList().add(f);
 		field.initializeField(f);
 		xKord = ChessConstants.ROOKXKORDS[1];
-		f = new Rook(yKord,xKord,this.col);
+		f = figureFactory.getFigure(ChessConstants.ROOK, yKord, xKord, this.col);
 		getFigureList().add(f);
 		field.initializeField(f);
 	}
