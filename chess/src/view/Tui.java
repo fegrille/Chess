@@ -55,28 +55,28 @@ public class Tui implements Observer, Runnable {
 	public void updateTuiText() {
         switch (this.tmpCase) {
         case 'f':
-        	logger.info(newLine + "Figures that can be moved:");
+        	StringBuilder figures = new StringBuilder();
+        	figures.append(newLine + "Figures that can be moved:" + newLine);
         	int index = 0;
         	for(IFigure f : getAvailableFigures()) {
-        		logger.info(newLine + index + " " + f.returnName() + "[" + f.getField()[0] + "," + f.getField()[1] + "]");
+        		String s = index + " " + f.returnName() + "[" + f.getField()[0] + "," + f.getField()[1] + "]" + newLine;
+        		figures.append(s);
         		index++;
         	}
-        	logger.info(newLine + "Please select the figure you want to move with entering the index:");
+        	figures.append("Please choose a figure you want to move by entering the index:");
+        	logger.info(newLine + figures);
             break;
         case 's':
         	index = 0;
-        	if(getAvailableFields().isEmpty()) {
-        		logger.info(newLine + "Figure can`t be moved please choose another figure:");
-        		// wieder zurück zur figuren auswahl gehen
-        	} else {
-        		logger.info(newLine + "These are the fields you can move to:");
-        		for(Integer[] i : getAvailableFields()) {
-        			logger.info(newLine + index + " " + "[" + i[0] + "," + i[1] + "]");
-        			index++;
-        		}
-        		logger.info(newLine + "Please select Field or press \"exit\" to return to Figure selection!");
-            	logger.info(newLine + "Write the Index of the Field!");
+        	StringBuilder fields = new StringBuilder();
+        	fields.append(newLine + "These are the fields you can move to:" + newLine);
+        	for(Integer[] i : getAvailableFields()) {
+        		fields.append(index + " " + "[" + i[0] + "," + i[1] + "]" + newLine);
+        		index++;
         	}
+        	fields.append("Please select Field or press \"exit\" to return to Figure selection!" + newLine);
+            fields.append("Write the Index of the Field!");
+        	logger.info(newLine + fields);
             break;
         default:
         	logger.info(newLine + "You wrote a wrong value!");
