@@ -44,6 +44,16 @@ public class TestKing {
 		assertTrue(testright);
 	}
 	
+	@Test
+	public void testReturnName() {
+		boolean testright = false;
+		String name = test.returnName();
+		if(name.equals("King")) {
+			testright = true;
+		}
+		assertTrue(testright);
+	}
+	
 	
 	@After
 	public void tearDown() {

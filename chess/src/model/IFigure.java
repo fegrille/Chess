@@ -33,6 +33,6 @@ public interface IFigure {
 	
 	void setPosFields(List<List<Integer[]>> posFields);
 	
-	public String returnName();
+	String returnName();
 
 }

@@ -34,6 +34,16 @@ public class TestRook {
 		assertTrue(testright);
 	}
 	
+	@Test
+	public void testReturnName() {
+		boolean testright = false;
+		String name = test.returnName();
+		if(name.equals("Rook")) {
+			testright = true;
+		}
+		assertTrue(testright);
+	}
+	
 	
 	@After
 	public void tearDown() {

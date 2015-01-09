@@ -3,6 +3,7 @@ package control;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.ChessConstants;
 import model.Figure;
 import model.IFigure;
 import model.Player;
@@ -121,10 +122,10 @@ public class ColidatingFields {
 	}
 
 	private void checkColiOwn() {
-		checkColiDirectionOwn(0);
-		checkColiDirectionOwn(1);
-		checkColiDirectionOwn(2);
-		checkColiDirectionOwn(3);
+		checkColiDirectionOwn(ChessConstants.LISTELEONE);
+		checkColiDirectionOwn(ChessConstants.LISTELETWO);
+		checkColiDirectionOwn(ChessConstants.LISTELETHREE);
+		checkColiDirectionOwn(ChessConstants.LISTELEFOUR);
 	}
 
 
@@ -137,10 +138,10 @@ public class ColidatingFields {
 	}
 
 	private void checkColiOther() {
-		checkColiDirecOther(0);
-		checkColiDirecOther(1);
-		checkColiDirecOther(2);
-		checkColiDirecOther(3);
+		checkColiDirecOther(ChessConstants.LISTELEONE);
+		checkColiDirecOther(ChessConstants.LISTELETWO);
+		checkColiDirecOther(ChessConstants.LISTELETHREE);
+		checkColiDirecOther(ChessConstants.LISTELEFOUR);
 	}
 	
 	private void checkColiDirecOther(int j) {
@@ -164,14 +165,14 @@ public class ColidatingFields {
 	}
 	
 	private void checkColiOwnQueen() {
-		checkColiDirectionOwn(0);
-		checkColiDirectionOwn(1);
-		checkColiDirectionOwn(2);
-		checkColiDirectionOwn(3);
-		checkColiDirectionOwn(4);
-		checkColiDirectionOwn(5);
-		checkColiDirectionOwn(6);
-		checkColiDirectionOwn(7);
+		checkColiDirectionOwn(ChessConstants.LISTELEONE);
+		checkColiDirectionOwn(ChessConstants.LISTELETWO);
+		checkColiDirectionOwn(ChessConstants.LISTELETHREE);
+		checkColiDirectionOwn(ChessConstants.LISTELEFOUR);
+		checkColiDirectionOwn(ChessConstants.LISTELEFIVE);
+		checkColiDirectionOwn(ChessConstants.LISTELESIX);
+		checkColiDirectionOwn(ChessConstants.LISTELESEVEN);
+		checkColiDirectionOwn(ChessConstants.LISTELEEIGHT);
 	}
 	
 	public void colidateOtherQueen(IFigure f, Player p) {
@@ -184,14 +185,14 @@ public class ColidatingFields {
 	}
 
 	private void checkColiOtherQueen() {
-		checkColiDirecOther(0);
-		checkColiDirecOther(1);
-		checkColiDirecOther(2);
-		checkColiDirecOther(3);
-		checkColiDirecOther(4);
-		checkColiDirecOther(5);
-		checkColiDirecOther(6);
-		checkColiDirecOther(7);		
+		checkColiDirecOther(ChessConstants.LISTELEONE);
+		checkColiDirecOther(ChessConstants.LISTELETWO);
+		checkColiDirecOther(ChessConstants.LISTELETHREE);
+		checkColiDirecOther(ChessConstants.LISTELEFOUR);
+		checkColiDirecOther(ChessConstants.LISTELEFIVE);
+		checkColiDirecOther(ChessConstants.LISTELESIX);
+		checkColiDirecOther(ChessConstants.LISTELESEVEN);
+		checkColiDirecOther(ChessConstants.LISTELEEIGHT);		
 	}
 
 	private boolean equalsArray(Integer[] arr1, int[] arr2) {

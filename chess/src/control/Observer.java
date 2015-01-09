@@ -6,5 +6,5 @@ import model.IFigure;
 
 public interface Observer {
 
-	public void update(List<IFigure> availableFigures, List<Integer[]> availableFields, char tmpCase);
+	void update(List<IFigure> availableFigures, List<Integer[]> availableFields, char tmpCase);
 }
