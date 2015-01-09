@@ -14,7 +14,7 @@ public class Tui implements Observer, Runnable {
 	private ControlGame controlGame;
 	private List<IFigure> availableFigures;
 	private List<Integer[]> availableFields;
-	private String tmpCase = "";
+	private char tmpCase = ' ';
 	
 	private String newLine = System.getProperty("line.separator");
 	
@@ -28,7 +28,7 @@ public class Tui implements Observer, Runnable {
 	}
 	
 	@Override
-	public void update(List<IFigure> availableFigures, List<Integer[]> availableFields, String tmpCase) {
+	public void update(List<IFigure> availableFigures, List<Integer[]> availableFields, char tmpCase) {
 		setAvailableFigures(availableFigures);
 		setAvailableFields(availableFields);
 		setTmpCase(tmpCase);
@@ -54,7 +54,7 @@ public class Tui implements Observer, Runnable {
 
 	public void updateTuiText() {
         switch (this.tmpCase) {
-        case "figure":
+        case 'f':
         	logger.info(newLine + "Please select Figure! Write the Index of the Figure!");
         	int index = 0;
         	for(IFigure f : getAvailableFigures()) {
@@ -62,7 +62,7 @@ public class Tui implements Observer, Runnable {
         		index++;
         	}
             break;
-        case "field":
+        case 's':
         	logger.info(newLine + "Please select Field or press \"exit\" to return to Figure selection!");
         	logger.info(newLine + "Write the Index of the Figure!");
         	index = 0;
@@ -71,7 +71,7 @@ public class Tui implements Observer, Runnable {
         		index++;
         	}
             break;
-        case "wrong":
+        default:
         	logger.info(newLine + "You wrote a wrong value!");
             break;
         }
@@ -93,11 +93,11 @@ public class Tui implements Observer, Runnable {
 		this.availableFields = availableFields;
 	}
 
-	public String getTmpCase() {
+	public char getTmpCase() {
 		return tmpCase;
 	}
 
-	public void setTmpCase(String tmpCase) {
+	public void setTmpCase(char tmpCase) {
 		this.tmpCase = tmpCase;
 	}
 	

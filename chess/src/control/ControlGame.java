@@ -16,7 +16,7 @@ public class ControlGame implements Subject {
 	private Player playerOpponent;
 	private List<IFigure> possiFigures;
 	private List<Integer[]> possiFields;
-	private String task = "";
+	private char task = ' ';
 	private String choise = "";
 	private IFigure chosenFigure;
 	private Integer[] chosenField;
@@ -65,7 +65,7 @@ public class ControlGame implements Subject {
 		setCurrentPlayer(p1);
 		setPlayerOpponent(p2);
 		while(!getControlEG().getWin()) {
-			setTask("figure");
+			setTask('f');
 			setPossiFigures(getCurrentPlayer().getFigureList());
 			notifyObserver();
 			while(!checkFigureChoise(getChoise())) {
@@ -74,7 +74,7 @@ public class ControlGame implements Subject {
 			setChosenFigure(Integer.parseInt(getChoise()));
 			setPossiFields(getChosenFigure());
 			setChoise("");
-			setTask("field");
+			setTask('s');
 			notifyObserver();
 			while(!checkFieldChoise(getChoise())) {
 				continue;
@@ -180,11 +180,11 @@ public class ControlGame implements Subject {
 		this.chosenField = getPossiFields().get(index);
 	}
 
-	public String getTask() {
+	public char getTask() {
 		return task;
 	}
 
-	public void setTask(String task) {
+	public void setTask(char task) {
 		this.task = task;
 	}
 
