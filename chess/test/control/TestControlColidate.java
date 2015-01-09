@@ -50,7 +50,7 @@ public class TestControlColidate {
 		p1.getFigureList().get(3).setField(7, 4);
 		p2.getFigureList().get(3).setField(2, 4);
 		f.possibleFields();
-		test.colidate(f, p1, p2);
+		test.colidate(p1, p2);
 		pf = f.getPosFields();
 		right = true;
 		for(List<Integer[]> fields : pf) {

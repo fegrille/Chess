@@ -204,7 +204,7 @@ public class ControlGame implements Subject {
 	
 	private boolean checkFigure(IFigure f) {
 		f.possibleFields();
-		col.colidate(f, getCurrentPlayer(), getPlayerOpponent());
+		col.colidate(getCurrentPlayer(), getPlayerOpponent());
 		if(!f.getPosFields().isEmpty()) {
 			return true;
 		}
@@ -218,7 +218,7 @@ public class ControlGame implements Subject {
 	public void setPossiFields(IFigure fig) {
 		List<Integer[]> tmpList = new ArrayList<Integer[]>();
 		fig.possibleFields();
-		col.colidate(fig, getCurrentPlayer(), getPlayerOpponent());
+		col.colidate(getCurrentPlayer(), getPlayerOpponent());
 		for(List<Integer[]> list : fig.getPosFields()) {
 			for(Integer[] i : list) {
 				tmpList.add(i);

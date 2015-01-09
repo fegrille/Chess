@@ -41,7 +41,7 @@ public class ControlColidate {
 		return colRook;
 	}
 	
-	public  void colidate(IFigure f, Player p, Player p2) {
+	public  void colidate(Player p, Player p2) {
 		updatePossibleFieldsKing(p,p2);
 		updatePossibleFieldsKing(p2,p);
 		updatePossibleFields(p,p2);

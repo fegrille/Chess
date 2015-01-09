@@ -198,7 +198,7 @@ public class ControlEndGame {
 
 	private void compareBlockingFields(IFigure f) {
 		f.possibleFields();
-		getCol().colidate(f, getPl(), getPlOpp());
+		getCol().colidate(getPl(), getPlOpp());
 		for(List<Integer[]> fields : f.getPosFields()) {
 			for(Integer[] field : fields) {
 				compareAvailableBlockFields(field);
@@ -227,7 +227,7 @@ public class ControlEndGame {
 	}
 
 	private void killingPossibleAllFields(IFigure f) {
-		getCol().colidate(f, getPl(), getPlOpp());
+		getCol().colidate(getPl(), getPlOpp());
 		List<List<Integer[]>> finalFields = f.getPosFields();
 		for(List<Integer[]> fields: finalFields) {
 			for(Integer[] field : fields) {
@@ -248,7 +248,7 @@ public class ControlEndGame {
 	private void checkPossibleFieldsKing() {
 		int size = getPl().getFigureList().size();
 		IFigure king = getPl().getFigureList().get(size - 1);
-		getCol().colidate(king, getPl(), getPlOpp());
+		getCol().colidate(getPl(), getPlOpp());
 		if(king.getPosFields().size() == 0) {
 			setKingCantMove(true);
 		}
