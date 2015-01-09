@@ -43,8 +43,8 @@ public class TestKnight {
 		testfield2 = test2.getPosFields();
 		test3.possibleFields();
 		testfield3 = test3.getPosFields();
-		if(testfield.get(0).size() == 1 && testfield.get(2).size() == 1 && testfield1.get(0).size() == 1 && testfield1.get(3).size() == 1 
-				&& testfield2.get(1).size() == 1 && testfield2.get(2).size() == 1 && testfield3.get(1).size() == 1 && testfield3.get(3).size() == 1) {
+		if(testfield.get(0).size() == 1 && testfield.get(3).size() == 1 && testfield1.get(0).size() == 1 && testfield1.get(2).size() == 1 
+				&& testfield2.get(1).size() == 1 && testfield2.get(3).size() == 1 && testfield3.get(1).size() == 1 && testfield3.get(2).size() == 1) {
 			testright = true;
 		}
 		assertTrue(testright);

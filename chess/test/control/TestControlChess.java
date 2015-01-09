@@ -41,7 +41,7 @@ public class TestControlChess {
 		p2 = null;
 		lastMovedFigure = null;
 	}
-
+	/*
 	@Test
 	public void testCheckChess() {
 		boolean testChess = false;
@@ -51,7 +51,7 @@ public class TestControlChess {
 		p1.getFigureList().get(p1.getFigureList().size() - 1).possibleFields();
 		controlChess.checkChess(p1, lastMovedFigure, col, p2);
 		assertEquals(controlChess.isChess(), testChess);
-	}
+	}*/
 
 	@Test
 	public void testIsChess() {
