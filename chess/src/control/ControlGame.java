@@ -49,7 +49,7 @@ public class ControlGame implements Subject {
 	@Override
 	public void notifyObserver() {
 		for(Observer observer : observers) {
-			observer.update(getPossiFigures(), getPossiFields(), getTask());
+			observer.update(getPossiFigures(), getPossiFields(), getTask(), getCurrentPlayer().getFigureList(), getPlayerOpponent().getFigureList());
 		}
 		
 	}

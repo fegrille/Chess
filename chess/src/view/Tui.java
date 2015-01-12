@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 import model.IFigure;
+import model.Knight;
 import control.ControlGame;
 import control.Observer;
 
@@ -30,12 +31,14 @@ public class Tui implements Observer, Runnable {
 		availableFields = new ArrayList<Integer[]>();
 		controlGame.register(this);
 	}
-	
+
 	@Override
-	public void update(List<IFigure> availableFigures, List<Integer[]> availableFields, char tmpCase) {
+	public void update(List<IFigure> availableFigures, List<Integer[]> availableFields, char tmpCase, List<IFigure> curPlayer, List<IFigure> opPlayer) {
 		setAvailableFigures(availableFigures);
 		setAvailableFields(availableFields);
 		setTmpCase(tmpCase);
+		setSpieler(curPlayer);
+		setGegenspieler(opPlayer);
 		updateTuiText();
 	}
 
@@ -100,12 +103,41 @@ public class Tui implements Observer, Runnable {
 	}
 
 	private void fillField() {
-		for(IFigure f : spieler) {
-			int index = 0;
-			String s = "" + index + f.returnName().charAt(0) + f.getColor();
+		int index = 0;
+		String s;
+		for(IFigure f : getSpieler()) {
+			s = checkFigureType(index, f);
+			fieldlines.get(f.getY()).set(f.getX(), s);
 		    index++;
 		}
+		insertEnemy();
 		
+	}
+
+	/**
+	 * @param index
+	 * @param f
+	 * @return
+	 */
+	private String checkFigureType(int index, IFigure f) {
+		String s;
+		if(f instanceof Knight) {
+			s = "[ " + index +  "Kn" + f.getColor() + "]";
+		} else {
+			s = "[ " + index + f.returnName().charAt(0) + f.getColor() + "]";
+		}
+		return s;
+	}
+
+	/**
+	 * 
+	 */
+	private void insertEnemy() {
+		String s;
+		for(IFigure f : getGegenspieler()) {
+			s = "[  " + f.returnName().charAt(0) + f.getColor() + "]";
+			fieldlines.get(f.getY()).set(f.getX(), s);
+		}
 	}
 
 	private void buildField() {
@@ -114,20 +146,39 @@ public class Tui implements Observer, Runnable {
 		for(int i = 10; i > 0; i--) {
 			fieldlines.add(new ArrayList<String>());
 		}
+		c = iterateLine(c);
+	}
+
+	/**
+	 * @param c
+	 * @return
+	 */
+	private int iterateLine(int c) {
 		for(int i = 9; i > 0; i--) {
-			if(i == 9) {
-				fieldlines.get(i).add(" ");
-				for(int b = 1; b < 9; b++) {
-					fieldlines.get(i).add(" " + b + " ");
-				}
-			} else {
-				fieldlines.get(c).add("" + i);
-				for(int a = 0; a < 8; a++) {
-					fieldlines.get(c).add("[ ]");
-				}
-				c++;
-			}
+			c = buildLine(c, i);
 		}
+		return c;
+	}
+
+	/**
+	 * @param c
+	 * @param i
+	 * @return
+	 */
+	private int buildLine(int c, int i) {
+		if(i == 9) {
+			fieldlines.get(i).add(" ");
+			for(int b = 1; b < 9; b++) {
+				fieldlines.get(i).add("  " + b + "  ");
+			}
+		} else {
+			fieldlines.get(c).add("" + i + "");
+			for(int a = 0; a < 8; a++) {
+				fieldlines.get(c).add("[    ]");
+			}
+			c++;
+		}
+		return c;
 	}
 
 	public List<IFigure> getAvailableFigures() {
@@ -152,6 +203,22 @@ public class Tui implements Observer, Runnable {
 
 	public void setTmpCase(char tmpCase) {
 		this.tmpCase = tmpCase;
+	}
+	
+	private List<IFigure> getSpieler() {
+		return spieler;
+	}
+
+	private void setSpieler(List<IFigure> spieler) {
+		this.spieler = spieler;
+	}
+
+	private List<IFigure> getGegenspieler() {
+		return gegenspieler;
+	}
+
+	private void setGegenspieler(List<IFigure> gegenspieler) {
+		this.gegenspieler = gegenspieler;
 	}
 	
 }
