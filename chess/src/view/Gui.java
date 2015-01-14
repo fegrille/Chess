@@ -118,6 +118,24 @@ public class Gui implements Observer, Runnable {
 	public void run() {
 		frame.setVisible(true);
 	}
+	
+	public class ChessButton extends JButton {
+		int x;
+		int y;
+		
+		public ChessButton(int x, int y) {
+			this.x = x;
+			this.y = y;
+		}
+		
+		public int getX() {
+			return this.x;
+		}
+		
+		public int getY() {
+			return this.y;
+		}
+	}
 
 	/**
 	 * Create the frame.
@@ -1345,14 +1363,6 @@ public class Gui implements Observer, Runnable {
 		this.availableFields = availableField;
 		this.availableFigures = availableFigure;
 	}
-
-//	@Override
-//	public void update(List<IFigure> availableFigures,
-//			List<Integer[]> availableFields, char tmpCase,
-//			List<IFigure> curPlayer, List<IFigure> opPlayer) {
-//		// TODO Auto-generated method stub
-//
-//	}
 
 	@Override
 	public void update(List<IFigure> availableFigures, List<Integer[]> availableFields, char tmpCase, List<IFigure> curPlayer, List<IFigure> opPlayer) {
