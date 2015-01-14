@@ -102,8 +102,6 @@ public class Gui implements Observer, Runnable {
 	private JButton button62 = new JButton("");
 	private JButton button63 = new JButton("");
 	private JButton button64 = new JButton("");
-	private final GridLayout layout = new GridLayout(8, 8);
-	private JPanel gameField;
 	private JFrame frame = new JFrame();
 
 	private ControlGame controlGame;
@@ -120,35 +118,10 @@ public class Gui implements Observer, Runnable {
 	public void run() {
 		frame.setVisible(true);
 	}
-	
-	 public class ChessButton extends JButton {
-		 private int x, y;
-		  
-		 public ChessButton(int x, int y) {
-			 this.x = x;
-			 this.y = y;
-		 }
-		 
-		 public int getX() {
-			 return this.x;
-		 }
-		 
-		 public int getY() {
-			 return this.y;
-		 }
-	 }
 
 	/**
 	 * Create the frame.
 	 */
-	private ChessButton buttons[][];
-	private int fieldsize = 8;
-
-	public void buttonClicked(ActionEvent evt) {
-
-        
-    }
-	
 	public Gui(ControlGame controlGame) {
 		this.controlGame = controlGame;
 		availableFigures = new ArrayList<IFigure>();
@@ -161,26 +134,9 @@ public class Gui implements Observer, Runnable {
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		frame.setContentPane(contentPane);
 		
-		gameField = new JPanel(layout);
-		contentPane.add(gameField);
-		
-		buttons = new ChessButton[fieldsize][fieldsize];
-		for(int i = 0; i < fieldsize; i++) {
-		    for(int j = 0; j< fieldsize; j++) {
-		    	buttons[i][j] = new ChessButton(i, j);
-		    	buttons[i][j].addActionListener(new ActionListener() {
-		    		public void actionPerformed(ActionEvent evt) {
-		    			buttonClicked(evt);
-		            }
-		        });
-		    	gameField.add(buttons[i][j]);
-		    }
-		}
-		
-		
 		actionStart();
 		
-		/*btnStartGame.setBounds(525, 129, 87, 23);
+		btnStartGame.setBounds(525, 129, 87, 23);
 	
 		actionClose();
 		btnCloseGame.setBounds(525, 228, 89, 23);
@@ -757,7 +713,7 @@ public class Gui implements Observer, Runnable {
 		button.setEnabled(false);
 		button.setBackground(Color.BLACK);
 		button.setBounds(466, 0, 9, 391);
-		contentPane.add(button);*/
+		contentPane.add(button);
 		
 		fillListEmpty();
 		
