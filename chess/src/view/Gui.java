@@ -2,19 +2,29 @@ package view;
 
 import java.util.ArrayList;
 import java.util.List;
+import control.Observer;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
+
+import model.IFigure;
+import control.ControlGame;
 
 public class Gui extends JFrame {
 
@@ -22,70 +32,74 @@ public class Gui extends JFrame {
 	private ArrayList<List<JButton>> buttonList = new ArrayList<List<JButton>>();
 	private JButton btnStartGame = new JButton("Start Game");
 	private JButton btnCloseGame = new JButton("Close Game");
-	private JButton button_1 = new JButton("");
-	private JButton button_2 = new JButton("");
-	private JButton button_3 = new JButton("");
-	private JButton button_4 = new JButton("");
-	private JButton button_5 = new JButton("");
-	private JButton button_6 = new JButton("");
-	private JButton button_7 = new JButton("");
-	private JButton button_8 = new JButton("");
-	private JButton button_9 = new JButton("");
-	private JButton button_10 = new JButton("");
-	private JButton button_11 = new JButton("");
-	private JButton button_12 = new JButton("");
-	private JButton button_13 = new JButton("");
-	private JButton button_14 = new JButton("");
-	private JButton button_15 = new JButton("");
-	private JButton button_16 = new JButton("");
-	private JButton button_17 = new JButton("");
-	private JButton button_65 = new JButton("");
-	private JButton button_18 = new JButton("");
-	private JButton button_19 = new JButton("");
-	private JButton button_20 = new JButton("");
-	private JButton button_21 = new JButton("");
-	private JButton button_22 = new JButton("");
-	private JButton button_23 = new JButton("");
-	private JButton button_24 = new JButton("");
-	private JButton button_25 = new JButton("");
-	private JButton button_26 = new JButton("");
-	private JButton button_27 = new JButton("");
-	private JButton button_28 = new JButton("");
-	private JButton button_29 = new JButton("");
-	private JButton button_30 = new JButton("");
-	private JButton button_31 = new JButton("");
-	private JButton button_32 = new JButton("");
-	private JButton button_33 = new JButton("");
-	private JButton button_34 = new JButton("");
-	private JButton button_35 = new JButton("");
-	private JButton button_36 = new JButton("");
-	private JButton button_37 = new JButton("");
-	private JButton button_38 = new JButton("");
-	private JButton button_39 = new JButton("");
-	private JButton button_40 = new JButton("");
-	private JButton button_41 = new JButton("");
-	private JButton button_42 = new JButton("");
-	private JButton button_43 = new JButton("");
-	private JButton button_44 = new JButton("");
-	private JButton button_45 = new JButton("");
-	private JButton button_46 = new JButton("");
-	private JButton button_47 = new JButton("");
-	private JButton button_48 = new JButton("");
-	private JButton button_49 = new JButton("");
-	private JButton button_50 = new JButton("");
-	private JButton button_51 = new JButton("");
-	private JButton button_52 = new JButton("");
-	private JButton button_54 = new JButton("");
-	private JButton button_55 = new JButton("");
-	private JButton button_56 = new JButton("");
-	private JButton button_57 = new JButton("");
-	private JButton button_58 = new JButton("");
-	private JButton button_59 = new JButton("");
-	private JButton button_60 = new JButton("");
-	private JButton button_61 = new JButton("");
-	private JButton button_62 = new JButton("");
-	private JButton button_63 = new JButton("");
-	private JButton button_64 = new JButton("");
+	private JButton button1 = new JButton("");
+	private JButton button2 = new JButton("");
+	private JButton button3 = new JButton("");
+	private JButton button4 = new JButton("");
+	private JButton button5 = new JButton("");
+	private JButton button6 = new JButton("");
+	private JButton button7 = new JButton("");
+	private JButton button8 = new JButton("");
+	private JButton button9 = new JButton("");
+	private JButton button10 = new JButton("");
+	private JButton button11 = new JButton("");
+	private JButton button12 = new JButton("");
+	private JButton button13 = new JButton("");
+	private JButton button14 = new JButton("");
+	private JButton button15 = new JButton("");
+	private JButton button16 = new JButton("");
+	private JButton button17 = new JButton("");
+	private JButton button65 = new JButton("");
+	private JButton button18 = new JButton("");
+	private JButton button19 = new JButton("");
+	private JButton button20 = new JButton("");
+	private JButton button21 = new JButton("");
+	private JButton button22 = new JButton("");
+	private JButton button23 = new JButton("");
+	private JButton button24 = new JButton("");
+	private JButton button25 = new JButton("");
+	private JButton button26 = new JButton("");
+	private JButton button27 = new JButton("");
+	private JButton button28 = new JButton("");
+	private JButton button29 = new JButton("");
+	private JButton button30 = new JButton("");
+	private JButton button31 = new JButton("");
+	private JButton button32 = new JButton("");
+	private JButton button33 = new JButton("");
+	private JButton button34 = new JButton("");
+	private JButton button35 = new JButton("");
+	private JButton button36 = new JButton("");
+	private JButton button37 = new JButton("");
+	private JButton button38 = new JButton("");
+	private JButton button39 = new JButton("");
+	private JButton button40 = new JButton("");
+	private JButton button41 = new JButton("");
+	private JButton button42 = new JButton("");
+	private JButton button43 = new JButton("");
+	private JButton button44 = new JButton("");
+	private JButton button45 = new JButton("");
+	private JButton button46 = new JButton("");
+	private JButton button47 = new JButton("");
+	private JButton button48 = new JButton("");
+	private JButton button49 = new JButton("");
+	private JButton button50 = new JButton("");
+	private JButton button51 = new JButton("");
+	private JButton button52 = new JButton("");
+	private JButton button54 = new JButton("");
+	private JButton button55 = new JButton("");
+	private JButton button56 = new JButton("");
+	private JButton button57 = new JButton("");
+	private JButton button58 = new JButton("");
+	private JButton button59 = new JButton("");
+	private JButton button60 = new JButton("");
+	private JButton button61 = new JButton("");
+	private JButton button62 = new JButton("");
+	private JButton button63 = new JButton("");
+	private JButton button64 = new JButton("");
+	
+	private ControlGame controlGame;
+	private List<IFigure> availableFigures;
+	private List<Integer[]> availableFields;
 
 	/**
 	 * Launch the application.
@@ -94,7 +108,8 @@ public class Gui extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Gui frame = new Gui();
+					ControlGame g = new ControlGame();
+					Gui frame = new Gui(g);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -106,7 +121,13 @@ public class Gui extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Gui() {
+	public Gui(ControlGame controlGame) {
+		
+		this.controlGame = controlGame;
+		availableFigures = new ArrayList<IFigure>();
+		availableFields = new ArrayList<Integer[]>();
+		//controlGame.register(this);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 662, 429);
 		contentPane = new JPanel();
@@ -115,839 +136,483 @@ public class Gui extends JFrame {
 		
 		
 		
-		btnStartGame.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				enableStartFields();
-				btnStartGame.setEnabled(false);
-			}
-
-			private void enableStartFields() {
-				Integer[] lines = {0,1};
-				for(int i : lines) {
-					enableButtons(i);
-				}
-			}
-
-			private void enableButtons(int i) {
-				for(int a = 0; a <buttonList.get(i).size(); a++) {
-					buttonList.get(i).get(a).setEnabled(true);
-				}
-			}
-		});
+		actionStart();
 		
 		btnStartGame.setBounds(525, 129, 87, 23);
 	
-		btnCloseGame.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
-			}
-		});
+		actionClose();
 		btnCloseGame.setBounds(525, 228, 89, 23);
 		contentPane.setLayout(null);
 		contentPane.add(btnStartGame);
 		contentPane.add(btnCloseGame);
 		
-		button_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_1.setEnabled(false);
-		button_1.setBackground(Color.BLACK);
-		button_1.setBounds(125, 306, 47, 41);
-		button_1.setIcon(new ImageIcon(Gui.class.getResource("/images/L\u00E4ufer wei\u00DF.png")));
-		contentPane.add(button_1);
+		actionButton1();
+		button1.setEnabled(false);
+		button1.setBackground(Color.BLACK);
+		button1.setBounds(125, 306, 47, 41);
+		button1.setIcon(new ImageIcon(Gui.class.getResource("/images/L\u00E4ufer wei\u00DF.png")));
+		contentPane.add(button1);
 		
-		button_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_2.setEnabled(false);
-		button_2.setForeground(Color.WHITE);
-		button_2.setBackground(Color.WHITE);
-		button_2.setIcon(new ImageIcon(Gui.class.getResource("/images/Pferd wei\u00DF.png")));
-		button_2.setBounds(79, 306, 47, 41);
-		contentPane.add(button_2);
+		actionButton2();
+		button2.setEnabled(false);
+		button2.setForeground(Color.WHITE);
+		button2.setBackground(Color.WHITE);
+		button2.setIcon(new ImageIcon(Gui.class.getResource("/images/Pferd wei\u00DF.png")));
+		button2.setBounds(79, 306, 47, 41);
+		contentPane.add(button2);
 		
-		button_3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_3.setEnabled(false);
-		button_3.setBackground(Color.BLACK);
-		button_3.setIcon(new ImageIcon(Gui.class.getResource("/images/Turm wei\u00DF.png")));
-		button_3.setBounds(33, 306, 47, 41);
-		contentPane.add(button_3);
+		actionButton3();
+		button3.setEnabled(false);
+		button3.setBackground(Color.BLACK);
+		button3.setIcon(new ImageIcon(Gui.class.getResource("/images/Turm wei\u00DF.png")));
+		button3.setBounds(33, 306, 47, 41);
+		contentPane.add(button3);
 		
-		button_4.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_4.setEnabled(false);
-		button_4.setBackground(Color.BLACK);
-		button_4.setIcon(new ImageIcon(Gui.class.getResource("/images/K\u00F6nig wei\u00DF.png")));
-		button_4.setBounds(221, 305, 47, 42);
-		contentPane.add(button_4);
+		actionButton4();
+		button4.setEnabled(false);
+		button4.setBackground(Color.BLACK);
+		button4.setIcon(new ImageIcon(Gui.class.getResource("/images/K\u00F6nig wei\u00DF.png")));
+		button4.setBounds(221, 305, 47, 42);
+		contentPane.add(button4);
 		
-		button_5.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_5.setEnabled(false);
-		button_5.setForeground(Color.WHITE);
-		button_5.setBackground(Color.WHITE);
-		button_5.setIcon(new ImageIcon(Gui.class.getResource("/images/L\u00E4ufer wei\u00DF.png")));
-		button_5.setBounds(266, 306, 47, 41);
-		contentPane.add(button_5);
+		actionButton5();
+		button5.setEnabled(false);
+		button5.setForeground(Color.WHITE);
+		button5.setBackground(Color.WHITE);
+		button5.setIcon(new ImageIcon(Gui.class.getResource("/images/L\u00E4ufer wei\u00DF.png")));
+		button5.setBounds(266, 306, 47, 41);
+		contentPane.add(button5);
 		
-		button_6.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_6.setEnabled(false);
-		button_6.setBackground(Color.BLACK);
-		button_6.setIcon(new ImageIcon(Gui.class.getResource("/images/Pferd wei\u00DF.png")));
-		button_6.setBounds(310, 306, 47, 41);
-		contentPane.add(button_6);
+		actionButton6();
+		button6.setEnabled(false);
+		button6.setBackground(Color.BLACK);
+		button6.setIcon(new ImageIcon(Gui.class.getResource("/images/Pferd wei\u00DF.png")));
+		button6.setBounds(310, 306, 47, 41);
+		contentPane.add(button6);
 		
-		button_7.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_7.setEnabled(false);
-		button_7.setForeground(Color.WHITE);
-		button_7.setBackground(Color.WHITE);
-		button_7.setIcon(new ImageIcon(Gui.class.getResource("/images/Turm wei\u00DF.png")));
-		button_7.setBounds(356, 306, 47, 41);
-		contentPane.add(button_7);
+		actionButton7();
+		button7.setEnabled(false);
+		button7.setForeground(Color.WHITE);
+		button7.setBackground(Color.WHITE);
+		button7.setIcon(new ImageIcon(Gui.class.getResource("/images/Turm wei\u00DF.png")));
+		button7.setBounds(356, 306, 47, 41);
+		contentPane.add(button7);
 		
-		button_8.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_8.setEnabled(false);
-		button_8.setBackground(Color.BLACK);
-		button_8.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
-		button_8.setBounds(356, 267, 47, 41);
-		contentPane.add(button_8);
+		actionButton8();
+		button8.setEnabled(false);
+		button8.setBackground(Color.BLACK);
+		button8.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
+		button8.setBounds(356, 267, 47, 41);
+		contentPane.add(button8);
 		
-		button_9.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_9.setEnabled(false);
-		button_9.setBackground(Color.BLACK);
-		button_9.setBounds(310, 147, 47, 41);
-		contentPane.add(button_9);
+		actionButton9();
+		button9.setEnabled(false);
+		button9.setBackground(Color.BLACK);
+		button9.setBounds(310, 147, 47, 41);
+		contentPane.add(button9);
 		
-		button_10.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_10.setEnabled(false);
-		button_10.setForeground(Color.BLACK);
-		button_10.setBackground(Color.BLACK);
-		button_10.setBounds(356, 186, 47, 41);
-		contentPane.add(button_10);
+		actionButton10();
+		button10.setEnabled(false);
+		button10.setForeground(Color.BLACK);
+		button10.setBackground(Color.BLACK);
+		button10.setBounds(356, 186, 47, 41);
+		contentPane.add(button10);
 		
-		button_11.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_11.setEnabled(false);
-		button_11.setForeground(Color.WHITE);
-		button_11.setBackground(Color.WHITE);
-		button_11.setBounds(356, 147, 47, 41);
-		contentPane.add(button_11);
+		actionButton11();
+		button11.setEnabled(false);
+		button11.setForeground(Color.WHITE);
+		button11.setBackground(Color.WHITE);
+		button11.setBounds(356, 147, 47, 41);
+		contentPane.add(button11);
 		
-		button_12.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_12.setEnabled(false);
-		button_12.setBackground(Color.BLACK);
-		button_12.setBounds(356, 106, 47, 41);
-		contentPane.add(button_12);
+		actionButton12();
+		button12.setEnabled(false);
+		button12.setBackground(Color.BLACK);
+		button12.setBounds(356, 106, 47, 41);
+		contentPane.add(button12);
 		
-		button_13.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_13.setEnabled(false);
-		button_13.setForeground(Color.WHITE);
-		button_13.setBackground(Color.WHITE);
-		button_13.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
-		button_13.setBounds(356, 66, 47, 41);
-		contentPane.add(button_13);
+		actionButton13();
+		button13.setEnabled(false);
+		button13.setForeground(Color.WHITE);
+		button13.setBackground(Color.WHITE);
+		button13.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
+		button13.setBounds(356, 66, 47, 41);
+		contentPane.add(button13);
 		
-		button_14.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_14.setEnabled(false);
-		button_14.setIcon(new ImageIcon(Gui.class.getResource("/images/Turm schwarz.png")));
-		button_14.setForeground(Color.BLACK);
-		button_14.setBackground(Color.BLACK);
-		button_14.setBounds(356, 27, 47, 41);
-		contentPane.add(button_14);
+		actionButton14();
+		button14.setEnabled(false);
+		button14.setIcon(new ImageIcon(Gui.class.getResource("/images/Turm schwarz.png")));
+		button14.setForeground(Color.BLACK);
+		button14.setBackground(Color.BLACK);
+		button14.setBounds(356, 27, 47, 41);
+		contentPane.add(button14);
 		
-		button_15.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_15.setEnabled(false);
-		button_15.setBackground(Color.WHITE);
-		button_15.setForeground(Color.WHITE);
-		button_15.setBounds(356, 227, 47, 41);
-		contentPane.add(button_15);
+		actionButton15();
+		button15.setEnabled(false);
+		button15.setBackground(Color.WHITE);
+		button15.setForeground(Color.WHITE);
+		button15.setBounds(356, 227, 47, 41);
+		contentPane.add(button15);
 		
-		button_16.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_16.setEnabled(false);
-		button_16.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
-		button_16.setBackground(Color.BLACK);
-		button_16.setBounds(310, 66, 47, 41);
-		contentPane.add(button_16);
+		actionButton16();
+		button16.setEnabled(false);
+		button16.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
+		button16.setBackground(Color.BLACK);
+		button16.setBounds(310, 66, 47, 41);
+		contentPane.add(button16);
 		
-		button_17.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_17.setEnabled(false);
-		button_17.setBackground(Color.BLACK);
-		button_17.setBounds(33, 147, 47, 41);
-		contentPane.add(button_17);
+		actionButton17();
+		button17.setEnabled(false);
+		button17.setBackground(Color.BLACK);
+		button17.setBounds(33, 147, 47, 41);
+		contentPane.add(button17);
 		
-		button_65.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_65.setEnabled(false);
-		button_65.setForeground(Color.WHITE);
-		button_65.setBackground(Color.WHITE);
-		button_65.setBounds(79, 147, 47, 41);
-		contentPane.add(button_65);
+		actionButton65();
+		button65.setEnabled(false);
+		button65.setForeground(Color.WHITE);
+		button65.setBackground(Color.WHITE);
+		button65.setBounds(79, 147, 47, 41);
+		contentPane.add(button65);
 		
-		button_18.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_18.setEnabled(false);
-		button_18.setBackground(Color.BLACK);
-		button_18.setBounds(125, 147, 47, 41);
-		contentPane.add(button_18);
+		actionButton18();
+		button18.setEnabled(false);
+		button18.setBackground(Color.BLACK);
+		button18.setBounds(125, 147, 47, 41);
+		contentPane.add(button18);
 		
-		button_19.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_19.setEnabled(false);
-		button_19.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
-		button_19.setBackground(Color.BLACK);
-		button_19.setBounds(266, 267, 47, 41);
-		contentPane.add(button_19);
+		actionButton19();
+		button19.setEnabled(false);
+		button19.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
+		button19.setBackground(Color.BLACK);
+		button19.setBounds(266, 267, 47, 41);
+		contentPane.add(button19);
 		
-		button_20.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_20.setEnabled(false);
-		button_20.setForeground(Color.WHITE);
-		button_20.setBackground(Color.WHITE);
-		button_20.setBounds(266, 147, 47, 41);
-		contentPane.add(button_20);
+		actionButton20();
+		button20.setEnabled(false);
+		button20.setForeground(Color.WHITE);
+		button20.setBackground(Color.WHITE);
+		button20.setBounds(266, 147, 47, 41);
+		contentPane.add(button20);
 		
-		button_21.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_21.setEnabled(false);
-		button_21.setForeground(Color.WHITE);
-		button_21.setBackground(Color.WHITE);
-		button_21.setBounds(33, 186, 47, 41);
-		contentPane.add(button_21);
+		actionButton21();
+		button21.setEnabled(false);
+		button21.setForeground(Color.WHITE);
+		button21.setBackground(Color.WHITE);
+		button21.setBounds(33, 186, 47, 41);
+		contentPane.add(button21);
 		
-		button_22.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_22.setEnabled(false);
-		button_22.setForeground(Color.BLACK);
-		button_22.setBackground(Color.BLACK);
-		button_22.setBounds(79, 186, 47, 41);
-		contentPane.add(button_22);
+		actionButton22();
+		button22.setEnabled(false);
+		button22.setForeground(Color.BLACK);
+		button22.setBackground(Color.BLACK);
+		button22.setBounds(79, 186, 47, 41);
+		contentPane.add(button22);
 		
-		button_23.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_23.setEnabled(false);
-		button_23.setForeground(Color.WHITE);
-		button_23.setBackground(Color.WHITE);
-		button_23.setBounds(125, 186, 47, 41);
-		contentPane.add(button_23);
+		actionButton23();
+		button23.setEnabled(false);
+		button23.setForeground(Color.WHITE);
+		button23.setBackground(Color.WHITE);
+		button23.setBounds(125, 186, 47, 41);
+		contentPane.add(button23);
 		
-		button_24.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_24.setEnabled(false);
-		button_24.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
-		button_24.setBackground(Color.BLACK);
-		button_24.setBounds(221, 66, 47, 41);
-		contentPane.add(button_24);
+		actionButton24();
+		button24.setEnabled(false);
+		button24.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
+		button24.setBackground(Color.BLACK);
+		button24.setBounds(221, 66, 47, 41);
+		contentPane.add(button24);
 		
-		button_25.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_25.setEnabled(false);
-		button_25.setForeground(Color.WHITE);
-		button_25.setBackground(Color.WHITE);
-		button_25.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
-		button_25.setBounds(266, 66, 47, 41);
-		contentPane.add(button_25);
+		actionButton25();
+		button25.setEnabled(false);
+		button25.setForeground(Color.WHITE);
+		button25.setBackground(Color.WHITE);
+		button25.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
+		button25.setBounds(266, 66, 47, 41);
+		contentPane.add(button25);
 		
-		button_26.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_26.setEnabled(false);
-		button_26.setForeground(Color.WHITE);
-		button_26.setBackground(Color.WHITE);
-		button_26.setBounds(310, 186, 47, 41);
-		contentPane.add(button_26);
+		actionButton26();
+		button26.setEnabled(false);
+		button26.setForeground(Color.WHITE);
+		button26.setBackground(Color.WHITE);
+		button26.setBounds(310, 186, 47, 41);
+		contentPane.add(button26);
 		
-		button_27.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_27.setEnabled(false);
-		button_27.setIcon(new ImageIcon(Gui.class.getResource("/images/Pferd schwarz.png")));
-		button_27.setBackground(Color.WHITE);
-		button_27.setBounds(310, 27, 47, 41);
-		contentPane.add(button_27);
+		actionButton27();
+		button27.setEnabled(false);
+		button27.setIcon(new ImageIcon(Gui.class.getResource("/images/Pferd schwarz.png")));
+		button27.setBackground(Color.WHITE);
+		button27.setBounds(310, 27, 47, 41);
+		contentPane.add(button27);
 		
-		button_28.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_28.setEnabled(false);
-		button_28.setForeground(Color.WHITE);
-		button_28.setBackground(Color.WHITE);
-		button_28.setBounds(310, 106, 47, 46);
-		contentPane.add(button_28);
+		actionButton28();
+		button28.setEnabled(false);
+		button28.setForeground(Color.WHITE);
+		button28.setBackground(Color.WHITE);
+		button28.setBounds(310, 106, 47, 46);
+		contentPane.add(button28);
 		
-		button_29.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_29.setEnabled(false);
-		button_29.setBackground(Color.BLACK);
-		button_29.setBounds(79, 106, 47, 41);
-		contentPane.add(button_29);
+		actionButton29();
+		button29.setEnabled(false);
+		button29.setBackground(Color.BLACK);
+		button29.setBounds(79, 106, 47, 41);
+		contentPane.add(button29);
 		
-		button_30.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_30.setEnabled(false);
-		button_30.setBackground(Color.BLACK);
-		button_30.setBounds(172, 106, 47, 41);
-		contentPane.add(button_30);
+		actionButton30();
+		button30.setEnabled(false);
+		button30.setBackground(Color.BLACK);
+		button30.setBounds(172, 106, 47, 41);
+		contentPane.add(button30);
 		
-		button_31.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_31.setEnabled(false);
-		button_31.setForeground(Color.WHITE);
-		button_31.setBackground(Color.WHITE);
-		button_31.setBounds(125, 106, 47, 41);
-		contentPane.add(button_31);
+		actionButton31();
+		button31.setEnabled(false);
+		button31.setForeground(Color.WHITE);
+		button31.setBackground(Color.WHITE);
+		button31.setBounds(125, 106, 47, 41);
+		contentPane.add(button31);
 		
-		button_32.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_32.setEnabled(false);
-		button_32.setIcon(new ImageIcon(Gui.class.getResource("/images/K\u00F6nigin schwarz.png")));
-		button_32.setBackground(Color.BLACK);
-		button_32.setBounds(172, 27, 47, 41);
-		contentPane.add(button_32);
+		actionButton32();
+		button32.setEnabled(false);
+		button32.setIcon(new ImageIcon(Gui.class.getResource("/images/K\u00F6nigin schwarz.png")));
+		button32.setBackground(Color.BLACK);
+		button32.setBounds(172, 27, 47, 41);
+		contentPane.add(button32);
 		
-		button_33.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_33.setEnabled(false);
-		button_33.setForeground(Color.WHITE);
-		button_33.setBackground(Color.WHITE);
-		button_33.setIcon(new ImageIcon(Gui.class.getResource("/images/L\u00E4ufer s.png")));
-		button_33.setBounds(125, 27, 47, 41);
-		contentPane.add(button_33);
+		actionButton33();
+		button33.setEnabled(false);
+		button33.setForeground(Color.WHITE);
+		button33.setBackground(Color.WHITE);
+		button33.setIcon(new ImageIcon(Gui.class.getResource("/images/L\u00E4ufer s.png")));
+		button33.setBounds(125, 27, 47, 41);
+		contentPane.add(button33);
 		
-		button_34.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_34.setEnabled(false);
-		button_34.setIcon(new ImageIcon(Gui.class.getResource("/images/Pferd schwarz.png")));
-		button_34.setBackground(Color.BLACK);
-		button_34.setBounds(79, 27, 47, 41);
-		contentPane.add(button_34);
+		actionButton34();
+		button34.setEnabled(false);
+		button34.setIcon(new ImageIcon(Gui.class.getResource("/images/Pferd schwarz.png")));
+		button34.setBackground(Color.BLACK);
+		button34.setBounds(79, 27, 47, 41);
+		contentPane.add(button34);
 		
-		button_35.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_35.setEnabled(false);
-		button_35.setForeground(Color.WHITE);
-		button_35.setBackground(Color.WHITE);
-		button_35.setIcon(new ImageIcon(Gui.class.getResource("/images/Turm schwarz.png")));
-		button_35.setBounds(33, 27, 47, 41);
-		contentPane.add(button_35);
+		actionButton35();
+		button35.setEnabled(false);
+		button35.setForeground(Color.WHITE);
+		button35.setBackground(Color.WHITE);
+		button35.setIcon(new ImageIcon(Gui.class.getResource("/images/Turm schwarz.png")));
+		button35.setBounds(33, 27, 47, 41);
+		contentPane.add(button35);
 		
-		button_36.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_36.setEnabled(false);
-		button_36.setForeground(Color.WHITE);
-		button_36.setBackground(Color.WHITE);
-		button_36.setBounds(172, 306, 47, 41);
-		button_36.setIcon(new ImageIcon(Gui.class.getResource("/images/K\u00F6nigin wei\u00DF.png")));
-		contentPane.add(button_36);	
+		actionButton36();
+		button36.setEnabled(false);
+		button36.setForeground(Color.WHITE);
+		button36.setBackground(Color.WHITE);
+		button36.setBounds(172, 306, 47, 41);
+		button36.setIcon(new ImageIcon(Gui.class.getResource("/images/K\u00F6nigin wei\u00DF.png")));
+		contentPane.add(button36);	
 		
-		button_37.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_37.setEnabled(false);
-		button_37.setForeground(Color.BLACK);
-		button_37.setBackground(Color.BLACK);
-		button_37.setBounds(172, 186, 47, 41);
-		contentPane.add(button_37);
+		actionButton37();
+		button37.setEnabled(false);
+		button37.setForeground(Color.BLACK);
+		button37.setBackground(Color.BLACK);
+		button37.setBounds(172, 186, 47, 41);
+		contentPane.add(button37);
 		
-		button_38.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_38.setEnabled(false);
-		button_38.setBackground(Color.BLACK);
-		button_38.setBounds(266, 106, 47, 41);
-		contentPane.add(button_38);
+		actionButton38();
+		button38.setEnabled(false);
+		button38.setBackground(Color.BLACK);
+		button38.setBounds(266, 106, 47, 41);
+		contentPane.add(button38);
 		
-		button_39.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_39.setEnabled(false);
-		button_39.setForeground(Color.WHITE);
-		button_39.setBackground(Color.WHITE);
-		button_39.setIcon(new ImageIcon(Gui.class.getResource("/images/K\u00F6nig s.png")));
-		button_39.setBounds(221, 27, 47, 41);
-		contentPane.add(button_39);
+		actionButton39();
+		button39.setEnabled(false);
+		button39.setForeground(Color.WHITE);
+		button39.setBackground(Color.WHITE);
+		button39.setIcon(new ImageIcon(Gui.class.getResource("/images/K\u00F6nig s.png")));
+		button39.setBounds(221, 27, 47, 41);
+		contentPane.add(button39);
 		
-		button_40.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_40.setEnabled(false);
-		button_40.setIcon(new ImageIcon(Gui.class.getResource("/images/L\u00E4ufer s.png")));
-		button_40.setForeground(Color.BLACK);
-		button_40.setBackground(Color.BLACK);
-		button_40.setBounds(266, 27, 47, 41);
-		contentPane.add(button_40);
+		actionButton40();
+		button40.setEnabled(false);
+		button40.setIcon(new ImageIcon(Gui.class.getResource("/images/L\u00E4ufer s.png")));
+		button40.setForeground(Color.BLACK);
+		button40.setBackground(Color.BLACK);
+		button40.setBounds(266, 27, 47, 41);
+		contentPane.add(button40);
 		
-		button_41.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_41.setEnabled(false);
-		button_41.setForeground(Color.WHITE);
-		button_41.setBackground(Color.WHITE);
-		button_41.setBounds(172, 147, 47, 41);
-		contentPane.add(button_41);
+		actionButton41();
+		button41.setEnabled(false);
+		button41.setForeground(Color.WHITE);
+		button41.setBackground(Color.WHITE);
+		button41.setBounds(172, 147, 47, 41);
+		contentPane.add(button41);
 		
-		button_42.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_42.setEnabled(false);
-		button_42.setBackground(Color.BLACK);
-		button_42.setForeground(Color.BLACK);
-		button_42.setBounds(221, 147, 47, 41);
-		contentPane.add(button_42);
+		actionButton42();
+		button42.setEnabled(false);
+		button42.setBackground(Color.BLACK);
+		button42.setForeground(Color.BLACK);
+		button42.setBounds(221, 147, 47, 41);
+		contentPane.add(button42);
 		
-		button_43.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_43.setEnabled(false);
-		button_43.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
-		button_43.setBackground(Color.BLACK);
-		button_43.setBounds(33, 66, 47, 41);
-		contentPane.add(button_43);
+		actionButton43();
+		button43.setEnabled(false);
+		button43.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
+		button43.setBackground(Color.BLACK);
+		button43.setBounds(33, 66, 47, 41);
+		contentPane.add(button43);
 		
-		button_44.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_44.setEnabled(false);
-		button_44.setForeground(Color.WHITE);
-		button_44.setBackground(Color.WHITE);
-		button_44.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
-		button_44.setBounds(79, 66, 47, 41);
-		contentPane.add(button_44);
+		actionButton44();
+		button44.setEnabled(false);
+		button44.setForeground(Color.WHITE);
+		button44.setBackground(Color.WHITE);
+		button44.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
+		button44.setBounds(79, 66, 47, 41);
+		contentPane.add(button44);
 	    
-		button_45.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_45.setEnabled(false);
-		button_45.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
-		button_45.setBackground(Color.BLACK);
-		button_45.setBounds(125, 66, 47, 41);
-		contentPane.add(button_45);
+		actionButton45();
+		button45.setEnabled(false);
+		button45.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
+		button45.setBackground(Color.BLACK);
+		button45.setBounds(125, 66, 47, 41);
+		contentPane.add(button45);
 		
-		button_46.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_46.setEnabled(false);
-		button_46.setForeground(Color.WHITE);
-		button_46.setBackground(Color.WHITE);
-		button_46.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
-		button_46.setBounds(172, 66, 47, 41);
-		contentPane.add(button_46);
+		actionButton46();
+		button46.setEnabled(false);
+		button46.setForeground(Color.WHITE);
+		button46.setBackground(Color.WHITE);
+		button46.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
+		button46.setBounds(172, 66, 47, 41);
+		contentPane.add(button46);
 		
-		button_47.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_47.setEnabled(false);
-		button_47.setForeground(Color.BLACK);
-		button_47.setBackground(Color.BLACK);
-		button_47.setBounds(125, 227, 47, 41);
-		contentPane.add(button_47);
+		actionButton47();
+		button47.setEnabled(false);
+		button47.setForeground(Color.BLACK);
+		button47.setBackground(Color.BLACK);
+		button47.setBounds(125, 227, 47, 41);
+		contentPane.add(button47);
 		
-		button_48.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_48.setEnabled(false);
-		button_48.setForeground(Color.WHITE);
-		button_48.setBackground(Color.WHITE);
-		button_48.setBounds(79, 227, 47, 41);
-		contentPane.add(button_48);
+		actionButton48();
+		button48.setEnabled(false);
+		button48.setForeground(Color.WHITE);
+		button48.setBackground(Color.WHITE);
+		button48.setBounds(79, 227, 47, 41);
+		contentPane.add(button48);
 		
-		button_49.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_49.setEnabled(false);
-		button_49.setForeground(Color.BLACK);
-		button_49.setBackground(Color.BLACK);
-		button_49.setBounds(33, 227, 47, 41);
-		contentPane.add(button_49);
+		actionButton49();
+		button49.setEnabled(false);
+		button49.setForeground(Color.BLACK);
+		button49.setBackground(Color.BLACK);
+		button49.setBounds(33, 227, 47, 41);
+		contentPane.add(button49);
 		
-		button_50.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_50.setEnabled(false);
-		button_50.setForeground(Color.BLACK);
-		button_50.setBackground(Color.BLACK);
-		button_50.setBounds(266, 186, 47, 41);
-		contentPane.add(button_50);
+		actionButton50();
+		button50.setEnabled(false);
+		button50.setForeground(Color.BLACK);
+		button50.setBackground(Color.BLACK);
+		button50.setBounds(266, 186, 47, 41);
+		contentPane.add(button50);
 		
-		button_51.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_51.setEnabled(false);
-		button_51.setForeground(Color.WHITE);
-		button_51.setBackground(Color.WHITE);
-		button_51.setBounds(33, 106, 47, 41);
-		contentPane.add(button_51);
+		actionButton51();
+		button51.setEnabled(false);
+		button51.setForeground(Color.WHITE);
+		button51.setBackground(Color.WHITE);
+		button51.setBounds(33, 106, 47, 41);
+		contentPane.add(button51);
 		
-		button_52.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_52.setEnabled(false);
-		button_52.setForeground(Color.WHITE);
-		button_52.setBackground(Color.WHITE);
-		button_52.setBounds(221, 186, 47, 41);
-		contentPane.add(button_52);
+		actionButton52();
+		button52.setEnabled(false);
+		button52.setForeground(Color.WHITE);
+		button52.setBackground(Color.WHITE);
+		button52.setBounds(221, 186, 47, 41);
+		contentPane.add(button52);
 		
-		button_54.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_54.setEnabled(false);
-		button_54.setForeground(Color.WHITE);
-		button_54.setBackground(Color.WHITE);
-		button_54.setBounds(221, 106, 47, 41);
-		contentPane.add(button_54);
+		actionButton54();
+		button54.setEnabled(false);
+		button54.setForeground(Color.WHITE);
+		button54.setBackground(Color.WHITE);
+		button54.setBounds(221, 106, 47, 41);
+		contentPane.add(button54);
 		
-		button_55.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_55.setEnabled(false);
-		button_55.setForeground(Color.WHITE);
-		button_55.setBackground(Color.WHITE);
-		button_55.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
-		button_55.setBounds(310, 267, 47, 41);
-		contentPane.add(button_55);
+		actionButton55();
+		button55.setEnabled(false);
+		button55.setForeground(Color.WHITE);
+		button55.setBackground(Color.WHITE);
+		button55.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
+		button55.setBounds(310, 267, 47, 41);
+		contentPane.add(button55);
 		
 		
-		button_56.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_56.setEnabled(false);
-		button_56.setForeground(Color.BLACK);
-		button_56.setBackground(Color.BLACK);
-		button_56.setBounds(310, 227, 47, 41);
-		contentPane.add(button_56);
+		actionButton56();
+		button56.setEnabled(false);
+		button56.setForeground(Color.BLACK);
+		button56.setBackground(Color.BLACK);
+		button56.setBounds(310, 227, 47, 41);
+		contentPane.add(button56);
 		
 		
-		button_57.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_57.setEnabled(false);
-		button_57.setForeground(Color.WHITE);
-		button_57.setBackground(Color.WHITE);
-		button_57.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
-		button_57.setBounds(221, 267, 47, 41);
-		contentPane.add(button_57);
+		actionButton57();
+		button57.setEnabled(false);
+		button57.setForeground(Color.WHITE);
+		button57.setBackground(Color.WHITE);
+		button57.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
+		button57.setBounds(221, 267, 47, 41);
+		contentPane.add(button57);
 		
 		
-		button_58.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_58.setEnabled(false);
-		button_58.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
-		button_58.setForeground(Color.BLACK);
-		button_58.setBackground(Color.BLACK);
-		button_58.setBounds(172, 267, 47, 41);
-		contentPane.add(button_58);
+		actionButton58();
+		button58.setEnabled(false);
+		button58.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
+		button58.setForeground(Color.BLACK);
+		button58.setBackground(Color.BLACK);
+		button58.setBounds(172, 267, 47, 41);
+		contentPane.add(button58);
 		
 		
-		button_59.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_59.setEnabled(false);
-		button_59.setForeground(Color.WHITE);
-		button_59.setBackground(Color.WHITE);
-		button_59.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
-		button_59.setBounds(125, 267, 47, 41);
-		contentPane.add(button_59);
+		actionButton59();
+		button59.setEnabled(false);
+		button59.setForeground(Color.WHITE);
+		button59.setBackground(Color.WHITE);
+		button59.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
+		button59.setBounds(125, 267, 47, 41);
+		contentPane.add(button59);
 		
 		
-		button_60.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_60.setEnabled(false);
-		button_60.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
-		button_60.setForeground(Color.BLACK);
-		button_60.setBackground(Color.BLACK);
-		button_60.setBounds(79, 267, 47, 41);
-		contentPane.add(button_60);
+		actionButton60();
+		button60.setEnabled(false);
+		button60.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
+		button60.setForeground(Color.BLACK);
+		button60.setBackground(Color.BLACK);
+		button60.setBounds(79, 267, 47, 41);
+		contentPane.add(button60);
 		
 		
-		button_61.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_61.setEnabled(false);
-		button_61.setForeground(Color.WHITE);
-		button_61.setBackground(Color.WHITE);
-		button_61.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
-		button_61.setBounds(33, 267, 47, 41);
-		contentPane.add(button_61);
+		actionButton61();
+		button61.setEnabled(false);
+		button61.setForeground(Color.WHITE);
+		button61.setBackground(Color.WHITE);
+		button61.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
+		button61.setBounds(33, 267, 47, 41);
+		contentPane.add(button61);
 		
 		
-		button_62.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_62.setEnabled(false);
-		button_62.setForeground(Color.WHITE);
-		button_62.setBackground(Color.WHITE);
-		button_62.setBounds(266, 227, 47, 41);
-		contentPane.add(button_62);
+		actionButton62();
+		button62.setEnabled(false);
+		button62.setForeground(Color.WHITE);
+		button62.setBackground(Color.WHITE);
+		button62.setBounds(266, 227, 47, 41);
+		contentPane.add(button62);
 		
 		
-		button_63.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_63.setEnabled(false);
-		button_63.setForeground(Color.BLACK);
-		button_63.setBackground(Color.BLACK);
-		button_63.setBounds(221, 227, 47, 41);
-		contentPane.add(button_63);
+		actionButton63();
+		button63.setEnabled(false);
+		button63.setForeground(Color.BLACK);
+		button63.setBackground(Color.BLACK);
+		button63.setBounds(221, 227, 47, 41);
+		contentPane.add(button63);
 		
-		button_64.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		button_64.setEnabled(false);
-		button_64.setForeground(Color.WHITE);
-		button_64.setBackground(Color.WHITE);
-		button_64.setBounds(172, 227, 47, 41);
-		contentPane.add(button_64);
-		
-		for(int i = 0; i < 8; i++) {
-			this.buttonList.add(new ArrayList<JButton>());
-		}
-		
-		buttonList.get(0).add(button_3);
-		buttonList.get(0).add(button_2);
-		buttonList.get(0).add(button_1);
-		buttonList.get(0).add(button_36);
-		buttonList.get(0).add(button_4);
-		buttonList.get(0).add(button_5);
-		buttonList.get(0).add(button_6);
-		buttonList.get(0).add(button_7);
-		
-		buttonList.get(1).add(button_61);
-		buttonList.get(1).add(button_60);
-		buttonList.get(1).add(button_59);
-		buttonList.get(1).add(button_58);
-		buttonList.get(1).add(button_57);
-		buttonList.get(1).add(button_19);
-		buttonList.get(1).add(button_55);
-		buttonList.get(1).add(button_8);
-		
-		buttonList.get(2).add(button_49);
-		buttonList.get(2).add(button_48);
-		buttonList.get(2).add(button_47);
-		buttonList.get(2).add(button_64);
-		buttonList.get(2).add(button_63);
-		buttonList.get(2).add(button_62);
-		buttonList.get(2).add(button_56);
-		buttonList.get(2).add(button_10);
-	
-		buttonList.get(3).add(button_21);
-		buttonList.get(3).add(button_22);
-		buttonList.get(3).add(button_23);
-		buttonList.get(3).add(button_37);
-		buttonList.get(3).add(button_52);
-		buttonList.get(3).add(button_50);
-		buttonList.get(3).add(button_26);
-		buttonList.get(3).add(button_15);
-		
-		buttonList.get(4).add(button_17);
-		buttonList.get(4).add(button_65);
-		buttonList.get(4).add(button_18);
-		buttonList.get(4).add(button_41);
-		buttonList.get(4).add(button_42);
-		buttonList.get(4).add(button_20);
-		buttonList.get(4).add(button_9);
-		buttonList.get(4).add(button_11);
-		
-		buttonList.get(5).add(button_51);
-		buttonList.get(5).add(button_29);
-		buttonList.get(5).add(button_31);
-		buttonList.get(5).add(button_30);
-		buttonList.get(5).add(button_54);
-		buttonList.get(5).add(button_38);
-		buttonList.get(5).add(button_28);
-		buttonList.get(5).add(button_12);
-		
-		buttonList.get(6).add(button_43);
-		buttonList.get(6).add(button_44);
-		buttonList.get(6).add(button_45);
-		buttonList.get(6).add(button_46);
-		buttonList.get(6).add(button_24);
-		buttonList.get(6).add(button_25);
-		buttonList.get(6).add(button_16);
-		buttonList.get(6).add(button_13);
-		
-		buttonList.get(7).add(button_35);
-		buttonList.get(7).add(button_34);
-		buttonList.get(7).add(button_33);
-		buttonList.get(7).add(button_32);
-		buttonList.get(7).add(button_39);
-		buttonList.get(7).add(button_40);
-		buttonList.get(7).add(button_27);
-		buttonList.get(7).add(button_14);
+		actionButton64();
+		button64.setEnabled(false);
+		button64.setForeground(Color.WHITE);
+		button64.setBackground(Color.WHITE);
+		button64.setBounds(172, 227, 47, 41);
+		contentPane.add(button64);
 		
 		JLabel label = new JLabel("1");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1051,5 +716,634 @@ public class Gui extends JFrame {
 		button.setBackground(Color.BLACK);
 		button.setBounds(466, 0, 9, 391);
 		contentPane.add(button);
+		
+		fillListEmpty();
+		
+		buttonList.get(0).add(button3);
+		buttonList.get(0).add(button2);
+		buttonList.get(0).add(button1);
+		buttonList.get(0).add(button36);
+		buttonList.get(0).add(button4);
+		buttonList.get(0).add(button5);
+		buttonList.get(0).add(button6);
+		buttonList.get(0).add(button7);
+		
+		buttonList.get(1).add(button61);
+		buttonList.get(1).add(button60);
+		buttonList.get(1).add(button59);
+		buttonList.get(1).add(button58);
+		buttonList.get(1).add(button57);
+		buttonList.get(1).add(button19);
+		buttonList.get(1).add(button55);
+		buttonList.get(1).add(button8);
+		
+		buttonList.get(2).add(button49);
+		buttonList.get(2).add(button48);
+		buttonList.get(2).add(button47);
+		buttonList.get(2).add(button64);
+		buttonList.get(2).add(button63);
+		buttonList.get(2).add(button62);
+		buttonList.get(2).add(button56);
+		buttonList.get(2).add(button10);
+	
+		buttonList.get(3).add(button21);
+		buttonList.get(3).add(button22);
+		buttonList.get(3).add(button23);
+		buttonList.get(3).add(button37);
+		buttonList.get(3).add(button52);
+		buttonList.get(3).add(button50);
+		buttonList.get(3).add(button26);
+		buttonList.get(3).add(button15);
+		
+		buttonList.get(4).add(button17);
+		buttonList.get(4).add(button65);
+		buttonList.get(4).add(button18);
+		buttonList.get(4).add(button41);
+		buttonList.get(4).add(button42);
+		buttonList.get(4).add(button20);
+		buttonList.get(4).add(button9);
+		buttonList.get(4).add(button11);
+		
+		buttonList.get(5).add(button51);
+		buttonList.get(5).add(button29);
+		buttonList.get(5).add(button31);
+		buttonList.get(5).add(button30);
+		buttonList.get(5).add(button54);
+		buttonList.get(5).add(button38);
+		buttonList.get(5).add(button28);
+		buttonList.get(5).add(button12);
+		
+		buttonList.get(6).add(button43);
+		buttonList.get(6).add(button44);
+		buttonList.get(6).add(button45);
+		buttonList.get(6).add(button46);
+		buttonList.get(6).add(button24);
+		buttonList.get(6).add(button25);
+		buttonList.get(6).add(button16);
+		buttonList.get(6).add(button13);
+		
+		buttonList.get(7).add(button35);
+		buttonList.get(7).add(button34);
+		buttonList.get(7).add(button33);
+		buttonList.get(7).add(button32);
+		buttonList.get(7).add(button39);
+		buttonList.get(7).add(button40);
+		buttonList.get(7).add(button27);
+		buttonList.get(7).add(button14);
+	}
+
+	private void fillListEmpty() {
+		for(int i = 0; i < 8; i++) {
+			this.buttonList.add(new ArrayList<JButton>());
+		}
+	}
+
+	private void actionButton64() {
+		button64.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton63() {
+		button63.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton62() {
+		button62.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton61() {
+		button61.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton60() {
+		button60.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton59() {
+		button59.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton58() {
+		button58.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton57() {
+		button57.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton56() {
+		button56.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton55() {
+		button55.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton54() {
+		button54.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton52() {
+		button52.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton51() {
+		button51.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton50() {
+		button50.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton49() {
+		button49.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton48() {
+		button48.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton47() {
+		button47.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton46() {
+		button46.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton45() {
+		button45.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton44() {
+		button44.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton43() {
+		button43.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton42() {
+		button42.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton41() {
+		button41.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton40() {
+		button40.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton39() {
+		button39.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton38() {
+		button38.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton37() {
+		button37.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton36() {
+		button36.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton35() {
+		button35.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton34() {
+		button34.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton33() {
+		button33.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton32() {
+		button32.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton31() {
+		button31.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton30() {
+		button30.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton29() {
+		button29.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton28() {
+		button28.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton27() {
+		button27.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton26() {
+		button26.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton25() {
+		button25.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton24() {
+		button24.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton23() {
+		button23.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton22() {
+		button22.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton21() {
+		button21.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton20() {
+		button20.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton19() {
+		button19.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton18() {
+		button18.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton65() {
+		button65.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton17() {
+		button17.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton16() {
+		button16.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton15() {
+		button15.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton14() {
+		button14.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton13() {
+		button13.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton12() {
+		button12.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton11() {
+		button11.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton10() {
+		button10.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton9() {
+		button9.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton8() {
+		button8.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton7() {
+		button7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton6() {
+		button6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton5() {
+		button5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton4() {
+		button4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton3() {
+		button3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton2() {
+		button2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionButton1() {
+		button1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+	}
+
+	private void actionClose() {
+		btnCloseGame.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+		});
+	}
+
+	private void actionStart() {
+		btnStartGame.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				enableStartFields();
+				btnStartGame.setEnabled(false);
+			}
+
+			private void enableStartFields() {
+				Integer[] lines = {0,1};
+				for(int i : lines) {
+					enableButtons(i);
+				}
+			}
+
+			private void enableButtons(int i) {
+				for(int a = 0; a <buttonList.get(i).size(); a++) {
+					buttonList.get(i).get(a).setEnabled(true);
+				}
+			}
+		});
+	}
+	
+	public void updateLists(List<Integer[]> availableField, List<IFigure> availableFigure) {
+		this.availableFields = availableField;
+		this.availableFigures = availableFigure;
 	}
 }
