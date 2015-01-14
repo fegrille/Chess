@@ -46,14 +46,14 @@ public class Tui implements Observer, Runnable {
 	@Override
 	public void run() {
 		Scanner scan = new Scanner(System.in);
-		String s;
+		String si;
 		while(!controlGame.getControlEG().getWin()) {
-			s = scan.next();
-			controlGame.setChoise(s);	
+			si = scan.next();
+			controlGame.setChoise(si);	
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				logger.warning(e.getMessage());
 			}
 		}
 		scan.close();
@@ -69,12 +69,13 @@ public class Tui implements Observer, Runnable {
         	field.append(newLine);
         	fillPrint();
         	addLastLine();
+        	addInformation();
         	StringBuilder figures = new StringBuilder();
         	figures.append(field);
         	figures.append(newLine + "Figures that can be moved:" + newLine);
         	int index = 0;
         	for(IFigure f : getAvailableFigures()) {
-        		String s = index + " " + f.returnName() + "[" + f.getField()[0] + "," + f.getField()[1] + "]" + newLine;
+        		String sa = index + " " + f.returnName() + "[" + f.getField()[0] + "," + f.getField()[1] + "]" + newLine;
         		figures.append(s);
         		index++;
         	}
@@ -99,9 +100,24 @@ public class Tui implements Observer, Runnable {
         }
 	}
 
+	private void addInformation() {
+		field.append(newLine);
+		field.append("Field Information: (1. 0, 2. P , 3. w)" + newLine);
+		field.append("1. Index of figure" + newLine);
+		field.append("2. Kind of figure (P = Pawn, Kn = Knight etc)" + newLine);
+		field.append("3. Color of figure (w = white, b = black)" + newLine);
+		
+	}
+
 	private void fillPrint() {
 		for( int i = 8; i >= 0; i--) {
 			fillPrintXLine(i);
+			addNewLine(i);
+		}
+	}
+
+	private void addNewLine(int i) {
+		if(i > 0) {
 			field.append(newLine);
 		}
 	}
@@ -116,11 +132,11 @@ public class Tui implements Observer, Runnable {
 		for(int a = 0; a < fieldlines.get(9).size(); a++) {
 			field.append(fieldlines.get(9).get(a));
 		}
+		field.append(newLine);
 	}
 
 	private void fillField() {
 		int index = 0;
-		String s;
 		for(IFigure f : getSpieler()) {
 			checkFigureType(index, f);
 			fieldlines.get(f.getY()).set(f.getX(), this.s);
@@ -190,11 +206,12 @@ public class Tui implements Observer, Runnable {
 	 */
 	private int iterateLine(int c) {
 		int ind = 0;
+		int ca = 0;
 		for(int i = 9; i > 0; i--) {
-			c = buildLine(c, i, ind);
+			ca = buildLine(c, i, ind);
 			ind++;
 		}
-		return c;
+		return ca;
 	}
 
 	/**
@@ -203,15 +220,16 @@ public class Tui implements Observer, Runnable {
 	 * @return
 	 */
 	private int buildLine(int c, int i, int ind) {
+		int ca = c;
 		if(i == 9) {
 			fieldlines.get(i).add(" ");
 			xKordLine(i);
 		} else {
 			fieldlines.get(c).add("" + ind + "");
 			fillLinesEmpty(c);
-			c++;
+			ca++;
 		}
-		return c;
+		return ca;
 	}
 
 	private void xKordLine(int i) {

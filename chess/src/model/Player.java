@@ -8,7 +8,7 @@ public class Player implements IPlayer{
 	private List<IFigure> figureList;
 	private IFigure f;
 	private char col;
-	FigureFactory figureFactory = new FigureFactory();
+	private FigureFactory figureFactory = new FigureFactory();
 	
 	public Player(char color, IField field) {
 		this.figureList = new ArrayList<IFigure>();

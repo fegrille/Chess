@@ -133,22 +133,22 @@ public class ControlEndGame {
 
 	private void getXOrderedFieldsBishop(int[] xBigField, int[] xSmallField) {
 		if(xBigField[0] > xSmallField[0]) {
-			getBothOrderedFieldsBishopPlus(xBigField[1], xSmallField[1], xBigField[0], xSmallField[0]);
+			getBothOrderedFieldsBishopPlus(xBigField[1], xSmallField[1], xSmallField[0]);
 		} else {
-			getBothOrderedFieldsBishopMinus(xBigField[1], xSmallField[1], xSmallField[0], xBigField[0]);
+			getBothOrderedFieldsBishopMinus(xBigField[1], xSmallField[1], xSmallField[0]);
 		}
 	}
 
-	private void getBothOrderedFieldsBishopPlus(int xBigField, int xSmallField, int yBigField, int ySmallField) {
+	private void getBothOrderedFieldsBishopPlus(int xBigField, int xSmallField, int ySmallField) {
 		int y = ySmallField;
 		for(int x = xSmallField; (x + 1) < xBigField; x++) {
-			int i[] = {y + 1, x + 1};//TODO
+			int i[] = {y + 1, x + 1};
 			getPossBlockFields().add(i);
 			y++;
 		}
 	}
 	
-	private void getBothOrderedFieldsBishopMinus(int xBigField, int xSmallField, int yBigField, int ySmallField) {
+	private void getBothOrderedFieldsBishopMinus(int xBigField, int xSmallField, int yBigField) {
 		int y = yBigField;
 		for(int x = xSmallField; (x + 1) < xBigField; x++) {
 			int i[] = {y - 1, x + 1};
