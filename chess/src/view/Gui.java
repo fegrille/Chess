@@ -7,11 +7,14 @@ import java.util.Scanner;
 import control.Observer;
 
 import java.awt.EventQueue;
+import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -99,11 +102,16 @@ public class Gui implements Observer, Runnable {
 	private JButton button62 = new JButton("");
 	private JButton button63 = new JButton("");
 	private JButton button64 = new JButton("");
+	private final GridLayout layout = new GridLayout(8, 8);
+	private JPanel gameField;
 	private JFrame frame = new JFrame();
-	
+
 	private ControlGame controlGame;
 	private List<IFigure> availableFigures;
 	private List<Integer[]> availableFields;
+	private List<IFigure> spieler;
+	private List<IFigure> gegenspieler;
+	private char tmpCase = ' ';
 
 	/**
 	 * Launch the application.
@@ -112,13 +120,36 @@ public class Gui implements Observer, Runnable {
 	public void run() {
 		frame.setVisible(true);
 	}
+	
+	 public class ChessButton extends JButton {
+		 private int x, y;
+		  
+		 public ChessButton(int x, int y) {
+			 this.x = x;
+			 this.y = y;
+		 }
+		 
+		 public int getX() {
+			 return this.x;
+		 }
+		 
+		 public int getY() {
+			 return this.y;
+		 }
+	 }
 
 	/**
 	 * Create the frame.
 	 */
+	private ChessButton buttons[][];
+	private int fieldsize = 8;
+
+	public void buttonClicked(ActionEvent evt) {
+
+        
+    }
+	
 	public Gui(ControlGame controlGame) {
-		
-		
 		this.controlGame = controlGame;
 		availableFigures = new ArrayList<IFigure>();
 		availableFields = new ArrayList<Integer[]>();
@@ -130,11 +161,26 @@ public class Gui implements Observer, Runnable {
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		frame.setContentPane(contentPane);
 		
+		gameField = new JPanel(layout);
+		contentPane.add(gameField);
+		
+		buttons = new ChessButton[fieldsize][fieldsize];
+		for(int i = 0; i < fieldsize; i++) {
+		    for(int j = 0; j< fieldsize; j++) {
+		    	buttons[i][j] = new ChessButton(i, j);
+		    	buttons[i][j].addActionListener(new ActionListener() {
+		    		public void actionPerformed(ActionEvent evt) {
+		    			buttonClicked(evt);
+		            }
+		        });
+		    	gameField.add(buttons[i][j]);
+		    }
+		}
 		
 		
 		actionStart();
 		
-		btnStartGame.setBounds(525, 129, 87, 23);
+		/*btnStartGame.setBounds(525, 129, 87, 23);
 	
 		actionClose();
 		btnCloseGame.setBounds(525, 228, 89, 23);
@@ -146,28 +192,28 @@ public class Gui implements Observer, Runnable {
 		button1.setEnabled(false);
 		button1.setBackground(Color.BLACK);
 		button1.setBounds(125, 306, 47, 41);
-		button1.setIcon(new ImageIcon("/images/Laeuferweiss.png"));
+		button1.setIcon(new ImageIcon("src/images/Laeuferweiss.png"));
 		contentPane.add(button1);
 		
 		actionButton2();
 		button2.setEnabled(false);
 		button2.setForeground(Color.WHITE);
 		button2.setBackground(Color.WHITE);
-		button2.setIcon(new ImageIcon("/images/Pferdweiss.png"));
+		button2.setIcon(new ImageIcon("src/images/Pferdweiss.png"));
 		button2.setBounds(79, 306, 47, 41);
 		contentPane.add(button2);
 		
 		actionButton3();
 		button3.setEnabled(false);
 		button3.setBackground(Color.BLACK);
-		button3.setIcon(new ImageIcon("/images/Turmweiss.png"));
+		button3.setIcon(new ImageIcon("src/images/Turmweiss.png"));
 		button3.setBounds(33, 306, 47, 41);
 		contentPane.add(button3);
 		
 		actionButton4();
 		button4.setEnabled(false);
 		button4.setBackground(Color.BLACK);
-		button4.setIcon(new ImageIcon("/images/Koenigweiss.png"));
+		button4.setIcon(new ImageIcon("src/images/Koenigweiss.png"));
 		button4.setBounds(221, 305, 47, 42);
 		contentPane.add(button4);
 		
@@ -175,14 +221,14 @@ public class Gui implements Observer, Runnable {
 		button5.setEnabled(false);
 		button5.setForeground(Color.WHITE);
 		button5.setBackground(Color.WHITE);
-		button5.setIcon(new ImageIcon("/images/Laeuferweiss.png"));
+		button5.setIcon(new ImageIcon("src/images/Laeuferweiss.png"));
 		button5.setBounds(266, 306, 47, 41);
 		contentPane.add(button5);
 		
 		actionButton6();
 		button6.setEnabled(false);
 		button6.setBackground(Color.BLACK);
-		button6.setIcon(new ImageIcon("/images/Pferdweiss.png"));
+		button6.setIcon(new ImageIcon("src/images/Pferdweiss.png"));
 		button6.setBounds(310, 306, 47, 41);
 		contentPane.add(button6);
 		
@@ -190,14 +236,14 @@ public class Gui implements Observer, Runnable {
 		button7.setEnabled(false);
 		button7.setForeground(Color.WHITE);
 		button7.setBackground(Color.WHITE);
-		button7.setIcon(new ImageIcon("/images/Turmweiss.png"));
+		button7.setIcon(new ImageIcon("src/images/Turmweiss.png"));
 		button7.setBounds(356, 306, 47, 41);
 		contentPane.add(button7);
 		
 		actionButton8();
 		button8.setEnabled(false);
 		button8.setBackground(Color.BLACK);
-		button8.setIcon(new ImageIcon("/images/Bauerweiss.png"));
+		button8.setIcon(new ImageIcon("src/images/Bauerweiss.png"));
 		button8.setBounds(356, 267, 47, 41);
 		contentPane.add(button8);
 		
@@ -231,13 +277,13 @@ public class Gui implements Observer, Runnable {
 		button13.setEnabled(false);
 		button13.setForeground(Color.WHITE);
 		button13.setBackground(Color.WHITE);
-		button13.setIcon(new ImageIcon("/images/Bauerschwarz.png"));
+		button13.setIcon(new ImageIcon("src/images/Bauerschwarz.png"));
 		button13.setBounds(356, 66, 47, 41);
 		contentPane.add(button13);
 		
 		actionButton14();
 		button14.setEnabled(false);
-		button14.setIcon(new ImageIcon("/images/Turmschwarz.png"));
+		button14.setIcon(new ImageIcon("src/images/Turmschwarz.png"));
 		button14.setForeground(Color.BLACK);
 		button14.setBackground(Color.BLACK);
 		button14.setBounds(356, 27, 47, 41);
@@ -252,7 +298,7 @@ public class Gui implements Observer, Runnable {
 		
 		actionButton16();
 		button16.setEnabled(false);
-		button16.setIcon(new ImageIcon("/images/Bauerschwarz.png"));
+		button16.setIcon(new ImageIcon("src/images/Bauerschwarz.png"));
 		button16.setBackground(Color.BLACK);
 		button16.setBounds(310, 66, 47, 41);
 		contentPane.add(button16);
@@ -278,7 +324,7 @@ public class Gui implements Observer, Runnable {
 		
 		actionButton19();
 		button19.setEnabled(false);
-		button19.setIcon(new ImageIcon("/images/Bauerweiss.png"));
+		button19.setIcon(new ImageIcon("src/images/Bauerweiss.png"));
 		button19.setBackground(Color.BLACK);
 		button19.setBounds(266, 267, 47, 41);
 		contentPane.add(button19);
@@ -313,7 +359,7 @@ public class Gui implements Observer, Runnable {
 		
 		actionButton24();
 		button24.setEnabled(false);
-		button24.setIcon(new ImageIcon("/images/Bauerschwarz.png"));
+		button24.setIcon(new ImageIcon("src/images/Bauerschwarz.png"));
 		button24.setBackground(Color.BLACK);
 		button24.setBounds(221, 66, 47, 41);
 		contentPane.add(button24);
@@ -322,7 +368,7 @@ public class Gui implements Observer, Runnable {
 		button25.setEnabled(false);
 		button25.setForeground(Color.WHITE);
 		button25.setBackground(Color.WHITE);
-		button25.setIcon(new ImageIcon("/images/Bauerschwarz.png"));
+		button25.setIcon(new ImageIcon("src/images/Bauerschwarz.png"));
 		button25.setBounds(266, 66, 47, 41);
 		contentPane.add(button25);
 		
@@ -335,7 +381,7 @@ public class Gui implements Observer, Runnable {
 		
 		actionButton27();
 		button27.setEnabled(false);
-		button27.setIcon(new ImageIcon("/images/Pferdschwarz.png"));
+		button27.setIcon(new ImageIcon("src/images/Pferdschwarz.png"));
 		button27.setBackground(Color.WHITE);
 		button27.setBounds(310, 27, 47, 41);
 		contentPane.add(button27);
@@ -368,7 +414,7 @@ public class Gui implements Observer, Runnable {
 		
 		actionButton32();
 		button32.setEnabled(false);
-		button32.setIcon(new ImageIcon("/images/Koeniginschwarz.png"));
+		button32.setIcon(new ImageIcon("src/images/Koeniginschwarz.png"));
 		button32.setBackground(Color.BLACK);
 		button32.setBounds(172, 27, 47, 41);
 		contentPane.add(button32);
@@ -377,13 +423,13 @@ public class Gui implements Observer, Runnable {
 		button33.setEnabled(false);
 		button33.setForeground(Color.WHITE);
 		button33.setBackground(Color.WHITE);
-		button33.setIcon(new ImageIcon("/images/Laeuferschwarz.png"));
+		button33.setIcon(new ImageIcon("src/images/Laeuferschwarz.png"));
 		button33.setBounds(125, 27, 47, 41);
 		contentPane.add(button33);
 		
 		actionButton34();
 		button34.setEnabled(false);
-		button34.setIcon(new ImageIcon("/images/Pferdschwarz.png"));
+		button34.setIcon(new ImageIcon("src/images/Pferdschwarz.png"));
 		button34.setBackground(Color.BLACK);
 		button34.setBounds(79, 27, 47, 41);
 		contentPane.add(button34);
@@ -392,7 +438,7 @@ public class Gui implements Observer, Runnable {
 		button35.setEnabled(false);
 		button35.setForeground(Color.WHITE);
 		button35.setBackground(Color.WHITE);
-		button35.setIcon(new ImageIcon("/images/Turmschwarz.png"));
+		button35.setIcon(new ImageIcon("src/images/Turmschwarz.png"));
 		button35.setBounds(33, 27, 47, 41);
 		contentPane.add(button35);
 		
@@ -401,7 +447,7 @@ public class Gui implements Observer, Runnable {
 		button36.setForeground(Color.WHITE);
 		button36.setBackground(Color.WHITE);
 		button36.setBounds(172, 306, 47, 41);
-		button36.setIcon(new ImageIcon("/images/Koeniginweiss.png"));
+		button36.setIcon(new ImageIcon("src/images/Koeniginweiss.png"));
 		contentPane.add(button36);	
 		
 		actionButton37();
@@ -421,13 +467,13 @@ public class Gui implements Observer, Runnable {
 		button39.setEnabled(false);
 		button39.setForeground(Color.WHITE);
 		button39.setBackground(Color.WHITE);
-		button39.setIcon(new ImageIcon("/images/Koenigschwarz.png"));
+		button39.setIcon(new ImageIcon("src/images/Koenigschwarz.png"));
 		button39.setBounds(221, 27, 47, 41);
 		contentPane.add(button39);
 		
 		actionButton40();
 		button40.setEnabled(false);
-		button40.setIcon(new ImageIcon("/images/Laeuferschwarz.png"));
+		button40.setIcon(new ImageIcon("src/images/Laeuferschwarz.png"));
 		button40.setForeground(Color.BLACK);
 		button40.setBackground(Color.BLACK);
 		button40.setBounds(266, 27, 47, 41);
@@ -449,7 +495,7 @@ public class Gui implements Observer, Runnable {
 		
 		actionButton43();
 		button43.setEnabled(false);
-		button43.setIcon(new ImageIcon("/images/Bauerschwarz.png"));
+		button43.setIcon(new ImageIcon("src/images/Bauerschwarz.png"));
 		button43.setBackground(Color.BLACK);
 		button43.setBounds(33, 66, 47, 41);
 		contentPane.add(button43);
@@ -458,13 +504,13 @@ public class Gui implements Observer, Runnable {
 		button44.setEnabled(false);
 		button44.setForeground(Color.WHITE);
 		button44.setBackground(Color.WHITE);
-		button44.setIcon(new ImageIcon("/images/Bauerschwarz.png"));
+		button44.setIcon(new ImageIcon("src/images/Bauerschwarz.png"));
 		button44.setBounds(79, 66, 47, 41);
 		contentPane.add(button44);
 	    
 		actionButton45();
 		button45.setEnabled(false);
-		button45.setIcon(new ImageIcon("/images/Bauerschwarz.png"));
+		button45.setIcon(new ImageIcon("src/images/Bauerschwarz.png"));
 		button45.setBackground(Color.BLACK);
 		button45.setBounds(125, 66, 47, 41);
 		contentPane.add(button45);
@@ -473,7 +519,7 @@ public class Gui implements Observer, Runnable {
 		button46.setEnabled(false);
 		button46.setForeground(Color.WHITE);
 		button46.setBackground(Color.WHITE);
-		button46.setIcon(new ImageIcon("/images/Bauerschwarz.png"));
+		button46.setIcon(new ImageIcon("src/images/Bauerschwarz.png"));
 		button46.setBounds(172, 66, 47, 41);
 		contentPane.add(button46);
 		
@@ -530,7 +576,7 @@ public class Gui implements Observer, Runnable {
 		button55.setEnabled(false);
 		button55.setForeground(Color.WHITE);
 		button55.setBackground(Color.WHITE);
-		button55.setIcon(new ImageIcon("/images/Bauerweiss.png"));
+		button55.setIcon(new ImageIcon("src/images/Bauerweiss.png"));
 		button55.setBounds(310, 267, 47, 41);
 		contentPane.add(button55);
 		
@@ -547,14 +593,14 @@ public class Gui implements Observer, Runnable {
 		button57.setEnabled(false);
 		button57.setForeground(Color.WHITE);
 		button57.setBackground(Color.WHITE);
-		button57.setIcon(new ImageIcon("/images/Bauerweiss.png"));
+		button57.setIcon(new ImageIcon("src/images/Bauerweiss.png"));
 		button57.setBounds(221, 267, 47, 41);
 		contentPane.add(button57);
 		
 		
 		actionButton58();
 		button58.setEnabled(false);
-		button58.setIcon(new ImageIcon("/images/Bauerweiss.png"));
+		button58.setIcon(new ImageIcon("src/images/Bauerweiss.png"));
 		button58.setForeground(Color.BLACK);
 		button58.setBackground(Color.BLACK);
 		button58.setBounds(172, 267, 47, 41);
@@ -565,14 +611,14 @@ public class Gui implements Observer, Runnable {
 		button59.setEnabled(false);
 		button59.setForeground(Color.WHITE);
 		button59.setBackground(Color.WHITE);
-		button59.setIcon(new ImageIcon("/images/Bauerweiss.png"));
+		button59.setIcon(new ImageIcon("src/images/Bauerweiss.png"));
 		button59.setBounds(125, 267, 47, 41);
 		contentPane.add(button59);
 		
 		
 		actionButton60();
 		button60.setEnabled(false);
-		button60.setIcon(new ImageIcon("/images/Bauerweiss.png"));
+		button60.setIcon(new ImageIcon("src/images/Bauerweiss.png"));
 		button60.setForeground(Color.BLACK);
 		button60.setBackground(Color.BLACK);
 		button60.setBounds(79, 267, 47, 41);
@@ -583,7 +629,7 @@ public class Gui implements Observer, Runnable {
 		button61.setEnabled(false);
 		button61.setForeground(Color.WHITE);
 		button61.setBackground(Color.WHITE);
-		button61.setIcon(new ImageIcon("/images/Bauerweiss.png"));
+		button61.setIcon(new ImageIcon("src/images/Bauerweiss.png"));
 		button61.setBounds(33, 267, 47, 41);
 		contentPane.add(button61);
 		
@@ -711,7 +757,7 @@ public class Gui implements Observer, Runnable {
 		button.setEnabled(false);
 		button.setBackground(Color.BLACK);
 		button.setBounds(466, 0, 9, 391);
-		contentPane.add(button);
+		contentPane.add(button);*/
 		
 		fillListEmpty();
 		
@@ -789,7 +835,7 @@ public class Gui implements Observer, Runnable {
 	}
 
 	private void fillListEmpty() {
-		for(int i = 0; i < 8; i++) {
+		for (int i = 0; i < 8; i++) {
 			this.buttonList.add(new ArrayList<JButton>());
 		}
 	}
@@ -1324,30 +1370,80 @@ public class Gui implements Observer, Runnable {
 			}
 
 			private void enableStartFields() {
-				Integer[] lines = {0,1};
-				for(int i : lines) {
+				Integer[] lines = { 0, 1 };
+				for (int i : lines) {
 					enableButtons(i);
 				}
 			}
 
 			private void enableButtons(int i) {
-				for(int a = 0; a <buttonList.get(i).size(); a++) {
+				for (int a = 0; a < buttonList.get(i).size(); a++) {
 					buttonList.get(i).get(a).setEnabled(true);
 				}
 			}
 		});
 	}
-	
-	public void updateLists(List<Integer[]> availableField, List<IFigure> availableFigure) {
+
+	public void updateLists(List<Integer[]> availableField,
+			List<IFigure> availableFigure) {
 		this.availableFields = availableField;
 		this.availableFigures = availableFigure;
 	}
 
+//	@Override
+//	public void update(List<IFigure> availableFigures,
+//			List<Integer[]> availableFields, char tmpCase,
+//			List<IFigure> curPlayer, List<IFigure> opPlayer) {
+//		// TODO Auto-generated method stub
+//
+//	}
+
 	@Override
-	public void update(List<IFigure> availableFigures,
-			List<Integer[]> availableFields, char tmpCase,
-			List<IFigure> curPlayer, List<IFigure> opPlayer) {
-		// TODO Auto-generated method stub
-		
+	public void update(List<IFigure> availableFigures, List<Integer[]> availableFields, char tmpCase, List<IFigure> curPlayer, List<IFigure> opPlayer) {
+		setAvailableFigures(availableFigures);
+		setAvailableFields(availableFields);
+		setTmpCase(tmpCase);
+		setSpieler(curPlayer);
+		setGegenspieler(opPlayer);
+	}
+	
+	public List<IFigure> getAvailableFigures() {
+		return availableFigures;
+	}
+
+	public void setAvailableFigures(List<IFigure> availableFigures) {
+		this.availableFigures = availableFigures;
+	}
+
+	public List<Integer[]> getAvailableFields() {
+		return availableFields;
+	}
+
+	public void setAvailableFields(List<Integer[]> availableFields) {
+		this.availableFields = availableFields;
+	}
+
+	public char getTmpCase() {
+		return tmpCase;
+	}
+
+	public void setTmpCase(char tmpCase) {
+		this.tmpCase = tmpCase;
+	}
+	
+	private List<IFigure> getSpieler() {
+		return spieler;
+	}
+
+	private void setSpieler(List<IFigure> spieler) {
+		this.spieler = spieler;
+	}
+
+	private List<IFigure> getGegenspieler() {
+		return gegenspieler;
+	}
+
+	private void setGegenspieler(List<IFigure> gegenspieler) {
+		this.gegenspieler = gegenspieler;
 	}
 }

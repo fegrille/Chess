@@ -143,7 +143,6 @@ public class Tui implements Observer, Runnable {
 		    index++;
 		}
 		insertEnemy();
-		
 	}
 
 	/**

@@ -13,7 +13,7 @@ public final class StartGame {
 		ControlGame controlGame = new ControlGame();
 		Thread t1 = new Thread(new Tui(controlGame));
 		Thread t2 = new Thread(new Gui(controlGame));
-		//t1.start();
+		t1.start();
 		t2.start();
 		controlGame.start();
 	}
