@@ -20,6 +20,7 @@ public class Tui implements Observer, Runnable {
 	private char tmpCase = ' ';
 	private List<List<String>> fieldlines;
 	private StringBuilder field;
+	private String s;
 	
 	private String newLine = System.getProperty("line.separator");
 	
@@ -66,12 +67,7 @@ public class Tui implements Observer, Runnable {
         	buildField();
         	fillField();
         	field.append(newLine);
-        	for( int i = 8; i >= 0; i--) {
-        		for(int a = 0; a < fieldlines.get(i).size(); a++) {
-        			field.append(fieldlines.get(i).get(a));
-        		}
-        		field.append(newLine);
-        	}
+        	fillPrint();
         	addLastLine();
         	StringBuilder figures = new StringBuilder();
         	figures.append(field);
@@ -103,6 +99,19 @@ public class Tui implements Observer, Runnable {
         }
 	}
 
+	private void fillPrint() {
+		for( int i = 8; i >= 0; i--) {
+			fillPrintXLine(i);
+			field.append(newLine);
+		}
+	}
+
+	private void fillPrintXLine(int i) {
+		for(int a = 0; a < fieldlines.get(i).size(); a++) {
+			field.append(fieldlines.get(i).get(a));
+		}
+	}
+
 	private void addLastLine() {
 		for(int a = 0; a < fieldlines.get(9).size(); a++) {
 			field.append(fieldlines.get(9).get(a));
@@ -113,8 +122,8 @@ public class Tui implements Observer, Runnable {
 		int index = 0;
 		String s;
 		for(IFigure f : getSpieler()) {
-			s = checkFigureType(index, f);
-			fieldlines.get(f.getY()).set(f.getX(), s);
+			checkFigureType(index, f);
+			fieldlines.get(f.getY()).set(f.getX(), this.s);
 		    index++;
 		}
 		insertEnemy();
@@ -126,24 +135,28 @@ public class Tui implements Observer, Runnable {
 	 * @param f
 	 * @return
 	 */
-	private String checkFigureType(int index, IFigure f) {
-		String s;
+	private void checkFigureType(int index, IFigure f) {
 		if(f instanceof Knight) {
-			if(index < 10) {
-				s = "[  " + index +  "Kn" + f.getColor() + "]";
-			} else {
-				s = "[ " + index +  "Kn" + f.getColor() + "]";
-			}
-			
+			fillIndexForKnight(index, f);
 		} else {
-			if(index < 10) {
-				s = "[   " + index + f.returnName().charAt(0) + f.getColor() + "]";
-			} else {
-				s = "[  " + index + f.returnName().charAt(0) + f.getColor() + "]";
-			}
-			
+			fillForIndex(index, f);
 		}
-		return s;
+	}
+
+	private void fillIndexForKnight(int index, IFigure f) {
+		if(index < 10) {
+			this.s = "[  " + index +  "Kn" + f.getColor() + "]";
+		} else {
+			this.s = "[ " + index +  "Kn" + f.getColor() + "]";
+		}
+	}
+
+	private void fillForIndex(int index, IFigure f) {
+		if(index < 10) {
+			this.s = "[   " + index + f.returnName().charAt(0) + f.getColor() + "]";
+		} else {
+			this.s = "[  " + index + f.returnName().charAt(0) + f.getColor() + "]";
+		}
 	}
 
 	/**
@@ -151,10 +164,9 @@ public class Tui implements Observer, Runnable {
 	 */
 	private void insertEnemy() {
 		int index = 0;
-		String s;
 		for(IFigure f : getGegenspieler()) {
-			s = checkFigureType(index, f);
-			fieldlines.get(f.getY()).set(f.getX(), s);
+			checkFigureType(index, f);
+			fieldlines.get(f.getY()).set(f.getX(), this.s);
 			index++;
 		}
 	}
@@ -162,10 +174,14 @@ public class Tui implements Observer, Runnable {
 	private void buildField() {
 		fieldlines = new ArrayList<List<String>>();
 		int c = 1;
+		fillFieldLines();
+		c = iterateLine(c);
+	}
+
+	private void fillFieldLines() {
 		for(int i = 10; i > 0; i--) {
 			fieldlines.add(new ArrayList<String>());
 		}
-		c = iterateLine(c);
 	}
 
 	/**
@@ -189,17 +205,25 @@ public class Tui implements Observer, Runnable {
 	private int buildLine(int c, int i, int ind) {
 		if(i == 9) {
 			fieldlines.get(i).add(" ");
-			for(int b = 1; b < 9; b++) {
-				fieldlines.get(i).add("   " + b + "    ");
-			}
+			xKordLine(i);
 		} else {
 			fieldlines.get(c).add("" + ind + "");
-			for(int a = 0; a < 8; a++) {
-				fieldlines.get(c).add("[      ]");
-			}
+			fillLinesEmpty(c);
 			c++;
 		}
 		return c;
+	}
+
+	private void xKordLine(int i) {
+		for(int b = 1; b < 9; b++) {
+			fieldlines.get(i).add("   " + b + "    ");
+		}
+	}
+
+	private void fillLinesEmpty(int c) {
+		for(int a = 0; a < 8; a++) {
+			fieldlines.get(c).add("[      ]");
+		}
 	}
 
 	public List<IFigure> getAvailableFigures() {
