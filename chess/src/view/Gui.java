@@ -2,7 +2,10 @@ package view;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 import control.Observer;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -26,7 +29,7 @@ import javax.swing.SwingConstants;
 import model.IFigure;
 import control.ControlGame;
 
-public class Gui extends JFrame {
+public class Gui implements Observer, Runnable {
 
 	private JPanel contentPane;
 	private ArrayList<List<JButton>> buttonList = new ArrayList<List<JButton>>();
@@ -96,6 +99,7 @@ public class Gui extends JFrame {
 	private JButton button62 = new JButton("");
 	private JButton button63 = new JButton("");
 	private JButton button64 = new JButton("");
+	private JFrame frame = new JFrame();
 	
 	private ControlGame controlGame;
 	private List<IFigure> availableFigures;
@@ -104,18 +108,9 @@ public class Gui extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ControlGame g = new ControlGame();
-					Gui frame = new Gui(g);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	@Override
+	public void run() {
+		frame.setVisible(true);
 	}
 
 	/**
@@ -123,16 +118,17 @@ public class Gui extends JFrame {
 	 */
 	public Gui(ControlGame controlGame) {
 		
+		
 		this.controlGame = controlGame;
 		availableFigures = new ArrayList<IFigure>();
 		availableFields = new ArrayList<Integer[]>();
 		//controlGame.register(this);
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 662, 429);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(100, 100, 662, 429);
 		contentPane = new JPanel();
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
-		setContentPane(contentPane);
+		frame.setContentPane(contentPane);
 		
 		
 		
@@ -150,28 +146,28 @@ public class Gui extends JFrame {
 		button1.setEnabled(false);
 		button1.setBackground(Color.BLACK);
 		button1.setBounds(125, 306, 47, 41);
-		button1.setIcon(new ImageIcon(Gui.class.getResource("/images/L\u00E4ufer wei\u00DF.png")));
+		button1.setIcon(new ImageIcon(Gui.class.getResource("/images/Laeuferweiss.png")));
 		contentPane.add(button1);
 		
 		actionButton2();
 		button2.setEnabled(false);
 		button2.setForeground(Color.WHITE);
 		button2.setBackground(Color.WHITE);
-		button2.setIcon(new ImageIcon(Gui.class.getResource("/images/Pferd wei\u00DF.png")));
+		button2.setIcon(new ImageIcon(Gui.class.getResource("/images/Pferdweiss.png")));
 		button2.setBounds(79, 306, 47, 41);
 		contentPane.add(button2);
 		
 		actionButton3();
 		button3.setEnabled(false);
 		button3.setBackground(Color.BLACK);
-		button3.setIcon(new ImageIcon(Gui.class.getResource("/images/Turm wei\u00DF.png")));
+		button3.setIcon(new ImageIcon(Gui.class.getResource("/images/Turmweiss.png")));
 		button3.setBounds(33, 306, 47, 41);
 		contentPane.add(button3);
 		
 		actionButton4();
 		button4.setEnabled(false);
 		button4.setBackground(Color.BLACK);
-		button4.setIcon(new ImageIcon(Gui.class.getResource("/images/K\u00F6nig wei\u00DF.png")));
+		button4.setIcon(new ImageIcon(Gui.class.getResource("/images/Koenigweiss.png")));
 		button4.setBounds(221, 305, 47, 42);
 		contentPane.add(button4);
 		
@@ -179,14 +175,14 @@ public class Gui extends JFrame {
 		button5.setEnabled(false);
 		button5.setForeground(Color.WHITE);
 		button5.setBackground(Color.WHITE);
-		button5.setIcon(new ImageIcon(Gui.class.getResource("/images/L\u00E4ufer wei\u00DF.png")));
+		button5.setIcon(new ImageIcon(Gui.class.getResource("/images/Laeuferweiss.png")));
 		button5.setBounds(266, 306, 47, 41);
 		contentPane.add(button5);
 		
 		actionButton6();
 		button6.setEnabled(false);
 		button6.setBackground(Color.BLACK);
-		button6.setIcon(new ImageIcon(Gui.class.getResource("/images/Pferd wei\u00DF.png")));
+		button6.setIcon(new ImageIcon(Gui.class.getResource("/images/Pferdweiss.png")));
 		button6.setBounds(310, 306, 47, 41);
 		contentPane.add(button6);
 		
@@ -194,14 +190,14 @@ public class Gui extends JFrame {
 		button7.setEnabled(false);
 		button7.setForeground(Color.WHITE);
 		button7.setBackground(Color.WHITE);
-		button7.setIcon(new ImageIcon(Gui.class.getResource("/images/Turm wei\u00DF.png")));
+		button7.setIcon(new ImageIcon(Gui.class.getResource("/images/Turmweiss.png")));
 		button7.setBounds(356, 306, 47, 41);
 		contentPane.add(button7);
 		
 		actionButton8();
 		button8.setEnabled(false);
 		button8.setBackground(Color.BLACK);
-		button8.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
+		button8.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauerweiss.png")));
 		button8.setBounds(356, 267, 47, 41);
 		contentPane.add(button8);
 		
@@ -235,13 +231,13 @@ public class Gui extends JFrame {
 		button13.setEnabled(false);
 		button13.setForeground(Color.WHITE);
 		button13.setBackground(Color.WHITE);
-		button13.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
+		button13.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauerschwarz.png")));
 		button13.setBounds(356, 66, 47, 41);
 		contentPane.add(button13);
 		
 		actionButton14();
 		button14.setEnabled(false);
-		button14.setIcon(new ImageIcon(Gui.class.getResource("/images/Turm schwarz.png")));
+		button14.setIcon(new ImageIcon(Gui.class.getResource("/images/Turmschwarz.png")));
 		button14.setForeground(Color.BLACK);
 		button14.setBackground(Color.BLACK);
 		button14.setBounds(356, 27, 47, 41);
@@ -256,7 +252,7 @@ public class Gui extends JFrame {
 		
 		actionButton16();
 		button16.setEnabled(false);
-		button16.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
+		button16.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauerschwarz.png")));
 		button16.setBackground(Color.BLACK);
 		button16.setBounds(310, 66, 47, 41);
 		contentPane.add(button16);
@@ -282,7 +278,7 @@ public class Gui extends JFrame {
 		
 		actionButton19();
 		button19.setEnabled(false);
-		button19.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
+		button19.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauerweiss.png")));
 		button19.setBackground(Color.BLACK);
 		button19.setBounds(266, 267, 47, 41);
 		contentPane.add(button19);
@@ -317,7 +313,7 @@ public class Gui extends JFrame {
 		
 		actionButton24();
 		button24.setEnabled(false);
-		button24.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
+		button24.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauerschwarz.png")));
 		button24.setBackground(Color.BLACK);
 		button24.setBounds(221, 66, 47, 41);
 		contentPane.add(button24);
@@ -326,7 +322,7 @@ public class Gui extends JFrame {
 		button25.setEnabled(false);
 		button25.setForeground(Color.WHITE);
 		button25.setBackground(Color.WHITE);
-		button25.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
+		button25.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauerschwarz.png")));
 		button25.setBounds(266, 66, 47, 41);
 		contentPane.add(button25);
 		
@@ -339,7 +335,7 @@ public class Gui extends JFrame {
 		
 		actionButton27();
 		button27.setEnabled(false);
-		button27.setIcon(new ImageIcon(Gui.class.getResource("/images/Pferd schwarz.png")));
+		button27.setIcon(new ImageIcon(Gui.class.getResource("/images/Pferdschwarz.png")));
 		button27.setBackground(Color.WHITE);
 		button27.setBounds(310, 27, 47, 41);
 		contentPane.add(button27);
@@ -372,7 +368,7 @@ public class Gui extends JFrame {
 		
 		actionButton32();
 		button32.setEnabled(false);
-		button32.setIcon(new ImageIcon(Gui.class.getResource("/images/K\u00F6nigin schwarz.png")));
+		button32.setIcon(new ImageIcon(Gui.class.getResource("/images/Koeniginschwarz.png")));
 		button32.setBackground(Color.BLACK);
 		button32.setBounds(172, 27, 47, 41);
 		contentPane.add(button32);
@@ -381,13 +377,13 @@ public class Gui extends JFrame {
 		button33.setEnabled(false);
 		button33.setForeground(Color.WHITE);
 		button33.setBackground(Color.WHITE);
-		button33.setIcon(new ImageIcon(Gui.class.getResource("/images/L\u00E4ufer s.png")));
+		button33.setIcon(new ImageIcon(Gui.class.getResource("/images/Laeuferschwarz.png")));
 		button33.setBounds(125, 27, 47, 41);
 		contentPane.add(button33);
 		
 		actionButton34();
 		button34.setEnabled(false);
-		button34.setIcon(new ImageIcon(Gui.class.getResource("/images/Pferd schwarz.png")));
+		button34.setIcon(new ImageIcon(Gui.class.getResource("/images/Pferdschwarz.png")));
 		button34.setBackground(Color.BLACK);
 		button34.setBounds(79, 27, 47, 41);
 		contentPane.add(button34);
@@ -396,7 +392,7 @@ public class Gui extends JFrame {
 		button35.setEnabled(false);
 		button35.setForeground(Color.WHITE);
 		button35.setBackground(Color.WHITE);
-		button35.setIcon(new ImageIcon(Gui.class.getResource("/images/Turm schwarz.png")));
+		button35.setIcon(new ImageIcon(Gui.class.getResource("/images/Turmschwarz.png")));
 		button35.setBounds(33, 27, 47, 41);
 		contentPane.add(button35);
 		
@@ -405,7 +401,7 @@ public class Gui extends JFrame {
 		button36.setForeground(Color.WHITE);
 		button36.setBackground(Color.WHITE);
 		button36.setBounds(172, 306, 47, 41);
-		button36.setIcon(new ImageIcon(Gui.class.getResource("/images/K\u00F6nigin wei\u00DF.png")));
+		button36.setIcon(new ImageIcon(Gui.class.getResource("/images/Koeniginweiss.png")));
 		contentPane.add(button36);	
 		
 		actionButton37();
@@ -425,13 +421,13 @@ public class Gui extends JFrame {
 		button39.setEnabled(false);
 		button39.setForeground(Color.WHITE);
 		button39.setBackground(Color.WHITE);
-		button39.setIcon(new ImageIcon(Gui.class.getResource("/images/K\u00F6nig s.png")));
+		button39.setIcon(new ImageIcon(Gui.class.getResource("/images/Koenigschwarz.png")));
 		button39.setBounds(221, 27, 47, 41);
 		contentPane.add(button39);
 		
 		actionButton40();
 		button40.setEnabled(false);
-		button40.setIcon(new ImageIcon(Gui.class.getResource("/images/L\u00E4ufer s.png")));
+		button40.setIcon(new ImageIcon(Gui.class.getResource("/images/Laeuferschwarz.png")));
 		button40.setForeground(Color.BLACK);
 		button40.setBackground(Color.BLACK);
 		button40.setBounds(266, 27, 47, 41);
@@ -453,7 +449,7 @@ public class Gui extends JFrame {
 		
 		actionButton43();
 		button43.setEnabled(false);
-		button43.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
+		button43.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauerschwarz.png")));
 		button43.setBackground(Color.BLACK);
 		button43.setBounds(33, 66, 47, 41);
 		contentPane.add(button43);
@@ -462,13 +458,13 @@ public class Gui extends JFrame {
 		button44.setEnabled(false);
 		button44.setForeground(Color.WHITE);
 		button44.setBackground(Color.WHITE);
-		button44.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
+		button44.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauerschwarz.png")));
 		button44.setBounds(79, 66, 47, 41);
 		contentPane.add(button44);
 	    
 		actionButton45();
 		button45.setEnabled(false);
-		button45.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
+		button45.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauerschwarz.png")));
 		button45.setBackground(Color.BLACK);
 		button45.setBounds(125, 66, 47, 41);
 		contentPane.add(button45);
@@ -477,7 +473,7 @@ public class Gui extends JFrame {
 		button46.setEnabled(false);
 		button46.setForeground(Color.WHITE);
 		button46.setBackground(Color.WHITE);
-		button46.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer schwarz.png")));
+		button46.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauerschwarz.png")));
 		button46.setBounds(172, 66, 47, 41);
 		contentPane.add(button46);
 		
@@ -534,7 +530,7 @@ public class Gui extends JFrame {
 		button55.setEnabled(false);
 		button55.setForeground(Color.WHITE);
 		button55.setBackground(Color.WHITE);
-		button55.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
+		button55.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauerweiss.png")));
 		button55.setBounds(310, 267, 47, 41);
 		contentPane.add(button55);
 		
@@ -551,14 +547,14 @@ public class Gui extends JFrame {
 		button57.setEnabled(false);
 		button57.setForeground(Color.WHITE);
 		button57.setBackground(Color.WHITE);
-		button57.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
+		button57.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauerweiss.png")));
 		button57.setBounds(221, 267, 47, 41);
 		contentPane.add(button57);
 		
 		
 		actionButton58();
 		button58.setEnabled(false);
-		button58.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
+		button58.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauerweiss.png")));
 		button58.setForeground(Color.BLACK);
 		button58.setBackground(Color.BLACK);
 		button58.setBounds(172, 267, 47, 41);
@@ -569,14 +565,14 @@ public class Gui extends JFrame {
 		button59.setEnabled(false);
 		button59.setForeground(Color.WHITE);
 		button59.setBackground(Color.WHITE);
-		button59.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
+		button59.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauerweiss.png")));
 		button59.setBounds(125, 267, 47, 41);
 		contentPane.add(button59);
 		
 		
 		actionButton60();
 		button60.setEnabled(false);
-		button60.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
+		button60.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauerweiss.png")));
 		button60.setForeground(Color.BLACK);
 		button60.setBackground(Color.BLACK);
 		button60.setBounds(79, 267, 47, 41);
@@ -587,7 +583,7 @@ public class Gui extends JFrame {
 		button61.setEnabled(false);
 		button61.setForeground(Color.WHITE);
 		button61.setBackground(Color.WHITE);
-		button61.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauer w.png")));
+		button61.setIcon(new ImageIcon(Gui.class.getResource("/images/Bauerweiss.png")));
 		button61.setBounds(33, 267, 47, 41);
 		contentPane.add(button61);
 		
@@ -1345,5 +1341,13 @@ public class Gui extends JFrame {
 	public void updateLists(List<Integer[]> availableField, List<IFigure> availableFigure) {
 		this.availableFields = availableField;
 		this.availableFigures = availableFigure;
+	}
+
+	@Override
+	public void update(List<IFigure> availableFigures,
+			List<Integer[]> availableFields, char tmpCase,
+			List<IFigure> curPlayer, List<IFigure> opPlayer) {
+		// TODO Auto-generated method stub
+		
 	}
 }
