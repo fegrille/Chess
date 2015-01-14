@@ -6,7 +6,7 @@ import java.util.List;
 public class Player implements IPlayer{
 	
 	private List<IFigure> figureList;
-	private Figure f;
+	private IFigure f;
 	private char col;
 	FigureFactory figureFactory = new FigureFactory();
 	
