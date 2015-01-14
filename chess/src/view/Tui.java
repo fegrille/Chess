@@ -76,7 +76,7 @@ public class Tui implements Observer, Runnable {
         	int index = 0;
         	for(IFigure f : getAvailableFigures()) {
         		String sa = index + " " + f.returnName() + "[" + f.getField()[0] + "," + f.getField()[1] + "]" + newLine;
-        		figures.append(s);
+        		figures.append(sa);
         		index++;
         	}
         	figures.append("Please choose a figure you want to move by entering the index:");
