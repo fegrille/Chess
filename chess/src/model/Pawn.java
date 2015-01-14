@@ -3,26 +3,46 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-//Bauer
+/**
+ * 
+ * @author Felix
+ *
+ */
 public class Pawn extends Figure{
 
 	private boolean firstMove = true;
 
+	/**
+	 * 
+	 * @param y
+	 * @param x
+	 * @param color
+	 */
 	public Pawn(int y, int x, char color) {
 		setField(y,x);
 		setColor(color);
 		
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean getFirstMove() {
 		return firstMove;
 	}
 
-
+	/**
+	 * 
+	 * @param firstMove
+	 */
 	public void setFirstMove(boolean firstMove) {
 		this.firstMove = firstMove;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void possibleFields() {
 		setPosFields(new ArrayList<List<Integer[]>>());
@@ -30,18 +50,27 @@ public class Pawn extends Figure{
 		isFigureWhite();
 	}
 	
+	/**
+	 * 
+	 */
 	public void isFigureBlack() {
 		if(getColor() == 'b') {
 			possibleFieldsBlack();
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void isFigureWhite() {
 		if(getColor() == 'w') {
 			possibleFieldsWhite();
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void possibleFieldsBlack() {
 		List<Integer[]> fields = new ArrayList<Integer[]>();
 		List<Integer[]> fields2 = new ArrayList<Integer[]>();
@@ -59,6 +88,9 @@ public class Pawn extends Figure{
 		}
 	}
 
+	/**
+	 * 
+	 */
 	private void rightUpFieldWhite() {
 		if((getX() + 1) <= ChessConstants.MAXAXIS) {
 			Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
@@ -68,6 +100,9 @@ public class Pawn extends Figure{
 		}
 	}
 
+	/**
+	 * 
+	 */
 	private void leftUpFieldWhite() {
 		if((getX() - 1) >= ChessConstants.MINAXIS) {
 			Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
@@ -77,6 +112,9 @@ public class Pawn extends Figure{
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	private void rightUpFieldBlack() {
 		if((getX() + 1) <= ChessConstants.MAXAXIS) {
 			Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
@@ -86,6 +124,9 @@ public class Pawn extends Figure{
 		}
 	}
 
+	/**
+	 * 
+	 */
 	private void leftUpFieldBlack() {
 		if((getX() - 1) >= ChessConstants.MINAXIS) {
 			Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
@@ -95,6 +136,9 @@ public class Pawn extends Figure{
 		}
 	}
 
+	/**
+	 * 
+	 */
 	private void isFirstMoveBlack() {
 		Integer[] f2 = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if(getFirstMove()) {
@@ -104,6 +148,9 @@ public class Pawn extends Figure{
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void possibleFieldsWhite() {
 		List<Integer[]> fields = new ArrayList<Integer[]>();
 		List<Integer[]> fields2 = new ArrayList<Integer[]>();
@@ -121,6 +168,9 @@ public class Pawn extends Figure{
 		}
 	}
 
+	/**
+	 * 
+	 */
 	private void isFirstMoveWhite() {
 		Integer[] f2 = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if(getFirstMove()) {
@@ -130,6 +180,9 @@ public class Pawn extends Figure{
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public String returnName() {
 		return "Pawn";
 	}

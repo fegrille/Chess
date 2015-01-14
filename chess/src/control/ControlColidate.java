@@ -9,6 +9,11 @@ import model.Player;
 import model.Queen;
 import model.Rook;
 
+/**
+ * 
+ * @author Felix
+ *
+ */
 public class ControlColidate {
 	
 	private ControlColidateBishop colBis = new ControlColidateBishop();
@@ -18,29 +23,59 @@ public class ControlColidate {
 	private ControlColidateKing colKing = new ControlColidateKing();
 	private ControlColidateRook colRook = new ControlColidateRook();
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public ControlColidateBishop getColBis() {
 		return colBis;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public ControlColidateKnight getColKnig() {
 		return colKnig;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public ControlColidatePawn getColPaw() {
 		return colPaw;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ControlColidateQueen getColQueen() {
 		return colQueen;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ControlColidateKing getColKing() {
 		return colKing;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ControlColidateRook getColRook() {
 		return colRook;
 	}
 	
+	/**
+	 * 
+	 * @param p
+	 * @param p2
+	 */
 	public  void colidate(Player p, Player p2) {
 		updatePossibleFieldsKing(p,p2);
 		updatePossibleFields(p,p2);
@@ -48,6 +83,11 @@ public class ControlColidate {
 		
 	}
 	
+	/**
+	 * 
+	 * @param p
+	 * @param p2
+	 */
 	private void updatePossibleFields(Player p, Player p2) {
 		for(int i = 0; i < p.getFigureList().size(); i++) {
 			IFigure f = p.getFigureList().get(i);
@@ -60,6 +100,11 @@ public class ControlColidate {
 		
 	}
 
+	/**
+	 * 
+	 * @param p
+	 * @param p2
+	 */
 	private void updatePossibleFieldsKing(Player p, Player p2) {
 		for(int i = 0; i < p.getFigureList().size(); i++) {
 			IFigure f = p.getFigureList().get(i);
@@ -67,6 +112,12 @@ public class ControlColidate {
 		}
 	}
 
+	/**
+	 * 
+	 * @param f
+	 * @param p
+	 * @param p2
+	 */
 	public void isPawn(IFigure f, Player p, Player p2) {
 		if(f instanceof Pawn) {
 			f.possibleFields();
@@ -75,6 +126,12 @@ public class ControlColidate {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param f
+	 * @param p
+	 * @param p2
+	 */
 	public void isRook(IFigure f, Player p, Player p2) {
 		if(f instanceof Rook) {
 			f.possibleFields();
@@ -82,6 +139,12 @@ public class ControlColidate {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param f
+	 * @param p
+	 * @param p2
+	 */
 	public void isBishop(IFigure f, Player p, Player p2) {
 		if(f instanceof Bishop) {
 			f.possibleFields();
@@ -89,6 +152,12 @@ public class ControlColidate {
 		}
 	}
 
+	/**
+	 * 
+	 * @param f
+	 * @param p
+	 * @param p2
+	 */
 	public void isKnight(IFigure f, Player p, Player p2) {
 		if(f instanceof Knight) {
 			f.possibleFields();
@@ -96,6 +165,12 @@ public class ControlColidate {
 		}
 	}
 
+	/**
+	 * 
+	 * @param f
+	 * @param p
+	 * @param p2
+	 */
 	public void isQueen(IFigure f, Player p, Player p2) {
 		if(f instanceof Queen) {
 			f.possibleFields();
@@ -103,6 +178,12 @@ public class ControlColidate {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param f
+	 * @param p
+	 * @param p2
+	 */
 	public void isKing(IFigure f, Player p, Player p2) {
 		if(f instanceof King) {
 			f.possibleFields();
@@ -115,6 +196,11 @@ public class ControlColidate {
 		}
 	}
 
+	/**
+	 * 
+	 * @param p2
+	 * @return
+	 */
 	private IFigure getKingP2(Player p2) {
 		IFigure king = null;
 		for(IFigure k : p2.getFigureList()) {

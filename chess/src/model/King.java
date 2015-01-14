@@ -3,13 +3,27 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author Felix
+ *
+ */
 public class King extends Figure{
 
+	/**
+	 * 
+	 * @param y
+	 * @param x
+	 * @param color
+	 */
 	public King(int y, int x, char color) {
 		setField(y,x);
 		setColor(color);
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void possibleFields() {
 		setPosFields(new ArrayList<List<Integer[]>>());
@@ -31,6 +45,11 @@ public class King extends Figure{
 		addField(getX()+1,getY()+1);
 	}
 	
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	private void addField(int x, int y) {
 		List<Integer[]> fields = new ArrayList<Integer[]>();
 		Integer[] posField = new Integer[ChessConstants.FIGUREFIELDSIZE];
@@ -44,10 +63,18 @@ public class King extends Figure{
 		getPosFields().add(fields);
 	}
 
+	/**
+	 * 
+	 * @param axis
+	 * @return
+	 */
 	private boolean checkCordinsideAxis(int axis) {
 		return axis > ChessConstants.MAXAXIS || axis < ChessConstants.MINAXIS;
 	}
 	
+	/**
+	 * 
+	 */
 	public String returnName() {
 		return "King";
 	}

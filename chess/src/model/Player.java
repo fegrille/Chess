@@ -3,6 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author Felix
+ *
+ */
 public class Player implements IPlayer{
 	
 	private List<IFigure> figureList;
@@ -10,24 +15,42 @@ public class Player implements IPlayer{
 	private char col;
 	private FigureFactory figureFactory = new FigureFactory();
 	
+	/**
+	 * 
+	 * @param color
+	 * @param field
+	 */
 	public Player(char color, IField field) {
 		this.figureList = new ArrayList<IFigure>();
 		this.col = color;
 		initializeFigures(field);
 	}
 	
+	/**
+	 * 
+	 */
 	public List<IFigure> getFigureList() {
 		return figureList;
 	}
 
+	/**
+	 * 
+	 */
 	public void setFigureList(List<IFigure> figureList) {
 		this.figureList = figureList;
 	}
 
+	/**
+	 * 
+	 */
 	public char getCol() {
 		return col;
 	}
 	
+	/**
+	 * 
+	 * @param field
+	 */
 	private void addPawns(IField field) {
 		int yKord = ChessConstants.PAWNYKORDS[0];
 		if(this.col == 'b') {
@@ -40,6 +63,10 @@ public class Player implements IPlayer{
 		}
 	}
 	
+	/**
+	 * 
+	 * @param field
+	 */
 	private void addQueen(IField field) {
 		int xKord = ChessConstants.QUEENXKORDS;
 		int yKord = blackOrWhite();
@@ -48,6 +75,10 @@ public class Player implements IPlayer{
 		field.initializeField(f);
 	}
 	
+	/**
+	 * 
+	 * @param field
+	 */
 	private void addKing(IField field) {
 		int xKord = ChessConstants.KINGXKORDS;
 		int yKord = blackOrWhite();
@@ -56,6 +87,10 @@ public class Player implements IPlayer{
 		field.initializeField(f);
 	}
 	
+	/**
+	 * 
+	 * @param field
+	 */
 	private void addKnights(IField field) {
 		int xKord = ChessConstants.KNIGHTXKORDS[0];
 		int yKord = blackOrWhite();
@@ -68,6 +103,10 @@ public class Player implements IPlayer{
 		field.initializeField(f);
 	}
 	
+	/**
+	 * 
+	 * @param field
+	 */
 	private void addBishops(IField field) {
 		int xKord = ChessConstants.BISHOPXKORDS[0];
 		int yKord = blackOrWhite();
@@ -80,6 +119,10 @@ public class Player implements IPlayer{
 		field.initializeField(f);
 	}
 	
+	/**
+	 * 
+	 * @param field
+	 */
 	private void addRooks(IField field) {
 		int xKord = ChessConstants.ROOKXKORDS[0];
 		int yKord = blackOrWhite();
@@ -92,6 +135,10 @@ public class Player implements IPlayer{
 		field.initializeField(f);
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	private int blackOrWhite() {
 		int yKord = ChessConstants.MINAXIS;
 		if(this.col == 'b') {
@@ -100,6 +147,10 @@ public class Player implements IPlayer{
 		return yKord;
 	}
 	
+	/**
+	 * 
+	 * @param field
+	 */
 	private void initializeFigures(IField field) {
 		addPawns(field);
 		addRooks(field);

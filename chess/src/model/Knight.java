@@ -3,14 +3,27 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-//Pferd
+/**
+ * 
+ * @author Felix
+ *
+ */
 public class Knight extends Figure{
 
+	/**
+	 * 
+	 * @param y
+	 * @param x
+	 * @param color
+	 */
 	public Knight(int y, int x, char color) {
 		setField(y,x);
 		setColor(color);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void possibleFields() {
 		setPosFields(new ArrayList<List<Integer[]>>());
@@ -21,6 +34,9 @@ public class Knight extends Figure{
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void topFields() {
 		List<Integer[]> fields = new ArrayList<Integer[]>();
 		getPosFields().add(fields);
@@ -32,6 +48,11 @@ public class Knight extends Figure{
 		}
 	}
 
+	/**
+	 * 
+	 * @param y
+	 * @param x
+	 */
 	private void isXCordAboveMinAxisTop(int y, int x) {
 		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((x - 1) >= ChessConstants.MINAXIS) {
@@ -41,6 +62,11 @@ public class Knight extends Figure{
 		}
 	}
 
+	/**
+	 * 
+	 * @param y
+	 * @param x
+	 */
 	private void isXCordUnderMaxAxisTop(int y, int x) {
 		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((x + 1) <= ChessConstants.MAXAXIS) {
@@ -50,6 +76,9 @@ public class Knight extends Figure{
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void leftFields() {
 		List<Integer[]> fields = new ArrayList<Integer[]>();
 		getPosFields().add(fields);
@@ -61,6 +90,11 @@ public class Knight extends Figure{
 		}
 	}
 
+	/**
+	 * 
+	 * @param y
+	 * @param x
+	 */
 	private void isYCordAboveMinAxisLeft(int y, int x) {
 		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((y - 1) >= ChessConstants.MINAXIS) {
@@ -70,6 +104,11 @@ public class Knight extends Figure{
 		}
 	}
 
+	/**
+	 * 
+	 * @param y
+	 * @param x
+	 */
 	private void isYCordUnderMaxAxisLeft(int y, int x) {
 		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((y + 1) <= ChessConstants.MAXAXIS) {
@@ -79,6 +118,9 @@ public class Knight extends Figure{
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void buttomFields() {
 		List<Integer[]> fields = new ArrayList<Integer[]>();
 		getPosFields().add(fields);
@@ -90,6 +132,11 @@ public class Knight extends Figure{
 		}
 	}
 
+	/**
+	 * 
+	 * @param y
+	 * @param x
+	 */
 	private void isXCordAboveMinAxisButtom(int y, int x) {
 		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((x - 1) >= ChessConstants.MINAXIS) {
@@ -99,6 +146,11 @@ public class Knight extends Figure{
 		}
 	}
 
+	/**
+	 * 
+	 * @param y
+	 * @param x
+	 */
 	private void isXCordUnderMaxAxisButtom(int y, int x) {
 		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((x + 1) <= ChessConstants.MAXAXIS) {
@@ -108,6 +160,9 @@ public class Knight extends Figure{
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void rightFields() {
 		List<Integer[]> fields = new ArrayList<Integer[]>();
 		getPosFields().add(fields);
@@ -119,6 +174,11 @@ public class Knight extends Figure{
 		}
 	}
 
+	/**
+	 * 
+	 * @param y
+	 * @param x
+	 */
 	private void isYCordAboveMinAxisRight(int y, int x) {
 		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((y - 1) >= ChessConstants.MINAXIS) {
@@ -128,6 +188,11 @@ public class Knight extends Figure{
 		}
 	}
 
+	/**
+	 * 
+	 * @param y
+	 * @param x
+	 */
 	private void isYCordUnderMaxAxisRight(int y, int x) {
 		Integer[] f = new Integer[ChessConstants.FIGUREFIELDSIZE];
 		if((y + 1) <= ChessConstants.MAXAXIS) {
@@ -137,6 +202,9 @@ public class Knight extends Figure{
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public String returnName() {
 		return "Knight";
 	}

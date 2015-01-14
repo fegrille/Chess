@@ -3,6 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author Felix
+ *
+ */
 public class Moves implements IMoves {
 	
 	private List<Integer[]> fields;
@@ -42,18 +47,30 @@ public class Moves implements IMoves {
 		this.yKord = yKord;
 	}
 
+	/**
+	 * 
+	 */
 	public Moves() {
 		fields = new ArrayList<Integer[]>();
 	}
 	
+	/**
+	 * 
+	 */
 	public List<Integer[]> getFields() {
 		return fields;
 	}
 
+	/**
+	 * 
+	 */
 	public void setFields(List<Integer[]> fields) {
 		this.fields = fields;
 	}
 	
+	/**
+	 * 
+	 */
 	public void movesQueen(int yKord, int xKord) {
 		setFieldList(new ArrayList<List<Integer[]>>());
 		setyKord(yKord);
@@ -65,11 +82,12 @@ public class Moves implements IMoves {
 		moveRightUp();
 		moveRightDown();
 		moveLeftUp();
-		moveLeftDown();
-		
-		
+		moveLeftDown();	
 	}
 	
+	/**
+	 * 
+	 */
 	public void movesBishop(int yKord, int xKord) {
 		setFieldList(new ArrayList<List<Integer[]>>());
 		setyKord(yKord);
@@ -78,10 +96,11 @@ public class Moves implements IMoves {
 		moveRightDown();
 		moveLeftUp();
 		moveLeftDown();
-		
-		
 	}
 	
+	/**
+	 * 
+	 */
 	public void movesRook(int yKord, int xKord) {
 		setFieldList(new ArrayList<List<Integer[]>>());
 		setyKord(yKord);
@@ -257,15 +276,24 @@ public class Moves implements IMoves {
 		return y >= ChessConstants.MINAXIS && x >= ChessConstants.MINAXIS;
 	}
 	
+	/**
+	 * 
+	 */
 	public void moveFigure(IFigure f, int yKord, int xKord) {
 		f.setX(xKord);
 		f.setY(yKord);
 	}
 
+	/**
+	 * 
+	 */
 	public List<List<Integer[]>> getFieldList() {
 		return fieldList;
 	}
 
+	/**
+	 * 
+	 */
 	public void setFieldList(List<List<Integer[]>> fieldList) {
 		this.fieldList = fieldList;
 	}

@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * 
+ * @author Felix
+ *
+ */
 public abstract class ChessConstants {
 	
 	public static final int XKORD = 1;

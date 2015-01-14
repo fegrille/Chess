@@ -31,6 +31,9 @@ public class Bishop extends Figure{
 		setPosFields(move.getFieldList());
 	}
 
+	/**
+	 * 
+	 */
 	public String returnName() {
 		return "Bishop";
 	}
