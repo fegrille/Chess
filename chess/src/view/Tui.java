@@ -66,12 +66,13 @@ public class Tui implements Observer, Runnable {
         	buildField();
         	fillField();
         	field.append(newLine);
-        	for( int i = 0; i < fieldlines.size(); i++) {
+        	for( int i = 8; i >= 0; i--) {
         		for(int a = 0; a < fieldlines.get(i).size(); a++) {
         			field.append(fieldlines.get(i).get(a));
         		}
         		field.append(newLine);
         	}
+        	addLastLine();
         	StringBuilder figures = new StringBuilder();
         	figures.append(field);
         	figures.append(newLine + "Figures that can be moved:" + newLine);
@@ -102,6 +103,12 @@ public class Tui implements Observer, Runnable {
         }
 	}
 
+	private void addLastLine() {
+		for(int a = 0; a < fieldlines.get(9).size(); a++) {
+			field.append(fieldlines.get(9).get(a));
+		}
+	}
+
 	private void fillField() {
 		int index = 0;
 		String s;
@@ -122,9 +129,19 @@ public class Tui implements Observer, Runnable {
 	private String checkFigureType(int index, IFigure f) {
 		String s;
 		if(f instanceof Knight) {
-			s = "[ " + index +  "Kn" + f.getColor() + "]";
+			if(index < 10) {
+				s = "[  " + index +  "Kn" + f.getColor() + "]";
+			} else {
+				s = "[ " + index +  "Kn" + f.getColor() + "]";
+			}
+			
 		} else {
-			s = "[ " + index + f.returnName().charAt(0) + f.getColor() + "]";
+			if(index < 10) {
+				s = "[   " + index + f.returnName().charAt(0) + f.getColor() + "]";
+			} else {
+				s = "[  " + index + f.returnName().charAt(0) + f.getColor() + "]";
+			}
+			
 		}
 		return s;
 	}
@@ -133,10 +150,12 @@ public class Tui implements Observer, Runnable {
 	 * 
 	 */
 	private void insertEnemy() {
+		int index = 0;
 		String s;
 		for(IFigure f : getGegenspieler()) {
-			s = "[  " + f.returnName().charAt(0) + f.getColor() + "]";
+			s = checkFigureType(index, f);
 			fieldlines.get(f.getY()).set(f.getX(), s);
+			index++;
 		}
 	}
 
@@ -154,8 +173,10 @@ public class Tui implements Observer, Runnable {
 	 * @return
 	 */
 	private int iterateLine(int c) {
+		int ind = 0;
 		for(int i = 9; i > 0; i--) {
-			c = buildLine(c, i);
+			c = buildLine(c, i, ind);
+			ind++;
 		}
 		return c;
 	}
@@ -165,16 +186,16 @@ public class Tui implements Observer, Runnable {
 	 * @param i
 	 * @return
 	 */
-	private int buildLine(int c, int i) {
+	private int buildLine(int c, int i, int ind) {
 		if(i == 9) {
 			fieldlines.get(i).add(" ");
 			for(int b = 1; b < 9; b++) {
-				fieldlines.get(i).add("  " + b + "  ");
+				fieldlines.get(i).add("   " + b + "    ");
 			}
 		} else {
-			fieldlines.get(c).add("" + i + "");
+			fieldlines.get(c).add("" + ind + "");
 			for(int a = 0; a < 8; a++) {
-				fieldlines.get(c).add("[    ]");
+				fieldlines.get(c).add("[      ]");
 			}
 			c++;
 		}
