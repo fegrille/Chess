@@ -1,5 +1,7 @@
 package view;
 
+import javax.swing.JButton;
+
 public class UndoableComand implements Comand {
 	
 	private Receiver r;
@@ -11,7 +13,7 @@ public class UndoableComand implements Comand {
 	
 	
 	@Override
-    public void execute() {
-		r.undo();
+    public void execute(int fieldsize, JButton[][] buttons) {
+		r.undo(fieldsize, buttons);
 	}
 }

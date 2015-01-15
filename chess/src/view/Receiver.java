@@ -16,15 +16,10 @@ public class Receiver {
 	private int fieldsize;
 	private JButton[][] buttons;
 	
-	public void setFieldsize(int fieldsize) {
-		this.fieldsize = fieldsize;
-	}
 
-	public void setButtons(JButton[][] buttons) {
-		this.buttons = buttons;
-	}
-
-	public void undo() {
+	public void undo(int fsize, JButton[][] buts) {
+		this.fieldsize = fsize;
+		this.buttons = buts.clone();
 		for(int y = 0; y < fieldsize; y++) {
 			for(int x = 0; x < fieldsize; x++) {
 				buttons[y][x].setIcon(null);

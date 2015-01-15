@@ -10,16 +10,12 @@ package view;
 public class Invoker {
 	
 	private Comand com;
-	
-	public void setCommand(Comand c) {
-		this.setCom(c);
-	}
 
 	public Comand getCom() {
 		return com;
 	}
 
-	public void setCom(Comand com) {
-		setCommand(com);
+	public void setCommand(Comand com) {
+		this.com = com;
 	}
 }

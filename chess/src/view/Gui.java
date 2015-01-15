@@ -66,6 +66,7 @@ public class Gui implements Observer, Runnable {
 	 * Create the frame.
 	 */
 	public Gui(ControlGame controlGame) {
+		this.inv.setCommand(undo);
 		this.controlGame = controlGame;
 		availableFigures = new ArrayList<IFigure>();
 		availFields = new ArrayList<Integer[]>();
@@ -359,10 +360,7 @@ public class Gui implements Observer, Runnable {
 
 	private void resetField() {
 		btnResetChoise.setEnabled(false);
-		rec.setButtons(buttons);
-		rec.setFieldsize(fieldsize);
-		this.inv.setCommand(undo);
-		undo.execute();
+		undo.execute(fieldsize, buttons);
 	}
 
 	private void setIconWhite(List<IFigure> figs) {
