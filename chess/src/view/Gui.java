@@ -348,6 +348,7 @@ public class Gui implements Observer, Runnable {
 		btnResetChoise.setEnabled(true);
 		for(Integer[] field : getAvailFields()) {
 			buttons[field[0] -1][field[1] -1].setEnabled(true);
+			buttons[field[0] -1][field[1] -1].setBackground(Color.RED);
 		}
 	}
 
@@ -359,6 +360,11 @@ public class Gui implements Observer, Runnable {
 			for(int x = 0; x < fieldsize; x++) {
 				buttons[y][x].setIcon(null);
 				buttons[y][x].setEnabled(false);
+				if(y % 2 == 0 && x % 2 == 1 || y % 2 == 1 && x % 2 == 0) {
+					buttons[y][x].setBackground(Color.BLACK);
+				} else {
+					buttons[y][x].setBackground(Color.WHITE);
+				}
 			}
 		}
 	}
