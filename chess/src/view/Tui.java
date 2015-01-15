@@ -64,6 +64,7 @@ public class Tui implements Observer, Runnable {
         switch (this.tmpCase) {
         case 'f':
         	field = new StringBuilder();
+        	playerInfo();
         	buildField();
         	fillField();
         	field.append(newLine);
@@ -98,6 +99,17 @@ public class Tui implements Observer, Runnable {
         	logger.info(newLine + "You wrote a wrong value!");
             break;
         }
+	}
+
+	private void playerInfo() {
+		field.append(newLine);
+		field.append("Current Player is: ");
+		if(getSpieler().get(0).getColor() == 'b') {
+			field.append("Black");
+		} else {
+			field.append("White");
+		}
+		field.append(newLine);
 	}
 
 	private void addInformation() {
@@ -205,9 +217,9 @@ public class Tui implements Observer, Runnable {
 	 */
 	private int iterateLine(int c) {
 		int ind = 0;
-		int ca = 0;
+		int ca = c;
 		for(int i = 9; i > 0; i--) {
-			ca = buildLine(c, i, ind);
+			ca = buildLine(ca, i, ind);
 			ind++;
 		}
 		return ca;
