@@ -236,8 +236,8 @@ public class Gui implements Observer, Runnable {
 				if(buttons[y][x].isFocusOwner()) {
 					if(getTmpCase() == 'f') {
 						IFigure fig;
-						for(int f = 0; f < getAvailableFigures().size(); f++) {
-							fig = getAvailableFigures().get(f);
+						for(int f = 0; f < getAvailableFigs().size(); f++) {
+							fig = getAvailableFigs().get(f);
 							if(fig.getY() - 1 == y && fig.getX() - 1 == x) {
 						        Integer myInteger = new Integer(f); 
 						        String s = myInteger.toString(); 
@@ -294,7 +294,7 @@ public class Gui implements Observer, Runnable {
 
 	@Override
 	public void update(List<IFigure> availableFigures, List<Integer[]> availableFields, char tmpCase, List<IFigure> curPlayer, List<IFigure> opPlayer) {
-		setAvailableFigures(availableFigures);
+		setAvailableFigs(availableFigures);
 		setAvailableFields(availableFields);
 		setTmpCase(tmpCase);
 		setSpieler(curPlayer);
@@ -333,7 +333,7 @@ public class Gui implements Observer, Runnable {
 
 
 	private void enableButtonsFigures() {
-		for(IFigure fig : getAvailableFigures()) {
+		for(IFigure fig : getAvailableFigs()) {
 			buttons[fig.getY() -1][fig.getX() -1].setEnabled(true);
 		}
 	}
@@ -359,29 +359,29 @@ public class Gui implements Observer, Runnable {
 	}
 
 	private void setIconWhite(List<IFigure> figs) {
-		for(IFigure f : figs) {
-			if(f instanceof Pawn) {
-				buttons[f.getY() -1][f.getX() -1].setIcon(new ImageIcon("src/images/Bauerweiss.png"));
+		for(IFigure fig : figs) {
+			if(fig instanceof Pawn) {
+				buttons[fig.getY() -1][fig.getX() -1].setIcon(new ImageIcon("src/images/Bauerweiss.png"));
 				continue;
 			}
-			if(f instanceof King) {
-				buttons[f.getY() -1][f.getX() -1].setIcon(new ImageIcon("src/images/Koenigweiss.png"));
+			if(fig instanceof King) {
+				buttons[fig.getY() -1][fig.getX() -1].setIcon(new ImageIcon("src/images/Koenigweiss.png"));
 				continue;
 			}
-			if(f instanceof Queen) {
-				buttons[f.getY() -1][f.getX() -1].setIcon(new ImageIcon("src/images/Koeniginweiss.png"));
+			if(fig instanceof Queen) {
+				buttons[fig.getY() -1][fig.getX() -1].setIcon(new ImageIcon("src/images/Koeniginweiss.png"));
 				continue;
 			}
-			if(f instanceof Bishop) {
-				buttons[f.getY() -1][f.getX() -1].setIcon(new ImageIcon("src/images/Laeuferweiss.png"));
+			if(fig instanceof Bishop) {
+				buttons[fig.getY() -1][fig.getX() -1].setIcon(new ImageIcon("src/images/Laeuferweiss.png"));
 				continue;
 			}
-			if(f instanceof Rook) {
-				buttons[f.getY() -1][f.getX() -1].setIcon(new ImageIcon("src/images/Turmweiss.png"));
+			if(fig instanceof Rook) {
+				buttons[fig.getY() -1][fig.getX() -1].setIcon(new ImageIcon("src/images/Turmweiss.png"));
 				continue;
 			}
-			if(f instanceof Knight) {
-				buttons[f.getY() -1][f.getX() -1].setIcon(new ImageIcon("src/images/Pferdweiss.png"));
+			if(fig instanceof Knight) {
+				buttons[fig.getY() -1][fig.getX() -1].setIcon(new ImageIcon("src/images/Pferdweiss.png"));
 				continue;
 			}
 		}
@@ -416,11 +416,11 @@ public class Gui implements Observer, Runnable {
 		}
 	}
 
-	public List<IFigure> getAvailableFigures() {
+	public List<IFigure> getAvailableFigs() {
 		return availableFigures;
 	}
 
-	public void setAvailableFigures(List<IFigure> availableFigures) {
+	public void setAvailableFigs(List<IFigure> availableFigures) {
 		this.availableFigures = availableFigures;
 	}
 
