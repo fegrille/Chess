@@ -35,7 +35,6 @@ import control.ControlGame;
 public class Gui implements Observer, Runnable {
 
 	private JPanel contentPane;
-	private List<List<JButton>> buttonList = new ArrayList<List<JButton>>();
 	private JButton btnResetChoise = new JButton("ResetFigChoise");
 	private JButton btnCloseGame = new JButton("Close Game");
 
@@ -221,14 +220,6 @@ public class Gui implements Observer, Runnable {
 		button.setBackground(Color.BLACK);
 		button.setBounds(466, 0, 9, 391);
 		contentPane.add(button);
-		
-		fillListEmpty();
-	}
-
-	private void fillListEmpty() {
-		for (int i = 0; i < 8; i++) {
-			this.buttonList.add(new ArrayList<JButton>());
-		}
 	}
 
 	private void returnButtonField() {
