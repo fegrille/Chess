@@ -2,7 +2,7 @@ package view;
 
 public class UndoableComand implements Comand {
 	
-	Receiver r;
+	private Receiver r;
 	
 	public UndoableComand(Receiver r) {
 		this.r = r;

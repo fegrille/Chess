@@ -9,5 +9,5 @@ package view;
  */
 public interface Comand
 {
-    public void execute();
+    void execute();
 }
