@@ -228,29 +228,41 @@ public class Gui implements Observer, Runnable {
 			for(int x = 0; x < fieldsize; x++) {
 				if(buttons[y][x].isFocusOwner()) {
 					if(getTempCase() == 'f') {
-						IFigure fig;
-						for(int f = 0; f < getAvailableFigs().size(); f++) {
-							fig = getAvailableFigs().get(f);
-							if(fig.getY() - 1 == y && fig.getX() - 1 == x) {
-						        Integer myInteger = Integer.valueOf(f); 
-						        String s = myInteger.toString(); 
-								controlGame.setChoise(s);
-								return;
-							}
-						}
+						chooseFigure(x, y);
+						return;
 					} else {
-						Integer[] field;
-						for(int f = 0; f < getAvailFields().size(); f++) {
-							field = getAvailFields().get(f);
-							if(field[0] - 1 == y && field[1] - 1 == x) {
-						        Integer myInteger = Integer.valueOf(f); 
-						        String s = myInteger.toString(); 
-								controlGame.setChoise(s);
-								return;
-							}
-						}
+						chooseField(x, y);
+						return;
 					}
 				}
+			}
+		}
+	}
+
+
+	private void chooseField(int x, int y) {
+		Integer[] field;
+		for(int f = 0; f < getAvailFields().size(); f++) {
+			field = getAvailFields().get(f);
+			if(field[0] - 1 == y && field[1] - 1 == x) {
+		        Integer myInteger = Integer.valueOf(f); 
+		        String s = myInteger.toString(); 
+				controlGame.setChoise(s);
+				return;
+			}
+		}
+	}
+
+
+	private void chooseFigure(int x, int y) {
+		IFigure fig;
+		for(int f = 0; f < getAvailableFigs().size(); f++) {
+			fig = getAvailableFigs().get(f);
+			if(fig.getY() - 1 == y && fig.getX() - 1 == x) {
+		        Integer myInteger = Integer.valueOf(f); 
+		        String s = myInteger.toString(); 
+				controlGame.setChoise(s);
+				return;
 			}
 		}
 	}
