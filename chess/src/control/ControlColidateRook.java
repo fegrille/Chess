@@ -1,5 +1,8 @@
 package control;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 import model.IFigure;
 import model.Player;
 /**
@@ -7,9 +10,14 @@ import model.Player;
  * @author Felix
  *
  */
-public class ControlColidateRook {
+public class ControlColidateRook implements IControlColidateRook{
 	
-	private ColidatingFields coli = new ColidatingFields();
+	private Injector inj = Guice.createInjector(new ControlModule());
+	private ColidatingFields coli;
+	
+	public ControlColidateRook() {
+		coli = inj.getInstance(ColidatingFields.class);
+	}
 
 	/**
 	 * 

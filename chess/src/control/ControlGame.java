@@ -3,6 +3,10 @@ package control;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+
 import model.Field;
 import model.IFigure;
 import model.Pawn;
@@ -11,7 +15,8 @@ import model.Queen;
 
 
 public class ControlGame implements Subject {
-
+	
+	private Injector inj = Guice.createInjector(new ControlModule());
 	private List<Observer> observers;
 	private ControlEndGame controlEG;
 	private Player currentPlayer;
@@ -25,16 +30,16 @@ public class ControlGame implements Subject {
 	private ControlColidate col;
 	private ControlPawn conPa;
 
-
+	@Inject
 	public ControlGame() {
 		observers = new ArrayList<Observer>();
-		controlEG = new ControlEndGame();
-		col = new ControlColidate();
+		controlEG = inj.getInstance(ControlEndGame.class);
+		col = inj.getInstance(ControlColidate.class);
 		chosenFigure = null;
 		chosenField = null;
 		possiFigures = null;
 		possiFields = null;
-		conPa = new ControlPawn();
+		conPa = inj.getInstance(ControlPawn.class);
 	}
 	
 	@Override

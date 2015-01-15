@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Queen extends Figure{
 	
-	private IMoves move = new Moves();
+	private IMoves move;
 	
 	/**
 	 * 
@@ -18,6 +18,7 @@ public class Queen extends Figure{
 	 * @param color
 	 */
 	public Queen(int y, int x, char color) {
+		move = new Moves();
 		setField(y,x);
 		setColor(color);
 	}

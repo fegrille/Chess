@@ -10,15 +10,17 @@ import java.util.Map;
  */
 public class Field implements IField{
 	
-	private Map<Integer, Map<Integer, IFigure>> fields = new HashMap<Integer, Map<Integer,IFigure>>();
+	private Map<Integer, Map<Integer, IFigure>> fields;
 	
 	private Integer[] numbers = {ChessConstants.XKORDONE,ChessConstants.XKORDTWO,ChessConstants.XKORDTHREE,ChessConstants.XKORDFOUR,ChessConstants.XKORDFIVE,ChessConstants.XKORDSIX,ChessConstants.XKORDSEVEN,ChessConstants.XKORDEIGHT};
-	private Figure empty = new Figure();
+	private Figure empty;
 	
 	/**
 	 * 
 	 */
 	public Field () {
+		empty = new Figure();
+		fields = new HashMap<Integer, Map<Integer,IFigure>>();
 		buildField();
 	}
 	

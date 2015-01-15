@@ -7,7 +7,7 @@ import model.IFigure;
  * @author Felix
  *
  */
-public class ControlPawn {
+public class ControlPawn implements IControlPawn{
 	
 	private boolean endField = false;
 	
@@ -33,6 +33,7 @@ public class ControlPawn {
 	 * @param pawn
 	 * @return
 	 */
+	@Override
 	public boolean checkEndfield(IFigure pawn) {
 		setEndField(false);
 		int y = pawn.getY();

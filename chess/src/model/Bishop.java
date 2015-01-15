@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class Bishop extends Figure{
 	
-	private IMoves move = new Moves();
+	private IMoves move;
 	
 	/**
 	 * Constructor to initialize bishop
@@ -19,6 +19,7 @@ public class Bishop extends Figure{
 	public Bishop(int y, int x, char color) {
 		setField(y,x);
 		setColor(color);
+		move = new Moves();
 	}
 	
 	/**

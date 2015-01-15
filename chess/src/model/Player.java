@@ -13,7 +13,7 @@ public class Player implements IPlayer{
 	private List<IFigure> figureList;
 	private IFigure f;
 	private char col;
-	private FigureFactory figureFactory = new FigureFactory();
+	private FigureFactory figureFactory;
 	
 	/**
 	 * 
@@ -21,6 +21,7 @@ public class Player implements IPlayer{
 	 * @param field
 	 */
 	public Player(char color, IField field) {
+		figureFactory = new FigureFactory();
 		this.figureList = new ArrayList<IFigure>();
 		this.col = color;
 		initializeFigures(field);

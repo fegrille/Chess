@@ -9,7 +9,7 @@ import model.Player;
  * @author Felix
  *
  */
-public class ControlChess {
+public class ControlChess implements IControlChess{
 	
 	private boolean chess = false;
 	private int[] kingField = {};
@@ -22,6 +22,7 @@ public class ControlChess {
 	 * @param p2
 	 * @return
 	 */
+	@Override
 	public boolean checkChess(Player p, IFigure lastMovedFigure, ControlColidate col, Player p2) {
 		setChess(false);
 		getKingField(p);

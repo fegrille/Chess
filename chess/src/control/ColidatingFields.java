@@ -13,7 +13,7 @@ import model.Player;
  * @author Felix
  *
  */
-public class ColidatingFields {
+public class ColidatingFields implements IColidatingfields{
 	
 	private List<List<Integer[]>> fields;
 	private List<IFigure> figureList;
@@ -104,6 +104,7 @@ public class ColidatingFields {
 	 * 
 	 * @param f
 	 */
+	@Override
 	public void unmovedFigures(IFigure f) {
 		int[] cords = f.getField();
 		for(setCounter(0); getCounter() < getFigureList().size(); setCounter(getCounter() + 1)) {
@@ -129,6 +130,7 @@ public class ColidatingFields {
 	 * @param posF
 	 * @return
 	 */
+	@Override
 	public boolean colidate(Integer[] posF) {
 		setColidate(false);
 		checkColidateFigures(posF);
@@ -196,6 +198,7 @@ public class ColidatingFields {
 	 * @param f
 	 * @param p
 	 */
+	@Override
 	public void colidateOwnFigure(IFigure f, Player p) {
 		setFigureList(p.getFigureList());
 		unmovedFigures(f);
@@ -219,6 +222,7 @@ public class ColidatingFields {
 	 * @param f
 	 * @param p
 	 */
+	@Override
 	public void colidateOtherFigure(IFigure f, Player p) {
 		setFigureList(p.getFigureList());
 		unmovedFigures(f);
@@ -263,6 +267,7 @@ public class ColidatingFields {
 	 * @param f
 	 * @param p
 	 */
+	@Override
 	public void colidateOwnQueen(IFigure f, Player p) {
 		setFigureList(p.getFigureList());
 		unmovedFigures(f);
@@ -290,6 +295,7 @@ public class ColidatingFields {
 	 * @param f
 	 * @param p
 	 */
+	@Override
 	public void colidateOtherQueen(IFigure f, Player p) {
 		setFigureList(p.getFigureList());
 		unmovedFigures(f);
@@ -332,6 +338,7 @@ public class ColidatingFields {
 	 * @param f
 	 * @param p
 	 */
+	@Override
 	public void colidateInFrontPawn(IFigure f, Player p) {
 		List<IFigure> flist = p.getFigureList();
 		setFigureList(flist);

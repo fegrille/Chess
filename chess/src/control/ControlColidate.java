@@ -1,5 +1,9 @@
 package control;
 
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+
 import model.Bishop;
 import model.IFigure;
 import model.King;
@@ -14,14 +18,25 @@ import model.Rook;
  * @author Felix
  *
  */
-public class ControlColidate {
+public class ControlColidate implements IControlColidate{
 	
-	private ControlColidateBishop colBis = new ControlColidateBishop();
-	private ControlColidatePawn colPaw = new ControlColidatePawn();
-	private ControlColidateKnight colKnig = new ControlColidateKnight();
-	private ControlColidateQueen colQueen = new ControlColidateQueen();
-	private ControlColidateKing colKing = new ControlColidateKing();
-	private ControlColidateRook colRook = new ControlColidateRook();
+	private Injector inj = Guice.createInjector(new ControlModule());
+	private ControlColidateBishop colBis;
+	private ControlColidatePawn colPaw;
+	private ControlColidateKnight colKnig;
+	private ControlColidateQueen colQueen;
+	private ControlColidateKing colKing;
+	private ControlColidateRook colRook;
+	
+	@Inject
+	public ControlColidate() {
+		colBis = inj.getInstance(ControlColidateBishop.class);
+		colPaw = inj.getInstance(ControlColidatePawn.class);
+		colKnig = inj.getInstance(ControlColidateKnight.class);
+		colQueen = inj.getInstance(ControlColidateQueen.class);
+		colKing = inj.getInstance(ControlColidateKing.class);
+		colRook = inj.getInstance(ControlColidateRook.class);
+	}
 	
 	/**
 	 * 
@@ -76,7 +91,8 @@ public class ControlColidate {
 	 * @param p
 	 * @param p2
 	 */
-	public  void colidate(Player p, Player p2) {
+	@Override
+	public void colidate(Player p, Player p2) {
 		updatePossibleFieldsKing(p,p2);
 		updatePossibleFields(p,p2);
 		updatePossibleFields(p2,p);

@@ -2,6 +2,9 @@ package control;
 
 import java.util.List;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 import model.IFigure;
 import model.Player;
 /**
@@ -9,11 +12,16 @@ import model.Player;
  * @author Felix
  *
  */
-public class ControlColidatePawn {
+public class ControlColidatePawn implements IControlColidatePawn{
 	
-	private ColidatingFields coli = new ColidatingFields();
+	private Injector inj = Guice.createInjector(new ControlModule());
+	private ColidatingFields coli;
 	private List<List<Integer[]>> fields;
 	private int c;
+	
+	public ControlColidatePawn() {
+		coli = inj.getInstance(ColidatingFields.class);
+	}
 	
 	/**
 	 * 
@@ -60,6 +68,7 @@ public class ControlColidatePawn {
 	 * @param f
 	 * @param p2
 	 */
+	@Override
 	public void colidateOtherFigurePawn(IFigure f, Player p2) {
 		getColi().colidateInFrontPawn(f,p2);
 		setFields(f.getPosFields());
@@ -100,6 +109,7 @@ public class ControlColidatePawn {
 	 * @param f
 	 * @param p
 	 */
+	@Override
 	public void colidateOwnFigurePawn(IFigure f, Player p) {
 		setFields(f.getPosFields());
 		getColi().colidateInFrontPawn(f,p);

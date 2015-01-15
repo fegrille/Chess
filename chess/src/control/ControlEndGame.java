@@ -13,20 +13,24 @@ import model.Rook;
  * @author Felix
  *
  */
-public class ControlEndGame {
+public class ControlEndGame implements IControlEndGame{
 	
 	private boolean win = false;
 	private boolean kingCantMove = false;
 	private boolean canKillBadFigure = false;
 	private boolean cantBlockBadFigure = true;
 	
-	private ControlChess cChess = new ControlChess();
+	private ControlChess cChess;
 	
 	private Player pl = null;
 	private Player plOpp = null;
 	private ControlColidate col = null;
 	private IFigure lastMovedFigure = null;
 	private List<int[]> possBlockFields = new ArrayList<int[]>();
+	
+	public ControlEndGame() {
+		cChess = new ControlChess();
+	}
 
 	/**
 	 * 
@@ -35,6 +39,7 @@ public class ControlEndGame {
 	 * @param col
 	 * @param lastMovedFigure
 	 */
+	@Override
 	public void controlWin(Player pl, Player plOpp, ControlColidate col, IFigure lastMovedFigure) {
 		setPl(pl);
 		setPlOpp(plOpp);
