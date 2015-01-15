@@ -7,6 +7,7 @@ import model.Field;
 import model.IFigure;
 import model.Pawn;
 import model.Player;
+import model.Queen;
 
 
 public class ControlGame implements Subject {
@@ -22,6 +23,7 @@ public class ControlGame implements Subject {
 	private IFigure chosenFigure;
 	private Integer[] chosenField;
 	private ControlColidate col;
+	private ControlPawn conPa;
 
 
 	public ControlGame() {
@@ -32,6 +34,7 @@ public class ControlGame implements Subject {
 		chosenField = null;
 		possiFigures = null;
 		possiFields = null;
+		conPa = new ControlPawn();
 	}
 	
 	@Override
@@ -106,12 +109,17 @@ public class ControlGame implements Subject {
 				break;
 			}
 		}
-		for(IFigure f : currentPl.getFigureList()) {
+		
+		for(int i = 0; i < currentPl.getFigureList().size(); i++) {
+			IFigure f = currentPl.getFigureList().get(i);
 			if(f.equals(chosenFig)) {
 				if(f instanceof Pawn) {
 					((Pawn)f).setFirstMove(false);
 				}
 				f.setField(newField[0], newField[1]);
+				if(conPa.checkEndfield(f) && f instanceof Pawn) {
+					currentPl.getFigureList().set(i, new Queen(f.getY(), f.getX(), f.getColor()));
+				}
 			}
 		}
 	}

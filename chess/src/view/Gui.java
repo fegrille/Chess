@@ -34,7 +34,6 @@ import control.ControlGame;
 
 public class Gui implements Observer, Runnable {
 
-	private JPanel contentPane;
 	private JButton btnResetChoise = new JButton("ResetFigChoise");
 	private JButton btnCloseGame = new JButton("Close Game");
 
@@ -68,6 +67,8 @@ public class Gui implements Observer, Runnable {
 		availableFigures = new ArrayList<IFigure>();
 		availFields = new ArrayList<Integer[]>();
 		controlGame.register(this);
+		
+		JPanel contentPane;
 		
 		for(int y = 0; y < fieldsize; y++) {
 			for(int x = 0; x < fieldsize; x++) {
