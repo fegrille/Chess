@@ -69,107 +69,75 @@ public class ControlGame implements Subject {
 			setTask('f');
 			setPossiFigures(getCurrentPlayer().getFigureList());
 			notifyObserver();
-			waitForChoiseFigure();
+			while(!checkFigureChoise(getChoise())) {
+				continue;
+			}
 			setChosenFigure(Integer.parseInt(getChoise()));
 			setPossiFields(getChosenFigure());
 			setChoise("");
 			setTask('s');
 			notifyObserver();
-			waitForChoiseField();
+			while(!checkFieldChoise(getChoise())) {
+				continue;
+			}
 			if(Integer.parseInt(getChoise()) == -1) {
 				continue;
 			}
 			setChosenField(Integer.parseInt(getChoise()));
 			setChoise("");
 			moveFigure(getCurrentPlayer(), getPlayerOpponent(), getChosenFigure(), getChosenField());
-			changePlayer(p1, p2);
+			if(getCurrentPlayer().equals(p1)) {
+				setCurrentPlayer(p2);
+				setPlayerOpponent(p1);
+			} else {
+				setCurrentPlayer(p1);
+				setPlayerOpponent(p2);
+			}
 			getControlEG().controlWin(getCurrentPlayer(), getPlayerOpponent(), col, getChosenFigure());
-		}
-	}
-
-	private void changePlayer(Player p1, Player p2) {
-		if(getCurrentPlayer().equals(p1)) {
-			setCurrentPlayer(p2);
-			setPlayerOpponent(p1);
-		} else {
-			setCurrentPlayer(p1);
-			setPlayerOpponent(p2);
-		}
-	}
-
-	private void waitForChoiseField() {
-		while(!checkFieldChoise(getChoise())) {
-			continue;
-		}
-	}
-
-	private void waitForChoiseFigure() {
-		while(!checkFigureChoise(getChoise())) {
-			continue;
 		}
 	}
 	
 	private void moveFigure(Player currentPl, Player otherPlayer, IFigure chosenFig, Integer[] newField) {
 		for(IFigure f : otherPlayer.getFigureList()) {
-			checkColidation(otherPlayer, newField, f);
+			if(f.getField()[0] == newField[0] && f.getField()[1] == newField[1]) {
+				otherPlayer.getFigureList().remove(f);
+				break;
+			}
 		}
-		getFigureForMove(currentPl, chosenFig, newField);
-	}
-
-	private void checkColidation(Player otherPlayer, Integer[] newField,
-			IFigure f) {
-		if(f.getField()[0] == newField[0] && f.getField()[1] == newField[1]) {
-			otherPlayer.getFigureList().remove(f);
-		}
-	}
-
-	private void getFigureForMove(Player currentPl, IFigure chosenFig,
-			Integer[] newField) {
 		for(IFigure f : currentPl.getFigureList()) {
-			checkIfFigureMove(chosenFig, newField, f);
-		}
-	}
-
-	private void checkIfFigureMove(IFigure chosenFig, Integer[] newField,
-			IFigure f) {
-		if(f.equals(chosenFig)) {
-			isPawn(f);
-			f.setField(newField[0], newField[1]);
-		}
-	}
-
-	private void isPawn(IFigure f) {
-		if(f instanceof Pawn) {
-			((Pawn)f).setFirstMove(false);
+			if(f.equals(chosenFig)) {
+				if(f instanceof Pawn) {
+					((Pawn)f).setFirstMove(false);
+				}
+				f.setField(newField[0], newField[1]);
+			}
 		}
 	}
 
 	private boolean checkFieldChoise(String choise2) {
-		boolean check = false;
 		int value = 0;
 		try {
 			value = Integer.parseInt(choise2);
 		} catch (Exception e) {
-			check = false;
+			return false;
 		}
 		if(value >= 0 && value < getPossiFields().size() || value == -1) {
-			check = true;
+			return true;
 		}
-		return check;
+		return false;
 	}
 
 	private boolean checkFigureChoise(String choise2) {
-		boolean check = false;
 		int value = 0;
 		try {
 			value = Integer.parseInt(choise2);
 		} catch (Exception e) {
-			check = false;
+			return false;
 		}
 		if(value >= 0 && value < getPossiFigures().size()) {
-			check = true;
+			return true;
 		}
-		return check;
+		return false;
 	}
 	
 	public Player getCurrentPlayer() {
@@ -235,32 +203,21 @@ public class ControlGame implements Subject {
 	public void setPossiFigures(List<IFigure> possiFigures) {
 		ArrayList<IFigure> tmpFigures = new ArrayList<IFigure>();
 		for(IFigure f : possiFigures) {
-			checkInsert(tmpFigures, f);
+			if(checkFigure(f)) {
+				tmpFigures.add(f);
+			}
 		}
 		this.possiFigures = tmpFigures;
-	}
-
-	private void checkInsert(ArrayList<IFigure> tmpFigures, IFigure f) {
-		if(checkFigure(f)) {
-			tmpFigures.add(f);
-		}
 	}
 	
 	private boolean checkFigure(IFigure f) {
 		col.colidate(getCurrentPlayer(), getPlayerOpponent());
-		boolean c = false;
 		for(List<Integer[]> l : f.getPosFields()) {
-			c = isPosFieldsEmpty(l);
+			if(l.size() != 0) {
+				return true;
+			}
 		}
-		return c;
-	}
-
-	private boolean isPosFieldsEmpty(List<Integer[]> l) {
-		boolean c = false;
-		if(l.size() != 0) {
-			c = true;
-		}
-		return c;
+		return false;
 	}
 
 	public List<Integer[]> getPossiFields() {
@@ -272,14 +229,10 @@ public class ControlGame implements Subject {
 		fig.possibleFields();
 		col.colidate(getCurrentPlayer(), getPlayerOpponent());
 		for(List<Integer[]> list : fig.getPosFields()) {
-			buildList(tmpList, list);
+			for(Integer[] i : list) {
+				tmpList.add(i);
+			}
 		}
 		this.possiFields = tmpList;
-	}
-
-	private void buildList(List<Integer[]> tmpList, List<Integer[]> list) {
-		for(Integer[] i : list) {
-			tmpList.add(i);
-		}
 	}
 }
