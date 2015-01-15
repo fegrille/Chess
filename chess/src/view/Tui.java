@@ -3,7 +3,7 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import model.IFigure;
 import model.Knight;
@@ -25,6 +25,7 @@ public class Tui implements Observer, Runnable {
 	private String newLine = System.getProperty("line.separator");
 	
 	private Logger logger = Logger.getLogger("view.tui");
+	
 	
 	public Tui(ControlGame controlGame) {
 		this.controlGame = controlGame;
@@ -53,7 +54,7 @@ public class Tui implements Observer, Runnable {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				logger.warning(e.getMessage());
+				logger.warn(e.getMessage());
 			}
 		}
 		scan.close();
@@ -116,7 +117,7 @@ public class Tui implements Observer, Runnable {
 		field.append(newLine);
 		field.append("Field Information: (1. 0, 2. P , 3. w)" + newLine);
 		field.append("1. Index of figure" + newLine);
-		field.append("2. Kind of figure (P = Pawn, Kn = Knight etc)" + newLine);
+		field.append("2. Kind of figure (P = Pawn, Kn = Knight, R = Rook, Q = Queen, K = King, B = Bishop)" + newLine);
 		field.append("3. Color of figure (w = white, b = black)" + newLine);
 		
 	}
