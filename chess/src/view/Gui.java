@@ -35,7 +35,7 @@ import control.ControlGame;
 public class Gui implements Observer, Runnable {
 
 	private JPanel contentPane;
-	private ArrayList<List<JButton>> buttonList = new ArrayList<List<JButton>>();
+	private List<List<JButton>> buttonList = new ArrayList<List<JButton>>();
 	private JButton btnResetChoise = new JButton("ResetFigChoise");
 	private JButton btnCloseGame = new JButton("Close Game");
 
@@ -50,6 +50,7 @@ public class Gui implements Observer, Runnable {
 	private List<IFigure> enemy;
 	private char tempCase = ' ';
 	private JLabel win = new JLabel();
+	private String TAHOMA = "Tahoma";
 
 	/**
 	 * Launch the application.
@@ -120,99 +121,99 @@ public class Gui implements Observer, Runnable {
 		
 		JLabel label = new JLabel("1");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Tahoma", Font.BOLD, 17));
+		label.setFont(new Font(TAHOMA, Font.BOLD, 17));
 		label.setBounds(1, 306, 22, 41);
 		contentPane.add(label);
 		
-		JLabel label_1 = new JLabel("2");
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(1, 267, 22, 41);
-		contentPane.add(label_1);
+		JLabel label1 = new JLabel("2");
+		label1.setFont(new Font(TAHOMA, Font.BOLD, 17));
+		label1.setHorizontalAlignment(SwingConstants.CENTER);
+		label1.setBounds(1, 267, 22, 41);
+		contentPane.add(label1);
 		
-		JLabel label_2 = new JLabel("3");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_2.setBounds(1, 227, 22, 41);
-		contentPane.add(label_2);
+		JLabel label2 = new JLabel("3");
+		label2.setHorizontalAlignment(SwingConstants.CENTER);
+		label2.setFont(new Font(TAHOMA, Font.BOLD, 17));
+		label2.setBounds(1, 227, 22, 41);
+		contentPane.add(label2);
 		
-		JLabel label_3 = new JLabel("4");
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_3.setBounds(1, 186, 22, 41);
-		contentPane.add(label_3);
+		JLabel label3 = new JLabel("4");
+		label3.setHorizontalAlignment(SwingConstants.CENTER);
+		label3.setFont(new Font(TAHOMA, Font.BOLD, 17));
+		label3.setBounds(1, 186, 22, 41);
+		contentPane.add(label3);
 		
-		JLabel label_4 = new JLabel("5");
-		label_4.setHorizontalAlignment(SwingConstants.CENTER);
-		label_4.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_4.setBounds(1, 147, 22, 41);
-		contentPane.add(label_4);
+		JLabel label4 = new JLabel("5");
+		label4.setHorizontalAlignment(SwingConstants.CENTER);
+		label4.setFont(new Font(TAHOMA, Font.BOLD, 17));
+		label4.setBounds(1, 147, 22, 41);
+		contentPane.add(label4);
 		
-		JLabel label_5 = new JLabel("6");
-		label_5.setHorizontalAlignment(SwingConstants.CENTER);
-		label_5.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_5.setBounds(1, 106, 22, 41);
-		contentPane.add(label_5);
+		JLabel label5 = new JLabel("6");
+		label5.setHorizontalAlignment(SwingConstants.CENTER);
+		label5.setFont(new Font(TAHOMA, Font.BOLD, 17));
+		label5.setBounds(1, 106, 22, 41);
+		contentPane.add(label5);
 		
-		JLabel label_6 = new JLabel("7");
-		label_6.setHorizontalAlignment(SwingConstants.CENTER);
-		label_6.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_6.setBounds(1, 66, 22, 41);
-		contentPane.add(label_6);
+		JLabel label6 = new JLabel("7");
+		label6.setHorizontalAlignment(SwingConstants.CENTER);
+		label6.setFont(new Font(TAHOMA, Font.BOLD, 17));
+		label6.setBounds(1, 66, 22, 41);
+		contentPane.add(label6);
 		
-		JLabel label_7 = new JLabel("8");
-		label_7.setHorizontalAlignment(SwingConstants.CENTER);
-		label_7.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_7.setBounds(1, 27, 22, 41);
-		contentPane.add(label_7);
+		JLabel label7 = new JLabel("8");
+		label7.setHorizontalAlignment(SwingConstants.CENTER);
+		label7.setFont(new Font(TAHOMA, Font.BOLD, 17));
+		label7.setBounds(1, 27, 22, 41);
+		contentPane.add(label7);
 		
-		JLabel label_8 = new JLabel("1");
-		label_8.setHorizontalAlignment(SwingConstants.CENTER);
-		label_8.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_8.setBounds(43, 349, 37, 23);
-		contentPane.add(label_8);
+		JLabel label8 = new JLabel("1");
+		label8.setHorizontalAlignment(SwingConstants.CENTER);
+		label8.setFont(new Font(TAHOMA, Font.BOLD, 17));
+		label8.setBounds(43, 349, 37, 23);
+		contentPane.add(label8);
 		
-		JLabel label_9 = new JLabel("2");
-		label_9.setHorizontalAlignment(SwingConstants.CENTER);
-		label_9.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_9.setBounds(89, 349, 37, 23);
-		contentPane.add(label_9);
+		JLabel label9 = new JLabel("2");
+		label9.setHorizontalAlignment(SwingConstants.CENTER);
+		label9.setFont(new Font(TAHOMA, Font.BOLD, 17));
+		label9.setBounds(89, 349, 37, 23);
+		contentPane.add(label9);
 		
-		JLabel label_10 = new JLabel("3");
-		label_10.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_10.setHorizontalAlignment(SwingConstants.CENTER);
-		label_10.setBounds(135, 349, 37, 23);
-		contentPane.add(label_10);
+		JLabel label10 = new JLabel("3");
+		label10.setFont(new Font(TAHOMA, Font.BOLD, 17));
+		label10.setHorizontalAlignment(SwingConstants.CENTER);
+		label10.setBounds(135, 349, 37, 23);
+		contentPane.add(label10);
 		
-		JLabel label_11 = new JLabel("4");
-		label_11.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_11.setHorizontalAlignment(SwingConstants.CENTER);
-		label_11.setBounds(182, 349, 37, 23);
-		contentPane.add(label_11);
+		JLabel label11 = new JLabel("4");
+		label11.setFont(new Font(TAHOMA, Font.BOLD, 17));
+		label11.setHorizontalAlignment(SwingConstants.CENTER);
+		label11.setBounds(182, 349, 37, 23);
+		contentPane.add(label11);
 		
-		JLabel label_12 = new JLabel("5");
-		label_12.setHorizontalAlignment(SwingConstants.CENTER);
-		label_12.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_12.setBounds(231, 349, 37, 23);
-		contentPane.add(label_12);
+		JLabel label12 = new JLabel("5");
+		label12.setHorizontalAlignment(SwingConstants.CENTER);
+		label12.setFont(new Font(TAHOMA, Font.BOLD, 17));
+		label12.setBounds(231, 349, 37, 23);
+		contentPane.add(label12);
 		
-		JLabel label_13 = new JLabel("6");
-		label_13.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_13.setHorizontalAlignment(SwingConstants.CENTER);
-		label_13.setBounds(276, 349, 37, 23);
-		contentPane.add(label_13);
+		JLabel label13 = new JLabel("6");
+		label13.setFont(new Font(TAHOMA, Font.BOLD, 17));
+		label13.setHorizontalAlignment(SwingConstants.CENTER);
+		label13.setBounds(276, 349, 37, 23);
+		contentPane.add(label13);
 		
 		JLabel lblNewLabel = new JLabel("7");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblNewLabel.setFont(new Font(TAHOMA, Font.BOLD, 17));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(320, 349, 37, 23);
 		contentPane.add(lblNewLabel);
 		
-		JLabel label_14 = new JLabel("8");
-		label_14.setFont(new Font("Tahoma", Font.BOLD, 17));
-		label_14.setHorizontalAlignment(SwingConstants.CENTER);
-		label_14.setBounds(366, 349, 37, 23);
-		contentPane.add(label_14);
+		JLabel label14 = new JLabel("8");
+		label14.setFont(new Font(TAHOMA, Font.BOLD, 17));
+		label14.setHorizontalAlignment(SwingConstants.CENTER);
+		label14.setBounds(366, 349, 37, 23);
+		contentPane.add(label14);
 		
 		JButton button = new JButton("");
 		button.setForeground(Color.BLACK);
@@ -239,7 +240,7 @@ public class Gui implements Observer, Runnable {
 						for(int f = 0; f < getAvailableFigs().size(); f++) {
 							fig = getAvailableFigs().get(f);
 							if(fig.getY() - 1 == y && fig.getX() - 1 == x) {
-						        Integer myInteger = new Integer(f); 
+						        Integer myInteger = Integer.valueOf(f); 
 						        String s = myInteger.toString(); 
 								controlGame.setChoise(s);
 								return;
@@ -250,7 +251,7 @@ public class Gui implements Observer, Runnable {
 						for(int f = 0; f < getAvailFields().size(); f++) {
 							field = getAvailFields().get(f);
 							if(field[0] - 1 == y && field[1] - 1 == x) {
-						        Integer myInteger = new Integer(f); 
+						        Integer myInteger = Integer.valueOf(f); 
 						        String s = myInteger.toString(); 
 								controlGame.setChoise(s);
 								return;
@@ -277,7 +278,7 @@ public class Gui implements Observer, Runnable {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int f = -1;
-				Integer myInteger = new Integer(f);
+				Integer myInteger = Integer.valueOf(f);
 				String s = myInteger.toString();
 				controlGame.setChoise(s);
 				btnResetChoise.setEnabled(false);
