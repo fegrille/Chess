@@ -95,6 +95,8 @@ public class ControlGame implements Subject {
 			}
 			getControlEG().controlWin(getCurrentPlayer(), getPlayerOpponent(), col, getChosenFigure());
 		}
+		setTask('w');
+		notifyObserver();
 	}
 	
 	private void moveFigure(Player currentPl, Player otherPlayer, IFigure chosenFig, Integer[] newField) {

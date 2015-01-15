@@ -49,6 +49,7 @@ public class Gui implements Observer, Runnable {
 	private List<IFigure> spieler;
 	private List<IFigure> gegenspieler;
 	private char tmpCase = ' ';
+	private JLabel win = new JLabel();
 
 	/**
 	 * Launch the application.
@@ -81,6 +82,9 @@ public class Gui implements Observer, Runnable {
 		contentPane = new JPanel();
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		frame.setContentPane(contentPane);
+		win.setBounds(490, 300, 150, 80);
+		win.setVisible(true);
+		frame.add(win);
 		
 		actionStart();
 		
@@ -106,7 +110,7 @@ public class Gui implements Observer, Runnable {
 				} else {
 					buttons[y][x].setBackground(Color.WHITE);
 				}
-				buttons[y][x].setBounds((7-x)*45+40, (7-y)*40+20, 45, 40);
+				buttons[y][x].setBounds((x)*45+40, (7-y)*40+20, 45, 40);
 				contentPane.add(buttons[y][x]);
 			}
 		}
@@ -314,10 +318,19 @@ public class Gui implements Observer, Runnable {
 	    case 's':
 	    	enableButtonsFields();
 	        break;
+	    case 'w':
+	    	resetField();
+	    	setWin();
+	        break;
 	    default:
 	        break;
 	    }
 	}
+
+	private void setWin() {
+		win.setText("Player " + controlGame.getPlayerOpponent().getCol() + " has won!");
+	}
+
 
 	private void enableButtonsFigures() {
 		for(IFigure fig : getAvailableFigures()) {
