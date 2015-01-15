@@ -50,7 +50,7 @@ public class Gui implements Observer, Runnable {
 	private List<IFigure> enemy;
 	private char tempCase = ' ';
 	private JLabel win = new JLabel();
-	private String TAHOMA = "Tahoma";
+	private static final String TAHOMA = "Tahoma";
 
 	/**
 	 * Launch the application.
