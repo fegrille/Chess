@@ -45,10 +45,10 @@ public class Gui implements Observer, Runnable {
 
 	private ControlGame controlGame;
 	private List<IFigure> availableFigures;
-	private List<Integer[]> availableFields;
-	private List<IFigure> spieler;
-	private List<IFigure> gegenspieler;
-	private char tmpCase = ' ';
+	private List<Integer[]> availFields;
+	private List<IFigure> player;
+	private List<IFigure> enemy;
+	private char tempCase = ' ';
 	private JLabel win = new JLabel();
 
 	/**
@@ -66,7 +66,7 @@ public class Gui implements Observer, Runnable {
 	public Gui(ControlGame controlGame) {
 		this.controlGame = controlGame;
 		availableFigures = new ArrayList<IFigure>();
-		availableFields = new ArrayList<Integer[]>();
+		availFields = new ArrayList<Integer[]>();
 		controlGame.register(this);
 		
 		for(int y = 0; y < fieldsize; y++) {
@@ -234,7 +234,7 @@ public class Gui implements Observer, Runnable {
 		for(int y = 0; y < fieldsize; y++) {
 			for(int x = 0; x < fieldsize; x++) {
 				if(buttons[y][x].isFocusOwner()) {
-					if(getTmpCase() == 'f') {
+					if(getTempCase() == 'f') {
 						IFigure fig;
 						for(int f = 0; f < getAvailableFigs().size(); f++) {
 							fig = getAvailableFigs().get(f);
@@ -288,30 +288,30 @@ public class Gui implements Observer, Runnable {
 
 	public void updateLists(List<Integer[]> availableField,
 			List<IFigure> availableFigure) {
-		this.availableFields = availableField;
+		this.availFields = availableField;
 		this.availableFigures = availableFigure;
 	}
 
 	@Override
 	public void update(List<IFigure> availableFigures, List<Integer[]> availableFields, char tmpCase, List<IFigure> curPlayer, List<IFigure> opPlayer) {
 		setAvailableFigs(availableFigures);
-		setAvailableFields(availableFields);
-		setTmpCase(tmpCase);
-		setSpieler(curPlayer);
-		setGegenspieler(opPlayer);
+		setAvailFields(availableFields);
+		setTempCase(tmpCase);
+		setPlayer(curPlayer);
+		setEnemy(opPlayer);
 		updateGuiView();
 	}
 	
 	private void updateGuiView() {
 		resetField();
-		if(getSpieler().get(0).getColor() == 'w') {
-			setIconWhite(getSpieler());
-			setIconBlack(getGegenspieler());
+		if(getPlayer().get(0).getColor() == 'w') {
+			setIconWhite(getPlayer());
+			setIconBlack(getEnemy());
 		} else {
-			setIconWhite(getGegenspieler());
-			setIconBlack(getSpieler());
+			setIconWhite(getEnemy());
+			setIconBlack(getPlayer());
 		}
-        switch (this.tmpCase) {
+        switch (this.tempCase) {
 	    case 'f':
 	    	enableButtonsFigures();
 	    	break;
@@ -425,34 +425,34 @@ public class Gui implements Observer, Runnable {
 	}
 
 	public List<Integer[]> getAvailFields() {
-		return availableFields;
+		return availFields;
 	}
 
-	public void setAvailableFields(List<Integer[]> availableFields) {
-		this.availableFields = availableFields;
+	public void setAvailFields(List<Integer[]> availFields) {
+		this.availFields = availFields;
 	}
 
-	public char getTmpCase() {
-		return tmpCase;
+	public char getTempCase() {
+		return tempCase;
 	}
 
-	public void setTmpCase(char tmpCase) {
-		this.tmpCase = tmpCase;
+	public void setTempCase(char tempCase) {
+		this.tempCase = tempCase;
 	}
 	
-	private List<IFigure> getSpieler() {
-		return spieler;
+	private List<IFigure> getPlayer() {
+		return player;
 	}
 
-	private void setSpieler(List<IFigure> spieler) {
-		this.spieler = spieler;
+	private void setPlayer(List<IFigure> player) {
+		this.player = player;
 	}
 
-	private List<IFigure> getGegenspieler() {
-		return gegenspieler;
+	private List<IFigure> getEnemy() {
+		return enemy;
 	}
 
-	private void setGegenspieler(List<IFigure> gegenspieler) {
-		this.gegenspieler = gegenspieler;
+	private void setEnemy(List<IFigure> enemy) {
+		this.enemy = enemy;
 	}
 }
