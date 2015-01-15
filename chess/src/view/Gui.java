@@ -34,6 +34,9 @@ import control.ControlGame;
 
 public class Gui implements Observer, Runnable {
 
+	private Invoker inv = new Invoker();
+	private Receiver rec = new Receiver();
+	private UndoableComand undo = new UndoableComand(rec);
 	private JButton btnResetChoise = new JButton("ResetFigChoise");
 	private JButton btnCloseGame = new JButton("Close Game");
 
@@ -356,17 +359,10 @@ public class Gui implements Observer, Runnable {
 
 	private void resetField() {
 		btnResetChoise.setEnabled(false);
-		for(int y = 0; y < fieldsize; y++) {
-			for(int x = 0; x < fieldsize; x++) {
-				buttons[y][x].setIcon(null);
-				buttons[y][x].setEnabled(false);
-				if(y % 2 == 0 && x % 2 == 1 || y % 2 == 1 && x % 2 == 0) {
-					buttons[y][x].setBackground(Color.BLACK);
-				} else {
-					buttons[y][x].setBackground(Color.WHITE);
-				}
-			}
-		}
+		rec.setButtons(buttons);
+		rec.setFieldsize(fieldsize);
+		this.inv.setCommand(undo);
+		undo.execute();
 	}
 
 	private void setIconWhite(List<IFigure> figs) {
