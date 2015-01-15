@@ -247,8 +247,8 @@ public class Gui implements Observer, Runnable {
 						}
 					} else {
 						Integer[] field;
-						for(int f = 0; f < getAvailableFields().size(); f++) {
-							field = getAvailableFields().get(f);
+						for(int f = 0; f < getAvailFields().size(); f++) {
+							field = getAvailFields().get(f);
 							if(field[0] - 1 == y && field[1] - 1 == x) {
 						        Integer myInteger = new Integer(f); 
 						        String s = myInteger.toString(); 
@@ -341,7 +341,7 @@ public class Gui implements Observer, Runnable {
 
 	private void enableButtonsFields() {
 		btnResetChoise.setEnabled(true);
-		for(Integer[] field : getAvailableFields()) {
+		for(Integer[] field : getAvailFields()) {
 			buttons[field[0] -1][field[1] -1].setEnabled(true);
 		}
 	}
@@ -420,11 +420,11 @@ public class Gui implements Observer, Runnable {
 		return availableFigures;
 	}
 
-	public void setAvailableFigs(List<IFigure> availableFigures) {
-		this.availableFigures = availableFigures;
+	public void setAvailableFigs(List<IFigure> availableFigs) {
+		this.availableFigures = availableFigs;
 	}
 
-	public List<Integer[]> getAvailableFields() {
+	public List<Integer[]> getAvailFields() {
 		return availableFields;
 	}
 
