@@ -35,9 +35,6 @@ public class ControlModule extends AbstractModule {
 		bind(IControlColidatePawn.class)
 		.to(ControlColidatePawn.class);
 		
-		bind(IControlColidate.class)
-		.to(ControlColidate.class);
-		
 		bind(IControlPawn.class)
 		.to(ControlPawn.class);
 		

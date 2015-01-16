@@ -2,9 +2,6 @@ package control;
 
 import java.util.List;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
 import model.IFigure;
 import model.Player;
 /**
@@ -14,13 +11,12 @@ import model.Player;
  */
 public class ControlColidatePawn implements IControlColidatePawn{
 	
-	private Injector inj = Guice.createInjector(new ControlModule());
 	private ColidatingFields coli;
 	private List<List<Integer[]>> fields;
 	private int c;
 	
 	public ControlColidatePawn() {
-		coli = inj.getInstance(ColidatingFields.class);
+		coli = new ColidatingFields();
 	}
 	
 	/**

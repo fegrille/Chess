@@ -34,7 +34,7 @@ public class ControlGame implements Subject {
 	public ControlGame() {
 		observers = new ArrayList<Observer>();
 		controlEG = inj.getInstance(ControlEndGame.class);
-		col = inj.getInstance(ControlColidate.class);
+		col = new ControlColidate();
 		chosenFigure = null;
 		chosenField = null;
 		possiFigures = null;

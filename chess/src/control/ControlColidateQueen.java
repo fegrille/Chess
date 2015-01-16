@@ -1,8 +1,5 @@
 package control;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
 import model.IFigure;
 import model.Player;
 /**
@@ -12,11 +9,10 @@ import model.Player;
  */
 public class ControlColidateQueen implements IControlColidateQueen{
 	
-	private Injector inj = Guice.createInjector(new ControlModule());
 	private ColidatingFields coli;
 	
 	public ControlColidateQueen() {
-		coli = inj.getInstance(ColidatingFields.class);
+		coli = new ColidatingFields();
 	}
 
 	/**

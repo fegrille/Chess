@@ -2,9 +2,6 @@ package control;
 
 import java.util.List;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-
 import model.IFigure;
 import model.Player;
 
@@ -15,14 +12,13 @@ import model.Player;
  */
 public class ControlColidateKnight implements IControlColidateKnight{
 	
-	private Injector inj = Guice.createInjector(new ControlModule());
 	private ColidatingFields coli;
 	private List<List<Integer[]>> fields;
 	private List<IFigure> figureList;
 	private int c;
 	
 	public ControlColidateKnight() {
-		coli = inj.getInstance(ColidatingFields.class);
+		coli = new ColidatingFields();
 	}
 	
 	/**
