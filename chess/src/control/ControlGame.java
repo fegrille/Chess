@@ -3,6 +3,8 @@ package control;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -29,6 +31,7 @@ public class ControlGame implements Subject {
 	private Integer[] chosenField;
 	private ControlColidate col;
 	private ControlPawn conPa;
+	private Logger logger = Logger.getLogger("control.ControlGame");
 
 	@Inject
 	public ControlGame() {
@@ -81,7 +84,7 @@ public class ControlGame implements Subject {
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					logger.error("Wait for input failed");
 				}
 			}
 			setChosenFigure(Integer.parseInt(getChoise()));
@@ -93,7 +96,7 @@ public class ControlGame implements Subject {
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					logger.error("Wait for input failed");
 				}
 			}
 			if(Integer.parseInt(getChoise()) == -1) {
