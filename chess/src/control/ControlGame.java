@@ -78,7 +78,12 @@ public class ControlGame implements Subject {
 			setPossiFigures(getCurrentPlayer().getFigureList());
 			notifyObserver();
 			while(!checkFigureChoise(getChoise())) {
-				continue;
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			setChosenFigure(Integer.parseInt(getChoise()));
 			setPossiFields(getChosenFigure());
@@ -86,7 +91,12 @@ public class ControlGame implements Subject {
 			setTask('s');
 			notifyObserver();
 			while(!checkFieldChoise(getChoise())) {
-				continue;
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			if(Integer.parseInt(getChoise()) == -1) {
 				continue;
