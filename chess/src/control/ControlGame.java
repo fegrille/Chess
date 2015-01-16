@@ -33,7 +33,7 @@ public class ControlGame implements Subject {
 	@Inject
 	public ControlGame() {
 		observers = new ArrayList<Observer>();
-		controlEG = inj.getInstance(ControlEndGame.class);
+		controlEG = new ControlEndGame();
 		col = new ControlColidate();
 		chosenFigure = null;
 		chosenField = null;

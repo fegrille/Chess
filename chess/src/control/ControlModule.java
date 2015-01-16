@@ -37,9 +37,6 @@ public class ControlModule extends AbstractModule {
 		
 		bind(IControlPawn.class)
 		.to(ControlPawn.class);
-		
-		bind(IControlEndGame.class)
-		.to(ControlEndGame.class);
 
 	}
 

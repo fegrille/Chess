@@ -13,7 +13,7 @@ import model.Rook;
  * @author Felix
  *
  */
-public class ControlEndGame implements IControlEndGame{
+public class ControlEndGame{
 	
 	private boolean win = false;
 	private boolean kingCantMove = false;
@@ -39,7 +39,6 @@ public class ControlEndGame implements IControlEndGame{
 	 * @param col
 	 * @param lastMovedFigure
 	 */
-	@Override
 	public void controlWin(Player pl, Player plOpp, ControlColidate col, IFigure lastMovedFigure) {
 		setPl(pl);
 		setPlOpp(plOpp);
